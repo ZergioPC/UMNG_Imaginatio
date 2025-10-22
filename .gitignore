@@ -1,1 +1,28 @@
+# IDE-specific files
+.vscode/
+
+# || - - - BACKEND - - - ||
+
+# Python
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Environment variables
 .env
+*.env
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/

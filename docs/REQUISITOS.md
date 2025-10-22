@@ -25,8 +25,7 @@ flowchart LR
         direction TB
         D[Dar Like]
         E[Publicar Post]
-        F["Ver Likes
-            Crear Equipos"]
+        F["Ver Likes"]
     end
     B-->E
     A-->D

@@ -9,17 +9,20 @@ classDiagram
         -int id
         +str name
         +str info
-        +list Equipos
-        +addEquipo()
-        +editEquipo()
+        +list[Equipo] Equipos
+        +list[Post] posts
+        +crearPost()
+        +borrarPost()
     }
     class Equipo{
         -int id
         +str name
         +str desc
         +int likes
-        +list post
+        +list[Post] posts
         +img foto
+        +crearPost()
+        +borrarBost()
     }
     class Estudiante{
         -int id
@@ -40,5 +43,6 @@ classDiagram
     Equipo <|-- Estudiante
     Equipo <|-- Post
     Torneo <|-- Equipo
-    note "Cada Imaginatio se reinicia <br> la base de datos"
+    Torneo <|-- Post
+    note "En cada Imaginatio se reinicia <br> la base de datos"
 ```
