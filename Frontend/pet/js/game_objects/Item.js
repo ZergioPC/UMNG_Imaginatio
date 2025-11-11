@@ -11,8 +11,7 @@ import { ITEMS_DATA } from '../constants.js';
 export class Item {
     /**
      * @param {object} itemData - Data to construct the item.
-     * @param {string} itemKey - Key for the item
-     * Can be partial data from localStorage (e.g., {id, x, y}) or full data for a new item.
+     * Can be partial data from localStorage (e.g., {id, x, y, isPlaced}) or full data for a new item.
      */
     constructor(itemData) {
         const staticData = ITEMS_DATA[itemData.id];
@@ -22,7 +21,7 @@ export class Item {
         }
 
         // --- Static Properties (from ITEMS_DATA) ---
-        this.id = itemData.id; // The ID is now the string key, e.g., 'house_base'
+        this.id = itemData.id;
         this.name = staticData.name;
         this.price = staticData.price;
         this.width = staticData.width;
@@ -30,9 +29,12 @@ export class Item {
         this.type = staticData.type;
 
         // --- Dynamic Properties (from saved data or defaults) ---
-        // If x/y are provided (from localStorage), use them. Otherwise, default to 0.
         this.x = itemData.x || 0;
         this.y = itemData.y || 0;
+        // isPlaced determines if a 'draggable' item should be rendered on the canvas.
+        // Defaults to true for backward compatibility and for newly bought items.
+        this.isPlaced = itemData.isPlaced !== undefined ? itemData.isPlaced : true;
+
 
         // --- Asset Loading ---
         this.sprite = new Image();
@@ -54,6 +56,9 @@ export class Item {
      * @returns {boolean} True if the coordinates are inside the item.
      */
     isClicked(x, y) {
+        // An item that is not placed cannot be clicked.
+        if (!this.isPlaced) return false;
+        
         return (
             x >= this.x &&
             x <= this.x + this.width &&

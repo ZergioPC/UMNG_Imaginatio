@@ -132,6 +132,23 @@ export class GameStateManager {
     }
 
     /**
+     * Toggles whether a draggable item is shown on the canvas.
+     * @param {string} itemId The ID of the item to toggle.
+     * @returns {boolean} True if the toggle was successful, false otherwise.
+     */
+    toggleItemPlacement(itemId) {
+        const item = this.userInventory.getItem(itemId);
+        if (item && item.type === 'draggable') {
+            item.isPlaced = !item.isPlaced;
+            this.saveData();
+            console.log(`Set placement for ${item.name} to ${item.isPlaced}`);
+            return true;
+        }
+        console.error(`Could not toggle placement for item ${itemId}. Not found or not draggable.`);
+        return false;
+    }
+
+    /**
      * Sets the active background skin.
      * @param {string} itemId The ID of the background item to activate.
      */

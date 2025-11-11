@@ -70,11 +70,11 @@ export class GameCanvas {
             floor.render(this.ctx);
         }
 
-        // 4. Draw all draggable items from the user's inventory
+        // 4. Draw all draggable items from the user's inventory that are "placed"
         const userItems = this.gameStateManager.getUserInventory().getItems();
         userItems.forEach(item => {
-            // Only render items that are placeable objects
-            if (item.type === 'draggable' && item.isLoaded) {
+            // Only render draggable items that are placed and loaded
+            if (item.type === 'draggable' && item.isPlaced && item.isLoaded) {
                 item.render(this.ctx);
             }
         });

@@ -10,7 +10,7 @@ export class Inventory {
     /**
      * Initializes the inventory.
      * @param {Array<object>} [rawItemsData=[]] - An array of plain objects, typically from
-     * localStorage, each representing an item's saved state (e.g., {id, x, y}).
+     * localStorage, each representing an item's saved state (e.g., {id, x, y, isPlaced}).
      */
     constructor(rawItemsData = []) {
         /**
@@ -23,8 +23,7 @@ export class Inventory {
         
         if (rawItemsData && Array.isArray(rawItemsData)) {
             rawItemsData.forEach(itemData => {
-                // This assumes the Item constructor can take raw data and reconstruct
-                // the full item object, likely by looking up static data from a constant.
+                // The Item constructor now handles all properties, including 'isPlaced'
                 const item = new Item(itemData);
                 this.items.set(item.id, item);
             });
@@ -72,14 +71,15 @@ export class Inventory {
 
     /**
      * Returns a simplified array of item data suitable for JSON serialization.
-     * This only includes data that needs to be saved, like ID and position.
-     * @returns {Array<{id: string, x: number, y: number}>}
+     * This includes all dynamic data that needs to be saved.
+     * @returns {Array<{id: string, x: number, y: number, isPlaced: boolean}>}
      */
     getItemsForSaving() {
         return Array.from(this.items.values()).map(item => ({
             id: item.id,
             x: item.x,
             y: item.y,
+            isPlaced: item.isPlaced, // Save the placement status
         }));
     }
 }

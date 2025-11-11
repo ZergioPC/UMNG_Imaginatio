@@ -28,32 +28,32 @@ export const ITEMS_DATA = {
         name: 'Casa Estandar',
         price: 4,
         src: './img/house_textures/CASA_BASE.png',
-        width: 948,
-        height: 678,
+        width: 330,
+        height: 220,
         type: "draggable"
     },
     'house_space': {
         name: 'Casa Espacial',
         price: 12,
         src: './img/house_textures/CASA_ESP.png',
-        width: 948,
-        height: 678,
+        width: 330,
+        height: 220,
         type: "draggable"
     },
     'house_cowboy': {
         name: 'Casa Vaquera',
         price: 12,
         src: './img/house_textures/CASA_VAK.png',
-        width: 948,
-        height: 678,
+        width: 330,
+        height: 220,
         type: "draggable"
     },
     'house_rich': {
         name: 'Casa de Rico',
         price: 19,
         src: './img/house_textures/CASA_MLL.png',
-        width: 948,
-        height: 678,
+        width: 330,
+        height: 220,
         type: "draggable"
     },
     'background_base': {

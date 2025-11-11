@@ -4,7 +4,7 @@
     This is the entry point for the entire minigame. It's responsible for:
     1. Waiting for the web page to finish loading.
     2. Finding the <canvas> element in the HTML.
-    3. Initializing all the major game modules (GameStateManager, GameCanvas, InputManager).
+    3. Initializing all the major game modules (GameStateManager, GameCanvas, InputManager, and UI).
     4. Starting the game loop, which runs continuously to update and render the game.
 */
 
@@ -12,41 +12,47 @@
 import { GameStateManager } from './core/GameStateManager.js';
 import { GameCanvas } from './rendering/GameCanvas.js';
 import { InputManager } from './core/InputManager.js';
+import { StoreUI } from './ui/StoreUI.js';
+import { InventoryUI } from './ui/InventoryUI.js';
 
 
 // Wait for the DOM to be fully loaded before starting the game
 window.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded. Initializing game...');
     
-    // Get the canvas element from the HTML.
-    // IMPORTANT: Your <canvas> tag in index.html must have id="game-canvas"
+    // Get DOM elements
     const canvas = document.getElementById('game-canvas');
     if (!canvas) {
         console.error('Fatal Error: Canvas element with ID "game-canvas" not found!');
         return;
     }
+    const storeMenu = document.getElementById('pet-store-menu');
+    const inventoryMenu = document.getElementById('pet-invent-menu');
     
     // --- INITIALIZATION ---
-    // The order is important here.
-    // 1. Initialize the state manager (the "brain" that holds all data)
     const gameStateManager = new GameStateManager();
-
-    // 2. Initialize the canvas renderer (the "eyes" that draw the state)
     const gameCanvas = new GameCanvas(canvas, gameStateManager);
-
-    // 3. Initialize the input manager (the "nerves" that handle user actions)
     const inputManager = new InputManager(canvas, gameCanvas, gameStateManager);
 
+    // --- UI INITIALIZATION ---
+    // We create a manager object to handle interactions between UI components.
+    const uiManager = {};
+    uiManager.store = new StoreUI(gameStateManager, storeMenu, uiManager);
+    uiManager.inventory = new InventoryUI(gameStateManager, inventoryMenu, uiManager);
+
+    // --- UI Event Listeners ---
+    document.getElementById('game-store').addEventListener('click', () => {
+        uiManager.store.toggle();
+    });
+
+    document.getElementById('game-inventory').addEventListener('click', () => {
+        uiManager.inventory.toggle();
+    });
+
     // --- GAME LOOP ---
-    // This function runs on every frame to update animations and draw the scene.
     function gameLoop() {
-        // Update game logic and animations (e.g., the pet's idle cycle)
         gameCanvas.update();
-
-        // Render the entire scene
         gameCanvas.render();
-
-        // Schedule the next frame to be drawn
         requestAnimationFrame(gameLoop);
     }
 

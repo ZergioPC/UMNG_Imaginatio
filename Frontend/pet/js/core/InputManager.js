@@ -110,8 +110,8 @@ export class InputManager {
         // Loop backwards to correctly select items that are drawn on top
         for (let i = items.length - 1; i >= 0; i--) {
             const item = items[i];
-            // Only allow dragging for items marked as 'draggable'
-            if (item.type === 'draggable' && item.isClicked(coords.x, coords.y)) {
+            // Only allow dragging for 'draggable' items that are currently placed
+            if (item.type === 'draggable' && item.isPlaced && item.isClicked(coords.x, coords.y)) {
                 this.selectedItem = item;
                 this.offsetX = coords.x - item.x;
                 this.offsetY = coords.y - item.y;
