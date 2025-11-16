@@ -18,6 +18,9 @@ export class Pet {
         this.state = 'idle'; // Can be 'idle', 'petting'
         this.happiness = 0;
         this.idleTimer = null; // Timer to return to idle state
+        this.combo = 0;
+        this.comboTimeout = null;
+        this.comboDisplay = null;
 
         // --- Animation ---
         this.idleFrames = [];
@@ -80,6 +83,10 @@ export class Pet {
         );
     }
 
+    setComboDisplay(element) {
+        this.comboDisplay = element;
+    }
+
     /**
      * Handles the logic when the pet is petted.
      * It changes the state and increases happiness.
@@ -87,14 +94,35 @@ export class Pet {
     handlePet() {
         this.happiness++;
         this.state = 'petting';
+        this.combo++;
+
+        this.comboDisplay.classList.add('game-combo-animation');
+        setTimeout(()=>{
+            if (this.comboDisplay.classList.contains('game-combo-animation')){
+                this.comboDisplay.classList.remove('game-combo-animation');    
+            }
+        },100);   
+
+        if (this.comboDisplay) {
+            this.comboDisplay.innerText = `+${this.combo}`;
+            this.comboDisplay.classList.add('active');
+        }
         
         // Clear any existing timer to reset the countdown
         clearTimeout(this.idleTimer);
+        clearTimeout(this.comboTimeout);
 
         // After a short time of no petting, return to the idle state
         this.idleTimer = setTimeout(() => {
             this.state = 'idle';
         }, 500); // Stay in petting state for 0.5 seconds after the last pet
+
+        this.comboTimeout = setTimeout(() => {
+            this.combo = 0;
+            if (this.comboDisplay) {
+                this.comboDisplay.classList.remove('active');
+            }
+        }, 2000); // Reset combo after 2 seconds of inactivity
     }
 
     /**

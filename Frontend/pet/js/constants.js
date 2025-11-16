@@ -37,7 +37,7 @@ export const ITEMS_DATA = {
         price: 12,
         src: './img/house_textures/CASA_ESP.png',
         width: 330,
-        height: 220,
+        height: 320,
         type: "draggable"
     },
     'house_cowboy': {
@@ -45,7 +45,7 @@ export const ITEMS_DATA = {
         price: 12,
         src: './img/house_textures/CASA_VAK.png',
         width: 330,
-        height: 220,
+        height: 320,
         type: "draggable"
     },
     'house_rich': {
@@ -53,7 +53,7 @@ export const ITEMS_DATA = {
         price: 19,
         src: './img/house_textures/CASA_MLL.png',
         width: 330,
-        height: 220,
+        height: 320,
         type: "draggable"
     },
     'background_base': {

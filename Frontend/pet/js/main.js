@@ -28,10 +28,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     const storeMenu = document.getElementById('pet-store-menu');
     const inventoryMenu = document.getElementById('pet-invent-menu');
+    const comboDisplay = document.querySelector('.game-combo');
     
     // --- INITIALIZATION ---
     const gameStateManager = new GameStateManager();
-    const gameCanvas = new GameCanvas(canvas, gameStateManager);
+    const gameCanvas = new GameCanvas(canvas, gameStateManager, comboDisplay);
     const inputManager = new InputManager(canvas, gameCanvas, gameStateManager);
 
     // --- UI INITIALIZATION ---

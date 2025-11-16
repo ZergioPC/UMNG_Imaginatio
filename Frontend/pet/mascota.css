@@ -1,14 +1,11 @@
 .game-container {
-    width: 900px;
+    width: 90vw;
+    max-width: 900px;
     position: relative;
     margin: auto; /* Center the game container */
 }
 
-.game-container h1 {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    z-index: 10;
+h1 {
     color: white;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
@@ -19,7 +16,7 @@
     flex-direction: column;
     gap: 8px;
     top: 20px;
-    right: -60px; /* Position it outside the container */
+    right: 10px; /* Position it outside the container */
     z-index: 20;
 }
 

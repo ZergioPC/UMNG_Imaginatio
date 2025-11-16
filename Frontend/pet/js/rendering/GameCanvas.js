@@ -16,8 +16,9 @@ export class GameCanvas {
     /**
      * @param {HTMLCanvasElement} canvasElement The <canvas> DOM element.
      * @param {GameStateManager} gameStateManager The manager holding all game data.
+     * @param {HTMLElement} comboDisplay The element to display the combo counter.
      */
-    constructor(canvasElement, gameStateManager) {
+    constructor(canvasElement, gameStateManager, comboDisplay) {
         this.canvas = canvasElement;
         this.ctx = this.canvas.getContext('2d');
         this.gameStateManager = gameStateManager;
@@ -30,6 +31,7 @@ export class GameCanvas {
         const petX = (this.canvas.width - 256) / 2; // 256 is pet width
         const petY = this.canvas.height - 300; // Adjust as needed
         this.pet = new Pet(petX, petY);
+        this.pet.setComboDisplay(comboDisplay);
 
         console.log('GameCanvas initialized.');
     }

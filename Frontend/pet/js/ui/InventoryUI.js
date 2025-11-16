@@ -49,7 +49,13 @@ export class InventoryUI {
                 <button class="close-button">X</button>
             </div>
             <div class="pet-menu-items">
-                ${userInventory.length > 0 ? userInventory.map(item => this.createItemHTML(item, activeBackgroundId, activeFloorId)).join('') : '<p class="empty-message">Your inventory is empty. Visit the store!</p>'}
+                ${userInventory.length > 0 
+                    ? userInventory.map(
+                        item => this.createItemHTML(
+                            item, activeBackgroundId, 
+                            activeFloorId
+                        )).join('') 
+                    : '<p class="empty-message">Your inventory is empty. Visit the store!</p>'}
             </div>
         `;
 

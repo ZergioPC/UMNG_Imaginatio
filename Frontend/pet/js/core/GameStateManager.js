@@ -76,23 +76,23 @@ export class GameStateManager {
     /**
      * Handles the logic for purchasing an item.
      * @param {string} itemId The ID of the item to purchase.
-     * @returns {boolean} True if the purchase was successful, false otherwise.
+     * @returns {{success: boolean, reason?: string}} An object indicating if the purchase was successful and why.
      */
     purchaseItem(itemId) {
         const item = this.storeInventory.getItem(itemId);
         if (!item) {
             console.error(`Item with id ${itemId} not found in store.`);
-            return false;
+            return { success: false, reason: 'ITEM_NOT_FOUND' };
         }
 
         if (this.userLikes < item.price) {
             console.log('Not enough likes to purchase.');
-            return false;
+            return { success: false, reason: 'NOT_ENOUGH_LIKES' };
         }
 
         if (this.userInventory.hasItem(itemId)) {
             console.log('User already owns this item.');
-            return false;
+            return { success: false, reason: 'ALREADY_OWNED' };
         }
 
         // All checks passed, proceed with the purchase
@@ -109,7 +109,7 @@ export class GameStateManager {
         }
 
         this.saveData();
-        return true;
+        return { success: true };
     }
     
     /**

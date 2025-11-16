@@ -107,14 +107,18 @@ export class StoreUI {
         this.storeElement.querySelectorAll('.buy-button:not(:disabled)').forEach(button => {
             button.addEventListener('click', (event) => {
                 const itemId = event.target.dataset.itemId;
-                const success = this.gameStateManager.purchaseItem(itemId);
+                const result = this.gameStateManager.purchaseItem(itemId);
                 
-                if (success) {
+                if (result.success) {
                     // Re-render the store to update likes and item statuses
                     this.render();
                 } else {
                     // Provide feedback for failed purchase
-                    alert("Purchase failed. You may not have enough likes or already own this item.");
+                    if (result.reason === 'NOT_ENOUGH_LIKES') {
+                        alert("No hay suficientes likes para esto");
+                    } else {
+                        alert("Purchase failed. You may not have enough likes or already own this item.");
+                    }
                 }
             });
         });
