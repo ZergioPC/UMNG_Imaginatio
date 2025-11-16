@@ -16,7 +16,6 @@ export class Pet {
 
         // --- State Management ---
         this.state = 'idle'; // Can be 'idle', 'petting'
-        this.happiness = 0;
         this.idleTimer = null; // Timer to return to idle state
         this.combo = 0;
         this.comboTimeout = null;
@@ -92,7 +91,6 @@ export class Pet {
      * It changes the state and increases happiness.
      */
     handlePet() {
-        this.happiness++;
         this.state = 'petting';
         this.combo++;
 

@@ -137,6 +137,7 @@ export class InputManager {
 
             if (pet && deltaY > this.petThreshold) {
                 pet.handlePet();
+                this.gameStateManager.addLike();
                 console.log('Pet was petted!');
                 this.lastPetY = coords.y; // Reset position to allow continuous petting
             }

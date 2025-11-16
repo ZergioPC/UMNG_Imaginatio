@@ -52,8 +52,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // --- GAME LOOP ---
     function gameLoop() {
+        // Update game state
         gameCanvas.update();
+        gameCanvas.getBowl().setLikes(gameStateManager.getLikes());
+
+        // Render the game
         gameCanvas.render();
+        
         requestAnimationFrame(gameLoop);
     }
 

@@ -111,6 +111,14 @@ export class GameStateManager {
         this.saveData();
         return { success: true };
     }
+
+    /**
+     * Adds a like to the user's total.
+     */
+    addLike() {
+        this.userLikes++;
+        this.saveData();
+    }
     
     /**
      * Updates the position of an item in the user's inventory.

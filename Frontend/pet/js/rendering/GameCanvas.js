@@ -11,6 +11,7 @@
 */
 
 import { Pet } from '../game_objects/Pet.js';
+import { Bowl } from '../game_objects/Bowl.js';
 
 export class GameCanvas {
     /**
@@ -33,6 +34,11 @@ export class GameCanvas {
         this.pet = new Pet(petX, petY);
         this.pet.setComboDisplay(comboDisplay);
 
+        // Create the bowl instance
+        const bowlX = this.canvas.width - 400;
+        const bowlY = this.canvas.height - 150;
+        this.bowl = new Bowl(bowlX, bowlY, this.gameStateManager.getLikes());
+
         console.log('GameCanvas initialized.');
     }
 
@@ -42,6 +48,14 @@ export class GameCanvas {
      */
     getPet() {
         return this.pet;
+    }
+
+    /**
+     * Provides access to the Bowl instance for other modules.
+     * @returns {Bowl}
+     */
+    getBowl() {
+        return this.bowl;
     }
 
     /**
@@ -81,7 +95,10 @@ export class GameCanvas {
             }
         });
 
-        // 5. Draw the pet on top of everything else
+        // 5. Draw the bowl
+        this.bowl.render(this.ctx);
+
+        // 6. Draw the pet on top of everything else
         this.pet.render(this.ctx);
     }
 }
