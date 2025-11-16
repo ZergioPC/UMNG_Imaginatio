@@ -158,12 +158,21 @@ export class InputManager {
     handleInteractionEnd(event) {
         // Finalize item dragging
         if (this.selectedItem) {
-            console.log(`Placed ${this.selectedItem.name}.`);
-            this.gameStateManager.moveItem(
-                this.selectedItem.id,
-                this.selectedItem.x,
-                this.selectedItem.y
-            );
+            const canvas = this.gameCanvas.canvas;
+            const item = this.selectedItem;
+
+            // Check if the item is outside the canvas boundaries
+            if (item.x < 0 || item.x + item.width > canvas.width || item.y < 0 || item.y + item.height > canvas.height) {
+                console.log(`${item.name} was dropped outside the canvas. Returning to inventory.`);
+                this.gameStateManager.toggleItemPlacement(item.id);
+            } else {
+                console.log(`Placed ${item.name}.`);
+                this.gameStateManager.moveItem(
+                    item.id,
+                    item.x,
+                    item.y
+                );
+            }
         }
 
         // Reset all interaction states
