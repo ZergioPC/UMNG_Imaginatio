@@ -33,6 +33,7 @@ class Estudiante(EstudianteBase, table=True):
 class EquipoBase(SQLModel):
     name:str
     desc:str
+    equipo_password:str
     evento_id:int
 
 class EquipoEdit(SQLModel):

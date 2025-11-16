@@ -19,6 +19,7 @@ def crear_tablas(app:FastAPI):
 
 # functions to controll the DB access from the endpoints
 # Always use with!!
+
 async def db_select_all(model):
     """
     This function creates a SESSION to get 
@@ -92,7 +93,7 @@ async def db_update(model, id, data):
 async def db_delete_unique(model, id):
     """
     This function creates a SESSION to get 
-    only one data to DB
+    only one data to DB by ID
     """
     with Session(engine) as session:
         data = session.get(model, id)
@@ -104,3 +105,13 @@ async def db_delete_unique(model, id):
         
         session.delete(data)
         session.commit()
+
+async def db_get_equipo_by_name(name:str) -> Equipo:
+    """
+    This function creates a SESSION to get 
+    only one data to DB by NAME
+    """
+    with Session(engine) as session:
+        statement = select(Equipo).where(Equipo.name == name)
+        equipo = session.exec(statement).first()
+        return equipo
