@@ -1,13 +1,15 @@
 from fastapi import APIRouter, HTTPException, Response, Depends, status
 
 from auth.models import LoginRequest, LoginResponse, AdminRequest
-from auth.depends import ACTIVE_SESSIONS
+from auth.depends import ACTIVE_SESSIONS, get_current_admin
 from auth.utils import crear_session_token, verify_password
 from auth.admin import ADMIN_DATA
 
 from models.equipo import Equipo
 
 from db import db_get_equipo_by_name
+
+DOMAIN:str = "http://127.0.0.1:5501/Frontend"
 
 router = APIRouter()
 
@@ -67,5 +69,12 @@ async def admin_login(data: AdminRequest, response: Response):
     
     return {
         "message": "Login de Admin exitoso",
-        "user": "Admin"
+        "success": f"{DOMAIN}/admin/panel.html"
+    }
+
+@router.get("/verify-admin")
+#async def admin_verify(current_user:str = Depends(get_current_admin)):
+async def admin_verify():
+    return {
+        "message":"Admin Verificado"
     }

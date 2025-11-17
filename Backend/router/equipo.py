@@ -17,7 +17,8 @@ async def healty(current_team:Equipo=Depends(get_current_user)):
 
 # CRUD Equipo
 @router.post("/crear", status_code=status.HTTP_201_CREATED)
-async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_current_admin)):
+async def equipo_crear(equipo_data:EquipoBase):
+#async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_current_admin)):
     equipo = Equipo.model_validate(equipo_data.model_dump())
     equipo.equipo_password = hash_password(equipo.equipo_password)
     await db_commit(equipo)
@@ -36,7 +37,8 @@ async def editar(id:int, equipo_data:EquipoEdit, current_team:Equipo=Depends(get
     return {"message":"Equipo editado con Exito"}
 
 @router.delete("/delete/{id}", status_code=status.HTTP_403_FORBIDDEN)
-async def equipo_borrar(id:int, current_admin:str=Depends(get_current_admin)):
+async def equipo_borrar(id:int):
+#async def equipo_borrar(id:int, current_admin:str=Depends(get_current_admin)):
     await db_delete_unique(Equipo,id)
     return {"message":"Equipo eliminado con Exito"}
 

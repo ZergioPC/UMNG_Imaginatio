@@ -43,8 +43,9 @@ async def borrar_by_team(id:int, current_team:Equipo = Depends(get_current_user)
     return {"message":"Evento eliminado con Exito"}
 
 @router.delete("/delete-by-admin/{id}", status_code=status.HTTP_403_FORBIDDEN)
-async def borrar_by_admin(id:int, current_admin:str = Depends(get_current_admin)):   
-    if not current_admin:
-        raise HTTPException(401,"No eres admin") 
+async def borrar_by_admin(id:int):   
+#async def borrar_by_admin(id:int, current_admin:str = Depends(get_current_admin)):   
+    #if not current_admin:
+    #    raise HTTPException(401,"No eres admin") 
     await db_delete_unique(Post,id)
     return {"message":"Evento eliminado con Exito"}

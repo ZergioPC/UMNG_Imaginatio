@@ -7,6 +7,7 @@ from db import db_get_equipo_by_name
 from auth.admin import ADMIN_DATA
 from auth.utils import ACTIVE_SESSIONS
 
+DOMAIN:str = "http://127.0.0.1:5501/Frontend"
 
 def get_current_user(session_token: Optional[str] = Cookie(None, alias="imaginatio_session")) -> Equipo:
     """
@@ -24,8 +25,10 @@ def get_current_user(session_token: Optional[str] = Cookie(None, alias="imaginat
     if not equipo_name:
         raise HTTPException(
             status_code=401, 
-            #detail="Sesión inválida o expirada. Por favor inicia sesión nuevamente."
-            detail=f"ses: {session_token}"
+            detail={
+                "detail":"Sesión inválida o expirada. Por favor inicia sesión nuevamente.",
+                "url":f"{DOMAIN}/"
+            }
         )
     
     equipo = db_get_equipo_by_name(equipo_name)
@@ -42,7 +45,8 @@ def get_current_admin(session_token:Optional[str] = Cookie(None, alias="imaginat
         raise HTTPException(
             status_code=401, 
             #detail="No estás en Admin. Por favor inicia sesión."
-            detail=f"ses: {session_token} - adminDada: {adminData}"
+            detail={"message":"No estas en admin","url":f"{DOMAIN}/admin/"}
+            
         )
 
     if (session_token != ADMIN_DATA["session"]):
