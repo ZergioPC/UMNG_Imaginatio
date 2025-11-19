@@ -6,10 +6,10 @@ from auth.utils import crear_session_token, verify_password
 from auth.admin import ADMIN_DATA
 
 from models.equipo import Equipo
-
+from utils import DOMAIN_FR
 from db import db_get_equipo_by_name
 
-DOMAIN:str = "http://127.0.0.1:5501/Frontend"
+DOMAIN:str = DOMAIN_FR
 
 router = APIRouter()
 

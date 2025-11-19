@@ -51,12 +51,12 @@ function loadPosts(page) {
                 data.data.forEach(post => {
                     const row = `
                         <tr>
-                            <td>${post.id}</td>
-                            <td>${post.content}</td>
+                            <td>${post.post_id}</td>
+                            <td>${post.title}</td>
                             <td>${post.likes}</td>
                             <td>${post.equipo_id}</td>
                             <td class="actions">
-                                <button class="delete-post-btn" data-id="${post.id}">Eliminar</button>
+                                <button class="delete-post-btn" data-id="${post.post_id}">Eliminar</button>
                             </td>
                         </tr>
                     `;
@@ -79,7 +79,7 @@ function loadPosts(page) {
 function addEventListenersToPostButtons() {
     document.querySelectorAll('.delete-post-btn').forEach(button => {
         button.addEventListener('click', (e) => {
-            const postId = e.target.dataset.id;
+            const postId = e.target.dataset.id;            
             if (confirm(`¿Seguro que quieres eliminar el post con ID ${postId}?`)) {
                 deletePost(postId);
             }

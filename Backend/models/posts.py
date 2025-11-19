@@ -4,7 +4,6 @@ class PostBase(SQLModel):
     title:str
     desc:str
     img:str
-    equipo_id:int
 
 class Post(PostBase, table=True):
     __tablename__ = "post"

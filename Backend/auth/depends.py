@@ -3,13 +3,14 @@ from fastapi import HTTPException, Cookie
 
 from models.equipo import Equipo
 from db import db_get_equipo_by_name
+from utils import DOMAIN_FR
 
 from auth.admin import ADMIN_DATA
 from auth.utils import ACTIVE_SESSIONS
 
-DOMAIN:str = "http://127.0.0.1:5501/Frontend"
+DOMAIN:str = DOMAIN_FR
 
-def get_current_user(session_token: Optional[str] = Cookie(None, alias="imaginatio_session")) -> Equipo:
+async def get_current_user(session_token: Optional[str] = Cookie(None, alias="imaginatio_session")) -> Equipo:
     """
     Dependency: Valida que el usuario esté autenticado.
     Retorna el equipo si la sesión es válida.
@@ -31,7 +32,7 @@ def get_current_user(session_token: Optional[str] = Cookie(None, alias="imaginat
             }
         )
     
-    equipo = db_get_equipo_by_name(equipo_name)
+    equipo = await db_get_equipo_by_name(equipo_name)
 
     return equipo
 
@@ -41,18 +42,17 @@ def get_current_admin(session_token:Optional[str] = Cookie(None, alias="imaginat
     Retorna el username si la sesión es válida.
     """
     adminData = ADMIN_DATA["session"]
-    if not session_token:
-        raise HTTPException(
-            status_code=401, 
-            #detail="No estás en Admin. Por favor inicia sesión."
-            detail={"message":"No estas en admin","url":f"{DOMAIN}/admin/"}
-            
-        )
+    #if not session_token:
+    #    raise HTTPException(
+    #        status_code=401, 
+    #        #detail="No estás en Admin. Por favor inicia sesión."
+    #        detail={"message":"No estas en admin","url":f"{DOMAIN}/admin/"}        
+    #    )
 
-    if (session_token != ADMIN_DATA["session"]):
-        raise HTTPException(
-            status_code=401, 
-            detail="Sesión inválida o expirada. Por favor inicia sesión nuevamente."
-        )
+    #if(session_token != ADMIN_DATA["session"]):
+    #    raise HTTPException(
+    #        status_code=401, 
+    #        detail="Sesión inválida o expirada. Por favor inicia sesión nuevamente."
+    #    )
     
     return "Admin"

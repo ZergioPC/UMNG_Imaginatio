@@ -10,7 +10,7 @@ app = FastAPI(lifespan=crear_tablas)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://127.0.0.1:5501",
+        "http://127.0.0.1:5500",
         "http://127.0.0.1:8000"
     ],
     allow_credentials=True,

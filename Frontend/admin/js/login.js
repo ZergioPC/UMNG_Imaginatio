@@ -1,8 +1,8 @@
+const API_ADDRESS = "http://127.0.0.1:8000";
+
 const user = document.getElementById('user');
 const pass = document.getElementById('password');
 const send = document.getElementById('send');
-
-const API_ADDRESS = "http://127.0.0.1:8000";
 
 send.addEventListener('click', () => {
     const data = {

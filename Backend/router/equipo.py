@@ -1,4 +1,7 @@
-from fastapi import APIRouter, status, Depends, HTTPException
+import os
+from uuid import uuid4
+
+from fastapi import APIRouter, status, Depends, HTTPException, Form, File, UploadFile
 from typing import Optional
 
 from models.equipo import EstudianteBase, EquipoBase, EstudianteEdit, EquipoEdit, Estudiante, Equipo
@@ -8,8 +11,8 @@ from db import db_commit, db_select_query, db_select_unique, db_delete_unique, d
 from auth.utils import hash_password
 from auth.depends import get_current_user, get_current_admin
 
+IMG_PATH = "uploads"
 router = APIRouter()
-
 
 @router.get("/healty")
 async def healty(current_team:Equipo=Depends(get_current_user)):
@@ -17,8 +20,7 @@ async def healty(current_team:Equipo=Depends(get_current_user)):
 
 # CRUD Equipo
 @router.post("/crear", status_code=status.HTTP_201_CREATED)
-async def equipo_crear(equipo_data:EquipoBase):
-#async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_current_admin)):
+async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_current_admin)):
     equipo = Equipo.model_validate(equipo_data.model_dump())
     equipo.equipo_password = hash_password(equipo.equipo_password)
     await db_commit(equipo)
@@ -37,8 +39,7 @@ async def editar(id:int, equipo_data:EquipoEdit, current_team:Equipo=Depends(get
     return {"message":"Equipo editado con Exito"}
 
 @router.delete("/delete/{id}", status_code=status.HTTP_403_FORBIDDEN)
-async def equipo_borrar(id:int):
-#async def equipo_borrar(id:int, current_admin:str=Depends(get_current_admin)):
+async def equipo_borrar(id:int, current_admin:str=Depends(get_current_admin)):
     await db_delete_unique(Equipo,id)
     return {"message":"Equipo eliminado con Exito"}
 
@@ -102,18 +103,51 @@ async def estudiante_get_filter(equipo_id:int):
     return {"data":data,"message":f"Estudiantes del equipo {equipo_id}"}
 
 # POSTS
+"""
 @router.post("/publicar")
 async def equipo_publicar(post_data:PostBase, current_team:str = Depends(get_current_user)):
-    post:Post = Post.model_validate(post_data.model_dump())
-
-    if current_team.id != post.equipo_id:
-        raise HTTPException(
-            status_code=403,
-            detail="No puedes Crear un Post para otro equipo"
-        )
+    data = post_data.model_dump()
+    data["equipo_id"] = current_team.equipo_id
+    post:Post = Post.model_validate(data)
 
     await db_commit(post)
     return {"message":"Post creado con Exito"}
+"""
+
+@router.post("/publicar")
+async def equipo_publicar(
+    title: str = Form(...),
+    description: str = Form(...),
+    image: UploadFile = File(...),
+    current_team: str = Depends(get_current_user)
+):
+    # Validate auth cookie in get_current_user (not here)
+    
+    # Validate file
+    if not image.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="Invalid image type")
+
+    contents = await image.read()
+
+    # Save or process the image
+    filename = f"{uuid4()}.jpg"
+    os.makedirs(IMG_PATH, exist_ok=True)
+    with open(f"{IMG_PATH}/{filename}", "wb") as f:
+        f.write(contents)
+
+    # Build your DB object manually
+    data = {
+        "title": title,
+        "desc": description,
+        "img": f"{IMG_PATH}/{filename}",
+        "equipo_id": current_team.equipo_id,
+    }
+
+    post = Post.model_validate(data)
+    await db_commit(post)
+
+    return {"message": "Post creado con éxito"}
+
 
 @router.get("/publicaciones/{id}")
 async def equipo_publicaciones(id:int):
