@@ -1,12 +1,13 @@
 // js/game_objects/Bowl.js
 
 export class Bowl {
-    constructor(x, y, initialLikes) {
+    constructor(x, y, initialLikes,width,height) {
         this.x = x;
         this.y = y;
         this.deltaX = 25;
         this.deltaY = -30;
-        this.size = [200, 120];
+        //this.size = [200, 120];
+        this.size = [width, height];
 
         this.likes = initialLikes;
         this.maxLikes = 30;
@@ -15,7 +16,8 @@ export class Bowl {
         this.bowlFront = new Image();
         this.food = new Image();
 
-        this.bowlBack.src = './img/bowl_texture/PLATO_BASE_bck.png';
+        // Initialize with default paths, these will be updated by setAppearance
+        this.bowlBack.src = './img/bowl_texture/PLATO_BASE_bck.png'; 
         this.bowlFront.src = './img/bowl_texture/PLATO_BASE_frnt.png';
         this.food.src = './img/bowl_food_textures/heart.png';
 
@@ -29,6 +31,15 @@ export class Bowl {
                 (Math.random() * 60),
                 (Math.random() * 0.1)
             ]);
+        }
+    }
+
+    setAppearance(frontSrc, backSrc) {              
+        // Only update if the source has changed to avoid unnecessary reloads
+        if (this.bowlFront.src !== frontSrc) {
+            this.bowlFront.src = frontSrc.src;
+            this.bowlBack.src = backSrc.src;
+            this.checkLoaded(); // Re-check loaded status for new images
         }
     }
 

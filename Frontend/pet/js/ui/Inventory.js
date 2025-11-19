@@ -1,6 +1,6 @@
 // Inventory.js
 
-import { Item } from '../game_objects/Item.js';
+import { Item, BowlItem } from '../game_objects/Item.js';
 
 /**
  * Manages the collection of items owned by the user. It's responsible
@@ -24,8 +24,13 @@ export class Inventory {
         if (rawItemsData && Array.isArray(rawItemsData)) {
             rawItemsData.forEach(itemData => {
                 // The Item constructor now handles all properties, including 'isPlaced'
-                const item = new Item(itemData);
-                this.items.set(item.id, item);
+                if(itemData.id.includes("bowl")){
+                    const bowl = new BowlItem(itemData)
+                    this.items.set(bowl.id, bowl);
+                }else{
+                    const item = new Item(itemData);
+                    this.items.set(item.id, item);
+                }
             });
         }
         console.log('User inventory initialized with', this.items.size, 'items.');

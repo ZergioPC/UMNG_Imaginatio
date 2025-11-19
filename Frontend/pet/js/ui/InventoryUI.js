@@ -42,6 +42,7 @@ export class InventoryUI {
         const userInventory = this.gameStateManager.getUserInventory().getItems();
         const activeBackgroundId = this.gameStateManager.activeBackgroundId;
         const activeFloorId = this.gameStateManager.activeFloorId;
+        const activeBowlId = this.gameStateManager.activeBowlId;
 
         this.inventoryElement.innerHTML = `
             <div class="pet-menu-header">
@@ -53,7 +54,8 @@ export class InventoryUI {
                     ? userInventory.map(
                         item => this.createItemHTML(
                             item, activeBackgroundId, 
-                            activeFloorId
+                            activeFloorId,
+                            activeBowlId
                         )).join('') 
                     : '<p class="empty-message">Your inventory is empty. Visit the store!</p>'}
             </div>
@@ -67,9 +69,10 @@ export class InventoryUI {
      * @param {Item} item The item to render.
      * @param {string} activeBackgroundId
      * @param {string} activeFloorId
+     * @param {string} activeBowlId
      * @returns {string}
      */
-    createItemHTML(item, activeBackgroundId, activeFloorId) {
+    createItemHTML(item, activeBackgroundId, activeFloorId, activeBowlId) {
         let buttonHTML = '';
         switch (item.type) {
             case 'draggable':
@@ -82,6 +85,10 @@ export class InventoryUI {
             case 'floor':
                 const isFloorActive = item.id === activeFloorId;
                 buttonHTML = `<button class="action-button" data-item-id="${item.id}" data-action="activate-floor" ${isFloorActive ? 'disabled' : ''}>${isFloorActive ? 'Active' : 'Activate'}</button>`;
+                break;
+            case 'bowl':
+                const isBowlActive = item.id === activeBowlId;
+                buttonHTML = `<button class="action-button" data-item-id="${item.id}" data-action="activate-bowl" ${isBowlActive ? 'disabled' : ''}>${isBowlActive ? 'Active' : 'Activate'}</button>`;
                 break;
         }
 
@@ -110,6 +117,7 @@ export class InventoryUI {
         this.inventoryElement.querySelectorAll('.action-button:not(:disabled)').forEach(button => {
             button.addEventListener('click', (event) => {
                 const itemId = event.target.dataset.itemId;
+                
                 const action = event.target.dataset.action;
                 let success = false;
 
@@ -122,6 +130,9 @@ export class InventoryUI {
                         break;
                     case 'activate-floor':
                         success = this.gameStateManager.setActiveFloor(itemId);
+                        break;
+                    case 'activate-bowl':
+                        success = this.gameStateManager.setActiveBowl(itemId);
                         break;
                 }
                 

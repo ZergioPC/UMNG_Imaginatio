@@ -1,6 +1,6 @@
 // Store.js
 
-import { Item } from '../game_objects/Item.js';
+import { Item, BowlItem } from '../game_objects/Item.js';
 
 /**
  * Manages the collection of all items available for sale in the game.
@@ -22,11 +22,17 @@ export class Store {
 
         for (const key in itemsData) {
             // Create a new item by passing its key (which is now its ID)
-            const item = new Item({ id: key });
-            this.items.set(key, item);
-            
-        }
+            if(key.includes("bowl")){
+                const item = new BowlItem({ id: key });
+                this.items.set(key, item);
+            }else{
+                const item = new Item({ id: key });
+                this.items.set(key, item);
+            }
+        }        
         console.log('Store inventory initialized with', this.items.size, 'items.');
+        console.log(this.items);
+        
     }
 
     /**

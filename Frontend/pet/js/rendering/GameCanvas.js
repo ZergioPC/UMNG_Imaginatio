@@ -37,7 +37,8 @@ export class GameCanvas {
         // Create the bowl instance
         const bowlX = this.canvas.width - 400;
         const bowlY = this.canvas.height - 150;
-        this.bowl = new Bowl(bowlX, bowlY, this.gameStateManager.getLikes());
+        this.bowl = new Bowl(bowlX, bowlY, this.gameStateManager.getLikes(), 200, 120);
+        this.currentBowlId = null; // To track the currently rendered bowl type
 
         console.log('GameCanvas initialized.');
     }
@@ -94,9 +95,14 @@ export class GameCanvas {
                 item.render(this.ctx);
             }
         });
-
+        
         // 5. Draw the bowl
-        this.bowl.render(this.ctx);
+        const activeBowl = this.gameStateManager.getActiveBowl();
+        if (activeBowl && activeBowl.isLoaded){
+            this.bowl.setAppearance(activeBowl.frontSrc, activeBowl.backSrc);
+            this.bowl.render(this.ctx);
+            //console.log(activeBowl);
+        }
 
         // 6. Draw the pet on top of everything else
         this.pet.render(this.ctx);

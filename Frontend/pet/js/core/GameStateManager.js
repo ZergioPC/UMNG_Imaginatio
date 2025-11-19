@@ -40,17 +40,20 @@ export class GameStateManager {
             this.userInventory = new Inventory(savedData.userItems);
             this.activeBackgroundId = savedData.activeBackgroundId || 'background_base';
             this.activeFloorId = savedData.activeFloorId || 'floor_base';
+            this.activeBowlId = savedData.activeBowlId || 'bowl_base';
         } else {
             // Otherwise, start with default values for a new game
             this.userLikes = 0; 
             this.userInventory = new Inventory();
             this.activeBackgroundId = 'background_base';
             this.activeFloorId = 'floor_base';
+            this.activeBowlId = 'bowl_base';
             
             // Automatically "purchase" the free base items for a new player
             this.userInventory.addItem(new Item({ id: 'house_base' }));
             this.userInventory.addItem(new Item({ id: 'background_base' }));
             this.userInventory.addItem(new Item({ id: 'floor_base' }));
+            this.userInventory.addItem(new Item({ id: 'bowl_base' }));
         }
 
         // The store's inventory is defined by our game's design, not player data.
@@ -68,6 +71,7 @@ export class GameStateManager {
             userItems: this.userInventory.getItemsForSaving(),
             activeBackgroundId: this.activeBackgroundId,
             activeFloorId: this.activeFloorId,
+            activeBowlId: this.activeBowlId,
         };
         this.storage.save(dataToSave);
         console.log('Game data saved.');
@@ -101,11 +105,13 @@ export class GameStateManager {
         
         console.log(`Purchased ${item.name}. Remaining likes: ${this.userLikes}`);
         
-        // If the purchased item is a background or floor, set it as active
+        // If the purchased item is a background or floor or Bowl, set it as active
         if (item.type === 'background') {
             this.setActiveBackground(item.id);
         } else if (item.type === 'floor') {
             this.setActiveFloor(item.id);
+        } else if (item.type === 'bowl') {
+            this.setActiveBowl(item.id);
         }
 
         this.saveData();
@@ -148,6 +154,11 @@ export class GameStateManager {
         const item = this.userInventory.getItem(itemId);
         if (item && item.type === 'draggable') {
             item.isPlaced = !item.isPlaced;
+            //Reset posicion if it's not placed
+            if(item.isPlaced){
+                item.x = 10.0;
+                item.y = 10.0;
+            }
             this.saveData();
             console.log(`Set placement for ${item.name} to ${item.isPlaced}`);
             return true;
@@ -188,6 +199,22 @@ export class GameStateManager {
         return false;
     }
 
+    /**
+     * Sets the active bowl skin.
+     * @param {string} itemId The ID of the bowl item to activate.
+     */
+    setActiveBowl(itemId) {
+        const item = this.userInventory.getItem(itemId);
+        if (item && item.type === 'bowl') {
+            this.activeBowlId = itemId;
+            this.saveData();
+            console.log(`Active bowl set to: ${item.name}`);
+            return true;
+        }
+        console.error(`Could not set bowl. Item ${itemId} not owned or not a bowl.`);
+        return false;
+    }
+
     // --- GETTERS ---
 
     getActiveBackground() {
@@ -196,6 +223,10 @@ export class GameStateManager {
 
     getActiveFloor() {
         return this.userInventory.getItem(this.activeFloorId);
+    }
+
+    getActiveBowl() {        
+        return this.userInventory.getItem(this.activeBowlId);
     }
     
     getLikes() {

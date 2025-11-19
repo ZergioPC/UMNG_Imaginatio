@@ -88,5 +88,37 @@ export const ITEMS_DATA = {
         width: 1280,
         height: 720,  
         type: "floor"
+    },
+    'bowl_base': {
+        name: 'Plato Base',
+        price: 0,
+        src: './img/bowl_store_texture/BASE.png',
+        type: "bowl",
+        frontSrc: './img/bowl_texture/PLATO_BASE_frnt.png',
+        backSrc: './img/bowl_texture/PLATO_BASE_bck.png'
+    },
+    'bowl_space': {
+        name: 'Plato Espacial',
+        price: 15,
+        src: './img/bowl_store_texture/ESP.png',
+        type: "bowl",
+        frontSrc: './img/bowl_texture/PLATO_ESP_frnt.png',
+        backSrc: './img/bowl_texture/PLATO_ESP_bck.png'
+    },
+    'bowl_cowboy': {
+        name: 'Plato Vaquero',
+        price: 15,
+        src: './img/bowl_store_texture/VAK.png',
+        type: "bowl",
+        frontSrc: './img/bowl_texture/PLATO_VAK_frnt.png',
+        backSrc: './img/bowl_texture/PLATO_VAK_bck.png'
+    },
+    'bowl_rich': {
+        name: 'Plato de Rico',
+        price: 22,
+        src: './img/bowl_store_texture/MILL.png',
+        type: "bowl",
+        frontSrc: './img/bowl_texture/PLATO_MLL_frnt.png',
+        backSrc: './img/bowl_texture/PLATO_MLL_bck.png'
     }
 };

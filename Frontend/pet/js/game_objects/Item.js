@@ -77,3 +77,19 @@ export class Item {
         }
     }
 }
+
+export class BowlItem extends Item {
+    constructor(itemData){
+        const staticData = ITEMS_DATA[itemData.id];
+       
+        if (!staticData) {
+            throw new Error(`Item data for ID "${itemData.id}" not found in ITEMS_DATA.`);
+        }
+        super(itemData);
+
+        this.frontSrc = new Image();
+        this.frontSrc.src = staticData.frontSrc;
+        this.backSrc = new Image();
+        this.backSrc.src = staticData.backSrc;
+    }
+}
