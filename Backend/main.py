@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from db import crear_tablas
 from auth import router as auth
@@ -11,12 +12,17 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://127.0.0.1:5500",
-        "http://127.0.0.1:8000"
+        "http://127.0.0.1:8000",
+        "http://192.168.0.21:5500",
+        "http://192.168.0.21:8000"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Static Files
+app.mount("/uploads",StaticFiles(directory="uploads"), name="Uploads")
 
 # Routers
 app.include_router(posts.router, prefix="/post", tags=["post"])

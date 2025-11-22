@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <title>Equipos Admin Panel</title>
+    <script src="./js/auth.js"></script>
+</head>
+<body>
+    <h1>Panel del equipo</h1>
+
+    <!-- Ajistes generales -->
+    <section class="">
+        <h2>Editar equipo</h2>
+        <form class="flex-direction-col" action="" method="post">
+            <label for="name" class="flex-direction-col">
+                <span>Nombre del equipo</span>
+                <input type="text" id="name" name="name">
+            </label>
+            <label for="desc" class="flex-direction-col">
+                <span>Descripcion</span>
+                <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+            </label>
+        </form>
+    </section>
+    
+    <hr>
+
+    <!-- Agregar integrantes -->
+    <section>
+        <h2>Agregar Integrante</h2>
+        <form class="flex-direction-row" action="" method="post">
+            <div class="flex-direction-col flex-childs-col">
+                <h3>Requerido</h3>
+                <label for="name">
+                    <span>Nombre</span>
+                    <input type="text" name="name" id="name" required>
+                </label>
+                <label for="codigo">
+                    <span>C&oacute;digo</span>
+                    <input type="number" name="codigo" id="codigo" required maxlength="8">
+                </label>
+                <label for="email">
+                    <span>Correo Electronico</span>
+                    <input type="email" name="email" id="email" required>
+                </label>
+            </div>
+            <div class="flex-direction-col flex-childs-col">
+                <h3>Opcional</h3>
+                <label for="desc">
+                    <span>Descripci&oacute;n</span>
+                    <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+                </label>
+                <label for="phone">
+                    <span>Celular</span>
+                    <input type="tel" name="phone" id="phone">
+                </label>
+                <label for="ig">
+                    <span>Usuario de Instagram</span>
+                    <input type="text" name="ig" id="ig" placeholder="@example">
+                </label>
+                <label for="twiter">
+                    <span>Usuario de Twiter</span>
+                    <input type="text" name="twiter" id="twiter" placeholder="@example">
+                </label>
+                <label for="tiktok">
+                    <span>Usuario de TikTok</span>
+                    <input type="text" name="tiktok" id="tiktok" placeholder="@example">
+                </label>
+            </div>
+            <div>    
+                <h3>Foto de Perfil</h3>            
+                <label for="img">
+                    <span>Foto</span>
+                    <!-- Validar con file.type.startsWith("image/") -->
+                    <input type="file" name="img" id="img">
+                </label>
+            </div>
+        </form>
+    </section>
+
+     <!-- Lista de Integrantes -->
+    <section class="">
+        <h2>Editar Integrantes</h2>
+        <form action="" method="get">
+            <select id="filter-users-team-id" required>
+                <option value="">Seleccionar Miembro</option>
+            </select>
+        </form>
+    </section>
+
+    <!-- Modal editar integrante -->
+    <dialog id="equipo-modal-edit">
+        <button id="equipo-modal-btn">&times;</button>
+        <h2>Editar Integrante</h2>
+        <form class="flex-direction-col">
+            <div class="flex-direction-row flex-childs-col">
+                <div>
+                    <input type="text" name="name" id="edit-est-name" placeholder="Nombre">
+                    <input type="number" name="codigo" id="edit-est-codigo" placeholder="6000000">
+                    <input type="email" name="email" id="edit-est-email" placeholder="est.user.mail@unimilitar.edu.co">
+                    <input type="tel" name="phone" id="edit-est-phone" placeholder="3137778899">
+                    <textarea name="desc" id="edit-est-desc" cols="30" rows="10"></textarea>
+                </div>
+                <div>
+                    <input type="text" name="ig" id="edit-est-ig" placeholder="@example">
+                    <input type="text" name="twiter" id="edit-est-twiter" placeholder="@example">
+                    <input type="text" name="tiktok" id="edit-est-tiktok" placeholder="@example">
+                    <!-- Validar con file.type.startsWith("image/") -->
+                    <input type="file" name="img" id="img">
+                    <img src="" alt="Estudiante Foto Actual">
+                </div>
+            </div>
+            <input type="submit" value="Guardar Cambios">
+        </form>
+    </dialog active>
+
+    <hr>
+
+    <!-- Publicaciones -->
+    <section class="">
+        <h2>Publicaciones</h2>
+        <button id="equipo-posts-load">Cargar Posts</button>
+        <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Likes</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="equipo-posts-table">
+            <!-- Los posts se cargarán aquí dinámicamente -->
+        </tbody>
+    </table>
+    </section>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>

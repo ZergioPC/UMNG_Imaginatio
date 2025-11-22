@@ -11,7 +11,8 @@ from db import db_commit, db_select_query, db_select_unique, db_delete_unique, d
 from auth.utils import hash_password
 from auth.depends import get_current_user, get_current_admin
 
-IMG_PATH = "uploads"
+from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS
+
 router = APIRouter()
 
 @router.get("/healty")
@@ -44,11 +45,12 @@ async def equipo_borrar(id:int, current_admin:str=Depends(get_current_admin)):
     return {"message":"Equipo eliminado con Exito"}
 
 # CRUD Estudiante
+"""
 @router.post("/estudiante/crear", status_code=status.HTTP_201_CREATED)
 async def estudiante_crear(est_data:EstudianteBase, current_team:Equipo=Depends(get_current_user)):
     est = Estudiante.model_validate(est_data.model_dump())
 
-    if current_team.id != est.equipo_id:
+    if current_team.equipo_id != est.equipo_id:
         raise HTTPException(
             status_code=403,
             detail="No puedes Crear un Estudiante para otro"
@@ -56,6 +58,51 @@ async def estudiante_crear(est_data:EstudianteBase, current_team:Equipo=Depends(
     
     await db_commit(est)
     return {"message":"Estudiante creado con Exito"}
+"""
+
+@router.post("/estudiante/crear", status_code=status.HTTP_201_CREATED)
+async def estudiante_crear(
+    name: str = Form(...),
+    codigo: str = Form(...),
+    desc: str | None = Form(None),
+    phone: str | None = Form(None),
+    email: str | None = Form(None),
+    instagram: str | None = Form(None),
+    twiter: str | None = Form(None),
+    tiktok: str | None = Form(None),
+    img: UploadFile = File(...),
+    current_team: Equipo = Depends(get_current_user)
+):  
+    if not img.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="Invalid image type")
+
+    contents = await img.read()
+
+    # Save or process the image
+    filename = f"{uuid4()}.jpg"
+    os.makedirs(IMG_PATH, exist_ok=True)
+    os.makedirs(IMG_PATH_USERS, exist_ok=True)
+    with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
+        f.write(contents)
+
+    # Build your DB object manually
+    data = {
+        "name": name,
+        "codigo": codigo,
+        "desc": desc,
+        "phone": phone,
+        "email": email,
+        "instagram": instagram,
+        "twiter": twiter,
+        "tiktok": tiktok,
+        "equipo_id": current_team.equipo_id,
+        "img": f"{IMG_PATH_USERS}/{filename}",
+    }
+
+    est = Estudiante.model_validate(data)
+    await db_commit(est)
+
+    return {"message": "Estudiante creado con éxito"}  
 
 @router.patch("/estudiante/editar/{id}",status_code=status.HTTP_202_ACCEPTED)
 async def estudiante_editar(id:int, est_data:EstudianteEdit, current_team:Equipo=Depends(get_current_user)):
@@ -120,9 +167,7 @@ async def equipo_publicar(
     description: str = Form(...),
     image: UploadFile = File(...),
     current_team: str = Depends(get_current_user)
-):
-    # Validate auth cookie in get_current_user (not here)
-    
+):    
     # Validate file
     if not image.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Invalid image type")
@@ -132,14 +177,15 @@ async def equipo_publicar(
     # Save or process the image
     filename = f"{uuid4()}.jpg"
     os.makedirs(IMG_PATH, exist_ok=True)
-    with open(f"{IMG_PATH}/{filename}", "wb") as f:
+    os.makedirs(IMG_PATH_POSTS, exist_ok=True)
+    with open(f"{IMG_PATH_POSTS}/{filename}", "wb") as f:
         f.write(contents)
 
     # Build your DB object manually
     data = {
         "title": title,
         "desc": description,
-        "img": f"{IMG_PATH}/{filename}",
+        "img": f"{IMG_PATH_POSTS}/{filename}",
         "equipo_id": current_team.equipo_id,
     }
 

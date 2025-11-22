@@ -11,7 +11,6 @@ class EstudianteBase(SQLModel):
     instagram:str|None
     twiter:str|None
     tiktok:str|None
-    equipo_id:int
 
 class EstudianteEdit(SQLModel):
     name: Optional [str] = Field(default=None) 
@@ -23,7 +22,6 @@ class EstudianteEdit(SQLModel):
     instagram: Optional [str] = Field(default=None)
     twiter: Optional [str] = Field(default=None)
     tiktok: Optional [str] = Field(default=None)
-    equipo_id: Optional [int] = Field(default=None)
 
 class Estudiante(EstudianteBase, table=True):
     __tablename__ = "estudiante"

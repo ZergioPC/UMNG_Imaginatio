@@ -8,6 +8,7 @@ from models.equipo import Equipo
 
 from db import db_select_unique, db_update, db_select_range, db_delete_unique
 from auth.depends import get_current_user, get_current_admin
+from router.equipo import IMG_PATH
 
 router = APIRouter()
 
