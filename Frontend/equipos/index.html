@@ -1,15 +1,142 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/arquitectura.css">
-    <link rel="stylesheet" href="../css/decoracion.css">
-    <title>Equipos</title>
+    <title>Equpio</title>
+    <link rel="stylesheet" href="../css/colors.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
+<header id="header"></header>
 <body>
-    <h1>Equipos Page</h1>
-    <script src="../js/components.js"></script>
-    <script src="../js/main.js"></script>
+    <section id="info_equipo">
+        <div>
+            <h1>Nombre del Equpio</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia</p>
+        </div>
+    </section>
+
+    <section id="integrantes">
+        <div>
+            <h2>Integrantes</h2>
+            <div id="list_integr">
+                <div class="integrante">
+                    <img src="../images/People/3.png">
+                    <h5>Estudiante Nombre</h5>
+                    <h6>Rol</h6>
+                </div>
+                <div class="integrante">
+                    <img src="../images/People/2.png">
+                    <h5>Estudiante Nombre</h5>
+                    <h6>Rol</h6>
+                </div>
+                <div class="integrante">
+                    <img src="../images/People/1.png">
+                    <h5>Estudiante Nombre</h5>
+                    <h6>Rol</h6>
+                </div>
+                <div class="integrante">
+                    <img src="../images/People/6.png">
+                    <h5>Estudiante Nombre</h5>
+                    <h6>Rol</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="posts_array active" data-page="1">
+        <div class="post">
+            <div class="team_post">
+                <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+                <h2>Nombre del Equpio</h2>
+            </div>
+            <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+        </div>
+        <div class="post">
+            <div class="team_post">
+                <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+                <h2>Nombre del Equpio</h2>
+            </div>
+            <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+        </div>
+        <div class="post">
+            <div class="team_post">
+                <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+                <h2>Nombre del Equpio</h2>
+            </div>
+            <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+        </div>
+        <div class="post">
+            <div class="team_post">
+                <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+                <h2>Nombre del Equpio</h2>
+            </div>
+            <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+        </div>
+        <div class="post">
+            <div class="team_post">
+                <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+                <h2>Nombre del Equpio</h2>
+            </div>
+            <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+        </div>
+        <div class="post">
+            <div class="team_post">
+                <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+                <h2>Nombre del Equpio</h2>
+            </div>
+            <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+        </div>
+        <div class="post">
+            <div class="team_post">
+                <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+                <h2>Nombre del Equpio</h2>
+            </div>
+            <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+        </div>
+        <div class="post">
+            <div class="team_post">
+                <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+                <h2>Nombre del Equpio</h2>
+            </div>
+            <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+        </div>
+        <div class="post">
+            <div class="team_post">
+                <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+                <h2>Nombre del Equpio</h2>
+            </div>
+            <img src="../images/sleep-token-wallpapers-v0-qsdcl8hkmoib1.webp">
+        </div>
+    </section>
+
+    <section class="pagination">
+        <button id="prev-btn">Previous</button>
+        <div id="page_numbers"></div>
+        <button id="next-btn">Next</button>
+        <span class="page-info" id="page-info"></span>
+    </section>
+
+    <div id="memberModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modalMemberImage" src="">
+            <div class="modal-info">
+                <h2 id="modalMemberName"></h2>
+                <h3 id="modalMemberRole"></h3>
+                <p id="modalMemberDescription"></p>
+                <div class="modal-social-icons">
+                    <button title="YouTube">▶</button>
+                    <button title="Twitch">⏸</button>
+                    <button title="Instagram">◯</button>
+                    <button title="Facebook">f</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="equipos.js"></script>
+    <script src="../js/headfoot.js"></script>
 </body>
+<footer id="footer"></footer>
 </html>
