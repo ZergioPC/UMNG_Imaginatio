@@ -10,65 +10,66 @@ images.forEach(img => {
 const imaginatios = [
     {
         year: 2014,
-        title: "Imagiantio I",
-        description: "Imaginatio 2014-1 it's the first instance of the Imaginatio Event done in the UMNG in the Campus Venue.<br>The topic is engineering in it of itself and with talks about video production and rendering.",
+        title: "Imaginatio I",
+        description: "Imaginatio 2014-1 es la primera instancia del evento Imaginatio realizada en la sede del Campus de la UMNG.<br>El tema es la ingeniería en sí misma, con charlas sobre producción y renderizado de video.",
     },
     {
         year: 2014,
         title: "Imaginatio II",
-        description: "Imaginatio 2014-2 is the second apereance of the event.<br>This instance is focused on a more artistic side of things with talks about 3D modeling and animation with some series being put as examples."
+        description: "Imaginatio 2014-2 es la segunda aparición del evento.<br>Esta edición está enfocada en un lado más artístico, con charlas sobre modelado 3D y animación, usando algunas series como ejemplo."
     },
     {
         year: 2015,
         title: "Imaginatio III",
-        description: "The Imaginatio of 2015-1 was the third instance of this event.<br>This one was directed in a more artistic aspect, wiht focus in animtaion and animated series, with talks about concepts of animtaion and workshops of that same topic."
+        description: "El Imaginatio de 2015-1 fue la tercera instancia de este evento.<br>Esta edición estuvo dirigida a un aspecto más artístico, con enfoque en animación y series animadas, con charlas sobre conceptos de animación y talleres sobre el mismo tema."
     },
     {
         year: 2015,
         title: "Imaginatio IV",
-        description: "The fourth Imaginatio, the on of 2015-2, was a more open one, with topics like coding being brought up and concept art to 3D rendered having their own talks."
+        description: "El cuarto Imaginatio, el de 2015-2, fue una edición más abierta, con temas como programación y charlas que iban desde concept art hasta renderizado 3D."
     },
     {
         year: 2016,
         title: "Imaginatio V",
-        description: "The first Imaginatio of 2016, the fifth in general, it brought more serious topics such as the industry and profesionalism. It's also the first instance of the Geek Race."
+        description: "El primer Imaginatio de 2016, el quinto en general, trajo temas más serios como la industria y el profesionalismo. También es la primera edición en tener la Geek Race."
     },
     {
         year: 2016,
         title: "Imaginatio VI",
-        description: "In the second Imaginatio of 2016 it's a special one, it has a colaboration between the UMNG and the Buenaventura Univertity.<br>With talks from exstudents and other profesionals from the industry."
+        description: "En el segundo Imaginatio de 2016 se dio una colaboración especial entre la UMNG y la Universidad de Buenaventura.<br>Incluyó charlas de exalumnos y otros profesionales de la industria."
     },
     {
         year: 2017,
         title: "Imaginatio VII",
-        description: "Imaginatio number VII, the first one of 2017.<br>It had a main focus on 3D modeling with a workshop of making character concepts and making them 3D. The results are visible in the Google Sites section of this Imaginatio."
+        description: "Imaginatio número VII, el primero de 2017.<br>Tuvo un enfoque principal en modelado 3D, con un taller de creación de conceptos de personajes y su posterior modelado en 3D. Los resultados son visibles en la sección de Google Sites de este Imaginatio."
     },
     {
         year: 2018,
         title: "Imaginatio IX",
-        description: 'The Ninth Imaginatio, it brings up a more ecological topic.<br>With talks about how this engineering career can help in aspects like food production.<br>Also the first football tournament of the event.'
+        description: "El noveno Imaginatio trae un tema más ecológico.<br>Incluye charlas sobre cómo esta carrera de ingeniería puede ayudar en aspectos como la producción de alimentos.<br>También se realizó el primer torneo de fútbol del evento."
     },
     {
         year: 2018,
         title: "Imaginatio X",
-        description: 'Imaginatio number 10 was the last instance of bi-yearly Imagination, but it was still bringing some interesting topics into the mix.<br>With ideas like monetization of work and networking. Also new videogame tournaments like LoL and Fortnite.'
+        description: "Imaginatio número 10 fue la última edición de los Imaginatio semestrales, pero aun así trajo temas interesantes a la mesa.<br>Con ideas como monetización del trabajo y networking. También hubo nuevos torneos de videojuegos como LoL y Fortnite."
     },
     {
         year: 2019,
         title: "Imaginatio XI",
-        description: "Imaginatio XI goes back to some basic topics in our career, such as Design and Photograpy.<br>With not only a competition of photography that gives us a treat to the eyes but also a Certification of High Quality Education by the Governemnt,"
+        description: "Imaginatio XI regresa a algunos temas básicos de nuestra carrera, como Diseño y Fotografía.<br>Incluye no solo una competencia de fotografía que resulta un deleite visual, sino también una Certificación de Alta Calidad otorgada por el Gobierno."
     },
     {
         year: 2020,
         title: "Imaginatio XII",
-        description: "The 11th Imaginatio was given a special title, The Day of Multimedia Engineering.<br>A wide variety of talks from all the aspects that make this career unique are brought up, from coding to art, from practical to theorical."
+        description: "El undécimo Imaginatio recibió un título especial: El Día de la Ingeniería Multimedia.<br>Se presentaron una gran variedad de charlas de todos los aspectos que hacen única esta carrera, desde programación hasta arte, desde lo práctico hasta lo teórico."
     },
     {
         year: 2022,
         title: "Imaginatio XIV",
-        description: "In the Imaginatio of 2022, the 14th, we go into an upcoming topic, Metaverses and diferent forms of virtual/augmented reality.<br>Drones, NFt and multiple works done by students were presented, and all was closed up by a concert of The Black Rope."
+        description: "En el Imaginatio de 2022, el número 14, se abordó un tema emergente: los metaversos y las distintas formas de realidad virtual/aumentada.<br>Se presentaron drones, NFTs y múltiples trabajos realizados por estudiantes, y todo cerró con un concierto de The Black Rope."
     }
-]
+];
+
 
 function show(n){
     const contentImg = contentido.querySelector('img');
