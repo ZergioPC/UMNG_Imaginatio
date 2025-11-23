@@ -22,3 +22,10 @@ Link del **[Figma](https://www.figma.com/design/qtYw261KSZdBYgmN1J3SHo/Gatillo-C
 ## Backend
 
 Usaremos FastAPI para crear el sistema
+
+Ejecutar esta linea en vez de _Fastapi dev_ para que el servidor esté disponible de forma local:
+
+```Python
+uvicorn main:app --host 0.0.0.0 --port 8000
+
+```

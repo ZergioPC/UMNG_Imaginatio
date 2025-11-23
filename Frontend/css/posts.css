@@ -1,0 +1,107 @@
+.main-post{
+    box-sizing: border-box;
+    padding: 20px 150px;
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+#posts-container {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5%;
+}
+
+#posts-container .post{
+    overflow: hidden;
+    position: relative;
+    border: 0.15em solid black;
+    border-radius: 20px;
+    width: 450px;
+    height: 500px;
+    background-color: var(--principal);
+}
+
+#posts-container .post-header {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#posts-container .post-header img {
+    aspect-ratio: 1/1;
+    width: 50px;
+    margin-right: 20px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+#posts-container .post-header h2 {
+    font-size: 1.4rem;
+}
+
+#posts-container .post-main {
+    position: relative;
+    width: 450px;
+    height: 450px;
+}
+
+#posts-container .post-main img {
+    height: 100%;
+    object-fit: cover;
+}
+
+#posts-container .post-main p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+    min-height: 70px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff7e;
+    backdrop-filter: blur(4px);
+}
+
+#posts-container .post-footer {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 7px 12px;
+    border-radius: 10px;
+    background-color: var(--principal);
+}
+
+#posts-container .post-footer button{
+    background: none;
+    border: none;
+}
+
+#posts-container .post-footer button:hover {
+    cursor: pointer;
+}
+
+.team_post{
+    width: 100%;
+    background-color: var(--principal);
+    display: flex;
+    align-items: center;
+    padding: 1%;
+    height: 20%;
+}
+
+.team_post img{
+    object-fit: cover;
+    margin: 7%;
+    border-radius: 50%;
+    width: 15%;
+    aspect-ratio: 1/1;
+}
+
+.post img{
+    object-fit: cover;
+}

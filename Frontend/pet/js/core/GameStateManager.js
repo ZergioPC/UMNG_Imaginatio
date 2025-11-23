@@ -33,6 +33,7 @@ export class GameStateManager {
         
         // Attempt to load saved data from localStorage
         const savedData = this.storage.load();
+        
 
         if (savedData) {
             // If data exists, initialize from it
@@ -41,7 +42,7 @@ export class GameStateManager {
             this.activeBackgroundId = savedData.activeBackgroundId || 'background_base';
             this.activeFloorId = savedData.activeFloorId || 'floor_base';
             this.activeBowlId = savedData.activeBowlId || 'bowl_base';
-        } else {
+        } else {           
             // Otherwise, start with default values for a new game
             this.userLikes = 0; 
             this.userInventory = new Inventory();
@@ -54,6 +55,8 @@ export class GameStateManager {
             this.userInventory.addItem(new Item({ id: 'background_base' }));
             this.userInventory.addItem(new Item({ id: 'floor_base' }));
             this.userInventory.addItem(new Item({ id: 'bowl_base' }));
+            this.saveData();
+            window.location.reload();
         }
 
         // The store's inventory is defined by our game's design, not player data.

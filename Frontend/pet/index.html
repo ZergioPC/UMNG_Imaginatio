@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../css/arquitectura.css">
-    <link rel="stylesheet" href="../css/decoracion.css"> -->
+    <link rel="stylesheet" href="../css/arquitectura.css">
+    <link rel="stylesheet" href="../css/decoracion.css">
     <link rel="stylesheet" href="mascota.css">
     <link rel="stylesheet" href="./css/store.css">
     <link rel="stylesheet" href="./css/combo.css">
     <title>Mascota</title>
 </head>
 <body>
-    <header></header>
+    <!-- Header -->
+    <header id="header"></header>
+    
+    <!-- Menu Hamburger -->
+    <aside id="menuHamb" class="aside-burger"></aside>
+
+    <!-- Menu de Login/Account -->
+    <aside id="menuAccount"></aside>
+
+    <!-- Main -->
     <main>
         <h1>Tu Mascota del Imaginatio</h1>
         <div class="game-container">
@@ -29,10 +38,12 @@
         <aside id="pet-store-menu"></aside>
         <aside id="pet-invent-menu"></aside>
     </main>
-    <footer></footer>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
     <!-- Global project scripts -->
-    <!-- <script src="../js/components.js"></script> -->
-    <!-- <script src="../js/main.js"></script> -->
+    <script src="../js/headfoot.js"></script>
     <!-- Pet Code -->
      <script type="module" src="./js/main.js"></script>
 </body>

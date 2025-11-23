@@ -1,3 +1,252 @@
-h1 {
-    color: red;
+/* MARK: GLOBALS */
+:root {
+    --trans-time-fast: 200ms;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-parrafos);
+}
+
+html {
+    font-size: clamp(14px, 1.5vw, 16px);
+}
+
+
+/* MARK:Header */
+
+
+#header{
+    z-index: 4;
+    position: relative;
+    padding: 10px;
+    height: 100px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Parte del Btn Burger */
+
+#header .header-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#header .ham_menu{
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    height: 60px;
+    width: 100%;
+    margin-right: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+#header .ham_menu button {
+    display: none;
+}
+
+#header .ham_menu span{
+    height: 5px;
+    width: 100%;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .3s ease;
+}
+
+
+#header h1 a{
+    font-family: var(--font-titulos);
+    font-size: 3rem;
+    color: var(--principal);
+}
+
+/* Parte del Btn Account */
+
+#header .header-account {
+    cursor: pointer;
+}
+
+#header .header-account button{
+    display: none;
+}
+
+#header .user{
+    height: 60px;
+    aspect-ratio: 1/1;
+}
+
+
+/* Animacion del Botón Burger */
+
+#header .ham_menu span:nth-child(1) {
+    top: 25%;
+}
+
+#header .ham_menu span:nth-child(3) {
+    top: 75%;
+}
+
+#header .ham_menu.active span:nth-child(1){
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#header .ham_menu.active span:nth-child(2){
+    opacity: 0;
+}
+
+#header .ham_menu.active span:nth-child(3){
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+
+/* MARK: Aside MainBurger */
+
+.aside-burger {
+    padding: 2%;
+    background-color: var(--secundario);
+    height: 100vh;
+    width: 100%;
+    max-width: 450px;
+    position: fixed;
+    top: 0;
+    left: -450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    text-align: left;
+    font-size: 2.5rem;
+    transition: 0.3s ease;
+    z-index: 3;
+}
+
+.aside-burger > nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.aside-burger a {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: inherit;
+    transition-duration: var(--trans-time-fast);
+}
+
+.aside-burger a:hover {
+    background-color: var(--principal);
+}
+
+.aside-burger.active {
+    left: 0px;
+}
+
+/* MARK: Paginaciones */
+
+.pagination {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 1%;
+    margin-bottom: 2%;
+}
+
+.pagination button {
+    padding: 8px 15px;
+    border: 1px solid;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination .page_number {
+    padding: 8px 15px;
+    border: 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.page-info {
+    font-size: 14px;
+}
+
+/* MARK: Footer */
+
+#footer{
+    position: relative;
+    margin-top: 20px;
+    padding: 0 50px;
+    height: 300px;
+}
+
+/* Informacion y escudo de la universidad */
+
+.footer-ext-info, .footer-ext-umng {
+    position: absolute;
+}
+
+.footer-ext-info {
+    bottom: 10px;
+    left: 30px;
+}
+
+.footer-ext-info ul {
+    list-style: none;
+}
+
+.footer-ext-umng {
+    height: 200px;
+    top: 40px;
+    right: 30px;
+}
+
+
+.footer-ext-umng img{
+    align-self: center;
+    height: 100%;
+    margin-left: auto;
+    padding-right: 10%;
+}
+
+/* Contenido */
+
+.footer-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer_social{
+    margin-top: 10px;
+    display: flex;
+    gap: 5%;
+}
+
+#footer .icon {
+    min-height: 70px;
+    height: 10vw;
+    max-height: 140px;
 }

@@ -1,6 +1,13 @@
-let currentSlide = 1;
-const totalSlides = 5;
-const slideInterval = 5000; //Milisegundos
+let currentSlide = 1;       // Slide del Banner
+const totalSlides = 5;      // Slides totales del Banner
+const slideInterval = 5000; // Tiempo decada slide en ms
+
+let currentPage = 0;    // Página actual de posts
+const totalPages = 5;   // Total de páginas de posts
+
+const $PostContainer = document.getElementById("posts-container");
+
+const API = "http://192.168.0.21:8000";
 
 function autoSlide(){
     const radioButton = document.getElementById(getSlideId(currentSlide));
@@ -23,10 +30,6 @@ labels.forEach((label, index) => {
         currentSlide = index + 1;
     });  
 });
-
-
-let currentPage = 1;
-const totalPages = 5;
 
 function showPage(pageNum) {
     // Hide all content sections
@@ -90,3 +93,83 @@ document.getElementById('next-btn').addEventListener('click', () => {
 });
 
 updatePagination();
+
+// MARK: Dibujar Posts
+
+/**
+ * 
+ * @param {string} titulo 
+ * @param {string} desc 
+ * @param {string} img 
+ * @param {number} likes 
+ * @returns {Element} post
+ */
+function createPost(titulo,desc,img,likes) {
+    const post = document.createElement("article");
+    post.className = "post";
+
+    const postHeader = document.createElement("header");
+    const postMain = document.createElement("main");
+    const postFooter = document.createElement("footer");
+    
+    postHeader.className = "post-header";
+    postMain.className = "post-main";
+    postFooter.className = "post-footer";
+
+    const teamImg = document.createElement("img");
+    teamImg.src = "";
+
+    const title = document.createElement("h2");
+    title.innerText = titulo;
+
+    postHeader.appendChild(teamImg);
+    postHeader.appendChild(title);
+
+    const description = document.createElement("p");
+    description.innerText = desc;
+
+    const mainImg = document.createElement("img");
+    mainImg.src = `${API}/${img}`;
+
+    postMain.append(description);
+    postMain.append(mainImg);
+
+    const likesCount = document.createElement("button");
+    likesCount.innerText = `${likes} ❤️`
+
+    postFooter.append(likesCount);
+
+    post.appendChild(postHeader);
+    post.appendChild(postMain);
+    post.appendChild(postFooter);
+
+    return post;
+}
+
+function appendPostContainer(posts){
+    $PostContainer.innerHTML = "";
+    posts.forEach(data =>{
+        console.log(data)
+        const post = createPost(
+            data.title,
+            data.desc,
+            data.img,
+            data.likes
+        );
+        $PostContainer.appendChild(post);
+    });
+}
+
+fetch(API + `/post/pages/${currentPage}`)
+.then(res => {
+    if(!res.ok){
+        throw new Error("No es posible cargar los posts");
+    }
+    return res.json()
+})
+.then(data => {       
+    appendPostContainer(data.data);
+})
+.catch(error => {
+    console.error('Error:', error);
+});
