@@ -3,7 +3,10 @@ const totalSlides = 5;      // Slides totales del Banner
 const slideInterval = 5000; // Tiempo decada slide en ms
 
 let currentPage = 0;    // Página actual de posts
-const totalPages = 5;   // Total de páginas de posts
+let totalPages = 5;   // Total de páginas de posts
+
+const $prevBtn = document.getElementById('prev-btn');
+const $nextBtn = document.getElementById('next-btn');
 
 const $PostContainer = document.getElementById("posts-container");
 
@@ -31,17 +34,7 @@ labels.forEach((label, index) => {
     });  
 });
 
-function showPage(pageNum) {
-    // Hide all content sections
-    const sections = document.querySelectorAll('.posts_array');
-    sections.forEach(section => section.classList.remove('active'));
-    
-    // Show the selected page
-    const targetSection = document.querySelector(`[data-page="${pageNum}"]`);
-    if (targetSection) {
-        targetSection.classList.add('active');
-    }
-    
+function showPage(pageNum) {       
     currentPage = pageNum;
     updatePagination();
     
@@ -51,24 +44,37 @@ function showPage(pageNum) {
 
 function updatePagination() {
     // Update Previous button
-    const prevBtn = document.getElementById('prev-btn');
-    prevBtn.disabled = currentPage === 1;
+    $prevBtn.disabled = currentPage === 0;
     
     // Update Next button
-    const nextBtn = document.getElementById('next-btn');
-    nextBtn.disabled = currentPage === totalPages;
+    $nextBtn.disabled = currentPage === totalPages - 1;
     
     // Update page numbers
     const pageNumbersContainer = document.getElementById('page_numbers');
     pageNumbersContainer.innerHTML = '';
     
-    for (let i = 1; i <= totalPages; i++) {
+    // Determine start index to render up to 3 page buttons
+    let startIndex = 0;
+    if (totalPages <= 3) {
+        startIndex = 0;
+    } else if (currentPage === 0) {
+        startIndex = 0;
+    } else if (currentPage === totalPages - 1) {
+        startIndex = totalPages - 3;
+    } else {
+        // center current page when possible
+        startIndex = currentPage - 1;
+    }
+
+    const endIndex = Math.min(startIndex + 3, totalPages); // exclusive
+
+    for (let i = startIndex; i < endIndex; i++) {
         const pageBtn = document.createElement('span');
         pageBtn.className = 'page_number';
-        pageBtn.textContent = i;
+        pageBtn.textContent = i + 1;
         
         if (i === currentPage) {
-        pageBtn.classList.add('active');
+            pageBtn.classList.add('active');
         }
         
         pageBtn.addEventListener('click', () => showPage(i));
@@ -76,19 +82,21 @@ function updatePagination() {
     }
     
     // Update page info
-    document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+    document.getElementById('page-info').textContent = `Page ${currentPage+1} of ${totalPages}`;
 }
 
 // Event listeners
-document.getElementById('prev-btn').addEventListener('click', () => {
-    if (currentPage > 1) {
+$prevBtn.addEventListener('click', () => {
+    if (currentPage > 0) {
         showPage(currentPage - 1);
+        fetchData();
     }
 });
 
-document.getElementById('next-btn').addEventListener('click', () => {
+$nextBtn.addEventListener('click', () => {
     if (currentPage < totalPages) {
         showPage(currentPage + 1);
+        fetchData();
     }
 });
 
@@ -131,12 +139,12 @@ function createPost(titulo,desc,img,likes) {
     const mainImg = document.createElement("img");
     mainImg.src = `${API}/${img}`;
 
-    postMain.append(description);
     postMain.append(mainImg);
-
+    
     const likesCount = document.createElement("button");
     likesCount.innerText = `${likes} ❤️`
-
+    
+    postFooter.append(description);
     postFooter.append(likesCount);
 
     post.appendChild(postHeader);
@@ -149,7 +157,6 @@ function createPost(titulo,desc,img,likes) {
 function appendPostContainer(posts){
     $PostContainer.innerHTML = "";
     posts.forEach(data =>{
-        console.log(data)
         const post = createPost(
             data.title,
             data.desc,
@@ -160,16 +167,22 @@ function appendPostContainer(posts){
     });
 }
 
-fetch(API + `/post/pages/${currentPage}`)
-.then(res => {
-    if(!res.ok){
-        throw new Error("No es posible cargar los posts");
-    }
-    return res.json()
-})
-.then(data => {       
-    appendPostContainer(data.data);
-})
-.catch(error => {
-    console.error('Error:', error);
+function fetchData(){
+    fetch(API + `/post/pages/${currentPage}`)
+    .then(res => {
+        if(!res.ok){
+            throw new Error("No es posible cargar los posts");
+        }
+        return res.json()
+    })
+    .then(data => {       
+        appendPostContainer(data.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+    fetchData();
 });

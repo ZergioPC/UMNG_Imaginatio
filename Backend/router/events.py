@@ -40,3 +40,5 @@ async def editar(id:int, evento:EventEdit):
 async def borrar(id:int, current_admin:str=Depends(get_current_admin)):
     await db_delete_unique(Event,id)
     return {"message":"Evento eliminado con Exito"}
+
+# GET DATA

@@ -24,7 +24,10 @@ function loadHeader(){
 
 function loadFooter(){
     document.getElementById('footer').innerHTML = `
-    <div class="footer-ext-info">
+        <div class="footer-ext-umng">
+            <img src="../images/Logo_UMNG.jpg">
+        </div>
+        <div class="footer-ext-info">
             <ul>
                 <li>
                     <h4>Sede Campus Nueva Granada</h4>
@@ -33,9 +36,6 @@ function loadFooter(){
                 <li>Lunes a viernes, de 8:00 a.m. a 5:00 p.m.</li>
                 <li>sites.google.com/unimilitar.edu.co/multimedia/ingeniería-en-multimedia</li>
             </ul>
-        </div>
-        <div class="footer-ext-umng">
-            <img src="../images/Logo_UMNG.jpg">
         </div>
         <div class="footer-content">
             <div class="footer_social">
@@ -82,43 +82,74 @@ function loadFooter(){
         `;
 }
 
-function loadAsideAcont(){
-    document.getElementById("menuHam").innerHTML = `
-        <div class="off_screen">
-            <a href="../equipos/index.html">Usuario</a>
-            <a href="pet/index.html">Mascota</a>
-            <a href="about/index.html">Quienes Somos</a>
-            <a href="eventos/index.html">Eventos</a>
-            <a href="pasados/index.html">Pasados</a>
-        </div>
-        `;
+function loadAsideAccount(){
+    document.getElementById("menuAccount").innerHTML = `
+        <button id="accountBtn1" class="account-login-btn">Log In</button>
+        <button id="accountBtn2" class="account-signin-btn">Register</button>
+        <button id="accountBtnClose" class="acount-close-btn">Cerrar</button>
+    `;
 }
 
 function loadAsideBurger(){
-    document.getElementById("menuHamb").innerHTML = `<nav>
-        <a href="../equipos/index.html">Usuario</a>
+    document.getElementById("menuHamb").innerHTML = `
+    <nav>
         <a href="/pet/">Mascota</a>
         <a href="/about/">Quienes Somos</a>
-        <a href="/eventos/">Eventos</a>
-        <a href="/pasados/">Pasados</a>
+        <a href="/eventos/">Actividades</a>
+        <a href="/pasados/">Eventos Pasados</a>
+        <a href="/actual/">Edición 2026</a>
     </nav>
     `;
 }
 
-function setUpHamburger(){
-    const btnMenuHam =  document.getElementById("menu-burger-btn");
-    const spanMEnuHam = document.querySelector('#header .ham_menu');
-    const asideMenuHam = document.getElementById("menuHamb");
 
-    btnMenuHam.addEventListener("click", ()=>{
-        spanMEnuHam.classList.toggle('active');
-        asideMenuHam.classList.toggle('active');
+function setUpHamburger(){
+    const $menuHamSpan = document.querySelector('#header .ham_menu');
+    const $menuHamAside = document.getElementById("menuHamb");
+    const $menuHamBtn =  document.getElementById("menu-burger-btn");
+
+    $menuHamBtn.addEventListener("click", ()=>{
+        $menuHamSpan.classList.toggle('active');
+        $menuHamAside.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    $menuHamAside.addEventListener("click", ()=>{
+        $menuHamSpan.classList.remove('active');
+        $menuHamAside.classList.remove('active');
     });
 }
+
+function setUpAccount(){
+    const acountBtn = document.getElementById('menu-account-btn');
+    const closeBtn = document.getElementById('accountBtnClose');
+    const loginDropdown = document.getElementById('menuAccount');
+    
+    if(!acountBtn || !loginDropdown) return;
+    
+    // Toggle dropdown on user icon click
+    acountBtn.addEventListener('click', () => {
+        loginDropdown.classList.add("active");
+    });
+
+    closeBtn.addEventListener('click',()=>{
+        loginDropdown.classList.remove('active');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if(!acountBtn.contains(e.target) && !loginDropdown.contains(e.target)){
+            loginDropdown.classList.remove('active');
+        }
+    });
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
     loadHeader();
     loadFooter();
     loadAsideBurger();
+    loadAsideAccount();
     setUpHamburger();
-})
+    setUpAccount();
+});

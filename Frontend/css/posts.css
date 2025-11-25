@@ -10,7 +10,7 @@
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5%;
+    gap: 2vw;
 }
 
 #posts-container .post{
@@ -18,8 +18,10 @@
     position: relative;
     border: 0.15em solid black;
     border-radius: 20px;
-    width: 450px;
-    height: 500px;
+    min-width: 300px;
+    max-width: 450px;
+    width: 100%;
+    aspect-ratio: 1/1.2;
     background-color: var(--principal);
 }
 
@@ -46,39 +48,44 @@
 
 #posts-container .post-main {
     position: relative;
-    width: 450px;
-    height: 450px;
+    width: 100%;
+    height: 100%;
 }
 
 #posts-container .post-main img {
     height: 100%;
-    object-fit: cover;
-}
-
-#posts-container .post-main p {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 15px;
-    min-height: 70px;
     width: 100%;
-    box-sizing: border-box;
-    background-color: #ffffff7e;
-    backdrop-filter: blur(4px);
+    object-fit: cover;
 }
 
 #posts-container .post-footer {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
-    padding: 7px 12px;
-    border-radius: 10px;
-    background-color: var(--principal);
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+}
+
+#posts-container .post-footer p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+    padding-bottom: 50px;
+    min-height: 70px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--blanco-glass);
+    backdrop-filter: blur(4px);
 }
 
 #posts-container .post-footer button{
-    background: none;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 7px 12px;
     border: none;
+    border-radius: 10px;
+    background-color: var(--principal);
 }
 
 #posts-container .post-footer button:hover {
@@ -104,4 +111,81 @@
 
 .post img{
     object-fit: cover;
+}
+
+/* MARK: Paginaciones */
+
+.pagination {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 1%;
+    margin-bottom: 2%;
+}
+
+.pagination-control {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.pagination button {
+    margin: 0 10px;
+    padding: 8px 15px;
+    border: 1px solid;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination .page_number {
+    padding: 8px 15px;
+    border: 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.page-info {
+    font-size: 14px;
+}
+
+
+/* 
+MEDIA QUERYS
+-standar
+-1250
+-950
+
+*/
+
+@media screen and (max-width: 1250px) {
+    #posts-container {
+        grid-template-columns: repeat(2, 1fr);
+    } 
+}
+
+@media screen and (max-width: 950px) {
+    .main-post {
+        padding: 20px;
+    }
+    
+    #posts-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    } 
+
+    #posts-container .post{
+        min-width: 300px;
+        max-width: 80%;
+    }
 }

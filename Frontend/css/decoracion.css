@@ -9,15 +9,28 @@
 }
 
 :root {
-    --principal: #ffffff;
-    --secundario: #555658;
+    --blanco: #ffffff;
+    --blanco-glass: #ffffff7c;
     --negro: #000;
+    --principal: #1B497D;
+    --secundario: #F5C45E;
+    --terciario: #DC6E5D;
+    --cuarto: #E78B48;
     --font-titulos: "IMAGINATIO", Arial, sans-serif;
     --font-parrafos: "Montserrat Regular", Arial, sans-serif;
 }
 
+html {
+  scrollbar-color: var(--principal) var(--secundario); /* color thumb, color track */
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--secundario);
+  border: solid 2px black; 
+}
+
 body {
-    background-color: aqua;
+    background-color: var(--principal);
 }
 
 /* MARK:Header */
@@ -37,6 +50,16 @@ body {
     fill: var(--principal);
 }
 
+
+/* MARK: Aside burger */
+
+.aside-burger{
+    background-color: var(--secundario);
+}
+
+.aside-account{
+    background-color: var(--secundario);
+}
 
 /* MARK: Paginaciones */
 
@@ -83,4 +106,22 @@ body {
 
 #footer .icon {
     fill: var(--principal);
+}
+
+/* MARK: Commons */
+
+.titulos-enmarcado{
+    background-color: var(--cuarto);
+}
+
+.lista-circle-row{
+    background-color: var(--terciario);
+}
+
+.global-iconos {
+    background-color: var(--blanco);
+}
+
+.global-iconos .icon {
+    filter: brightness(0.0);
 }

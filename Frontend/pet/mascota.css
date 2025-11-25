@@ -5,11 +5,6 @@
     margin: auto; /* Center the game container */
 }
 
-h1 {
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-}
-
 .game-buttons {
     position: absolute;
     display: flex;
@@ -17,7 +12,7 @@ h1 {
     gap: 8px;
     top: 20px;
     right: 10px; /* Position it outside the container */
-    z-index: 20;
+    z-index: 3;
 }
 
 .game-buttons button {
