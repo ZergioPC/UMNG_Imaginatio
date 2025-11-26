@@ -206,6 +206,14 @@ button:hover {
     transition: 0.3s ease;
 }
 
+.aside-account img{
+    box-sizing: border-box;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    margin: 5px auto;
+    width: 60%;
+}
+
 .aside-account.active {
     right: 0px;
 }

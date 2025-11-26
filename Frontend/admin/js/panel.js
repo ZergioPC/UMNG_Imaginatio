@@ -1,4 +1,4 @@
-const API_ADDRESS = "http://localhost:8000";
+const API_ADDRESS = "http://127.0.0.1:8000";
 
 document.addEventListener('DOMContentLoaded', () => {
     loadEvents();
@@ -196,9 +196,9 @@ function setupFilterTeamsForm() {
 }
 
 function loadTeams(eventId) {
-    fetch(`${API_ADDRESS}/equipo/filter/${eventId}`, { credentials: "include" })
+    fetch(`${API_ADDRESS}/equipo/filter/${eventId}`)
         .then(response => response.json())
-        .then(data => {
+        .then(data => {           
             if(data.detail){
                 throw new Error(data.detail)
             }

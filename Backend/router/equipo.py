@@ -33,17 +33,53 @@ async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_cur
     await db_commit(equipo)
     return {"message":"Equipo creado con Exito"}
 
-@router.patch("/editar/{id}",status_code=status.HTTP_202_ACCEPTED)
-async def editar(id:int, equipo_data:EquipoEdit, current_team:Equipo=Depends(get_current_user)):
+@router.patch("/editar/{id}", status_code=status.HTTP_202_ACCEPTED)
+async def editar(
+    id: int,
+    name: str = Form(None),
+    desc: str = Form(None),
+    img: UploadFile = File(None),
+    evento_id: int = Form(None),
+    current_team: Equipo = Depends(get_current_user)
+):
     if current_team.id != id:
         raise HTTPException(
             status_code=403,
             detail="No puedes editar el perfil de otro usuario"
         )
     
-    data_dump = equipo_data.model_dump(exclude_unset=True)
-    await db_update(Equipo, id, data_dump) 
-    return {"message":"Equipo editado con Exito"}
+    # Preparar los datos para actualizar
+    data_dump = {}
+    
+    if name is not None:
+        data_dump["name"] = name
+    if desc is not None:
+        data_dump["desc"] = desc
+    if evento_id is not None:
+        data_dump["evento_id"] = evento_id
+    
+    # Procesar la imagen si se proporcionó
+    if img is not None:
+        if not img.content_type.startswith("image/"):
+            raise HTTPException(status_code=400, detail="Tipo de imagen inválido")
+        
+        contents = await img.read()
+        
+        # Guardar la imagen
+        filename = f"{uuid4()}.jpg"
+        os.makedirs(IMG_PATH, exist_ok=True)
+        os.makedirs(IMG_PATH_USERS, exist_ok=True)
+        
+        with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
+            f.write(contents)
+        
+        data_dump["img"] = f"{IMG_PATH_USERS}/{filename}"
+    
+    # Solo actualizar si hay datos
+    if data_dump:
+        await db_update(Equipo, id, data_dump)
+    
+    return {"message": "Equipo editado con éxito"}
 
 @router.delete("/delete/{id}", status_code=status.HTTP_403_FORBIDDEN)
 async def equipo_borrar(id:int, current_admin:str=Depends(get_current_admin)):
@@ -51,20 +87,6 @@ async def equipo_borrar(id:int, current_admin:str=Depends(get_current_admin)):
     return {"message":"Equipo eliminado con Exito"}
 
 # CRUD Estudiante
-"""
-@router.post("/estudiante/crear", status_code=status.HTTP_201_CREATED)
-async def estudiante_crear(est_data:EstudianteBase, current_team:Equipo=Depends(get_current_user)):
-    est = Estudiante.model_validate(est_data.model_dump())
-
-    if current_team.equipo_id != est.equipo_id:
-        raise HTTPException(
-            status_code=403,
-            detail="No puedes Crear un Estudiante para otro"
-        )
-    
-    await db_commit(est)
-    return {"message":"Estudiante creado con Exito"}
-"""
 
 @router.post("/estudiante/crear", status_code=status.HTTP_201_CREATED)
 async def estudiante_crear(
@@ -110,18 +132,79 @@ async def estudiante_crear(
 
     return {"message": "Estudiante creado con éxito"}  
 
-@router.patch("/estudiante/editar/{id}",status_code=status.HTTP_202_ACCEPTED)
-async def estudiante_editar(id:int, est_data:EstudianteEdit, current_team:Equipo=Depends(get_current_user)):
-    data_dump = est_data.model_dump(exclude_unset=True)
-        
-    if current_team.id != data_dump.get("equipo_id"):
+@router.patch("/estudiante/editar/{id}", status_code=status.HTTP_202_ACCEPTED)
+async def estudiante_editar(
+    id: int,
+    name: str = Form(None),
+    codigo: str = Form(None),
+    desc: str = Form(None),
+    phone: str = Form(None),
+    email: str = Form(None),
+    instagram: str = Form(None),
+    twiter: str = Form(None),
+    tiktok: str = Form(None),
+    img: UploadFile = File(None),
+    equipo_id: int = Form(None),
+    current_team: Equipo = Depends(get_current_user)
+):
+    equipo_actual = await db_select_unique(Equipo, id)
+    if current_team.id != equipo_actual.equipo_id:
+        raise HTTPException(
+            status_code=403,
+            detail="No puedes Editar un Estudiante de otro equipo"
+        )
+
+    # Preparar los datos para actualizar
+    data_dump = {}
+    
+    if name is not None:
+        data_dump["name"] = name
+    if codigo is not None:
+        data_dump["codigo"] = codigo
+    if desc is not None:
+        data_dump["desc"] = desc
+    if phone is not None:
+        data_dump["phone"] = phone
+    if email is not None:
+        data_dump["email"] = email
+    if instagram is not None:
+        data_dump["instagram"] = instagram
+    if twiter is not None:
+        data_dump["twiter"] = twiter
+    if tiktok is not None:
+        data_dump["tiktok"] = tiktok
+    if equipo_id is not None:
+        data_dump["equipo_id"] = equipo_id
+    
+    # Validar que el equipo tenga permiso para editar
+    if equipo_id is not None and current_team.id != equipo_id:
         raise HTTPException(
             status_code=403,
             detail="No puedes Editar un Estudiante para otro equipo"
         )
-
-    await db_update(Estudiante, id, data_dump) 
-    return {"message":"Estudiante editado con Exito"}
+    
+    # Procesar la imagen si se proporcionó
+    if img is not None:
+        if not img.content_type.startswith("image/"):
+            raise HTTPException(status_code=400, detail="Tipo de imagen inválido")
+        
+        contents = await img.read()
+        
+        # Guardar la imagen
+        filename = f"{uuid4()}.jpg"
+        os.makedirs(IMG_PATH, exist_ok=True)
+        os.makedirs(IMG_PATH_USERS, exist_ok=True)
+        
+        with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
+            f.write(contents)
+        
+        data_dump["img"] = f"{IMG_PATH_USERS}/{filename}"
+    
+    # Solo actualizar si hay datos
+    if data_dump:
+        await db_update(Estudiante, id, data_dump)
+    
+    return {"message": "Estudiante editado con éxito"}
 
 @router.delete("/estudiante/delete/{id}", status_code=status.HTTP_403_FORBIDDEN)
 async def estudiante_borrar(id:int, current_team:Equipo=Depends(get_current_user)):
@@ -156,16 +239,6 @@ async def estudiante_get_filter(equipo_id:int):
     return {"data":data,"message":f"Estudiantes del equipo {equipo_id}"}
 
 # POSTS
-"""
-@router.post("/publicar")
-async def equipo_publicar(post_data:PostBase, current_team:str = Depends(get_current_user)):
-    data = post_data.model_dump()
-    data["equipo_id"] = current_team.equipo_id
-    post:Post = Post.model_validate(data)
-
-    await db_commit(post)
-    return {"message":"Post creado con Exito"}
-"""
 
 @router.post("/publicar")
 async def equipo_publicar(

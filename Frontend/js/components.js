@@ -302,6 +302,7 @@ function setUpAccountLogged(team){
     if (!document.getElementById("menuAccount")){
         return
     }
+    console.log(team);
     
     const loginDropdown = document.getElementById('menuAccount');
     const acountBtn = document.getElementById('menu-account-btn');
@@ -311,7 +312,7 @@ function setUpAccountLogged(team){
     $name.innerText = team.name;
 
     const $img =  document.getElementById("account-img");
-    $img.src =  team.img || "src"
+    $img.src =  `${API}/${team.img}` || "src"
 
     const $btn =  document.getElementById("panelBtn");
     $btn.addEventListener("click",()=>{
