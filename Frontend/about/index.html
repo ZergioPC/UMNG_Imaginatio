@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/arquitectura.css">
     <link rel="stylesheet" href="../css/decoracion.css">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="./about.css">
     <title>Acerca De</title>
 </head>
 <body>
@@ -19,27 +19,26 @@
     <aside id="menuAccount" class="aside-account"></aside>
 
     <!-- Presentación -->
-    <section class="banner" style="background-image: url(../images/People/img_hmpg_1.jpg);">
-        <div class="deg">
-            <div style="width:33%;">
-                <h6>Entonces...</h6>
-                <h2>Que es el Imaginatio?</h2>
-            </div>
+    <section class="about-banner" style="background-image: url(../images/wallpapers/img01.jpg);">
+        <div class="about-deg"></div>
+        <div class="about-texto">
+            <span>Entonces...</span>
+            <h1>¿Que es el Imaginatio?</h1>
         </div>
     </section>
 
-    <section id="explanation">
+    <section class="about-explaination">
         <div>
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore me dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla p"</p>
         </div>
     </section>
 
-    <section class="banner" style="background-image: url(../images/People/img_hmpg_2.png);">
-        <div class="deg">
-            <div style="width:33%;">
-                <h1>Eventos Pasados</h1>
-                <p>Conoce la historia de este evento y su evolución a través de cada generación de ingenieros multimedia.</p>
-            </div>
+    <section class="about-banner" style="background-image: url(../images/wallpapers/img02.png);">
+        <div class="about-deg"></div>
+        <div class="about-texto">
+            <h1>Imaginatios Pasados</h1>
+            <p>Conoce la historia de este evento y su evolución a través de cada generación de ingenieros multimedia.</p>
+            <button id="about-btn">Ver m&aacute;s</button>
         </div>
     </section>
 
@@ -47,6 +46,7 @@
     <footer id="footer"></footer>
 
     <!-- Scripts -->
-    <script src="../js/headfoot.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="./about.js"></script>
 </body>
 </html>

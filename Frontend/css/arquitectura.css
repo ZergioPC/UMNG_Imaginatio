@@ -41,6 +41,9 @@ html {
   scrollbar-width: thin;    /* thin | auto | none */
 }
 
+button:hover {
+    cursor: pointer;
+}
 
 /* MARK:Header */
 
@@ -95,7 +98,6 @@ html {
 #header h1 a{
     font-family: var(--font-titulos);
     font-size: 1.1em;
-    color: var(--principal);
 }
 
 /* Parte del Btn Account */
@@ -213,6 +215,7 @@ html {
     margin: 5px 0;
     padding: 10px 20px;
     border-radius: 10px;
+    transition-duration: var(--trans-time-fast);
 }
 
 .aside-account button:hover {
@@ -237,6 +240,10 @@ html {
 .footer-ext-info {
     bottom: 20px;
     left: 30px;
+}
+
+.footer-ext-info a {
+    text-decoration: none;
 }
 
 .footer-ext-info ul {
@@ -272,11 +279,16 @@ html {
     margin-top: 10px;
     display: flex;
     gap: 5%;
+    box-sizing: border-box;
+    padding: 0 20px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 #footer .icon {
     min-height: 70px;
-    height: 10vw;
+    height: 9vw;
     max-height: 140px;
 }
 
@@ -473,6 +485,22 @@ MEDIA QUERYS
         align-items: center;
         height: auto;
         padding: 20px 0;
+    }
+
+    .footer_social {
+        box-sizing: border-box;
+        padding: 0 20px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #footer .icon {
+        min-width: initial;
+        min-height: initial;
+        height: initial;
+        width: 10vw;
+        aspect-ratio: 1/1;
     }
 
     /* Informacion y escudo de la universidad */

@@ -18,6 +18,11 @@
     --cuarto: #E78B48;
     --font-titulos: "IMAGINATIO", Arial, sans-serif;
     --font-parrafos: "Montserrat Regular", Arial, sans-serif;
+
+    /* Controlar Header/Footer Icons*/
+    --components-icons:grayscale() contrast(10);   /* Agregar Invert() para aclarar*/
+    --components-color: #000;
+    --components-fondo: #fff;
 }
 
 html {
@@ -36,29 +41,44 @@ body {
 /* MARK:Header */
 
 #header {
-    fill: var(--principal);
-    color: var(--principal);
-    background-color: var(--secundario);
-    stroke: var(--principal);
+    fill: var(--components-color);
+    color: var(--components-color);
+    background-color: var(--components-fondo);
+    stroke: var(--components-color);
 }
 
 #header .ham_menu span {
-    background-color: var(--principal);
+    background-color: var(--components-color);
+}
+
+#header h1 a {
+    color: var(--components-color);
 }
 
 #header .user {
     fill: var(--principal);
+    filter: var(--icons-theme);
 }
 
 
-/* MARK: Aside burger */
+/* MARK: Asides */
 
 .aside-burger{
-    background-color: var(--secundario);
+    background-color: var(--components-fondo);
 }
 
 .aside-account{
-    background-color: var(--secundario);
+    background-color: var(--components-fondo);
+}
+
+.aside-account button {
+    color: var(--blanco);
+    background-color: var(--principal);
+}
+
+.aside-account button:hover {
+    color: var(--principal);
+    background-color: var(--blanco);
 }
 
 /* MARK: Paginaciones */
@@ -99,13 +119,19 @@ body {
 /* MARK: Footer */
 
 #footer {
-    background-color: var(--secundario);
-    fill: var(--principal);
-    color: var(--principal);
+    background-color: var(--components-fondo);
+}
+
+#footer, .footer-ext-info a {
+    color: var(--components-color);
 }
 
 #footer .icon {
-    fill: var(--principal);
+    fill: var(--components-color);
+}
+
+#footer img {
+    filter: var(--components-icons);
 }
 
 /* MARK: Commons */
