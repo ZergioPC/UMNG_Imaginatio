@@ -5,7 +5,7 @@ from fastapi import APIRouter, status, Depends, HTTPException, Form, File, Uploa
 from typing import Optional
 
 from models.equipo import EstudianteBase, EquipoBase, EstudianteEdit, EquipoEdit, Estudiante, Equipo
-from models.posts import PostBase, Post
+from models.posts import PostBase, Post, PostsListResponse, PostWithEquipoResponse
 
 from db import db_commit, db_select_query, db_select_range, db_select_unique, db_delete_unique, db_update, select
 from auth.utils import hash_password
@@ -17,6 +17,8 @@ router = APIRouter()
 
 @router.get("/healty")
 async def healty(current_team:Equipo=Depends(get_current_user)):
+    if not current_team:
+        return {"message":"error"}
     id = current_team.equipo_id
     query = select(Equipo).where(Equipo.equipo_id == id)
     data = await db_select_query(query)
@@ -42,7 +44,7 @@ async def editar(
     evento_id: int = Form(None),
     current_team: Equipo = Depends(get_current_user)
 ):
-    if current_team.id != id:
+    if current_team.equipo_id != id:
         raise HTTPException(
             status_code=403,
             detail="No puedes editar el perfil de otro usuario"
@@ -274,15 +276,72 @@ async def equipo_publicar(
     return {"message": "Post creado con éxito"}
 
 
-@router.get("/publicaciones/{id}")
-async def equipo_publicaciones(id:int):
-    query = select(Post).where(Post.equipo_id == id)
-    data = await db_select_query(query)
-    return {"data":data,"message":f"Posts del equipo {id}"}
+@router.get("/publicaciones/{id}", response_model=PostsListResponse)
+async def equipo_publicaciones(id: int):
+    # Query con JOIN para obtener datos de ambas tablas
+    query = (
+        select(Post, Equipo.name, Equipo.img)
+        .join(Equipo, Post.equipo_id == Equipo.equipo_id)
+        .where(Post.equipo_id == id)
+    )
+    
+    results = await db_select_query(query)
+    
+    # Transformar los resultados al formato del modelo de respuesta
+    data = []
+    for post, equipo_name, equipo_img in results:
+        data.append(PostWithEquipoResponse(
+            post_id=post.post_id,
+            title=post.title,
+            desc=post.desc,
+            img=post.img,
+            equipo_id=post.equipo_id,
+            likes=post.likes,
+            equipo_name=equipo_name,
+            equipo_img=equipo_img
+        ))
+    
+    return PostsListResponse(
+        data=data,
+        message=f"Posts del equipo {id}",
+        pages=0
+    )
 
-@router.get("/publicaciones/{id}/{pag}")
-async def equipo_publicaciones(id:int, pag:int):
+@router.get("/publicaciones/{id}/{pag}", response_model=PostsListResponse)
+async def equipo_publicaciones(id: int, pag: int):
     offset = pag * 15
     limit = 15
-    posts_list = await db_select_range(Post, offset, limit)
-    return {"data":posts_list,"message":f"Lista de Post del {offset} al {offset + limit}"}
+    
+    # Query con JOIN y paginación
+    query = (
+        select(Post, Equipo.name, Equipo.img)
+        .join(Equipo, Post.equipo_id == Equipo.equipo_id)
+        .where(Post.equipo_id == id)
+        .offset(offset)
+        .limit(limit)
+        .order_by(Post.post_id.desc())  # Opcional: ordenar por más reciente
+    )
+    
+    results = await db_select_query(query)
+    
+    # Transformar los resultados
+    data = []
+    for post, equipo_name, equipo_img in results:
+        data.append(PostWithEquipoResponse(
+            post_id=post.post_id,
+            title=post.title,
+            desc=post.desc,
+            img=post.img,
+            equipo_id=post.equipo_id,
+            likes=post.likes,
+            equipo_name=equipo_name,
+            equipo_img=equipo_img
+        ))
+
+    total_pages = (len(data) + limit - 1) // limit
+    
+    return PostsListResponse(
+        data=data,
+        message=f"Posts del equipo {id} - página {pag} (del {offset} al {offset + limit})",
+        pages=total_pages
+    )

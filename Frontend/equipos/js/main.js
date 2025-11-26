@@ -1,7 +1,5 @@
 // Variable global para almacenar los datos del equipo
 let TEAM_DATA = null;
-// La URL base de tu API. Asegúrate de que sea la correcta.
-const API_URL = 'http://127.0.0.1:8000';
 
 /**
  * Función principal que se ejecuta cuando el DOM está completamente cargado.
@@ -170,16 +168,23 @@ function setupEventListeners() {
 
 async function handleUpdateTeam(event) {
     event.preventDefault();
-    const data = {
-        equipo_name: document.getElementById('team-name').value,
-        equipo_desc: document.getElementById('team-desc').value,
-    };
+    const form = event.target;
+    const formData = new FormData();
+
+    // Se obtienen los datos del formulario
+    formData.append('name', form.querySelector('#team-name').value);
+    formData.append('desc', form.querySelector('#team-desc').value);
+
+    // Se añade la imagen solo si el usuario ha seleccionado una
+    const imgInput = form.querySelector('#team-img');
+    if (imgInput.files.length > 0) {
+        formData.append('img', imgInput.files[0]);
+    }
 
     try {
         await apiFetch(`/equipo/editar/${TEAM_DATA.equipo_id}`, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
+            body: formData, // Se envía como FormData
         });
         alert("Equipo actualizado con éxito.");
     } catch (error) {
@@ -231,7 +236,7 @@ function openEditStudentModal(student) {
     modal.querySelector('#edit-est-ig').value = student.instagram || '';
     modal.querySelector('#edit-est-twiter').value = student.twiter || '';
     modal.querySelector('#edit-est-tiktok').value = student.tiktok || '';
-    modal.querySelector('#edit-est-img-preview').src = `${API_URL}/${student.img}`;
+    modal.querySelector('#edit-est-img-preview').src = `${API}/${student.img}`;
     modal.showModal();
 }
 
@@ -240,27 +245,23 @@ async function handleUpdateStudent(event) {
     const modalForm = event.target;
     const studentId = modalForm.querySelector('#edit-est-id').value;
     
-    // El endpoint de edición espera un JSON, no FormData.
-    const data = {
-        name: modalForm.querySelector('#edit-est-name').value,
-        codigo: modalForm.querySelector('#edit-est-codigo').value,
-        email: modalForm.querySelector('#edit-est-email').value,
-        phone: modalForm.querySelector('#edit-est-phone').value,
-        desc: modalForm.querySelector('#edit-est-desc').value,
-        instagram: modalForm.querySelector('#edit-est-ig').value,
-        twiter: modalForm.querySelector('#edit-est-twiter').value,
-        tiktok: modalForm.querySelector('#edit-est-tiktok').value,
-        equipo_id: TEAM_DATA.equipo_id
-    };
-
-    // Filtra campos opcionales que estén vacíos para no enviar `null` o `""`.
-    const payload = Object.fromEntries(Object.entries(data).filter(([_, v]) => v !== null && v !== ''));
+    const formData = new FormData();
+    // El backend ahora acepta datos de formulario.
+    // Nota: El HTML no tiene un <input type="file"> para la imagen del estudiante en la edición.
+    formData.append('name', modalForm.querySelector('#edit-est-name').value);
+    formData.append('codigo', modalForm.querySelector('#edit-est-codigo').value);
+    formData.append('email', modalForm.querySelector('#edit-est-email').value);
+    formData.append('phone', modalForm.querySelector('#edit-est-phone').value);
+    formData.append('desc', modalForm.querySelector('#edit-est-desc').value);
+    formData.append('instagram', modalForm.querySelector('#edit-est-ig').value);
+    formData.append('twiter', modalForm.querySelector('#edit-est-twiter').value);
+    formData.append('tiktok', modalForm.querySelector('#edit-est-tiktok').value);
+    formData.append('equipo_id', TEAM_DATA.equipo_id);
 
     try {
         await apiFetch(`/equipo/estudiante/editar/${studentId}`, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
+            body: formData, // Se envía como FormData
         });
         alert("Integrante actualizado con éxito.");
         document.getElementById('equipo-modal-edit').close();
@@ -335,7 +336,7 @@ async function apiFetch(endpoint, options = {}) {
         delete config.headers['Content-Type'];
     }
 
-    const response = await fetch(`${API_URL}${endpoint}`, config);
+    const response = await fetch(`${API}${endpoint}`, config);
 
     if (!response.ok) {
         const errorData = await response.json().catch(() => ({ detail: 'Error desconocido en la respuesta del servidor.' }));

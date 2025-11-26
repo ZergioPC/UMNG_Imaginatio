@@ -110,7 +110,7 @@ updatePagination();
  * @param {number} likes 
  * @returns {Element} post
  */
-function createPost(titulo,desc,img,likes,id) {
+function createPost(titulo,desc,img,avatar,likes,id) {
     const post = document.createElement("article");
     post.className = "post";
 
@@ -123,7 +123,7 @@ function createPost(titulo,desc,img,likes,id) {
     postFooter.className = "post-footer";
 
     const teamImg = document.createElement("img");
-    teamImg.src = "";
+    teamImg.src = `${API}/${avatar}`;;
 
     const title = document.createElement("h2");
     title.innerText = titulo;
@@ -186,10 +186,13 @@ function createPost(titulo,desc,img,likes,id) {
 function appendPostContainer(posts){
     $PostContainer.innerHTML = "";
     posts.forEach(data =>{
+        console.log(data);
+        
         const post = createPost(
             data.title,
             data.desc,
             data.img,
+            data.equipo_img,
             data.likes,
             data.post_id
         );
@@ -206,6 +209,8 @@ function fetchData(){
         return res.json()
     })
     .then(data => {       
+        totalPages = data.pages;
+        updatePagination();
         appendPostContainer(data.data);
     })
     .catch(error => {

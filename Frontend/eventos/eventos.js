@@ -1,5 +1,3 @@
-const API = "http://192.168.0.21:8000";
-
 function showEventInfo(evento,teams){
 
     const events_container = document.getElementById("event-array-list");
@@ -23,7 +21,7 @@ function showEventInfo(evento,teams){
     if(teams){
         teams.forEach(team => {
             const img = document.createElement("img");
-            img.src = team.img || "";
+            img.src = `${API}/${team.img}` || "";
     
             const h4 = document.createElement("h4");
             h4.innerText = team.name;

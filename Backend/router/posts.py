@@ -3,10 +3,10 @@ import os
 from fastapi import APIRouter, status, Depends, HTTPException
 from typing import Optional
 
-from models.posts import Post
+from models.posts import Post, PostWithEquipoResponse,PostsListResponse
 from models.equipo import Equipo
 
-from db import db_select_unique, db_update, db_select_range, db_delete_unique
+from db import db_select_unique, db_update, db_select_query, db_delete_unique, select
 from auth.depends import get_current_user, get_current_admin
 from router.equipo import IMG_PATH
 
@@ -17,12 +17,49 @@ async def post_get_unique(id:int):
     post = await db_select_unique(Post,id)
     return {"data":post,"message":f"Post #{id}"}
 
-@router.get("/pages/{pag}")
-async def post_pag(pag:int):
+from sqlmodel import func
+
+@router.get("/pages/{pag}", response_model=PostsListResponse)
+async def post_pag(pag: int):
     offset = pag * 15
     limit = 15
-    posts_list = await db_select_range(Post, offset, limit)
-    return {"data":posts_list,"message":f"Lista de Post del {offset} al {offset + limit}"}
+    
+    # Contar total de posts
+    count_query = select(func.count()).select_from(Post)
+    total = await db_select_query(count_query)
+    
+    # Query principal con JOIN, paginación y orden
+    query = (
+        select(Post, Equipo.name, Equipo.img)
+        .join(Equipo, Post.equipo_id == Equipo.equipo_id)
+        .offset(offset)
+        .limit(limit)
+        .order_by(Post.post_id.desc())
+    )
+    
+    results = await db_select_query(query)
+    
+    # Transformar los resultados
+    data = []
+    for post, equipo_name, equipo_img in results:
+        data.append(PostWithEquipoResponse(
+            post_id=post.post_id,
+            title=post.title,
+            desc=post.desc,
+            img=post.img,
+            equipo_id=post.equipo_id,
+            likes=post.likes,
+            equipo_name=equipo_name,
+            equipo_img=equipo_img
+        ))
+    
+    total_pages = (len(total) + limit - 1) // limit
+    
+    return PostsListResponse(
+        data=data,
+        message=f"Lista de Posts - página {pag}",
+        pages=total_pages
+    )
 
 @router.patch("/like/{id}",status_code=status.HTTP_202_ACCEPTED)
 async def post_like(id:int):

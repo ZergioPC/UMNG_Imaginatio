@@ -377,6 +377,7 @@ Listas:
     padding: 50px 0;
     border-radius: 20px;
     font-size: 2rem;
+    text-align: center;
 }
 
 .lista-circle-row .title {
@@ -441,6 +442,12 @@ Listas:
     font-size: 0.7em;
     text-align: center;
     background-color: var(--principal);
+}
+
+.global-iconos {
+    box-sizing: border-box;
+    padding: 5px;
+    overflow: hidden;
 }
 
 .global-iconos .icon {

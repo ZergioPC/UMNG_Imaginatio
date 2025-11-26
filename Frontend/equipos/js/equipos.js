@@ -66,6 +66,7 @@ function showModalInfo(est){
         const a = document.createElement("a");
         a.href = `mailto:${est.email}`;
         a.innerText = "Email";
+        a.target = "blank";
 
         const fig =  document.createElement("figure");
         fig.classList.add("global-iconos")
@@ -73,6 +74,7 @@ function showModalInfo(est){
         
         const icon = document.createElement("img");
         icon.classList.add("icon");
+        icon.src = "/images/Global_Icons/mail-alt-svgrepo-com.png";
 
         fig.appendChild(icon);
 
@@ -87,11 +89,13 @@ function showModalInfo(est){
         const a = document.createElement("a");
         a.href = `tel:${est.phone}`;
         a.innerText = est.phone;
+        a.target = "blank";
 
         const fig =  document.createElement("figure");
         fig.classList.add("global-iconos")
         const icon = document.createElement("img");
         icon.classList.add("icon");
+        icon.src = "/images/Global_Icons/phone-svgrepo-com.png";
 
         fig.appendChild(icon);
 
@@ -104,13 +108,15 @@ function showModalInfo(est){
         const li = document.createElement("li");
         
         const a = document.createElement("a");
-        a.href = `www.instagram.com/${est.instagram}`;
+        a.href = `https://www.instagram.com/${est.instagram}`;
         a.innerText = est.instagram;
+        a.target = "blank";
 
         const fig =  document.createElement("figure");
         fig.classList.add("global-iconos")
         const icon = document.createElement("img");
         icon.classList.add("icon");
+        icon.src = "/images/Global_Icons/social_ig.png";
 
         fig.appendChild(icon);
 
@@ -123,13 +129,15 @@ function showModalInfo(est){
         const li = document.createElement("li");
         
         const a = document.createElement("a");
-        a.href = `www.tiktok.com/${est.tiktok}`;
+        a.href = `https://www.tiktok.com/${est.tiktok}`;
         a.innerText = est.tiktok;
+        a.target = "blank";
 
         const fig =  document.createElement("figure");
         fig.classList.add("global-iconos")
         const icon = document.createElement("img");
         icon.classList.add("icon");
+        icon.src = "/images/Global_Icons/social_tiktok.png";
 
         fig.appendChild(icon);
 
@@ -142,13 +150,15 @@ function showModalInfo(est){
         const li = document.createElement("li");
         
         const a = document.createElement("a");
-        a.href = `www.x.com/${est.twiter}`;
+        a.href = `https://www.x.com/${est.twiter}`;
         a.innerText = est.twiter;
+        a.target = "blank";
 
         const fig =  document.createElement("figure");
         fig.classList.add("global-iconos")
         const icon = document.createElement("img");
         icon.classList.add("icon");
+        icon.src = "/images/Global_Icons/social_twiter.png";
 
         fig.appendChild(icon);
 
@@ -174,7 +184,7 @@ function showModalInfo(est){
  * @param {number} likes 
  * @returns {Element} post
  */
-function createPost(titulo,desc,img,likes) {
+function createPost(titulo,desc,img,avatar,likes) {
     const post = document.createElement("article");
     post.className = "post";
 
@@ -187,7 +197,7 @@ function createPost(titulo,desc,img,likes) {
     postFooter.className = "post-footer";
 
     const teamImg = document.createElement("img");
-    teamImg.src = "";
+    teamImg.src = `${API}/${avatar}`;
 
     const title = document.createElement("h2");
     title.innerText = titulo;
@@ -215,10 +225,13 @@ function createPost(titulo,desc,img,likes) {
 function appendPostContainer(posts){
     $PostContainer.innerHTML = "";
     posts.forEach(data =>{
+        console.log(data);
+        
         const post = createPost(
             data.title,
             data.desc,
             data.img,
+            data.equipo_img,
             data.likes
         );
         $PostContainer.appendChild(post);
@@ -340,7 +353,7 @@ updatePagination();
 
 // MARK: Fetch Data
 function fetchDataPost(){
-    fetch(API + `/equipo/publicaciones/${TEAM_ID}`)
+    fetch(API + `/equipo/publicaciones/${TEAM_ID}/${currentPage}`)
     .then(res => {
         if(!res.ok){
             throw new Error("No es posible cargar los posts");
@@ -348,6 +361,8 @@ function fetchDataPost(){
         return res.json()
     })
     .then(data => {       
+        totalPages = data.pages;
+        updatePagination();
         appendPostContainer(data.data);
     })
     .catch(error => {
