@@ -203,11 +203,7 @@ function createPost(titulo,desc,img,likes) {
 
     postMain.append(mainImg);
     
-    const likesCount = document.createElement("button");
-    likesCount.innerText = `${likes} ❤️`
-    
     postFooter.append(description);
-    postFooter.append(likesCount);
 
     post.appendChild(postHeader);
     post.appendChild(postMain);

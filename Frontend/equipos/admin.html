@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" hregif="./css/admin.css">
+    <link rel="stylesheet" href="./css/admin.css">
     <link rel="stylesheet" href="../css/arquitectura.css">
     <link rel="stylesheet" href="../css/decoracion.css">
     <title>Equipos Admin Panel</title>
@@ -15,21 +15,21 @@
     <!-- Menu Hamburger -->
     <aside id="menuHamb" class="aside-burger"></aside>
 
-
     <h1>Panel del equipo</h1>
 
-    <!-- Ajistes generales -->
-    <section class="">
+    <!-- Ajustes generales -->
+    <section>
         <h2>Editar equipo</h2>
-        <form class="flex-direction-col" action="" method="post">
-            <label for="name" class="flex-direction-col">
+        <form id="edit-team-form" class="flex-direction-col">
+            <label for="team-name" class="flex-direction-col">
                 <span>Nombre del equipo</span>
-                <input type="text" id="name" name="name">
+                <input type="text" id="team-name" name="name">
             </label>
-            <label for="desc" class="flex-direction-col">
+            <label for="team-desc" class="flex-direction-col">
                 <span>Descripcion</span>
-                <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+                <textarea name="desc" id="team-desc" cols="30" rows="10"></textarea>
             </label>
+            <button type="submit">Guardar Cambios del Equipo</button>
         </form>
     </section>
     
@@ -38,71 +38,80 @@
     <!-- Agregar integrantes -->
     <section>
         <h2>Agregar Integrante</h2>
-        <form class="flex-direction-row" action="" method="post">
+        <form id="add-student-form" class="flex-direction-row">
             <div class="flex-direction-col flex-childs-col">
                 <h3>Requerido</h3>
-                <label for="name">
+                <label>
                     <span>Nombre</span>
-                    <input type="text" name="name" id="name" required>
+                    <input type="text" name="name" required>
                 </label>
-                <label for="codigo">
+                <label>
                     <span>C&oacute;digo</span>
-                    <input type="number" name="codigo" id="codigo" required maxlength="8">
+                    <input type="number" name="codigo" required maxlength="8">
                 </label>
-                <label for="email">
+                <label>
                     <span>Correo Electronico</span>
-                    <input type="email" name="email" id="email" required>
+                    <input type="email" name="email" required>
                 </label>
             </div>
             <div class="flex-direction-col flex-childs-col">
                 <h3>Opcional</h3>
-                <label for="desc">
+                <label>
                     <span>Descripci&oacute;n</span>
-                    <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+                    <textarea name="desc" cols="30" rows="10"></textarea>
                 </label>
-                <label for="phone">
+                <label>
                     <span>Celular</span>
-                    <input type="tel" name="phone" id="phone">
+                    <input type="tel" name="phone">
                 </label>
-                <label for="ig">
+                <label>
                     <span>Usuario de Instagram</span>
-                    <input type="text" name="ig" id="ig" placeholder="@example">
+                    <input type="text" name="instagram" placeholder="@example">
                 </label>
-                <label for="twiter">
+                <label>
                     <span>Usuario de Twiter</span>
-                    <input type="text" name="twiter" id="twiter" placeholder="@example">
+                    <input type="text" name="twiter" placeholder="@example">
                 </label>
-                <label for="tiktok">
+                <label>
                     <span>Usuario de TikTok</span>
-                    <input type="text" name="tiktok" id="tiktok" placeholder="@example">
+                    <input type="text" name="tiktok" placeholder="@example">
                 </label>
             </div>
             <div>    
                 <h3>Foto de Perfil</h3>            
-                <label for="img">
+                <label>
                     <span>Foto</span>
-                    <!-- Validar con file.type.startsWith("image/") -->
-                    <input type="file" name="img" id="img">
+                    <input type="file" name="img" accept="image/*" required>
                 </label>
             </div>
+            <button type="submit">Agregar Integrante</button>
         </form>
     </section>
 
      <!-- Lista de Integrantes -->
-    <section class="">
-        <h2>Editar Integrantes</h2>
-        <form action="" method="get">
-            <select id="filter-users-team-id" required>
-                <option value="">Seleccionar Miembro</option>
-            </select>
-        </form>
+    <section>
+        <h2>Integrantes del Equipo</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Código</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="integrantes-table">
+                <!-- Los integrantes se cargarán aquí dinámicamente -->
+            </tbody>
+        </table>
     </section>
 
     <!-- Modal editar integrante -->
     <dialog id="equipo-modal-edit">
-        <button id="equipo-modal-btn">&times;</button>
+        <button id="equipo-modal-btn-close">&times;</button>
         <h2>Editar Integrante</h2>
-        <form class="flex-direction-col">
+        <form id="edit-student-form" class="flex-direction-col">
+            <input type="hidden" id="edit-est-id" name="id">
             <div class="flex-direction-row flex-childs-col">
                 <div>
                     <input type="text" name="name" id="edit-est-name" placeholder="Nombre">
@@ -112,37 +121,53 @@
                     <textarea name="desc" id="edit-est-desc" cols="30" rows="10"></textarea>
                 </div>
                 <div>
-                    <input type="text" name="ig" id="edit-est-ig" placeholder="@example">
+                    <input type="text" name="instagram" id="edit-est-ig" placeholder="@example">
                     <input type="text" name="twiter" id="edit-est-twiter" placeholder="@example">
                     <input type="text" name="tiktok" id="edit-est-tiktok" placeholder="@example">
-                    <!-- Validar con file.type.startsWith("image/") -->
-                    <input type="file" name="img" id="img">
-                    <img src="" alt="Estudiante Foto Actual">
+                    <img id="edit-est-img-preview" src="" alt="Estudiante Foto Actual" width="100">
                 </div>
             </div>
             <input type="submit" value="Guardar Cambios">
         </form>
-    </dialog active>
+    </dialog>
 
     <hr>
 
     <!-- Publicaciones -->
+    <section>
+        <h2>Crear Publicación</h2>
+        <form id="add-post-form">
+            <label>
+                <span>Título</span>
+                <input type="text" name="title" required>
+            </label>
+            <label>
+                <span>Descripción</span>
+                <textarea name="description" required></textarea>
+            </label>
+            <label>
+                <span>Imagen</span>
+                <input type="file" name="image" accept="image/*" required>
+            </label>
+            <button type="submit">Publicar</button>
+        </form>
+    </section>
+
     <section class="">
         <h2>Publicaciones</h2>
-        <button id="equipo-posts-load">Cargar Posts</button>
-        <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Titulo</th>
-                <th>Likes</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="equipo-posts-table">
-            <!-- Los posts se cargarán aquí dinámicamente -->
-        </tbody>
-    </table>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Likes</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="equipo-posts-table">
+                <!-- Los posts se cargarán aquí dinámicamente -->
+            </tbody>
+        </table>
     </section>
 
     <!-- Footer -->
@@ -150,7 +175,7 @@
 
     <!-- Scripts -->
     <script src="../js/components.js"></script>
-    <script src="./js/auth.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="./js/auth.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
 </body>
 </html>

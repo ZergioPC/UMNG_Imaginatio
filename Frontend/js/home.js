@@ -110,7 +110,7 @@ updatePagination();
  * @param {number} likes 
  * @returns {Element} post
  */
-function createPost(titulo,desc,img,likes) {
+function createPost(titulo,desc,img,likes,id) {
     const post = document.createElement("article");
     post.className = "post";
 
@@ -140,7 +140,38 @@ function createPost(titulo,desc,img,likes) {
     postMain.append(mainImg);
     
     const likesCount = document.createElement("button");
-    likesCount.innerText = `${likes} ❤️`
+
+    const likesData = document.createElement("span");
+    likesData.innerText = likes;
+
+    const likesImg = document.createElement("img");
+    likesImg.src = "images/Global_Icons/heart-empty-svgrepo-com.png";
+
+    likesCount.setAttribute("isLiked","false");
+    likesCount.addEventListener("click",()=>{
+        if(likesCount.getAttribute("isLiked") === "true") return;
+        
+        fetch(`${API}/post/like/${id}`,{method: 'PATCH'})
+        .then(res => {
+            if(!res.ok){
+                throw new Error("No se ha dado like");
+            }
+            return res.json()
+        })
+        .then(data => {       
+            alert(data.data);
+            likesCount.setAttribute("isLiked","true");
+            likesImg.src = "images/Global_Icons/heart-svgrepo-com.png";
+        })
+        .catch(error => {
+            console.log(`${API}/post/like/${id}`);
+            
+            console.error('Error:', error);
+        });
+    });
+
+    likesCount.appendChild(likesImg);
+    likesCount.appendChild(likesData);
     
     postFooter.append(description);
     postFooter.append(likesCount);
@@ -159,7 +190,8 @@ function appendPostContainer(posts){
             data.title,
             data.desc,
             data.img,
-            data.likes
+            data.likes,
+            data.post_id
         );
         $PostContainer.appendChild(post);
     });

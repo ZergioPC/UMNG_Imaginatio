@@ -88,6 +88,12 @@
     background-color: var(--principal);
 }
 
+#posts-container .post-footer img {
+    aspect-ratio: 1/1;
+    width: 30px;
+    filter: hue-rotate(120deg) saturate(10) drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.192));
+}
+
 #posts-container .post-footer button:hover {
     cursor: pointer;
 }
