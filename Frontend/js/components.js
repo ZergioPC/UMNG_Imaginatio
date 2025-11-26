@@ -1,3 +1,9 @@
+//const API = "http://192.168.0.21:8000";
+const API = "http://127.0.0.1:8000";
+
+/**
+ * Dibuja el Header
+ */
 function loadHeader(){
     const $header = document.getElementById('header');
     // Create header-menu container
@@ -57,6 +63,9 @@ function loadHeader(){
     $header.appendChild(accountLabel);
 }
 
+/**
+ * Dibuja el Footer
+ */
 function loadFooter(){
     const $footer = document.getElementById('footer');
     // ---------- FOOTER EXT UMNG ----------
@@ -140,27 +149,99 @@ function loadFooter(){
 
 }
 
+/**
+ * Dibuja el menu de Login
+ */
 function loadAsideAccount(){
-    document.getElementById("menuAccount").innerHTML = `
-        <button id="accountBtn1" class="account-login-btn">Log In</button>
-        <button id="accountBtn2" class="account-signin-btn">Register</button>
-        <button id="accountBtnClose" class="acount-close-btn">Cerrar</button>
-    `;
+    if (!document.getElementById("menuAccount")){
+        return
+    }
+    const $menuAccount = document.getElementById("menuAccount");
+    // Create Log In button
+    const btnLogin = document.createElement("button");
+    btnLogin.id = "accountBtn1";
+    btnLogin.className = "account-login-btn";
+    btnLogin.textContent = "Log In";
+
+    // Create Close button
+    const btnClose = document.createElement("button");
+    btnClose.id = "accountBtnClose";
+    btnClose.className = "acount-close-btn";
+    btnClose.textContent = "Cerrar";
+
+    // Append to body (or any container you want)
+    $menuAccount.appendChild(btnLogin);
+    $menuAccount.appendChild(btnClose);
 }
 
+/**
+ * Dibuja el menu de Equipo Logeado
+ */
+function loadAsideLogged(){
+    if (!document.getElementById("menuAccount")){
+        return
+    }
+
+    const $menuAccount = document.getElementById("menuAccount");
+    // Create Img
+    const img = document.createElement("img");
+    img.id = "account-img";
+    img.alt = "Foto de Perfil";
+
+    const h3 = document.createElement("h3");
+    h3.id = "temaName";
+
+    // Create Register button
+    const btnPanel = document.createElement("button");
+    btnPanel.id = "panelBtn";
+    btnPanel.className = "account-signin-btn";
+    btnPanel.textContent = "Panel de Equipo";
+
+    // Create Close button
+    const btnClose = document.createElement("button");
+    btnClose.id = "accountBtnClose";
+    btnClose.className = "acount-close-btn";
+    btnClose.textContent = "Cerrar";
+
+    // Append to body (or any container you want)    
+    $menuAccount.appendChild(h3);
+    $menuAccount.appendChild(img);
+    $menuAccount.appendChild(btnPanel);
+    $menuAccount.appendChild(btnClose);
+}
+
+/**
+ * Dibuja el Menu del sitio web
+ */
 function loadAsideBurger(){
-    document.getElementById("menuHamb").innerHTML = `
-    <nav>
-        <a href="/pet/">Mascota</a>
-        <a href="/about/">Quienes Somos</a>
-        <a href="/eventos/">Actividades</a>
-        <a href="/pasados/">Eventos Pasados</a>
-        <a href="/actual/">Edición 2026</a>
-    </nav>
-    `;
+    const $menuHamb = document.getElementById("menuHamb");
+    // Create <nav>
+    const nav = document.createElement("nav");
+
+    // Link data
+    const links = [
+        { href: "/pet/", text: "Mascota" },
+        { href: "/about/", text: "Quienes Somos" },
+        { href: "/eventos/", text: "Actividades" },
+        { href: "/pasados/", text: "Eventos Pasados" },
+        { href: "/actual/", text: "Edición 2026" }
+    ];
+
+    // Create and append links
+    links.forEach(linkInfo => {
+        const a = document.createElement("a");
+        a.href = linkInfo.href;
+        a.textContent = linkInfo.text;
+        nav.appendChild(a);
+    });
+
+    // Append to body (or wherever needed)
+    $menuHamb.appendChild(nav);
 }
 
-
+/**
+ * Configura el Menu del sitio web
+ */
 function setUpHamburger(){
     const $menuHamSpan = document.querySelector('#header .ham_menu');
     const $menuHamAside = document.getElementById("menuHamb");
@@ -178,10 +259,18 @@ function setUpHamburger(){
     });
 }
 
+/**
+ * Configura el Menu de Loggin
+ */
 function setUpAccount(){
+    if(!document.getElementById('menuAccount')){
+        return
+    }
+
+    const loginDropdown = document.getElementById('menuAccount');
     const acountBtn = document.getElementById('menu-account-btn');
     const closeBtn = document.getElementById('accountBtnClose');
-    const loginDropdown = document.getElementById('menuAccount');
+    const loginBtn = document.getElementById('accountBtn1');
     
     if(!acountBtn || !loginDropdown) return;
     
@@ -194,6 +283,10 @@ function setUpAccount(){
         loginDropdown.classList.remove('active');
     });
     
+    loginBtn.addEventListener('click',()=>{
+        window.location.href = "equipos/login.html"
+    });
+
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
         if(!acountBtn.contains(e.target) && !loginDropdown.contains(e.target)){
@@ -202,7 +295,52 @@ function setUpAccount(){
     });
 }
 
-// FAVICON
+/**
+ * Configura el Menu de Equipo Logeado
+ */
+function setUpAccountLogged(team){   
+    if (!document.getElementById("menuAccount")){
+        return
+    }
+    
+    const loginDropdown = document.getElementById('menuAccount');
+    const acountBtn = document.getElementById('menu-account-btn');
+    const closeBtn = document.getElementById('accountBtnClose');
+
+    const $name =  document.getElementById("temaName");
+    $name.innerText = team.name;
+
+    const $img =  document.getElementById("account-img");
+    $img.src =  team.img || "src"
+
+    const $btn =  document.getElementById("panelBtn");
+    $btn.addEventListener("click",()=>{
+        window.location.href = "/equipos/admin.html";
+    });
+
+    if(!acountBtn || !loginDropdown) return;
+    
+    // Toggle dropdown on user icon click
+    acountBtn.addEventListener('click', () => {
+        loginDropdown.classList.add("active");
+    });
+
+    closeBtn.addEventListener('click',()=>{
+        loginDropdown.classList.remove('active');
+    });
+    
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if(!acountBtn.contains(e.target) && !loginDropdown.contains(e.target)){
+            loginDropdown.classList.remove('active');
+        }
+    });
+}
+
+/**
+ * Dibuja el FAVICON
+ */
 function setUpFavicon() {
     let favicon = document.querySelector('link[rel="icon"]') || document.querySelector('link[rel="shortcut icon"]');
 
@@ -215,12 +353,33 @@ function setUpFavicon() {
     favicon.href = "/images/Global_Icons/logo_gatillo_crew.png";
 }
 
+function checkUserCookie(){    
+    fetch(API + "/equipo/healty", {
+        method: 'GET',
+        credentials:"include"
+    })
+    .then(response => response.json())
+    .then(data => {            
+        if(data.message){
+            loadAsideLogged();
+            setUpAccountLogged(data.data[0]);
+        }else{
+            loadAsideAccount();
+            setUpAccount();
+        }
+    })
+    .catch(error => {
+        console.error('Errora:', error);
+    });
+}
+
+//Llamado a las funciones
+
 document.addEventListener('DOMContentLoaded', function() {
     loadHeader();
     loadFooter();
+    checkUserCookie();
     loadAsideBurger();
-    loadAsideAccount();
     setUpHamburger();
-    setUpAccount();
     setUpFavicon()
 });

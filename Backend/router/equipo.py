@@ -7,7 +7,7 @@ from typing import Optional
 from models.equipo import EstudianteBase, EquipoBase, EstudianteEdit, EquipoEdit, Estudiante, Equipo
 from models.posts import PostBase, Post
 
-from db import db_commit, db_select_query, db_select_unique, db_delete_unique, db_update, select
+from db import db_commit, db_select_query, db_select_range, db_select_unique, db_delete_unique, db_update, select
 from auth.utils import hash_password
 from auth.depends import get_current_user, get_current_admin
 
@@ -17,7 +17,13 @@ router = APIRouter()
 
 @router.get("/healty")
 async def healty(current_team:Equipo=Depends(get_current_user)):
-    return {"message":"Ok"}
+    id = current_team.equipo_id
+    query = select(Equipo).where(Equipo.equipo_id == id)
+    data = await db_select_query(query)
+    return {
+        "message":"ok",
+        "data": data
+        }
 
 # CRUD Equipo
 @router.post("/crear", status_code=status.HTTP_201_CREATED)
@@ -200,3 +206,10 @@ async def equipo_publicaciones(id:int):
     query = select(Post).where(Post.equipo_id == id)
     data = await db_select_query(query)
     return {"data":data,"message":f"Posts del equipo {id}"}
+
+@router.get("/publicaciones/{id}/{pag}")
+async def equipo_publicaciones(id:int, pag:int):
+    offset = pag * 15
+    limit = 15
+    posts_list = await db_select_range(Post, offset, limit)
+    return {"data":posts_list,"message":f"Lista de Post del {offset} al {offset + limit}"}

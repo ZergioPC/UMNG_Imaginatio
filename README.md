@@ -29,3 +29,7 @@ Ejecutar esta linea en vez de _Fastapi dev_ para que el servidor esté disponibl
 uvicorn main:app --host 0.0.0.0 --port 8000
 
 ```
+
+## Creditos
+
+Los iconos fueron obtenidos de www.svgrepo.com

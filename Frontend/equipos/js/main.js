@@ -1,3 +1,19 @@
+const TEAM_ID = fetch(API + "/equipo/healty", {
+        method: 'GET',
+        credentials:"include"
+    })
+    .then(response => response.json())
+    .then(data => {            
+        if(data.message){
+            return data.data[0].equipo_id;
+        }else{
+            alert("No estas logeado");
+            window.location.href = "/";
+        }
+    })
+    .catch(error => {
+        console.error('Errora:', error);
+    });
 // Edit Members Modal
 const editUserModal = document.getElementById("equipo-modal-edit");
 const editUserBtn = document.getElementById("equipo-modal-btn");
@@ -22,16 +38,16 @@ function deletePost(id){
 }
 
 function loadPosts() {
-    // fetch(`${API_ADDRESS}/post/pages/${page}`, { credentials: "include" })
-    //     .then(response => response.json())
-    //     .then(data => {
+    fetch(`${API}/post/pages/${page}`, { credentials: "include" })
+        .then(response => response.json())
+        .then(data => {
             
-    //     })
-    //     .catch(error => {
-    //         console.error('Error loading posts:', error);
-    //         const tableBody = document.getElementById('posts-table-body');
-    //         tableBody.innerHTML = '<tr><td colspan="5">Error al cargar los posts.</td></tr>';
-    //     });
+        })
+        .catch(error => {
+            console.error('Error loading posts:', error);
+            const tableBody = document.getElementById('posts-table-body');
+            tableBody.innerHTML = '<tr><td colspan="5">Error al cargar los posts.</td></tr>';
+        });
     const tableBody = document.getElementById('equipo-posts-table');
     tableBody.innerHTML = '';
 
@@ -76,7 +92,7 @@ function showModalEventListener(){
     });
 }
 
-window.onload = ()=>{
+function get_users(){
     const selectInput = document.getElementById("filter-users-team-id");
     selectInput.innerHTML = "";
     if(data.data){

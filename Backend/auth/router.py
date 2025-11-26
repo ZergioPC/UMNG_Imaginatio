@@ -46,6 +46,7 @@ async def login(credentials: LoginRequest, response: Response):
     
     return {
         "message": "Login exitoso",
+        "success": "/",
         "user": credentials.name
     }
 

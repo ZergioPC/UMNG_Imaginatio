@@ -10,8 +10,6 @@ const $nextBtn = document.getElementById('next-btn');
 
 const $PostContainer = document.getElementById("posts-container");
 
-const API = "http://192.168.0.21:8000";
-
 function autoSlide(){
     const radioButton = document.getElementById(getSlideId(currentSlide));
     radioButton.checked = true;

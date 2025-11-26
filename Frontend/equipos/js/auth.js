@@ -1,6 +1,3 @@
-const API = "http://localhost:8000";
-
-
 // fetch(API + "/auth/verify-admin", {
 //     method: 'GET',
 //     credentials:"include"

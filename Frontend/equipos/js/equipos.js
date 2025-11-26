@@ -10,8 +10,6 @@ const $nextBtn = document.getElementById('next-btn');
 const $PostContainer = document.getElementById("posts-container");
 const $TitleSection = document.getElementById("info-equipo");
 
-const API = "http://192.168.0.21:8000";
-
 function drawTitles(equipo){
     const h1 = document.createElement("h1");
     h1.innerText = equipo.name || "Nombre del Equipo";
