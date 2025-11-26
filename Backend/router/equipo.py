@@ -150,7 +150,7 @@ async def estudiante_editar(
     current_team: Equipo = Depends(get_current_user)
 ):
     equipo_actual = await db_select_unique(Equipo, id)
-    if current_team.id != equipo_actual.equipo_id:
+    if current_team.equipo_id != equipo_actual.equipo_id:
         raise HTTPException(
             status_code=403,
             detail="No puedes Editar un Estudiante de otro equipo"
@@ -179,7 +179,7 @@ async def estudiante_editar(
         data_dump["equipo_id"] = equipo_id
     
     # Validar que el equipo tenga permiso para editar
-    if equipo_id is not None and current_team.id != equipo_id:
+    if equipo_id is not None and current_team.equipo_id != equipo_id:
         raise HTTPException(
             status_code=403,
             detail="No puedes Editar un Estudiante para otro equipo"
@@ -212,7 +212,7 @@ async def estudiante_editar(
 async def estudiante_borrar(id:int, current_team:Equipo=Depends(get_current_user)):
     est:Estudiante = await db_select_unique(Estudiante,id)
 
-    if current_team.id != est.equipo_id:
+    if current_team.equipo_id != est.equipo_id:
         raise HTTPException(
             status_code=403,
             detail="No puedes Borrar un Estudiante para otro equipo"

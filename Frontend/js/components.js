@@ -1,5 +1,5 @@
-//const API = "http://192.168.0.21:8000";
-const API = "http://127.0.0.1:8000";
+const API = "http://192.168.0.21:8000";
+//const API = "http://127.0.0.1:8000";
 
 /**
  * Dibuja el Header
@@ -214,6 +214,10 @@ function loadAsideLogged(){
  * Dibuja el Menu del sitio web
  */
 function loadAsideBurger(){
+    if(!document.getElementById("menuHamb")){
+        return
+    }
+    
     const $menuHamb = document.getElementById("menuHamb");
     // Create <nav>
     const nav = document.createElement("nav");
@@ -243,6 +247,10 @@ function loadAsideBurger(){
  * Configura el Menu del sitio web
  */
 function setUpHamburger(){
+    if(!document.getElementById("menuHamb")){
+        return
+    }
+    
     const $menuHamSpan = document.querySelector('#header .ham_menu');
     const $menuHamAside = document.getElementById("menuHamb");
     const $menuHamBtn =  document.getElementById("menu-burger-btn");

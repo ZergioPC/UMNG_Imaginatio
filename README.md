@@ -30,6 +30,12 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 
 ```
 
+Verificar que la URL sea la misma en los siguientes archivos:
+- Frontend/js/components.js
+- Frontend/admin/js/panel.js
+- Frontend/admin/js/login.js
+- Backend/utils.py
+
 ## Creditos
 
 Los iconos fueron obtenidos de www.svgrepo.com

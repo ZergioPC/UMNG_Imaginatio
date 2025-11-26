@@ -1,4 +1,5 @@
-const API_ADDRESS = "http://127.0.0.1:8000";
+//const API = "http://127.0.0.1:8000";
+const API = "http://192.168.0.21:8000";
 
 document.addEventListener('DOMContentLoaded', () => {
     loadEvents();
@@ -38,7 +39,7 @@ function loadPosts(page) {
     const prevButton = document.getElementById('prev-post-page-btn');
     const nextButton = document.getElementById('next-post-page-btn');
 
-    fetch(`${API_ADDRESS}/post/pages/${page}`, { credentials: "include" })
+    fetch(`${API}/post/pages/${page}`, { credentials: "include" })
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('posts-table-body');
@@ -88,7 +89,7 @@ function addEventListenersToPostButtons() {
 }
 
 function deletePost(postId) {
-    fetch(`${API_ADDRESS}/post/delete-by-admin/${postId}`, {
+    fetch(`${API}/post/delete-by-admin/${postId}`, {
         method: 'DELETE',
         credentials: "include"
     })
@@ -112,7 +113,7 @@ function deletePost(postId) {
 }
 
 function loadEvents() {
-    fetch(API_ADDRESS + "/event/get", { credentials: "include" })
+    fetch(API + "/event/get", { credentials: "include" })
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('events-table-body');
@@ -160,7 +161,7 @@ function setupCreateTeamForm() {
         const password = document.getElementById('create-team-password').value;
         const eventId = document.getElementById('create-team-event-id').value;
 
-        fetch(API_ADDRESS + "/equipo/crear", {
+        fetch(API + "/equipo/crear", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
@@ -196,7 +197,7 @@ function setupFilterTeamsForm() {
 }
 
 function loadTeams(eventId) {
-    fetch(`${API_ADDRESS}/equipo/filter/${eventId}`)
+    fetch(`${API}/equipo/filter/${eventId}`)
         .then(response => response.json())
         .then(data => {           
             if(data.detail){
@@ -238,7 +239,7 @@ function addEventListenersToTeamButtons() {
 }
 
 function deleteTeam(teamId, eventId) {
-    fetch(`${API_ADDRESS}/equipo/delete/${teamId}`, {
+    fetch(`${API}/equipo/delete/${teamId}`, {
         method: 'DELETE',
         credentials: "include"
     })
@@ -260,7 +261,7 @@ function setupCreateForm() {
         const name = document.getElementById('create-name').value;
         const desc = document.getElementById('create-desc').value;
 
-        fetch(API_ADDRESS + "/event/crear", {
+        fetch(API + "/event/crear", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, desc }),
@@ -297,7 +298,7 @@ function addEventListenersToButtons() {
 }
 
 function deleteEvent(id) {
-    fetch(`${API_ADDRESS}/event/delete/${id}`, {
+    fetch(`${API}/event/delete/${id}`, {
         method: 'DELETE',
         credentials: "include"
     })
@@ -338,7 +339,7 @@ function setupEditModal() {
         const name = document.getElementById('edit-name').value;
         const desc = document.getElementById('edit-desc').value;
 
-        fetch(`${API_ADDRESS}/event/editar/${id}`, {
+        fetch(`${API}/event/editar/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, desc }),

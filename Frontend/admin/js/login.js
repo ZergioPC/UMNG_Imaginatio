@@ -1,4 +1,4 @@
-const API_ADDRESS = "http://127.0.0.1:8000";
+const API = "http://192.168.0.21:8000";
 
 const user = document.getElementById('user');
 const pass = document.getElementById('password');
@@ -10,7 +10,7 @@ send.addEventListener('click', () => {
         password: pass.value
     };
 
-    fetch(API_ADDRESS + "/auth/admin", {
+    fetch(API + "/auth/admin", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

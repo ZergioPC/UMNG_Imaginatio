@@ -161,7 +161,8 @@ function createPost(titulo,desc,img,avatar,likes,id) {
         .then(data => {       
             alert(data.data);
             likesCount.setAttribute("isLiked","true");
-            likesImg.src = "images/Global_Icons/heart-svgrepo-com.png";
+            likesImg.src = "images/Global_Icons/heart-svgrepo-com.png"; 
+            savePetData()           
         })
         .catch(error => {
             console.log(`${API}/post/like/${id}`);
@@ -185,9 +186,7 @@ function createPost(titulo,desc,img,avatar,likes,id) {
 
 function appendPostContainer(posts){
     $PostContainer.innerHTML = "";
-    posts.forEach(data =>{
-        console.log(data);
-        
+    posts.forEach(data =>{        
         const post = createPost(
             data.title,
             data.desc,
@@ -198,6 +197,17 @@ function appendPostContainer(posts){
         );
         $PostContainer.appendChild(post);
     });
+}
+
+function savePetData(){
+    const pet = JSON.parse(localStorage.getItem("Imaginatio_petData"));
+    if (!pet){
+    }else{
+        pet.userLikes += 10;
+    }
+
+    const petJson = JSON.stringify(pet);
+    localStorage.setItem("Imaginatio_petData",petJson)
 }
 
 function fetchData(){

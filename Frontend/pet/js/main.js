@@ -65,4 +65,5 @@ window.addEventListener('DOMContentLoaded', () => {
     // Start the game loop!
     console.log('All modules initialized. Starting game loop...');
     gameLoop();
+    alert("Acariciala y Mueve su decoración");
 });
