@@ -12,17 +12,17 @@
     --blanco: #ffffff;
     --blanco-glass: #ffffff7c;
     --negro: #000;
-    --principal: #1B497D;
-    --secundario: #F5C45E;
-    --terciario: #DC6E5D;
-    --cuarto: #E78B48;
+    --principal: #8f8f8f;
+    --secundario: #ffffff;
+    --terciario: #cacaca;
+    --cuarto: #818181;
     --font-titulos: "IMAGINATIO", Arial, sans-serif;
     --font-parrafos: "Montserrat Regular", Arial, sans-serif;
 
     /* Controlar Header/Footer Icons*/
-    --components-icons:grayscale() contrast(10);   /* Agregar Invert() para aclarar*/
-    --components-color: #000;
-    --components-fondo: #fff;
+    --components-icons:grayscale() contrast(10) invert(1);   /* Agregar Invert(1) para aclarar*/
+    --components-color: #fff;
+    --components-fondo: #000;
 }
 
 html {
@@ -56,15 +56,20 @@ body {
 }
 
 #header .user {
-    fill: var(--principal);
-    filter: var(--icons-theme);
+    fill: var(--components-color);
+    filter: var(--components-icons);
 }
 
 
 /* MARK: Asides */
 
 .aside-burger{
+    color: var(--blanco);
     background-color: var(--components-fondo);
+}
+
+.aside-burger a:hover {
+    background-color: var(--blanco);
 }
 
 .aside-account{

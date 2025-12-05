@@ -22,7 +22,7 @@
     max-width: 450px;
     width: 100%;
     aspect-ratio: 1/1.2;
-    background-color: var(--principal);
+    background-color: var(--secundario);
 }
 
 #posts-container .post-header {

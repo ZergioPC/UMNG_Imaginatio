@@ -96,6 +96,7 @@ button:hover {
 
 
 #header h1 a{
+    text-decoration: none;
     font-family: var(--font-titulos);
     font-size: 1.1em;
 }
@@ -175,10 +176,6 @@ button:hover {
     text-decoration: none;
     color: inherit;
     transition-duration: var(--trans-time-fast);
-}
-
-.aside-burger a:hover {
-    background-color: var(--principal);
 }
 
 .aside-burger.active {

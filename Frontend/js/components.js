@@ -1,5 +1,6 @@
-const API = "http://192.168.0.21:8000";
-//const API = "http://127.0.0.1:8000";
+//const API = "http://192.168.0.21:8000";
+const API = "http://127.0.0.1:8000";
+//const API = "http://10.0.211.231:8000";
 
 /**
  * Dibuja el Header
@@ -226,7 +227,7 @@ function loadAsideBurger(){
     const links = [
         { href: "/pet/", text: "Mascota" },
         { href: "/about/", text: "Quienes Somos" },
-        { href: "/eventos/", text: "Actividades" },
+        { href: "/eventos/", text: "Concursos" },
         { href: "/pasados/", text: "Eventos Pasados" },
         { href: "/actual/", text: "Edición 2026" }
     ];
@@ -292,7 +293,7 @@ function setUpAccount(){
     });
     
     loginBtn.addEventListener('click',()=>{
-        window.location.href = "equipos/login.html"
+        window.location.href = "/equipos/login.html"
     });
 
     // Close dropdown when clicking outside
