@@ -1,3 +1,5 @@
+import API from "../../js/config.js";
+
 const user = document.getElementById('user');
 const pass = document.getElementById('password');
 const send = document.getElementById('send');

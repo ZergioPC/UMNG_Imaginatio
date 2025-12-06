@@ -1,3 +1,5 @@
+import API from "../../js/config.js";
+
 // Variable global para almacenar los datos del equipo
 let TEAM_DATA = null;
 

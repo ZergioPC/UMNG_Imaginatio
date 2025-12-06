@@ -1,3 +1,5 @@
+import API from "./config.js";
+
 let currentSlide = 1;       // Slide del Banner
 const totalSlides = 5;      // Slides totales del Banner
 const slideInterval = 5000; // Tiempo decada slide en ms
