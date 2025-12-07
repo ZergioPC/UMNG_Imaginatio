@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="../css/arquitectura.css">
+    <link rel="stylesheet" href="../css/decoracion.css">
+    <title>Equipos Admin Panel</title>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header"></header>
+
+    <h1>Panel del equipo</h1>
+
+    <!-- Ajustes generales -->
+    <section>
+        <h2>Editar equipo</h2>
+        <form id="edit-team-form" class="flex-direction-col">
+            <label for="team-name" class="flex-direction-col">
+                <span>Nombre del equipo</span>
+                <input type="text" id="team-name" name="name">
+            </label>
+            <label for="team-desc" class="flex-direction-col">
+                <span>Descripcion</span>
+                <textarea name="desc" id="team-desc" cols="30" rows="10"></textarea>
+            </label>
+            <label for="team-img" class="flex-direction-col">
+                <span>Imagen de Perfil del Equipo</span>
+                <input type="file" id="team-img" name="img" accept="image/*">
+            </label>
+            <button type="submit">Guardar Cambios del Equipo</button>
+        </form>
+    </section>
+    
+    <hr>
+
+    <!-- Agregar integrantes -->
+    <section>
+        <h2>Agregar Integrante</h2>
+        <form id="add-student-form" class="flex-direction-row">
+            <div class="flex-direction-col flex-childs-col">
+                <h3>Requerido</h3>
+                <label>
+                    <span>Nombre</span>
+                    <input type="text" name="name" required>
+                </label>
+                <label>
+                    <span>C&oacute;digo</span>
+                    <input type="number" name="codigo" required maxlength="8">
+                </label>
+                <label>
+                    <span>Correo Electronico</span>
+                    <input type="email" name="email" required>
+                </label>
+            </div>
+            <div class="flex-direction-col flex-childs-col">
+                <h3>Opcional</h3>
+                <label>
+                    <span>Descripci&oacute;n</span>
+                    <textarea name="desc" cols="30" rows="10"></textarea>
+                </label>
+                <label>
+                    <span>Celular</span>
+                    <input type="tel" name="phone">
+                </label>
+                <label>
+                    <span>Usuario de Instagram</span>
+                    <input type="text" name="instagram" placeholder="@example">
+                </label>
+                <label>
+                    <span>Usuario de Twiter</span>
+                    <input type="text" name="twiter" placeholder="@example">
+                </label>
+                <label>
+                    <span>Usuario de TikTok</span>
+                    <input type="text" name="tiktok" placeholder="@example">
+                </label>
+            </div>
+            <div>    
+                <h3>Foto de Perfil</h3>            
+                <label>
+                    <span>Foto</span>
+                    <input type="file" name="img" accept="image/*" required>
+                </label>
+            </div>
+            <button type="submit">Agregar Integrante</button>
+        </form>
+    </section>
+
+     <!-- Lista de Integrantes -->
+    <section>
+        <h2>Integrantes del Equipo</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Código</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="integrantes-table">
+                <!-- Los integrantes se cargarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Modal editar integrante -->
+    <dialog id="equipo-modal-edit">
+        <button id="equipo-modal-btn-close">&times;</button>
+        <h2>Editar Integrante</h2>
+        <form id="edit-student-form" class="flex-direction-col">
+            <input type="hidden" id="edit-est-id" name="id">
+            <div class="flex-direction-row flex-childs-col">
+                <div>
+                    <input type="text" name="name" id="edit-est-name" placeholder="Nombre">
+                    <input type="number" name="codigo" id="edit-est-codigo" placeholder="6000000">
+                    <input type="email" name="email" id="edit-est-email" placeholder="est.user.mail@unimilitar.edu.co">
+                    <input type="tel" name="phone" id="edit-est-phone" placeholder="3137778899">
+                    <textarea name="desc" id="edit-est-desc" cols="30" rows="10"></textarea>
+                </div>
+                <div>
+                    <input type="text" name="instagram" id="edit-est-ig" placeholder="@example">
+                    <input type="text" name="twiter" id="edit-est-twiter" placeholder="@example">
+                    <input type="text" name="tiktok" id="edit-est-tiktok" placeholder="@example">
+                    <img id="edit-est-img-preview" src="" alt="Estudiante Foto Actual" width="100">
+                </div>
+            </div>
+            <input type="submit" value="Guardar Cambios">
+        </form>
+    </dialog>
+
+    <hr>
+
+    <!-- Publicaciones -->
+    <section>
+        <h2>Crear Publicación</h2>
+        <form id="add-post-form">
+            <label>
+                <span>Título</span>
+                <input type="text" name="title" required>
+            </label>
+            <label>
+                <span>Descripción</span>
+                <textarea name="description" required></textarea>
+            </label>
+            <label>
+                <span>Imagen</span>
+                <input type="file" name="image" accept="image/*" required>
+            </label>
+            <button type="submit">Publicar</button>
+        </form>
+    </section>
+
+    <section class="">
+        <h2>Publicaciones</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Likes</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="equipo-posts-table">
+                <!-- Los posts se cargarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+    <!-- Scripts -->
+    <script src="../js/components.js" type="module"></script>
+    <script src="./js/auth.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
+</body>
+</html>
