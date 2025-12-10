@@ -1,0 +1,56 @@
+[gd_scene load_steps=13 format=3 uid="uid://da345ymtcwg8"]
+
+[ext_resource type="PackedScene" uid="uid://ddert7gotekyl" path="res://elements/house/pet_house.tscn" id="1_cg7f5"]
+[ext_resource type="Script" path="res://main.gd" id="1_dinmt"]
+[ext_resource type="PackedScene" uid="uid://cj8rkxlejth62" path="res://elements/pet/pet.tscn" id="2_iko1k"]
+[ext_resource type="Script" path="res://scripts/propsScene.gd" id="3_eobgp"]
+[ext_resource type="Shader" path="res://sky.gdshader" id="4_abp7a"]
+[ext_resource type="PackedScene" uid="uid://bck7k2v6uorw" path="res://elements/bowl/Bowl.tscn" id="4_vtjpd"]
+[ext_resource type="PackedScene" uid="uid://dvyyckf4a1ck" path="res://interface/normal_ui.tscn" id="6_bxd2p"]
+[ext_resource type="PackedScene" uid="uid://b374gor5ahpyo" path="res://interface/dialog.tscn" id="7_63ldi"]
+[ext_resource type="PackedScene" uid="uid://btxpy2eprqfde" path="res://interface/edit_ui.tscn" id="8_hgghc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tp8io"]
+shader = ExtResource("4_abp7a")
+shader_parameter/skyColor = Color(0.71, 0.922667, 1, 1)
+shader_parameter/horizontColor = Color(0.368, 0.476, 0.8, 1)
+
+[sub_resource type="Sky" id="Sky_kcgiv"]
+sky_material = SubResource("ShaderMaterial_tp8io")
+
+[sub_resource type="Environment" id="Environment_mxwf2"]
+background_mode = 2
+sky = SubResource("Sky_kcgiv")
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_dinmt")
+
+[node name="Pet_House" parent="." instance=ExtResource("1_cg7f5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -1.16816)
+metadata/_edit_lock_ = true
+
+[node name="Props" type="Node3D" parent="."]
+script = ExtResource("3_eobgp")
+
+[node name="Pet" parent="." instance=ExtResource("2_iko1k")]
+metadata/_edit_lock_ = true
+
+[node name="Pet_Bowl" parent="." instance=ExtResource("4_vtjpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0.3)
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0.676115, 2.18043)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mxwf2")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EditUI" parent="UI" instance=ExtResource("8_hgghc")]
+
+[node name="NormalUI" parent="UI" instance=ExtResource("6_bxd2p")]
+
+[node name="Menus" type="CanvasLayer" parent="."]
+
+[node name="Dialog" parent="Menus" instance=ExtResource("7_63ldi")]

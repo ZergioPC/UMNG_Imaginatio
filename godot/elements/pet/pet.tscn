@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj8rkxlejth62"]
+
+[ext_resource type="Texture2D" uid="uid://dy8v6gbo15qti" path="res://assets/pet/pet-idle/idle0000.png" id="1_52m1y"]
+
+[node name="Pet" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.232515, 0, 0, 0, 0.232515, 0, 0, 0, 0.232515, 0, 0, 0)
+offset = Vector2(0, 175)
+texture = ExtResource("1_52m1y")
