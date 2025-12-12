@@ -5,6 +5,7 @@ enum GameState {
 	IDLE,
 	PLAY,
 	EDIT,
+	SHOP,
 	FEEDING,
 	PETTING
 }
@@ -43,6 +44,10 @@ func _enter_state(state: GameState) -> void:
 			pass
 		GameState.EDIT:
 			print("Modo edicion activado")
+			# Show furniture catalog, enable placement mode
+			pass
+		GameState.SHOP:
+			print("Modo shopping activado")
 			# Show furniture catalog, enable placement mode
 			pass
 #endregion

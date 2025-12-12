@@ -1,25 +1,11 @@
 extends Node
 
-var INVENTORY:Array = []
-var inventoryOpen:bool = false
+var ITEMS:Array[Dictionary] = []
 
 func _ready() -> void:
-	__tempLoadItems()
+	loadItems()
 
-func updateItem(id:int, property:String, value):
-	for item in INVENTORY:
-		if not item.has("id"):
-			continue 
-		if not item.id == id:
-			continue
-		item[property] = value
-		if value:
-			PropsManager.addProp(id)
-		else:
-			PropsManager.removeProp(id)
-
-
-func __tempLoadItems():
+func loadItems() -> void:
 	const path = "res://assets/petHouse/"
 	var auxData = [
 		{
@@ -48,6 +34,11 @@ func __tempLoadItems():
 			"scale":Vector3(1000,1000,0.5)
 		}
 	]
-	
-	#for item in auxData:
-	#	INVENTORY.append(item)
+	for item in auxData:
+		ITEMS.append(item)
+		ITEMS.append(item)
+		ITEMS.append(item)
+		ITEMS.append(item)
+		ITEMS.append(item)
+		ITEMS.append(item)
+		ITEMS.append(item)

@@ -4,6 +4,7 @@ extends Node3D
 @onready var UiNormal:Control = $UI/NormalUI
 @onready var UiEdit:Control = $UI/EditUI
 @onready var menuDialog:Control = $Menus/Dialog
+@onready var menuStore:Control = $Menus/StoreUI
 
 # ELEMENTS
 @onready var Pet:Node3D = $Pet
@@ -14,6 +15,7 @@ func _ready() -> void:
 	UiEdit.visible = false
 	UiNormal.visible = true
 	menuDialog.visible = false
+	menuStore.visible = false
 	
 	# Elements Settings
 	Pet.visible = true
@@ -31,12 +33,21 @@ func _on_state_changed(new_state):
 		GameStateManager.GameState.PLAY:
 			UiEdit.visible = false
 			UiNormal.visible = true
+			menuStore.visible = false
 			
 			Pet.visible = true
 			Bowl.visible = true
 		GameStateManager.GameState.EDIT:
 			UiEdit.visible = true
 			UiNormal.visible = false
+			menuStore.visible = false
 			
 			Pet.visible = false
 			Bowl.visible = false
+		GameStateManager.GameState.SHOP:
+			UiEdit.visible = false
+			UiNormal.visible = false
+			menuStore.visible = true
+			
+			Pet.visible = true
+			Bowl.visible = true

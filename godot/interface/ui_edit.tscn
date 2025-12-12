@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://btxpy2eprqfde"]
 
-[ext_resource type="Script" path="res://interface/edit_ui.gd" id="1_gouhq"]
+[ext_resource type="Script" path="res://interface/ui_edit.gd" id="1_gouhq"]
 [ext_resource type="PackedScene" uid="uid://dyhnpy2ibld41" path="res://interface/ui_inventory.tscn" id="2_v3id6"]
 
 [node name="EditUI" type="Control"]
@@ -38,10 +38,4 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Guardar"
 
-[node name="CloseBtn" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Cerrar"
-
 [connection signal="button_up" from="MarginContainer/VBoxContainer/SaveBtn" to="." method="_on_save_btn_button_up"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/CloseBtn" to="." method="_on_close_btn_button_up"]
