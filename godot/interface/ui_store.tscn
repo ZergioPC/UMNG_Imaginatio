@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxmg2ouhtoryk"]
+[gd_scene load_steps=2 format=3 uid="uid://bxmg2ouhtoryk"]
 
 [ext_resource type="Script" path="res://interface/ui_store.gd" id="1_feqc0"]
-[ext_resource type="Texture2D" uid="uid://cj4mvlstkoa81" path="res://assets/petHouse/CASA_BASE.png" id="2_mdvr6"]
 
 [node name="StoreUI" type="Control"]
 layout_mode = 3
@@ -33,10 +32,6 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
-visible = false
-layout_mode = 2
-
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
@@ -65,22 +60,6 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6
 columns = 2
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_mdvr6")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="CloseBtn" type="Button" parent="MarginContainer"]
 layout_mode = 2

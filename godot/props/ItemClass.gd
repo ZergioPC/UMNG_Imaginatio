@@ -31,7 +31,9 @@ var itemStartPos:Vector3 = Vector3(0,0,0)
 # - - - - - CONSTRUCTOR - - - - -
 # ===============================
 # Constructor: receives collision size (Vector3) and texture (Texture2D)
-func _init(item_id:int, size: Vector3, texture: Texture2D):
+func _init(item_id:int, size_array:Array, texture: Texture2D):
+	var size = Vector3(size_array[0], size_array[1], size_array[2])
+	
 	id = item_id
 	collision_shape = CollisionShape3D.new()
 	sprite = Sprite3D.new()

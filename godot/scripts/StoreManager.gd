@@ -2,8 +2,23 @@ extends Node
 
 var ITEMS:Array[Dictionary] = []
 
-func _ready() -> void:
-	loadItems()
+func buyItem(id:int) -> Array[bool]:
+	var noMoney = false
+	var wasBought = false
+	for item in ITEMS:
+		if (item["id"] == id):
+			for prop in InventoryManager.INVENTORY: 	# Busca si ya esta en Inventario
+				if (item["id"] == prop["id"]):
+					wasBought = true
+					break
+			if (item["price"] > UserManager.MONEY):	#Comprobar si tiene plata
+				noMoney = true
+			else:
+				if wasBought: continue
+				UserManager.MONEY -= item["price"]
+				InventoryManager.addItem(item)
+			break
+	return [noMoney, wasBought]
 
 func loadItems() -> void:
 	const path = "res://assets/petHouse/"
@@ -13,32 +28,26 @@ func loadItems() -> void:
 			"name":"Casa espacial",
 			"price":4,
 			"texture":path + "CASA_ESP.png",
-			"isUse":randf() < 0.5,
-			"pos":Vector3(0,0,-1),
-			"scale":Vector3(1000,1000,0.5)
+			"isUse":false,
+			"pos":[0, 0, 0],
+			"scale":[1000, 1000, 0.5]
 		},{
 			"id": 1,
 			"name":"Casa Millos",
 			"price":4,
 			"texture":path + "CASA_MLL.png",
-			"isUse":randf() < 0.5,
-			"pos":Vector3(1,0,-2),
-			"scale":Vector3(1000,1000,0.5)
+			"isUse":false,
+			"pos":[0, 0, 0],
+			"scale":[1000, 1000, 0.5]
 		},{
 			"id": 2,
 			"name":"Casa Vaquera",
 			"price":4,
 			"texture":path + "CASA_VAK.png",
-			"isUse":randf() < 0.5,
-			"pos":Vector3(-1,0,-2.5),
-			"scale":Vector3(1000,1000,0.5)
+			"isUse":false,
+			"pos":[0, 0, 0],
+			"scale":[1000, 1000, 0.5]
 		}
 	]
 	for item in auxData:
-		ITEMS.append(item)
-		ITEMS.append(item)
-		ITEMS.append(item)
-		ITEMS.append(item)
-		ITEMS.append(item)
-		ITEMS.append(item)
 		ITEMS.append(item)

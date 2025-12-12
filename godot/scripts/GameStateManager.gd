@@ -12,6 +12,13 @@ enum GameState {
 var current_state: GameState = GameState.PLAY
 signal state_changed(new_state: GameState)
 
+func _ready() -> void:
+	SaveDataManager.onLoad()
+	StoreManager.loadItems()
+	PropsManager.loadProps()
+	
+	connect("state_changed", PropsManager._on_state_changed)
+
 #region GameStateChanger
 func change_state(new_state: GameState) -> void:
 	if current_state == new_state:

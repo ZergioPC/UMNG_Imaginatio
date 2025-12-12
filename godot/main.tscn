@@ -32,14 +32,16 @@ metadata/_edit_lock_ = true
 [node name="Props" type="Node3D" parent="."]
 
 [node name="Pet" parent="." instance=ExtResource("2_iko1k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.314203)
 metadata/_edit_lock_ = true
 
 [node name="Pet_Bowl" parent="." instance=ExtResource("4_vtjpd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0.614203)
 metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0.676115, 2.18043)
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0.621554, 2.48986)
+metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mxwf2")

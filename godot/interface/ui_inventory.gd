@@ -3,7 +3,7 @@ extends Control
 @onready var container:HBoxContainer = $ScrollContainer/MarginContainer/HBoxContainer
 
 func _ready() -> void:
-	drawItems()
+	GameStateManager.connect("state_changed", _on_state_changed)
 
 func drawItems():
 	deleteChildrens()
@@ -34,3 +34,6 @@ func deleteChildrens():
 	if (container.get_child_count() > 0):
 		for child in container.get_children():
 			child.queue_free()
+
+func _on_state_changed(_new_state) -> void:
+	drawItems()

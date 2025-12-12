@@ -11,11 +11,6 @@ func drawItems() -> void:
 	for item in StoreManager.ITEMS:
 		var btn:Button = Button.new()
 		btn.custom_minimum_size = Vector2i(200,200)
-		btn.button_up.connect(
-			func():
-			print("comprar ",item["id"])
-			drawItems()
-			)
 		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		
 		var rect:TextureRect = TextureRect.new()
@@ -25,8 +20,18 @@ func drawItems() -> void:
 		rect.set_anchors_preset(PRESET_FULL_RECT)
 		rect.visible = true
 		
-		#if(not item["isUse"]):
-			#rect.modulate = Color(0.0, 0.3, 0.3, 0.5)
+		btn.button_up.connect(
+			func():
+			var res = StoreManager.buyItem(item["id"])
+			if res[0]:
+				print("no mony")
+			elif res[1]:
+				print("ya comprao")
+			else:
+				#Animacion de compra y demás
+				print(rect.modulate)
+			drawItems()
+			)
 		
 		btn.add_child(rect)
 		container.add_child(btn)

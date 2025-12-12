@@ -5,7 +5,7 @@ var USER_DATA:Dictionary
 
 const API_NAME:String = "ImaginatioWeb"
 
-func _ready() -> void:
+func onLoad() -> void:
 	USER_DATA = getData()
 	if (USER_DATA["name"] == ""):
 		print("primera vez")
