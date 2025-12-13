@@ -47,7 +47,11 @@ func removeProp(id: int):
 func setPropsNode(node:Node3D):
 	PropsNode = node
 	drawProps()
-	
+
+func updatePositions():
+	for prop in PropsList:
+		InventoryManager.updateItemPos(prop.id,prop.global_position)
+
 # SIGNALS
 
 func _on_state_changed(new_state):

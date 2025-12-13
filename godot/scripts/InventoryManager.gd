@@ -2,17 +2,66 @@ extends Node
 
 var INVENTORY:Array = []
 
-func updateItem(id:int, property:String, value):
+func updateItemPos(id:int, value:Vector3):
+	for item in INVENTORY:
+		if not item.has("id"):
+			continue 
+		if item.id == id:
+			item["pos"] = [value.x, value.y, value.z]
+			break
+
+func updateItemVisible(id:int, value):
 	for item in INVENTORY:
 		if not item.has("id"):
 			continue 
 		if not item.id == id:
 			continue
-		item[property] = value
+		item["isUse"] = value
 		if value:
 			PropsManager.addProp(id)
+			break
 		else:
 			PropsManager.removeProp(id)
+			break
 
 func addItem(item:Dictionary) -> void:
 	INVENTORY.append(item)
+
+func loadStorageData(list:Array):
+	for prop in list:
+		for item in StoreManager.ITEMS:
+			if (item["id"] == prop["id"]):
+				var newItem = item
+				newItem["pos"] = prop["pos"]
+				newItem["isUse"] = true#prop["isUse"]
+				addItem(newItem)
+				break
+
+"""
+|---JSON PARSED---|
+{ 
+"inventory": [
+	{ "id": 1, "pos": "(-1.14, 0, -0.748373)" },
+	{ "id": 0, "pos": "(-0.753796, 0, -1.903471)" }
+"likes": 28,
+"name": "PEPO"
+}
+
+|---Inventario---|
+[{ 
+	"id": 1, 
+	"name": "Casa Millos", 
+	"price": 4,
+	"texture": "res://assets/petHouse/CASA_MLL.png", 
+	"isUse": false, "pos": "(-1.14, 0, -0.748373)", 
+	"scale": [1000, 1000, 0.5]
+},{ 
+	"id": 0, 
+	"name": "Casa espacial", 
+	"price": 4, 
+	"texture": "res://assets/petHouse/CASA_ESP.png", 
+	"isUse": false, 
+	"pos": "(-0.753796, 0, -1.903471)", 
+	"scale": [1000, 1000, 0.5] 
+}]
+"""

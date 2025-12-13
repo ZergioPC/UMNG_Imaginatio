@@ -13,9 +13,8 @@ var current_state: GameState = GameState.PLAY
 signal state_changed(new_state: GameState)
 
 func _ready() -> void:
-	SaveDataManager.onLoad()
 	StoreManager.loadItems()
-	PropsManager.loadProps()
+	SaveDataManager.onLoad()
 	
 	connect("state_changed", PropsManager._on_state_changed)
 

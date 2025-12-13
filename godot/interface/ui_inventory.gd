@@ -13,7 +13,7 @@ func drawItems():
 		btn.custom_minimum_size = Vector2i(150,150)
 		btn.button_up.connect(
 			func():
-			InventoryManager.updateItem(item["id"],"isUse",not item["isUse"])
+			InventoryManager.updateItemVisible(item["id"],not item["isUse"])
 			drawItems()
 			)
 		

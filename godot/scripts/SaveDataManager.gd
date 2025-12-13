@@ -1,29 +1,45 @@
 extends Node
 
-# Inventory: [id:int ,position:Vector3]
 var USER_DATA:Dictionary
 
-const API_NAME:String = "ImaginatioWeb"
+const API_NAME:String = "'ImaginatioWeb'"
 
 func onLoad() -> void:
 	USER_DATA = getData()
 	if (USER_DATA["name"] == ""):
 		print("primera vez")
 	else:
-		print("normal")
+		print("normal user")
+		UserManager.PET_NAME = USER_DATA["name"]
+		UserManager.MONEY = USER_DATA["likes"]
+		InventoryManager.loadStorageData(USER_DATA["inventory"])
+
+func formatData(name:String, likes:int, inventory:Array):
+	var rawInventory = []
+	for item in inventory:
+		rawInventory.append(
+			{"id": item["id"],"pos": item["pos"],"isUse": item["isUse"]}
+		)
+	return {
+		"name": name,
+		"likes": likes,
+		"inventory": rawInventory
+	}
 
 func saveData(data:Dictionary) -> void:
 	var json = JSON.stringify(data)
-	var query = "localStorage.setItem(" + API_NAME + "," + json + ")"
+	var query = "localStorage.setItem(" + API_NAME + ", %s);" % JSON.stringify(json)
 	JavaScriptBridge.eval(query)
+	print(query)
 	
 func getData() -> Dictionary :
 	var json_data = JavaScriptBridge.eval("localStorage.getItem(" + API_NAME + ")")
 	if (not json_data):
 		return {
 			"name": "",
-			"money": 0,
+			"likes": 0,
 			"inventory": []
 		}
 	else:
-		return JSON.parse_string(json_data)
+		var parsed = JSON.parse_string(json_data)
+		return parsed

@@ -22,6 +22,7 @@ func _ready() -> void:
 	Bowl.visible = true
 	
 	# Game Settings
+	PropsManager.loadProps()
 	PropsManager.setPropsNode($Props)
 	GameStateManager.connect("state_changed", _on_state_changed)
 

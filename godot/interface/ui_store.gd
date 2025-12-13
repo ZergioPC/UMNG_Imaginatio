@@ -29,7 +29,7 @@ func drawItems() -> void:
 				print("ya comprao")
 			else:
 				#Animacion de compra y demás
-				print(rect.modulate)
+				print("comprado ",item["id"])
 			drawItems()
 			)
 		
