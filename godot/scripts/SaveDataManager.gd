@@ -14,14 +14,14 @@ func onLoad() -> void:
 		UserManager.MONEY = USER_DATA["likes"]
 		InventoryManager.loadStorageData(USER_DATA["inventory"])
 
-func formatData(name:String, likes:int, inventory:Array):
+func formatData(petName:String, likes:int, inventory:Array):
 	var rawInventory = []
 	for item in inventory:
 		rawInventory.append(
 			{"id": item["id"],"pos": item["pos"],"isUse": item["isUse"]}
 		)
 	return {
-		"name": name,
+		"name": petName,
 		"likes": likes,
 		"inventory": rawInventory
 	}

@@ -22,6 +22,8 @@ func buyItem(id:int) -> Array[bool]:
 
 func loadItems() -> void:
 	const path = "res://assets/petHouse/"
+	const path2 = "res://assets/house/"
+	
 	var auxData = [
 		{
 			"id": 0,
@@ -30,7 +32,8 @@ func loadItems() -> void:
 			"texture":path + "CASA_ESP.png",
 			"isUse":false,
 			"pos":[0, 0, 0],
-			"scale":[1000, 1000, 0.5]
+			"scale":[1000, 1000, 0.5],
+			"type":"prop"
 		},{
 			"id": 1,
 			"name":"Casa Millos",
@@ -38,7 +41,8 @@ func loadItems() -> void:
 			"texture":path + "CASA_MLL.png",
 			"isUse":false,
 			"pos":[0, 0, 0],
-			"scale":[1000, 1000, 0.5]
+			"scale":[1000, 1000, 0.5],
+			"type":"prop"
 		},{
 			"id": 2,
 			"name":"Casa Vaquera",
@@ -46,7 +50,8 @@ func loadItems() -> void:
 			"texture":path + "CASA_VAK.png",
 			"isUse":false,
 			"pos":[0, 0, 0],
-			"scale":[1000, 1000, 0.5]
+			"scale":[1000, 1000, 0.5],
+			"type":"prop"
 		}
 	]
 	for item in auxData:
