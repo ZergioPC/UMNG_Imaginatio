@@ -36,6 +36,7 @@ uploads/
 # Godot.gitignore
 
 # Godot 4+ specific ignores
+godot/build/
 .godot/
 .nomedia
 
