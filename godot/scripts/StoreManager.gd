@@ -52,6 +52,87 @@ func loadItems() -> void:
 			"pos":[0, 0, 0],
 			"scale":[1000, 1000, 0.5],
 			"type":"prop"
+		},{
+			"id": 3,
+			"name":"Suelo Base",
+			"price":4,
+			"texture":path2 + "House_floor_base.png",
+			"isUse":false,
+			"preview":"_",
+			"skinOf":"floor",
+			"type":"skin"
+		},{
+			"id": 4,
+			"name":"Suelo Millonario",
+			"price":4,
+			"texture":path2 + "House_floor_rich.png",
+			"isUse":false,
+			"preview":"_",
+			"skinOf":"floor",
+			"type":"skin"
+		},{
+			"id": 5,
+			"name":"Suelo Espacial",
+			"price":4,
+			"texture":path2 + "House_floor_space.png",
+			"isUse":false,
+			"preview":"_",
+			"skinOf":"floor",
+			"type":"skin"
+		},{
+			"id": 6,
+			"name":"Techo Base",
+			"price":4,
+			"texture":path2 + "House_techo_base.png",
+			"isUse":false,
+			"preview":"_",
+			"skinOf":"roof",
+			"type":"skin"
+		},{
+			"id": 7,
+			"name":"Techo Millonario",
+			"price":4,
+			"texture":path2 + "House_techo_rich.png",
+			"isUse":false,
+			"preview":"_",
+			"skinOf":"roof",
+			"type":"skin"
+		},{
+			"id": 8,
+			"name":"Techo Espacial",
+			"price":4,
+			"texture":path2 + "House_techo_space.png",
+			"isUse":false,
+			"preview":"_",
+			"skinOf":"roof",
+			"type":"skin"
+		},{
+			"id": 9,
+			"name":"Paredes Base",
+			"price":4,
+			"texture":path2 + "House_paredes_base.png",
+			"isUse":false,
+			"preview":"_",
+			"skinOf":"wall",
+			"type":"skin"
+		},{
+			"id": 10,
+			"name":"Paredes Millonario",
+			"price":4,
+			"texture":path2 + "House_paredes_rich.png",
+			"isUse":false,
+			"preview":"_",
+			"skinOf":"wall",
+			"type":"skin"
+		},{
+			"id": 11,
+			"name":"Paredes Espacial",
+			"price":4,
+			"texture":path2 + "House_paredes_space.png",
+			"isUse":false,
+			"preview":"_",
+			"skinOf":"wall",
+			"type":"skin"
 		}
 	]
 	for item in auxData:

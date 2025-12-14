@@ -17,9 +17,10 @@ func onLoad() -> void:
 func formatData(petName:String, likes:int, inventory:Array):
 	var rawInventory = []
 	for item in inventory:
-		rawInventory.append(
-			{"id": item["id"],"pos": item["pos"],"isUse": item["isUse"]}
-		)
+		if(item["type"] == "prop"):
+			rawInventory.append({"id": item["id"],"pos": item["pos"],"isUse": item["isUse"]})
+		elif(item["type"] == "skin"):
+			rawInventory.append({"id": item["id"],"isUse": item["isUse"]})
 	return {
 		"name": petName,
 		"likes": likes,

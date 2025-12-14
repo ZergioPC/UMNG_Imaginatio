@@ -13,7 +13,10 @@ func drawItems():
 		btn.custom_minimum_size = Vector2i(150,150)
 		btn.button_up.connect(
 			func():
-			InventoryManager.updateItemVisible(item["id"],not item["isUse"])
+			if(item["type"] == "prop"): 
+				InventoryManager.updateItemVisible(item["id"],not item["isUse"])
+			if(item["type"]=="skin" and not item["isUse"]): 
+				InventoryManager.updateSkinVisible(item["id"],item["texture"],item["skinOf"])
 			drawItems()
 			)
 		

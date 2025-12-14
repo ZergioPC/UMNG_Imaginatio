@@ -10,19 +10,41 @@ func updateItemPos(id:int, value:Vector3):
 			item["pos"] = [value.x, value.y, value.z]
 			break
 
-func updateItemVisible(id:int, value):
+func updateItemVisible(id:int, value:bool):
 	for item in INVENTORY:
-		if not item.has("id"):
+		if not item.type == "prop":
 			continue 
 		if not item.id == id:
 			continue
-		item["isUse"] = value
+		item.isUse = value
 		if value:
 			PropsManager.addProp(id)
 			break
 		else:
 			PropsManager.removeProp(id)
 			break
+
+func updateSkinVisible(id:int, skin:String, element:String):
+	for item in INVENTORY:
+		if not item.type == "skin":
+			continue 
+		if not item.skinOf == element:
+			continue
+		
+		if not item.id == id:
+			item.isUse = false
+		else:
+			item.isUse = true
+	
+	var texture:Texture2D = load(skin)
+	
+	match element:
+		"wall":
+			UserManager.house_changeWall.emit(texture)
+		"floor":
+			UserManager.house_changeFloor.emit(texture)
+		"roof":
+			UserManager.house_changeRoof.emit(texture)
 
 func addItem(item:Dictionary) -> void:
 	INVENTORY.append(item)
@@ -33,7 +55,7 @@ func loadStorageData(list:Array):
 			if (item["id"] == prop["id"]):
 				var newItem = item
 				newItem["pos"] = prop["pos"]
-				newItem["isUse"] = true#prop["isUse"]
+				newItem["isUse"] = prop["isUse"]
 				addItem(newItem)
 				break
 
