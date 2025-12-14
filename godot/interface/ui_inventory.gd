@@ -21,13 +21,13 @@ func drawItems():
 			)
 		
 		var rect:TextureRect = TextureRect.new()
-		rect.texture = load(item["texture"])
+		rect.texture = item.texture
 		rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		rect.stretch_mode =TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		rect.custom_minimum_size = Vector2(150,150)
 		rect.visible = true
 		
-		if(not item["isUse"]):
+		if(not item.isUse):
 			rect.modulate = Color(0.0, 0.3, 0.3, 0.5)
 		
 		btn.add_child(rect)

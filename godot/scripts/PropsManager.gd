@@ -6,7 +6,7 @@ var customization_mode: bool = false
 var PropsNode:Node3D
 
 func _auxCreateProp(prop:Dictionary) -> Item:
-	var texture:Texture2D = load(prop["texture"])
+	var texture:Texture2D = prop["texture"]
 	var item_instance := Item.new(prop["id"], prop["scale"],texture)
 	var item_pos = Vector3(
 		prop["pos"][0],

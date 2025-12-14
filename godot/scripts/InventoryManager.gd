@@ -24,7 +24,7 @@ func updateItemVisible(id:int, value:bool):
 			PropsManager.removeProp(id)
 			break
 
-func updateSkinVisible(id:int, skin:String, element:String):
+func updateSkinVisible(id:int, texture:Texture2D, element:String):
 	for item in INVENTORY:
 		if not item.type == "skin":
 			continue 
@@ -35,8 +35,6 @@ func updateSkinVisible(id:int, skin:String, element:String):
 			item.isUse = false
 		else:
 			item.isUse = true
-	
-	var texture:Texture2D = load(skin)
 	
 	match element:
 		"wall":

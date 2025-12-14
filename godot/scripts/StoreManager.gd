@@ -21,119 +21,25 @@ func buyItem(id:int) -> Array[bool]:
 	return [noMoney, wasBought]
 
 func loadItems() -> void:
-	const path = "res://assets/petHouse/"
-	const path2 = "res://assets/house/"
+	var DATA = SaveDataManager.fetchData()
 	
-	var auxData = [
-		{
-			"id": 0,
-			"name":"Casa espacial",
-			"price":4,
-			"texture":path + "CASA_ESP.png",
-			"isUse":false,
-			"pos":[0, 0, 0],
-			"scale":[1000, 1000, 0.5],
-			"type":"prop"
-		},{
-			"id": 1,
-			"name":"Casa Millos",
-			"price":4,
-			"texture":path + "CASA_MLL.png",
-			"isUse":false,
-			"pos":[0, 0, 0],
-			"scale":[1000, 1000, 0.5],
-			"type":"prop"
-		},{
-			"id": 2,
-			"name":"Casa Vaquera",
-			"price":4,
-			"texture":path + "CASA_VAK.png",
-			"isUse":false,
-			"pos":[0, 0, 0],
-			"scale":[1000, 1000, 0.5],
-			"type":"prop"
-		},{
-			"id": 3,
-			"name":"Suelo Base",
-			"price":4,
-			"texture":path2 + "House_floor_base.png",
-			"isUse":false,
-			"preview":"_",
-			"skinOf":"floor",
-			"type":"skin"
-		},{
-			"id": 4,
-			"name":"Suelo Millonario",
-			"price":4,
-			"texture":path2 + "House_floor_rich.png",
-			"isUse":false,
-			"preview":"_",
-			"skinOf":"floor",
-			"type":"skin"
-		},{
-			"id": 5,
-			"name":"Suelo Espacial",
-			"price":4,
-			"texture":path2 + "House_floor_space.png",
-			"isUse":false,
-			"preview":"_",
-			"skinOf":"floor",
-			"type":"skin"
-		},{
-			"id": 6,
-			"name":"Techo Base",
-			"price":4,
-			"texture":path2 + "House_techo_base.png",
-			"isUse":false,
-			"preview":"_",
-			"skinOf":"roof",
-			"type":"skin"
-		},{
-			"id": 7,
-			"name":"Techo Millonario",
-			"price":4,
-			"texture":path2 + "House_techo_rich.png",
-			"isUse":false,
-			"preview":"_",
-			"skinOf":"roof",
-			"type":"skin"
-		},{
-			"id": 8,
-			"name":"Techo Espacial",
-			"price":4,
-			"texture":path2 + "House_techo_space.png",
-			"isUse":false,
-			"preview":"_",
-			"skinOf":"roof",
-			"type":"skin"
-		},{
-			"id": 9,
-			"name":"Paredes Base",
-			"price":4,
-			"texture":path2 + "House_paredes_base.png",
-			"isUse":false,
-			"preview":"_",
-			"skinOf":"wall",
-			"type":"skin"
-		},{
-			"id": 10,
-			"name":"Paredes Millonario",
-			"price":4,
-			"texture":path2 + "House_paredes_rich.png",
-			"isUse":false,
-			"preview":"_",
-			"skinOf":"wall",
-			"type":"skin"
-		},{
-			"id": 11,
-			"name":"Paredes Espacial",
-			"price":4,
-			"texture":path2 + "House_paredes_space.png",
-			"isUse":false,
-			"preview":"_",
-			"skinOf":"wall",
-			"type":"skin"
-		}
-	]
-	for item in auxData:
+	for item in DATA:
+		var loadTexture = load(item.texture)
+		item.texture = loadTexture
+		if item.type == "prop":
+			pass
+		if item.type == "skin":
+			pass
 		ITEMS.append(item)
+
+"""
+REGLAS PARA EL "ID" DE UN ITEM
+- Empieza con el año: 
+	* 2025
+- Sigue el tipo:
+	* prop: 0
+	* skin: 1
+- Agregar por ultimo el tamaño de la lista +1 de la siguiente forma:
+	* Del  0 al  9: 0X
+	* Del 11 al 99: XX
+"""

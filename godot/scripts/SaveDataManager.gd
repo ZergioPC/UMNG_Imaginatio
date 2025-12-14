@@ -44,3 +44,21 @@ func getData() -> Dictionary :
 	else:
 		var parsed = JSON.parse_string(json_data)
 		return parsed
+
+func fetchData():
+	const file_path:String = "res://data.json"
+	var file := FileAccess.open(file_path, FileAccess.READ)
+	if file == null:
+		push_error("Failed to open JSON file")
+		return null
+
+	var json_text := file.get_as_text()
+	file.close()
+
+	var json := JSON.new()
+	var error := json.parse(json_text)
+	if error != OK:
+		push_error("JSON parse error: %s" % json.get_error_message())
+		return null
+
+	return json.data

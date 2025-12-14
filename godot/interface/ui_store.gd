@@ -14,7 +14,7 @@ func drawItems() -> void:
 		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		
 		var rect:TextureRect = TextureRect.new()
-		rect.texture = load(item["texture"])
+		rect.texture = item.texture
 		rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		rect.stretch_mode =TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		rect.set_anchors_preset(PRESET_FULL_RECT)
