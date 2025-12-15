@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://b374gor5ahpyo"]
+[gd_scene load_steps=2 format=3 uid="uid://b374gor5ahpyo"]
+
+[ext_resource type="Script" path="res://interface/ui_dialog.gd" id="1_aqbco"]
 
 [node name="Dialog" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_aqbco")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -25,6 +28,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CenterContainer"]
+[node name="MarginFormName" type="MarginContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(600, 300)
 layout_mode = 2
-text = "Dialogo a mostrar dentro de esta wea"
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="formName" type="VBoxContainer" parent="CenterContainer/MarginFormName"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/MarginFormName/formName"]
+layout_mode = 2
+text = "Ingresa el nombre de tu mascota"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FormNameText" type="TextEdit" parent="CenterContainer/MarginFormName/formName"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+placeholder_text = "Pepito Pérez Peralta"
+caret_blink = true
+
+[node name="FormNameBtn" type="Button" parent="CenterContainer/MarginFormName/formName"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Confirmar"
+
+[node name="MarginDialog" type="MarginContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginDialog"]
+layout_mode = 2
+alignment = 1
+
+[node name="LabelMessage" type="Label" parent="CenterContainer/MarginDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Message"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogBtn" type="Button" parent="CenterContainer/MarginDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Aceptar"
+
+[connection signal="button_up" from="CenterContainer/MarginFormName/formName/FormNameBtn" to="." method="_on_form_name_btn_button_up"]
+[connection signal="button_up" from="CenterContainer/MarginDialog/VBoxContainer/DialogBtn" to="." method="_on_dialog_btn_button_up"]

@@ -11,7 +11,10 @@ extends Node3D
 @onready var Bowl:Node3D = $Pet_Bowl
 
 func _ready() -> void:
+	StoreManager.loadItems()
 	UserManager.initHouseMaterials()
+	UserManager.emitNewMoney(UserManager.MONEY)
+	UserManager.emitNewName(UserManager.PET_NAME)
 	
 	# UI settings
 	UiEdit.visible = false
@@ -27,6 +30,10 @@ func _ready() -> void:
 	PropsManager.loadProps()
 	PropsManager.setPropsNode($Props)
 	GameStateManager.connect("state_changed", _on_state_changed)
+	
+	if SaveDataManager.firstTime:
+		GameStateManager.change_state(GameStateManager.GameState.MESSAGE)
+		GameStateManager.display_nameForm.emit()
 
 func _process(_delta: float) -> void:
 	pass
@@ -37,6 +44,7 @@ func _on_state_changed(new_state):
 			UiEdit.visible = false
 			UiNormal.visible = true
 			menuStore.visible = false
+			menuDialog.visible = false
 			
 			Pet.visible = true
 			Bowl.visible = true
@@ -44,13 +52,23 @@ func _on_state_changed(new_state):
 			UiEdit.visible = true
 			UiNormal.visible = false
 			menuStore.visible = false
+			menuDialog.visible = false
 			
 			Pet.visible = false
 			Bowl.visible = false
 		GameStateManager.GameState.SHOP:
 			UiEdit.visible = false
 			UiNormal.visible = false
+			menuDialog.visible = false
 			menuStore.visible = true
+			
+			Pet.visible = true
+			Bowl.visible = true
+		GameStateManager.GameState.MESSAGE:
+			UiEdit.visible = false
+			UiNormal.visible = false
+			menuStore.visible = false
+			menuDialog.visible = true
 			
 			Pet.visible = true
 			Bowl.visible = true

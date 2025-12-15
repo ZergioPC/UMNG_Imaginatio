@@ -17,6 +17,17 @@ func buyItem(id:int) -> Dictionary:
 				if wasBought: continue
 				UserManager.MONEY -= item["price"]
 				InventoryManager.addItem(item)
+				UserManager.emitNewMoney(UserManager.MONEY)
+				
+				var data = SaveDataManager.formatData(
+					UserManager.PET_NAME,
+					UserManager.MONEY,
+					InventoryManager.INVENTORY,
+					UserManager.HOUSE_FLOOR,
+					UserManager.HOUSE_ROOF,
+					UserManager.HOUSE_WALL
+				)
+				SaveDataManager.saveData(data)
 			break
 	return {
 		"noMoney":noMoney, 
@@ -34,7 +45,6 @@ func loadItems() -> void:
 		if item.type == "skin":
 			pass
 		ITEMS.append(item)
-
 """
 REGLAS PARA EL "ID" DE UN ITEM
 - Empieza con el año: 

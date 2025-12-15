@@ -1,15 +1,14 @@
 extends Node
 
 var USER_DATA:Dictionary
+var firstTime:bool = false
 
 const API_NAME:String = "'ImaginatioWeb'"
 
 func onLoad() -> void:
 	USER_DATA = getData()
-	if (USER_DATA["name"] == ""):
-		print("primera vez")
-	else:
-		print("normal user")
+	if (USER_DATA["name"].is_empty()):
+		firstTime = true
 		
 	InventoryManager.loadStorageData(USER_DATA["inventory"])
 	UserManager.PET_NAME = USER_DATA["name"]

@@ -2,8 +2,8 @@
 extends Node
 
 enum GameState {
-	IDLE,
 	PLAY,
+	MESSAGE,
 	EDIT,
 	SHOP,
 	FEEDING,
@@ -11,6 +11,9 @@ enum GameState {
 }
 var current_state: GameState = GameState.PLAY
 signal state_changed(new_state: GameState)
+
+signal display_dialog
+signal display_nameForm
 
 func _ready() -> void:
 	StoreManager.loadItems()
@@ -54,6 +57,10 @@ func _enter_state(state: GameState) -> void:
 			pass
 		GameState.SHOP:
 			print("Modo shopping activado")
+			# Show furniture catalog, enable placement mode
+			pass
+		GameState.MESSAGE:
+			print("Modo message activado")
 			# Show furniture catalog, enable placement mode
 			pass
 #endregion
