@@ -10,11 +10,22 @@ func onLoad() -> void:
 		print("primera vez")
 	else:
 		print("normal user")
-		UserManager.PET_NAME = USER_DATA["name"]
-		UserManager.MONEY = USER_DATA["likes"]
-		InventoryManager.loadStorageData(USER_DATA["inventory"])
+		
+	InventoryManager.loadStorageData(USER_DATA["inventory"])
+	UserManager.PET_NAME = USER_DATA["name"]
+	UserManager.MONEY = USER_DATA["likes"]
+	UserManager.HOUSE_FLOOR = USER_DATA["floor"]
+	UserManager.HOUSE_ROOF = USER_DATA["roof"]
+	UserManager.HOUSE_WALL = USER_DATA["wall"]
 
-func formatData(petName:String, likes:int, inventory:Array):
+func formatData(
+	petName:String, 
+	likes:int, 
+	inventory:Array,
+	suelo:int,
+	roof:int,
+	wall:int
+):
 	var rawInventory = []
 	for item in inventory:
 		if(item["type"] == "prop"):
@@ -24,6 +35,9 @@ func formatData(petName:String, likes:int, inventory:Array):
 	return {
 		"name": petName,
 		"likes": likes,
+		"floor": suelo,
+		"wall": wall,
+		"roof": roof,
 		"inventory": rawInventory
 	}
 
@@ -38,8 +52,15 @@ func getData() -> Dictionary :
 	if (not json_data):
 		return {
 			"name": "",
-			"likes": 0,
-			"inventory": []
+			"likes": 20,
+			"floor": 2025101,
+			"roof": 2025104,
+			"wall": 2025105,
+			"inventory": [
+				{"id": 2025101,"isUse": true},
+				{"id": 2025104,"isUse": true},
+				{"id": 2025107,"isUse": true},
+			]
 		}
 	else:
 		var parsed = JSON.parse_string(json_data)

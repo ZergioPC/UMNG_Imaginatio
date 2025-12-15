@@ -8,7 +8,10 @@ func _on_save_btn_button_up() -> void:
 	var data = SaveDataManager.formatData(
 		UserManager.PET_NAME,
 		UserManager.MONEY,
-		InventoryManager.INVENTORY
+		InventoryManager.INVENTORY,
+		UserManager.HOUSE_FLOOR,
+		UserManager.HOUSE_ROOF,
+		UserManager.HOUSE_WALL
 	)
 	SaveDataManager.saveData(data)
 	GameStateManager.change_state(GameStateManager.GameState.PLAY)

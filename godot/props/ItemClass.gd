@@ -3,7 +3,7 @@ class_name Item
 
 const LIMITES = {
 	"min":Vector3(-2.0, 0.0,-3.2),
-	"max":Vector3( 2.0, 0.0,-0.5)
+	"max":Vector3( 2.0, 0.0, 0.0)
 }
 
 # Item Values

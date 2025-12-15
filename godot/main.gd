@@ -11,6 +11,8 @@ extends Node3D
 @onready var Bowl:Node3D = $Pet_Bowl
 
 func _ready() -> void:
+	UserManager.initHouseMaterials()
+	
 	# UI settings
 	UiEdit.visible = false
 	UiNormal.visible = true

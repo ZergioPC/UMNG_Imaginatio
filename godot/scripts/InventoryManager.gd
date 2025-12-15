@@ -38,11 +38,11 @@ func updateSkinVisible(id:int, texture:Texture2D, element:String):
 	
 	match element:
 		"wall":
-			UserManager.house_changeWall.emit(texture)
+			UserManager.house_changeWall.emit(id, texture)
 		"floor":
-			UserManager.house_changeFloor.emit(texture)
+			UserManager.house_changeFloor.emit(id, texture)
 		"roof":
-			UserManager.house_changeRoof.emit(texture)
+			UserManager.house_changeRoof.emit(id, texture)
 
 func addItem(item:Dictionary) -> void:
 	INVENTORY.append(item)
@@ -52,7 +52,7 @@ func loadStorageData(list:Array):
 		for item in StoreManager.ITEMS:
 			if (item["id"] == prop["id"]):
 				var newItem = item
-				newItem["pos"] = prop["pos"]
+				if item.has("pos"): newItem["pos"] = prop["pos"]
 				newItem["isUse"] = prop["isUse"]
 				addItem(newItem)
 				break

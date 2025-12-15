@@ -10,14 +10,14 @@ func createMaterial(image:Texture2D) -> StandardMaterial3D:
 	material.albedo_texture = image
 	return material
 
-func _onChangeTextureRoof(image:Texture2D):
+func _onChangeTextureRoof(id:int, image:Texture2D):
+	UserManager.HOUSE_ROOF = id
 	$Techo.material_override = createMaterial(image)
-	print("Techo cambiado")
 
-func _onChangeTextureFloor(image:Texture2D):
+func _onChangeTextureFloor(id:int, image:Texture2D):
+	UserManager.HOUSE_FLOOR = id
 	$Plane.material_override = createMaterial(image)
-	print("Suelo cambiado")
 
-func _onChangeTextureWall(image:Texture2D):
+func _onChangeTextureWall(id:int, image:Texture2D):
+	UserManager.HOUSE_WALL = id
 	$Paredes.material_override = createMaterial(image)
-	print("Paredes cambiado")

@@ -2,7 +2,7 @@ extends Node
 
 var ITEMS:Array[Dictionary] = []
 
-func buyItem(id:int) -> Array[bool]:
+func buyItem(id:int) -> Dictionary:
 	var noMoney = false
 	var wasBought = false
 	for item in ITEMS:
@@ -18,7 +18,10 @@ func buyItem(id:int) -> Array[bool]:
 				UserManager.MONEY -= item["price"]
 				InventoryManager.addItem(item)
 			break
-	return [noMoney, wasBought]
+	return {
+		"noMoney":noMoney, 
+		"wasBought":wasBought
+	}
 
 func loadItems() -> void:
 	var DATA = SaveDataManager.fetchData()

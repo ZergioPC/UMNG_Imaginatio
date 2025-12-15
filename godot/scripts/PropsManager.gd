@@ -18,6 +18,7 @@ func _auxCreateProp(prop:Dictionary) -> Item:
 
 func loadProps() -> void:
 	for prop in Inventario:
+		if not prop["type"] == "prop": continue
 		if not prop["isUse"] : continue
 		var item_instance = _auxCreateProp(prop)
 		item_instance.updatePos()
