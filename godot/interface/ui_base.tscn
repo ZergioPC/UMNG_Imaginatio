@@ -46,11 +46,21 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Edit"
 
-[node name="StoreBtn" type="Button" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="StoreBtn" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Store"
 
+[node name="HelpBtn" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Help"
+
 [connection signal="button_up" from="MarginContainer/EditBtn" to="." method="_on_edit_btn_button_up"]
-[connection signal="button_up" from="MarginContainer/StoreBtn" to="." method="_on_store_btn_button_up"]
+[connection signal="button_up" from="MarginContainer/HBoxContainer/StoreBtn" to="." method="_on_store_btn_button_up"]
+[connection signal="button_up" from="MarginContainer/HBoxContainer/HelpBtn" to="." method="_on_help_btn_button_up"]

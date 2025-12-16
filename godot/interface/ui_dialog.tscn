@@ -72,12 +72,11 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 alignment = 1
 
-[node name="LabelMessage" type="Label" parent="CenterContainer/MarginDialog/VBoxContainer"]
+[node name="LabelMessage" type="RichTextLabel" parent="CenterContainer/MarginDialog/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-size_flags_vertical = 1
 text = "Message"
-horizontal_alignment = 1
-vertical_alignment = 1
+fit_content = true
 
 [node name="DialogBtn" type="Button" parent="CenterContainer/MarginDialog/VBoxContainer"]
 layout_mode = 2
@@ -85,5 +84,41 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Aceptar"
 
+[node name="ScrollHelpContainer" type="ScrollContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(900, 900)
+layout_mode = 2
+
+[node name="MarginHelp" type="MarginContainer" parent="CenterContainer/ScrollHelpContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/ScrollHelpContainer/MarginHelp"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/ScrollHelpContainer/MarginHelp/VBoxContainer"]
+layout_mode = 2
+text = "IMAGINATIO PET'S MINI-GAME"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/ScrollHelpContainer/MarginHelp/VBoxContainer"]
+layout_mode = 2
+text = "Al darle \"Me gusta\" a publicaciones en la página, puedes usarlos para personalizar la casa de tu mascota. Compra decoraciones en la tienda, luego desde el inventario puedes seleccionar y arrastrar los items que quieras utilizar."
+fit_content = true
+
+[node name="HelpOkBtn" type="Button" parent="CenterContainer/ScrollHelpContainer/MarginHelp/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Entendido"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="CenterContainer"]
+initial_position = 1
+size = Vector2i(200, 100)
+
 [connection signal="button_up" from="CenterContainer/MarginFormName/formName/FormNameBtn" to="." method="_on_form_name_btn_button_up"]
 [connection signal="button_up" from="CenterContainer/MarginDialog/VBoxContainer/DialogBtn" to="." method="_on_dialog_btn_button_up"]
+[connection signal="button_up" from="CenterContainer/ScrollHelpContainer/MarginHelp/VBoxContainer/HelpOkBtn" to="." method="_on_help_ok_btn_button_up"]

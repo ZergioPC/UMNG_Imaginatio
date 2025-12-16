@@ -13,6 +13,11 @@ func _on_edit_btn_button_up() -> void:
 	
 func _on_store_btn_button_up() -> void:
 	GameStateManager.change_state(GameStateManager.GameState.SHOP)
+
+func _on_help_btn_button_up() -> void:
+	GameStateManager.change_state(GameStateManager.GameState.MESSAGE)
+	GameStateManager.display_manual.emit()
+
 #endregion
 
 #region SIGNALS - ChangeData
