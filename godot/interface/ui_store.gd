@@ -20,7 +20,7 @@ func drawItems() -> void:
 			if itemInventory.id == itemStore.id:
 				color = Color(0.3, 0.5, 0.8, 0.6)
 				wasBought = true
-				print(itemStore.name, " ya")
+				print(itemStore.name, " cargado del Inventario")
 				break
 		
 		var btn = create_button_tree(itemId, itemText, color, wasBought, texture)
@@ -47,7 +47,7 @@ func create_button_tree(
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 	var hbox := HBoxContainer.new()
-	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	hbox.alignment = BoxContainer.ALIGNMENT_END
 	hbox.set_anchors_preset(PRESET_FULL_RECT) 
 
 	var margin := MarginContainer.new()
@@ -66,8 +66,8 @@ func create_button_tree(
 	margin.add_child(vbox)
 
 	var rich_text := RichTextLabel.new()
-	rich_text.custom_minimum_size.x = 100
-	rich_text.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	rich_text.custom_minimum_size.x = 200
+	rich_text.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	rich_text.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	rich_text.fit_content = true
 	rich_text.text = itemTxt

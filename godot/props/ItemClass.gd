@@ -132,7 +132,6 @@ func raycast_from_mouse(mouse_pos: Vector2) -> Dictionary:
 	return result
 
 func start_dragging(hit_position: Vector3):
-	#print(hit_position)
 	is_dragging = true
 	y_position = global_position.y
 	drag_offset = global_position - hit_position

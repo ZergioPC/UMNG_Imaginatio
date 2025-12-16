@@ -11,7 +11,7 @@ extends Node3D
 @onready var Bowl:Node3D = $Pet_Bowl
 
 func _ready() -> void:
-	StoreManager.loadItems()
+	
 	UserManager.initHouseMaterials()
 	UserManager.emitNewMoney(UserManager.MONEY)
 	UserManager.emitNewName(UserManager.PET_NAME)

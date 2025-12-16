@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyhnpy2ibld41"]
+[gd_scene load_steps=3 format=3 uid="uid://dyhnpy2ibld41"]
 
 [ext_resource type="Script" path="res://interface/ui_inventory.gd" id="1_nl10r"]
+[ext_resource type="Texture2D" uid="uid://cbeqi6t5cvbji" path="res://assets/house/House_floor_rich.png" id="2_psyqe"]
 
 [node name="UI_Inventory" type="Control"]
 layout_mode = 3
@@ -27,3 +28,43 @@ theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
+
+[node name="Preview" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/Preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/MarginContainer/HBoxContainer/Preview/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_psyqe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/Preview/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/Preview"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "En Uso"

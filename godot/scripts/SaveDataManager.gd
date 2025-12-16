@@ -44,7 +44,6 @@ func saveData(data:Dictionary) -> void:
 	var json = JSON.stringify(data)
 	var query = "localStorage.setItem(" + API_NAME + ", %s);" % JSON.stringify(json)
 	JavaScriptBridge.eval(query)
-	print(query)
 	
 func getData() -> Dictionary :
 	var json_data = JavaScriptBridge.eval("localStorage.getItem(" + API_NAME + ")")

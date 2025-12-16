@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxmg2ouhtoryk"]
+[gd_scene load_steps=3 format=3 uid="uid://bxmg2ouhtoryk"]
 
 [ext_resource type="Script" path="res://interface/ui_store.gd" id="1_feqc0"]
+[ext_resource type="Texture2D" uid="uid://cbeqi6t5cvbji" path="res://assets/house/House_floor_rich.png" id="2_1l3ij"]
 
 [node name="StoreUI" type="Control"]
 layout_mode = 3
@@ -60,6 +61,52 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6
 columns = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button/HBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Prueba de Prop"
+fit_content = true
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Comprar"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_1l3ij")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="CloseBtn" type="Button" parent="MarginContainer"]
 layout_mode = 2
