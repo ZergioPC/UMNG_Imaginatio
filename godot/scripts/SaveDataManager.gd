@@ -51,13 +51,13 @@ func getData() -> Dictionary :
 		return {
 			"name": "",
 			"likes": 20,
-			"floor": 2025101,
-			"roof": 2025104,
-			"wall": 2025105,
+			"floor": 1,
+			"roof": 2,
+			"wall": 3,
 			"inventory": [
-				{"id": 2025101,"isUse": true},
-				{"id": 2025104,"isUse": true},
-				{"id": 2025107,"isUse": true},
+				{"id": 1,"isUse": true},
+				{"id": 2,"isUse": true},
+				{"id": 3,"isUse": true},
 			]
 		}
 	else:

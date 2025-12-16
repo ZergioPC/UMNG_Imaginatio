@@ -1,4 +1,31 @@
 [{
+	"id": 1,
+	"name":"Suelo Base",
+	"price":4,
+	"texture":"res://assets/house/House_floor_base.png",
+	"isUse":false,
+	"preview":"_",
+	"skinOf":"floor",
+	"type":"skin"
+},{
+	"id": 2,
+	"name":"Techo Base",
+	"price":4,
+	"texture":"res://assets/house/House_techo_base.png",
+	"isUse":false,
+	"preview":"_",
+	"skinOf":"roof",
+	"type":"skin"
+},{
+	"id": 3,
+	"name":"Paredes Base",
+	"price":4,
+	"texture":"res://assets/house/House_paredes_base.png",
+	"isUse":false,
+	"preview":"_",
+	"skinOf":"wall",
+	"type":"skin"
+},{
 	"id": 2025001,
 	"name":"Casa espacial",
 	"price":4,
@@ -27,15 +54,6 @@
 	"type":"prop"
 },{
 	"id": 2025101,
-	"name":"Suelo Base",
-	"price":4,
-	"texture":"res://assets/house/House_floor_base.png",
-	"isUse":false,
-	"preview":"_",
-	"skinOf":"floor",
-	"type":"skin"
-},{
-	"id": 2025102,
 	"name":"Suelo Millonario",
 	"price":4,
 	"texture":"res://assets/house/House_floor_rich.png",
@@ -44,7 +62,7 @@
 	"skinOf":"floor",
 	"type":"skin"
 },{
-	"id": 2025103,
+	"id": 2025102,
 	"name":"Suelo Espacial",
 	"price":4,
 	"texture":"res://assets/house/House_floor_space.png",
@@ -53,16 +71,7 @@
 	"skinOf":"floor",
 	"type":"skin"
 },{
-	"id": 2025104,
-	"name":"Techo Base",
-	"price":4,
-	"texture":"res://assets/house/House_techo_base.png",
-	"isUse":false,
-	"preview":"_",
-	"skinOf":"roof",
-	"type":"skin"
-},{
-	"id": 2025105,
+	"id": 2025103,
 	"name":"Techo Millonario",
 	"price":4,
 	"texture":"res://assets/house/House_techo_rich.png",
@@ -71,7 +80,7 @@
 	"skinOf":"roof",
 	"type":"skin"
 },{
-	"id": 2025106,
+	"id": 2025104,
 	"name":"Techo Espacial",
 	"price":4,
 	"texture":"res://assets/house/House_techo_space.png",
@@ -80,16 +89,7 @@
 	"skinOf":"roof",
 	"type":"skin"
 },{
-	"id": 2025107,
-	"name":"Paredes Base",
-	"price":4,
-	"texture":"res://assets/house/House_paredes_base.png",
-	"isUse":false,
-	"preview":"_",
-	"skinOf":"wall",
-	"type":"skin"
-},{
-	"id": 2025108,
+	"id": 2025105,
 	"name":"Paredes Millonario",
 	"price":4,
 	"texture":"res://assets/house/House_paredes_rich.png",
@@ -98,7 +98,7 @@
 	"skinOf":"wall",
 	"type":"skin"
 },{
-	"id": 2025109,
+	"id": 2025106,
 	"name":"Paredes Espacial",
 	"price":4,
 	"texture":"res://assets/house/House_paredes_space.png",

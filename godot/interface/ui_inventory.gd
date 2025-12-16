@@ -5,7 +5,8 @@ extends Control
 func _ready() -> void:
 	GameStateManager.connect("state_changed", _on_state_changed)
 
-func create_custom_button(type:String, inUse:bool, texture:Texture2D, callback:Callable) -> Button:
+#region Button Component
+func create_custom_button(item:Dictionary ,type:String, inUse:bool, texture:Texture2D, callback:Callable) -> Button:
 	var button := Button.new()
 	button.custom_minimum_size = Vector2i(150,150)
 
@@ -18,9 +19,22 @@ func create_custom_button(type:String, inUse:bool, texture:Texture2D, callback:C
 	button.add_child(margin)
 
 	var texture_rect := TextureRect.new()
-	texture_rect.texture = texture
 	texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	if (item.type == "skin"):
+		match item.skinOf:
+			"roof":
+				texture_rect.texture = UTILS.crop_texture(
+					texture,460,600,220,220
+				)
+			"wall":
+				texture_rect.texture = UTILS.crop_texture(
+					texture,850,50,110,110
+				)
+			"floor":
+				texture_rect.texture = texture
+	else:
+		texture_rect.texture = texture
 	margin.add_child(texture_rect)
 
 	var inner_label := Label.new()
@@ -41,12 +55,14 @@ func create_custom_button(type:String, inUse:bool, texture:Texture2D, callback:C
 	button.button_up.connect(callback)
 
 	return button
+#endregion
 
 func drawItems():
 	deleteChildrens()
 	
 	for item in InventoryManager.INVENTORY:
 		var btn = create_custom_button(
+			item,
 			item.type, 
 			item.isUse, 
 			item["texture"],

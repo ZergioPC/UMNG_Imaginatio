@@ -10,6 +10,10 @@ func drawItems() -> void:
 	deleteChildrens()
 	
 	for itemStore in StoreManager.ITEMS:
+		if itemStore["id"] == 1: continue
+		if itemStore["id"] == 2: continue
+		if itemStore["id"] == 3: continue
+		
 		var color:Color = Color(1.0, 1.0, 1.0, 1.0)
 		var texture:Texture2D = itemStore.texture
 		var wasBought:bool = false
@@ -23,7 +27,7 @@ func drawItems() -> void:
 				print(itemStore.name, " cargado del Inventario")
 				break
 		
-		var btn = create_button_tree(itemId, itemText, color, wasBought, texture)
+		var btn = create_button_tree(itemStore, itemId, itemText, color, wasBought, texture)
 		container.add_child(btn)
 
 func deleteChildrens():
@@ -34,6 +38,7 @@ func deleteChildrens():
 
 #region Componentes
 func create_button_tree(
+	item:Dictionary,
 	itemId:int,
 	itemTxt:String, 
 	color:Color, 
@@ -87,9 +92,22 @@ func create_button_tree(
 	texture_rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	texture_rect.size_flags_vertical = Control.SIZE_FILL
 	texture_rect.visible = true
-	texture_rect.texture = texture
 	texture_rect.modulate = color
 	texture_rect.custom_minimum_size.x = 200
+	if(item.type == "skin"):
+		match item.skinOf:
+			"roof":
+				texture_rect.texture = UTILS.crop_texture(
+					texture,460,600,220,220
+				)
+			"wall":
+				texture_rect.texture = UTILS.crop_texture(
+					texture,850,50,110,110
+				)
+			"floor":
+				texture_rect.texture = texture
+	else:
+		texture_rect.texture = texture
 	
 	if not wasBought: button.button_up.connect(
 		func():

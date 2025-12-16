@@ -29,6 +29,7 @@ StoreManager="*res://scripts/StoreManager.gd"
 InventoryManager="*res://scripts/InventoryManager.gd"
 PropsManager="*res://scripts/PropsManager.gd"
 GameStateManager="*res://scripts/GameStateManager.gd"
+UTILS="*res://scripts/UTILS.gd"
 
 [display]
 

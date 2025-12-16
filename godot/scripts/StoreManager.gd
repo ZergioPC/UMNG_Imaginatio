@@ -37,6 +37,7 @@ func buyItem(id:int) -> Dictionary:
 func loadItems() -> void:
 	var DATA = SaveDataManager.fetchData()
 	
+	
 	for item in DATA:
 		var loadTexture = load(item.texture)
 		item.texture = loadTexture
