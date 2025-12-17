@@ -3,9 +3,9 @@ extends Node
 var PET_NAME:String = ""
 var MONEY:int = 0
 
-var HOUSE_WALL:int = 2025107
-var HOUSE_ROOF:int = 2025104
-var HOUSE_FLOOR:int = 2025101
+var HOUSE_FLOOR:int = 1
+var HOUSE_ROOF:int = 2
+var HOUSE_WALL:int = 3
 
 signal change_name(newName:String)
 signal change_money(newValue:int)
