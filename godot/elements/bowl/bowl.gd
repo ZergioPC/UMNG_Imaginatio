@@ -1,6 +1,5 @@
 extends Node3D
 
-@onready var marker:Marker3D = $Marker3D
 @onready var like_tscn:PackedScene = preload("res://elements/like/Like.tscn")
 @onready var likes_container:Node3D = $LikesNode
 

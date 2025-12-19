@@ -30,6 +30,7 @@ InventoryManager="*res://scripts/InventoryManager.gd"
 PropsManager="*res://scripts/PropsManager.gd"
 GameStateManager="*res://scripts/GameStateManager.gd"
 UTILS="*res://scripts/UTILS.gd"
+InputsManager="*res://scripts/InputsManager.gd"
 
 [display]
 
@@ -37,6 +38,10 @@ window/size/viewport_width=1000
 window/size/viewport_height=1000
 window/stretch/mode="viewport"
 window/handheld/orientation=1
+
+[global_group]
+
+pet="the pet :)"
 
 [rendering]
 
