@@ -21,9 +21,42 @@ sky_material = SubResource("ShaderMaterial_tp8io")
 [sub_resource type="Environment" id="Environment_mxwf2"]
 background_mode = 2
 sky = SubResource("Sky_kcgiv")
+ambient_light_sky_contribution = 0.39
+reflected_light_source = 1
+tonemap_mode = 2
+ssao_sharpness = 1.0
+glow_intensity = 0.24
+glow_strength = 0.17
+glow_bloom = 0.58
+glow_blend_mode = 0
+glow_hdr_luminance_cap = 12.75
+fog_light_color = Color(0.612189, 0.542593, 0.390755, 1)
+fog_height = 1.0
+fog_height_density = 0.1
+volumetric_fog_density = 1.0
+volumetric_fog_length = 126.88
+volumetric_fog_ambient_inject = 2.18
+volumetric_fog_sky_affect = 0.0
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_dinmt")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-0.964095, 0.160555, -0.211523, 0, 0.79653, 0.604599, 0.265556, 0.582891, -0.767931, 0, 0, 0)
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25029, -1.55737)
+shadow_enabled = true
+omni_attenuation = 2.774
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-07, 0.807341, 1.51393)
+shadow_enabled = true
+shadow_bias = 0.0
+omni_attenuation = 2.774
 
 [node name="Pet_House" parent="." instance=ExtResource("1_cg7f5")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -1.16816)

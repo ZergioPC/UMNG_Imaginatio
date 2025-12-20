@@ -27,6 +27,7 @@ func _init(item_id: int, size_array: Array, texture: Texture2D):
 	id = item_id
 	collision_shape = CollisionShape3D.new()
 	sprite = Sprite3D.new()
+	sprite.shaded = true
 	itemSize = size * resizeValue
 	can_be_edited = GameStateManager.current_state == GameStateManager.GameState.EDIT
 	

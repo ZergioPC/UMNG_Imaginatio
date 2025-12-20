@@ -137,6 +137,8 @@ size = Vector3(0.561523, 0.46582, 0.0524902)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnmc1"]
 transparency = 1
 albedo_texture = ExtResource("6_gtkgg")
+emission_enabled = true
+emission_texture = ExtResource("6_gtkgg")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ql1fd"]
 lightmap_size_hint = Vector2i(7, 7)
@@ -150,6 +152,7 @@ script = ExtResource("1_t7dke")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.232515, 0, 0, 0, 0.232515, 0, 0, 0, 0.232515, 0, 0, 0)
 offset = Vector2(0, 175)
+shaded = true
 sprite_frames = SubResource("SpriteFrames_byktd")
 animation = &"idle"
 
