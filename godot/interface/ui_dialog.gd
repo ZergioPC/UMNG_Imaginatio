@@ -2,7 +2,7 @@ extends Control
 
 @onready var MarginDialog := $CenterContainer/MarginDialog
 @onready var MarginForm := $CenterContainer/MarginFormName
-@onready var TextForm:TextEdit = $CenterContainer/MarginFormName/formName/FormNameText
+@onready var TextForm:LineEdit = $CenterContainer/MarginFormName/formName/FormNameText
 @onready var ScrollHelp:ScrollContainer = $CenterContainer/ScrollHelpContainer
 @onready var PopUp:AcceptDialog = $CenterContainer/AcceptDialog
 
