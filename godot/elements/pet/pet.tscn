@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cj8rkxlejth62"]
+[gd_scene load_steps=21 format=3 uid="uid://cj8rkxlejth62"]
 
 [ext_resource type="Texture2D" uid="uid://dy8v6gbo15qti" path="res://assets/pet/pet-idle/idle0000.png" id="1_52m1y"]
 [ext_resource type="Script" path="res://elements/pet/pet.gd" id="1_t7dke"]
 [ext_resource type="Texture2D" uid="uid://bnjflhyqf6160" path="res://assets/pet/pet-idle/idle0001.png" id="3_emd6n"]
 [ext_resource type="Texture2D" uid="uid://bqk7j41bmvy7f" path="res://assets/pet/pet-idle/idle0002.png" id="4_fiwfw"]
 [ext_resource type="Texture2D" uid="uid://bemc03lhlrm0d" path="res://assets/pet/petting/petting.png" id="5_yk87b"]
+[ext_resource type="Texture2D" uid="uid://43cqmi6isknt" path="res://assets/like/like_texture.png" id="6_gtkgg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_byktd"]
 animations = [{
@@ -133,6 +134,16 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="BoxShape3D" id="BoxShape3D_oiji0"]
 size = Vector3(0.561523, 0.46582, 0.0524902)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnmc1"]
+transparency = 1
+albedo_texture = ExtResource("6_gtkgg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ql1fd"]
+lightmap_size_hint = Vector2i(7, 7)
+material = SubResource("StandardMaterial3D_wnmc1")
+uv2_padding = 7.7
+size = Vector2(0.1, 0.1)
+
 [node name="Pet" type="StaticBody3D" groups=["pet"]]
 script = ExtResource("1_t7dke")
 
@@ -155,3 +166,28 @@ anim_player = NodePath("../AnimationPlayer")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.414362, 0)
 top_level = true
 shape = SubResource("BoxShape3D_oiji0")
+
+[node name="HeartCPUParticles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.517065, -0.428876)
+emitting = false
+amount = 7
+lifetime = 2.0
+lifetime_randomness = 0.13
+mesh = SubResource("QuadMesh_ql1fd")
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+
+[node name="StarsCPUParticles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.794479, 0.3997)
+emitting = false
+amount = 6
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.08
+mesh = SubResource("QuadMesh_ql1fd")
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, -3, 0)
+initial_velocity_max = 3.0
