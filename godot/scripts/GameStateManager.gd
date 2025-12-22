@@ -15,6 +15,7 @@ signal state_changed(new_state: GameState)
 signal display_dialog
 signal display_nameForm
 signal display_manual
+signal display_pop
 
 func _ready() -> void:
 	StoreManager.loadItems()

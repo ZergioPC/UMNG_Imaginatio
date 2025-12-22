@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvyyckf4a1ck"]
+[gd_scene load_steps=10 format=3 uid="uid://dvyyckf4a1ck"]
 
 [ext_resource type="Script" path="res://interface/ui_base.gd" id="1_7ja8t"]
+[ext_resource type="Texture2D" uid="uid://d3sto1fq0v0h6" path="res://assets/UI/nine_patch_rect.png" id="2_6shft"]
+[ext_resource type="Theme" uid="uid://cys7paea5pnk6" path="res://styles/IconBtn.tres" id="2_7plkc"]
+[ext_resource type="Texture2D" uid="uid://cchqu27fepcho" path="res://assets/UI/Edit_base.png" id="2_rvmd7"]
+[ext_resource type="Texture2D" uid="uid://cs56kfaqn62c6" path="res://assets/UI/Store_base.png" id="3_3scjb"]
+[ext_resource type="LabelSettings" uid="uid://bkyd8r63vp7s1" path="res://styles/Label_Title.tres" id="3_45ikw"]
+[ext_resource type="Texture2D" uid="uid://43cqmi6isknt" path="res://assets/like/like_texture.png" id="4_hcy7x"]
+[ext_resource type="Texture2D" uid="uid://d17wbmaf1f1we" path="res://assets/UI/Help_base.png" id="4_yfmy2"]
+[ext_resource type="LabelSettings" uid="uid://bouvmkckfafya" path="res://styles/Label_subtitle.tres" id="5_j2lbh"]
 
 [node name="NormalUI" type="Control"]
 layout_mode = 3
@@ -10,6 +18,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7ja8t")
+metadata/_edit_horizontal_guides_ = [20.0]
+metadata/_edit_vertical_guides_ = [20.0]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 5448.0
+offset_bottom = 1415.0
+scale = Vector2(0.0950328, 0.0950328)
+texture = ExtResource("2_6shft")
+region_rect = Rect2(0, 0, 900, 900)
+patch_margin_left = 300
+patch_margin_top = 180
+patch_margin_right = 300
+patch_margin_bottom = 180
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -27,24 +51,39 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_constants/separation = -3
 
 [node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Name"
+label_settings = ExtResource("3_45ikw")
 
-[node name="LikesLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+texture = ExtResource("4_hcy7x")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LikesLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "0"
+text = "777"
+label_settings = ExtResource("5_j2lbh")
 
 [node name="EditBtn" type="Button" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "Edit"
+theme = ExtResource("2_7plkc")
+theme_override_icons/icon = ExtResource("2_rvmd7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -55,11 +94,18 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "Store"
+theme = ExtResource("2_7plkc")
+theme_override_icons/icon = ExtResource("3_3scjb")
 
 [node name="HelpBtn" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "Help"
+theme = ExtResource("2_7plkc")
+theme_override_icons/icon = ExtResource("4_yfmy2")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="button_up" from="MarginContainer/EditBtn" to="." method="_on_edit_btn_button_up"]
 [connection signal="button_up" from="MarginContainer/HBoxContainer/StoreBtn" to="." method="_on_store_btn_button_up"]

@@ -1,0 +1,53 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bqwvtqb87a26y"]
+
+[ext_resource type="FontFile" uid="uid://dmbtj5gj36107" path="res://assets/fonts/Quantico/Quantico-Italic.ttf" id="1_j10w0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1eoo"]
+bg_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tai0"]
+bg_color = Color(0.483013, 0.4012, 0.59, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16cqo"]
+bg_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6q4o"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_offset = Vector2(0, 5)
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/fonts/font = ExtResource("1_j10w0")
+Button/styles/focus = SubResource("StyleBoxFlat_e1eoo")
+Button/styles/hover = SubResource("StyleBoxFlat_7tai0")
+Button/styles/normal = SubResource("StyleBoxFlat_16cqo")
+Button/styles/pressed = SubResource("StyleBoxFlat_g6q4o")

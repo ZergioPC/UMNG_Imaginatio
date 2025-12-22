@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://btxpy2eprqfde"]
+[gd_scene load_steps=4 format=3 uid="uid://btxpy2eprqfde"]
 
 [ext_resource type="Script" path="res://interface/ui_edit.gd" id="1_gouhq"]
 [ext_resource type="PackedScene" uid="uid://dyhnpy2ibld41" path="res://interface/ui_inventory.tscn" id="2_v3id6"]
+[ext_resource type="Theme" uid="uid://bqwvtqb87a26y" path="res://styles/TextBtns.tres" id="3_w6eow"]
 
 [node name="EditUI" type="Control"]
 layout_mode = 3
@@ -36,6 +37,7 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme = ExtResource("3_w6eow")
 text = "Guardar"
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/SaveBtn" to="." method="_on_save_btn_button_up"]

@@ -1,7 +1,7 @@
 extends Control
 
 @onready var LabelName := $MarginContainer/VBoxContainer/NameLabel
-@onready var LabelLikes := $MarginContainer/VBoxContainer/LikesLabel
+@onready var LabelLikes := $MarginContainer/VBoxContainer/HBoxContainer/LikesLabel
 
 func _ready() -> void:
 	UserManager.change_name.connect(onChangeName)

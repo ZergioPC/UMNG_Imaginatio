@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bouvmkckfafya"]
+
+[ext_resource type="FontFile" uid="uid://dmbtj5gj36107" path="res://assets/fonts/Quantico/Quantico-Italic.ttf" id="1_hv802"]
+
+[resource]
+font = ExtResource("1_hv802")
+font_size = 24
+font_color = Color(0.83, 0, 0, 1)

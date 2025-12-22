@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cj8rkxlejth62"]
+[gd_scene load_steps=24 format=3 uid="uid://cj8rkxlejth62"]
 
 [ext_resource type="Texture2D" uid="uid://dy8v6gbo15qti" path="res://assets/pet/pet-idle/idle0000.png" id="1_52m1y"]
 [ext_resource type="Script" path="res://elements/pet/pet.gd" id="1_t7dke"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bqk7j41bmvy7f" path="res://assets/pet/pet-idle/idle0002.png" id="4_fiwfw"]
 [ext_resource type="Texture2D" uid="uid://bemc03lhlrm0d" path="res://assets/pet/petting/petting.png" id="5_yk87b"]
 [ext_resource type="Texture2D" uid="uid://43cqmi6isknt" path="res://assets/like/like_texture.png" id="6_gtkgg"]
+[ext_resource type="Texture2D" uid="uid://7bww83vm7816" path="res://assets/star/Star_Base.png" id="7_xutqo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_byktd"]
 animations = [{
@@ -135,9 +136,12 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 size = Vector3(0.561523, 0.46582, 0.0524902)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnmc1"]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.923
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("6_gtkgg")
 emission_enabled = true
+emission_energy_multiplier = 3.31
 emission_texture = ExtResource("6_gtkgg")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ql1fd"]
@@ -145,6 +149,19 @@ lightmap_size_hint = Vector2i(7, 7)
 material = SubResource("StandardMaterial3D_wnmc1")
 uv2_padding = 7.7
 size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klk6k"]
+transparency = 2
+alpha_scissor_threshold = 0.74
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("7_xutqo")
+emission_enabled = true
+emission_energy_multiplier = 0.85
+emission_texture = ExtResource("7_xutqo")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ebujq"]
+material = SubResource("StandardMaterial3D_klk6k")
+size = Vector2(0.15, 0.15)
 
 [node name="Pet" type="StaticBody3D" groups=["pet"]]
 script = ExtResource("1_t7dke")
@@ -183,14 +200,15 @@ initial_velocity_max = 1.0
 
 [node name="StarsCPUParticles" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.794479, 0.3997)
+cast_shadow = 0
 emitting = false
 amount = 6
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 lifetime_randomness = 0.08
-mesh = SubResource("QuadMesh_ql1fd")
+mesh = SubResource("QuadMesh_ebujq")
 direction = Vector3(0, -1, 0)
 spread = 180.0
-gravity = Vector3(0, -3, 0)
+gravity = Vector3(0, -1, 0)
 initial_velocity_max = 3.0

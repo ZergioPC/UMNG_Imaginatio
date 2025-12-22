@@ -1,0 +1,58 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://14onck47crdo"]
+
+[ext_resource type="FontFile" uid="uid://bfq82m045wcrc" path="res://assets/fonts/Quantico/Quantico-Regular.ttf" id="1_pa4t5"]
+[ext_resource type="FontFile" uid="uid://dmbtj5gj36107" path="res://assets/fonts/Quantico/Quantico-Italic.ttf" id="1_vvm8p"]
+[ext_resource type="FontFile" uid="uid://cdb6o3hr1qwoh" path="res://assets/fonts/Quantico/Quantico-Bold.ttf" id="1_wo8ag"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_igr4e"]
+bg_color = Color(0.359069, 0.359069, 0.359069, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcur0"]
+bg_color = Color(0.714977, 0.885536, 0.939855, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdhc1"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ld4qu"]
+bg_color = Color(0.6566, 0.98, 0.85064, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qqxgw"]
+bg_color = Color(0.2829, 0.69, 0.48645, 1)
+border_width_left = 6
+border_width_top = 3
+border_width_right = 6
+border_width_bottom = 3
+border_color = Color(0.282353, 0.690196, 0.486275, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_igr4e")
+Button/styles/hover = SubResource("StyleBoxFlat_gcur0")
+Button/styles/normal = SubResource("StyleBoxFlat_cdhc1")
+Button/styles/pressed = SubResource("StyleBoxFlat_ld4qu")
+Label/fonts/font = ExtResource("1_vvm8p")
+Label/styles/normal = SubResource("StyleBoxFlat_qqxgw")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/line_separation = -11
+RichTextLabel/font_sizes/bold_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 20
+RichTextLabel/fonts/bold_font = ExtResource("1_wo8ag")
+RichTextLabel/fonts/normal_font = ExtResource("1_pa4t5")

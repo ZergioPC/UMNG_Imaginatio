@@ -6,7 +6,15 @@ func _ready() -> void:
 	GameStateManager.connect("state_changed", _on_state_changed)
 
 #region Button Component
-func create_custom_button(item:Dictionary ,type:String, inUse:bool, texture:Texture2D, callback:Callable) -> Button:
+func create_custom_button(
+	item:Dictionary,
+	type:String, 
+	inUse:bool, 
+	texture:Texture2D, 
+	callback:Callable
+) -> Button:
+	var innerLabelText:String = "" 
+	
 	var button := Button.new()
 	button.custom_minimum_size = Vector2i(150,150)
 
@@ -27,29 +35,43 @@ func create_custom_button(item:Dictionary ,type:String, inUse:bool, texture:Text
 				texture_rect.texture = UTILS.crop_texture(
 					texture,460,600,220,220
 				)
+				innerLabelText = "Techo"
 			"wall":
 				texture_rect.texture = UTILS.crop_texture(
 					texture,850,50,110,110
 				)
+				innerLabelText = "Pared"
 			"floor":
 				texture_rect.texture = texture
+				innerLabelText = "Suelo"
 	else:
+		innerLabelText = "Item"
 		texture_rect.texture = texture
 	margin.add_child(texture_rect)
 
 	var inner_label := Label.new()
-	inner_label.text = type
+	inner_label.text = innerLabelText
 	inner_label.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	inner_label.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	inner_label.theme = load("res://styles/Inventory/Label_type.tres")
 	margin.add_child(inner_label)
 
 	if inUse:
-		texture_rect.modulate = Color(0.0, 0.3, 0.3, 0.5)
+		var materialnew := ShaderMaterial.new()
+		materialnew.shader = load("res://styles/Inventory/Texture_shader.gdshader")
+		materialnew.set_shader_parameter("pixel_size", 12.0)
+		materialnew.set_shader_parameter("enable_pixelation", true)
+		materialnew.set_shader_parameter("enable_palette", false)
+		materialnew.set_shader_parameter("enable_grayscale", true)
+
+		texture_rect.material = materialnew
 		
 		var outer_label := Label.new()
-		outer_label.text = "en Uso"
+		outer_label.text = "En Uso"
 		outer_label.set_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
 		outer_label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+		outer_label.z_index = 2
+		outer_label.theme = load("res://styles/Inventory/Label_inUse.tres")
 		button.add_child(outer_label)
 	
 	button.button_up.connect(callback)

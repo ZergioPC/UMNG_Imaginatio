@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xoe4ipe21f0s"
-path="res://.godot/imported/FONDO_MLL.png-bc0468a7effc1dd2d5e7f2cfd542931d.ctex"
+uid="uid://d3sto1fq0v0h6"
+path="res://.godot/imported/nine_patch_rect.png-e0f1f38091071938a3f05773d9727743.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/walls/FONDO_MLL.png"
-dest_files=["res://.godot/imported/FONDO_MLL.png-bc0468a7effc1dd2d5e7f2cfd542931d.ctex"]
+source_file="res://assets/UI/nine_patch_rect.png"
+dest_files=["res://.godot/imported/nine_patch_rect.png-e0f1f38091071938a3f05773d9727743.ctex"]
 
 [params]
 

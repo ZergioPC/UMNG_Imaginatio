@@ -15,6 +15,7 @@ func _ready() -> void:
 	GameStateManager.display_nameForm.connect(onFormNameShow)
 	GameStateManager.display_dialog.connect(onDialogShow)
 	GameStateManager.display_manual.connect(onHelpShow)
+	GameStateManager.display_pop.connect(showAlert)
 
 func showAlert(message: String, title: String) -> void:
 	PopUp.title = title

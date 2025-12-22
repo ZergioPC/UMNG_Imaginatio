@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxmg2ouhtoryk"]
+[gd_scene load_steps=6 format=3 uid="uid://bxmg2ouhtoryk"]
 
 [ext_resource type="Script" path="res://interface/ui_store.gd" id="1_feqc0"]
 [ext_resource type="Texture2D" uid="uid://cbeqi6t5cvbji" path="res://assets/house/House_floor_rich.png" id="2_1l3ij"]
+[ext_resource type="LabelSettings" uid="uid://67ss42dfht3u" path="res://styles/Label_Imaginatio_Font.tres" id="2_dtvw1"]
+[ext_resource type="Theme" uid="uid://14onck47crdo" path="res://styles/Store/Item.tres" id="3_vigdr"]
+[ext_resource type="Theme" uid="uid://bqwvtqb87a26y" path="res://styles/TextBtns.tres" id="4_xbuhj"]
 
 [node name="StoreUI" type="Control"]
 layout_mode = 3
@@ -19,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.870588, 1, 0.984314, 0.917647)
+color = Color(0, 0.3, 0.28, 0.745098)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -40,6 +43,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Tienda
 "
+label_settings = ExtResource("2_dtvw1")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -66,6 +70,7 @@ columns = 2
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("3_vigdr")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button"]
 layout_mode = 1
@@ -93,11 +98,15 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-text = "Prueba de Prop"
+theme = ExtResource("3_vigdr")
+bbcode_enabled = true
+text = "[b]Prueba de Nombre largo para hacer la prueba[/b]"
 fit_content = true
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_vigdr")
 text = "Comprar"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridItems/Button/HBoxContainer"]
@@ -112,6 +121,7 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme = ExtResource("4_xbuhj")
 text = "Cerrar"
 
 [connection signal="button_up" from="MarginContainer/CloseBtn" to="." method="_on_close_btn_button_up"]

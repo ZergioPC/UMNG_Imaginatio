@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1f8exljlkws1"
-path="res://.godot/imported/FONDO_VAK.png-03cb5eacecf413a41b87a3a1999b0837.ctex"
+uid="uid://cs56kfaqn62c6"
+path="res://.godot/imported/Store_base.png-4d5863666242eff1e0475b712fd22018.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/walls/FONDO_VAK.png"
-dest_files=["res://.godot/imported/FONDO_VAK.png-03cb5eacecf413a41b87a3a1999b0837.ctex"]
+source_file="res://assets/UI/Store_base.png"
+dest_files=["res://.godot/imported/Store_base.png-4d5863666242eff1e0475b712fd22018.ctex"]
 
 [params]
 

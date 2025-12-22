@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bkyd8r63vp7s1"]
+
+[ext_resource type="FontFile" uid="uid://bgudd2hgr7b1" path="res://assets/fonts/Quantico/Quantico-BoldItalic.ttf" id="1_vfoo8"]
+
+[resource]
+font = ExtResource("1_vfoo8")
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.0941176)
