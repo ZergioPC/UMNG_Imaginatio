@@ -29,3 +29,27 @@ logs/
 
 # UploadFiles (temp)
 uploads/
+
+# || - - - GODOT - - - ||
+
+# Created by https://gitignore.org
+# Godot.gitignore
+
+# Godot 4+ specific ignores
+godot/build/
+.godot/
+.nomedia
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json

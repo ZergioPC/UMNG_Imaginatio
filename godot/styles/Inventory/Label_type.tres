@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ckcscfps0as2p"]
+
+[ext_resource type="FontFile" uid="uid://cdb6o3hr1qwoh" path="res://assets/fonts/Quantico/Quantico-Bold.ttf" id="1_c81xm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58jou"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_right = 3
+border_color = Color(0.67, 0.67, 0.67, 0)
+
+[resource]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 2
+Label/constants/shadow_outline_size = 3
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_c81xm")
+Label/styles/normal = SubResource("StyleBoxFlat_58jou")

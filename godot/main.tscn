@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://da345ymtcwg8"]
+
+[ext_resource type="PackedScene" uid="uid://ddert7gotekyl" path="res://elements/house/pet_house.tscn" id="1_cg7f5"]
+[ext_resource type="Script" path="res://main.gd" id="1_dinmt"]
+[ext_resource type="PackedScene" uid="uid://cj8rkxlejth62" path="res://elements/pet/pet.tscn" id="2_iko1k"]
+[ext_resource type="Shader" path="res://sky.gdshader" id="4_abp7a"]
+[ext_resource type="PackedScene" uid="uid://bck7k2v6uorw" path="res://elements/bowl/Bowl.tscn" id="4_vtjpd"]
+[ext_resource type="PackedScene" uid="uid://dvyyckf4a1ck" path="res://interface/ui_base.tscn" id="6_bxd2p"]
+[ext_resource type="PackedScene" uid="uid://b374gor5ahpyo" path="res://interface/ui_dialog.tscn" id="7_63ldi"]
+[ext_resource type="PackedScene" uid="uid://bxmg2ouhtoryk" path="res://interface/ui_store.tscn" id="8_5iyj0"]
+[ext_resource type="PackedScene" uid="uid://btxpy2eprqfde" path="res://interface/ui_edit.tscn" id="8_hgghc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tp8io"]
+shader = ExtResource("4_abp7a")
+shader_parameter/skyColor = Color(0.71, 0.922667, 1, 1)
+shader_parameter/horizontColor = Color(0.368, 0.476, 0.8, 1)
+
+[sub_resource type="Sky" id="Sky_kcgiv"]
+sky_material = SubResource("ShaderMaterial_tp8io")
+
+[sub_resource type="Environment" id="Environment_mxwf2"]
+background_mode = 2
+sky = SubResource("Sky_kcgiv")
+ambient_light_sky_contribution = 0.39
+reflected_light_source = 1
+tonemap_mode = 2
+ssao_sharpness = 1.0
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.4
+glow_bloom = 0.01
+glow_blend_mode = 0
+fog_light_color = Color(0.612189, 0.542593, 0.390755, 1)
+fog_height = 1.0
+fog_height_density = 0.1
+volumetric_fog_density = 1.0
+volumetric_fog_length = 126.88
+volumetric_fog_ambient_inject = 2.18
+volumetric_fog_sky_affect = 0.0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_dinmt")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-0.964095, 0.160555, -0.211523, 0, 0.79653, 0.604599, 0.265556, 0.582891, -0.767931, 0, 0, 0)
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3227, -0.892518)
+light_color = Color(1, 0.83, 0.83, 1)
+light_energy = 1.1
+shadow_enabled = true
+omni_attenuation = 2.774
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.130831, 0.641413, 1.64188)
+light_energy = 1.3
+shadow_enabled = true
+shadow_bias = 0.0
+omni_attenuation = 2.774
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.646746, 0.20284)
+light_color = Color(1, 0.790333, 0.66, 1)
+spot_angle = 89.99
+
+[node name="Pet_House" parent="." instance=ExtResource("1_cg7f5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -1.16816)
+metadata/_edit_lock_ = true
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Pet" parent="." instance=ExtResource("2_iko1k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.32)
+metadata/_edit_lock_ = true
+
+[node name="Pet_Bowl" parent="." instance=ExtResource("4_vtjpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0.614203)
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0.621554, 2.48986)
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mxwf2")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="NormalUI" parent="UI" instance=ExtResource("6_bxd2p")]
+
+[node name="EditUI" parent="UI" instance=ExtResource("8_hgghc")]
+
+[node name="Menus" type="CanvasLayer" parent="."]
+
+[node name="StoreUI" parent="Menus" instance=ExtResource("8_5iyj0")]
+
+[node name="Dialog" parent="Menus" instance=ExtResource("7_63ldi")]

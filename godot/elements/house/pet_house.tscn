@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=3 uid="uid://ddert7gotekyl"]
+
+[ext_resource type="PackedScene" uid="uid://8mriiofqsn54" path="res://assets/house/Pet_House.glb" id="1_m88u7"]
+[ext_resource type="Script" path="res://elements/house/pet_house.gd" id="2_j8hfv"]
+[ext_resource type="Texture2D" uid="uid://b334xcipofqle" path="res://assets/house/House_techo_base.png" id="3_3ionl"]
+[ext_resource type="Texture2D" uid="uid://bx50mhqgc622a" path="res://assets/house/House_paredes_base.png" id="3_5i1wt"]
+[ext_resource type="Texture2D" uid="uid://bv2m2gbuoocl0" path="res://assets/house/House_floor_base.png" id="4_3hsxu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdwo5"]
+albedo_texture = ExtResource("3_5i1wt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85exs"]
+albedo_texture = ExtResource("3_3ionl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bycq"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0roy"]
+albedo_texture = ExtResource("4_3hsxu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1bsr"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_obn32"]
+size = Vector3(8.5, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gg5vx"]
+size = Vector3(0.1, 0.1, 4.2)
+
+[node name="Pet_House" instance=ExtResource("1_m88u7")]
+script = ExtResource("2_j8hfv")
+
+[node name="Paredes" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_sdwo5")
+
+[node name="Techo" parent="." index="1"]
+material_override = SubResource("StandardMaterial3D_85exs")
+
+[node name="Andamios" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6bycq")
+
+[node name="Plane" parent="." index="3"]
+material_override = SubResource("StandardMaterial3D_q0roy")
+
+[node name="VigaR" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2.2)
+material_override = SubResource("StandardMaterial3D_l1bsr")
+mesh = SubResource("BoxMesh_obn32")
+
+[node name="VigaL" type="MeshInstance3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2.2)
+material_override = SubResource("StandardMaterial3D_l1bsr")
+mesh = SubResource("BoxMesh_obn32")
+
+[node name="VigaFr" type="MeshInstance3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0, 0)
+material_override = SubResource("StandardMaterial3D_l1bsr")
+mesh = SubResource("BoxMesh_gg5vx")

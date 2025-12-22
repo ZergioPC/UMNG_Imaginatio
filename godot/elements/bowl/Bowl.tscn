@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://bck7k2v6uorw"]
+
+[ext_resource type="PackedScene" uid="uid://dr6xwe6d6gppx" path="res://assets/bowl/Pet_Bowl.glb" id="1_8wmpp"]
+[ext_resource type="Script" path="res://elements/bowl/bowl.gd" id="2_a11k4"]
+[ext_resource type="Texture2D" uid="uid://c88s0sr42sdd4" path="res://assets/bowl/Bowl_texture_base.png" id="2_ykp7a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cljbm"]
+albedo_texture = ExtResource("2_ykp7a")
+
+[node name="Pet_Bowl" instance=ExtResource("1_8wmpp")]
+script = ExtResource("2_a11k4")
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(0.18134, 0, 0, 0, 0.18134, 0, 0, 0, 0.18134, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_cljbm")
+
+[node name="LikesNode" type="Node3D" parent="." index="1"]

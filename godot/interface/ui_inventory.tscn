@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyhnpy2ibld41"]
+
+[ext_resource type="Script" path="res://interface/ui_inventory.gd" id="1_nl10r"]
+[ext_resource type="Shader" path="res://styles/Inventory/Texture_shader.gdshader" id="2_jjf5s"]
+[ext_resource type="Theme" uid="uid://d3c6p60ai0v4s" path="res://styles/Inventory/Label_inUse.tres" id="3_cmy4g"]
+[ext_resource type="Texture2D" uid="uid://cj4mvlstkoa81" path="res://assets/petHouse/CASA_BASE.png" id="3_rdhxl"]
+[ext_resource type="Theme" uid="uid://ckcscfps0as2p" path="res://styles/Inventory/Label_type.tres" id="4_ea5uo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrpov"]
+shader = ExtResource("2_jjf5s")
+shader_parameter/enable_pixelation = true
+shader_parameter/enable_grayscale = false
+shader_parameter/enable_palette = true
+shader_parameter/pixel_size = 3.0
+
+[node name="UI_Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nl10r")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+size_flags_vertical = 0
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="Preview" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/Preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/MarginContainer/HBoxContainer/Preview/MarginContainer"]
+material = SubResource("ShaderMaterial_qrpov")
+layout_mode = 2
+texture = ExtResource("3_rdhxl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/Preview/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_ea5uo")
+text = "skin"
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/Preview"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_cmy4g")
+text = "En Uso"

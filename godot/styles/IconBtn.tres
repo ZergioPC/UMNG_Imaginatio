@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cys7paea5pnk6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm07x"]
+bg_color = Color(1, 1, 1, 0)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_268e3"]
+
+[resource]
+default_font_size = 0
+Button/colors/icon_hover_color = Color(0.260811, 0.318628, 0.401194, 1)
+Button/constants/icon_max_width = 70
+Button/font_sizes/font_size = 6
+Button/icons/icon = null
+Button/styles/hover = SubResource("StyleBoxFlat_gm07x")
+Button/styles/normal = SubResource("StyleBoxEmpty_268e3")

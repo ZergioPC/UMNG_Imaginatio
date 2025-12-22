@@ -1,0 +1,158 @@
+# LICENCIA DE USO INSTITUCIONAL
+## TIPOGRAFÍA IMAGINATIO_V1
+
+---
+
+### 1. IDENTIFICACIÓN DE LA OBRA
+
+**Nombre de la Tipografía:** Imaginatio_v1  
+**Año de Creación:** 2025  
+**Titulares de Derechos:** Programa de Ingeniería Multimedia de la Universidad Militar Nueva Granada - Sede Campus  
+**Institución:** Universidad Militar Nueva Granada - Sede Campus  
+**Jurisdicción Aplicable:** República de Colombia
+
+---
+
+### 2. OBJETO DE LA LICENCIA
+
+La presente licencia regula el uso de la tipografía Imaginatio_v1 (en adelante, "la Tipografía"), creada por el Programa de Ingeniería Multimedia de la Universidad Militar Nueva Granada - Sede Campus (en adelante, "el Licenciante").
+
+---
+
+### 3. OTORGAMIENTO DE LICENCIA
+
+El Licenciante otorga una licencia no exclusiva, no transferible, revocable y limitada para el uso de la Tipografía, sujeta a los términos y condiciones establecidos en el presente documento.
+
+---
+
+### 4. USUARIOS AUTORIZADOS (LICENCIATARIOS)
+
+La licencia se otorga exclusivamente a:
+
+- Estudiantes activos de la Universidad Militar Nueva Granada - Sede Campus
+- Docentes activos de la Universidad Militar Nueva Granada - Sede Campus
+- Personal directivo y administrativo activo de la Universidad Militar Nueva Granada - Sede Campus
+
+**Requisito de Vigencia:** El estado de "activo" se define como el mantenimiento de una relación académica, laboral o administrativa vigente con la Universidad Militar Nueva Granada - Sede Campus. La licencia expira automáticamente cuando el usuario pierde dicha condición.
+
+---
+
+### 5. USOS PERMITIDOS
+
+La Tipografía podrá ser utilizada exclusivamente para:
+
+a) **Propósitos académicos** dentro del marco de actividades educativas, proyectos de clase, investigaciones y trabajos académicos desarrollados en la Universidad.
+
+b) **Uso institucional** en documentos oficiales, presentaciones, materiales promocionales, sitios web, aplicaciones y cualquier otro proyecto oficial de la Universidad Militar Nueva Granada - Sede Campus.
+
+**Restricción de servidor:** La Tipografía solo puede ser instalada, almacenada o implementada en servidores, equipos o infraestructura tecnológica de propiedad o bajo administración de la Universidad Militar Nueva Granada - Sede Campus.
+
+---
+
+### 6. USOS PROHIBIDOS
+
+Queda estrictamente prohibido:
+
+a) Utilizar la Tipografía para fines comerciales, personales o externos a la Universidad.
+
+b) Modificar, alterar, adaptar, transformar o crear obras derivadas de la Tipografía.
+
+c) Redistribuir, vender, alquilar, prestar, sublicenciar o transferir la Tipografía a terceros sin autorización expresa y por escrito del Licenciante.
+
+d) Utilizar la Tipografía en proyectos, servidores o plataformas no institucionales o ajenas a la Universidad.
+
+e) Descompilar, realizar ingeniería inversa, desensamblar o intentar derivar el código fuente de la Tipografía.
+
+f) Remover, alterar u ocultar avisos de derechos de autor, marcas registradas u otras notificaciones de propiedad contenidas en la Tipografía.
+
+---
+
+### 7. SUBLICENCIAS
+
+El otorgamiento de sublicencias requiere autorización previa, expresa y por escrito del Licenciante. Las solicitudes deben dirigirse al Programa de Ingeniería Multimedia de la Universidad Militar Nueva Granada - Sede Campus, especificando el propósito y alcance de la sublicencia solicitada.
+
+---
+
+### 8. ATRIBUCIÓN
+
+Todo uso de la Tipografía debe incluir la siguiente atribución de manera visible y legible:
+
+> **"Tipografía Imaginatio_v1 © 2025 - Programa de Ingeniería Multimedia, Universidad Militar Nueva Granada - Sede Campus. Todos los derechos reservados."**
+
+La atribución debe aparecer en:
+- Créditos de proyectos digitales o impresos
+- Documentación técnica que referencie recursos tipográficos utilizados
+- Cualquier material donde se haga uso visible de la Tipografía
+
+---
+
+### 9. PROPIEDAD INTELECTUAL
+
+Todos los derechos de propiedad intelectual sobre la Tipografía, incluyendo pero no limitándose a derechos de autor, derechos morales y derechos patrimoniales, permanecen en propiedad exclusiva del Licenciante. Esta licencia no constituye una transferencia de derechos de propiedad.
+
+---
+
+### 10. DURACIÓN Y TERMINACIÓN
+
+**Duración:** La licencia tiene vigencia mientras el usuario mantenga su condición de estudiante activo, docente activo o personal activo de la Universidad Militar Nueva Granada - Sede Campus.
+
+**Terminación Automática:** La licencia se revoca automáticamente y sin necesidad de notificación previa cuando:
+- El usuario deje de pertenecer a la Universidad (graduación, renuncia, retiro, terminación de contrato, etc.)
+- El usuario incumpla cualquiera de los términos establecidos en esta licencia
+
+**Obligaciones Post-Terminación:** Al término de la licencia, el usuario debe:
+- Cesar inmediatamente todo uso de la Tipografía
+- Eliminar todas las copias de la Tipografía de sus dispositivos personales
+- Discontinuar cualquier proyecto que utilice la Tipografía y que no sea de carácter institucional
+
+---
+
+### 11. DESCARGO DE RESPONSABILIDAD Y GARANTÍAS
+
+**LA TIPOGRAFÍA SE PROPORCIONA "TAL CUAL" (AS IS), SIN GARANTÍAS DE NINGÚN TIPO, EXPRESAS O IMPLÍCITAS, INCLUYENDO PERO NO LIMITÁNDOSE A GARANTÍAS DE COMERCIABILIDAD, IDONEIDAD PARA UN PROPÓSITO PARTICULAR, TÍTULO O NO INFRACCIÓN.**
+
+El Licenciante no garantiza que:
+- La Tipografía esté libre de errores o defectos
+- El uso de la Tipografía sea ininterrumpido o libre de problemas técnicos
+- La Tipografía cumpla con requisitos específicos del usuario
+- La Tipografía sea compatible con todos los sistemas, software o hardware
+
+---
+
+### 12. LIMITACIÓN DE RESPONSABILIDAD
+
+EN NINGÚN CASO EL LICENCIANTE SERÁ RESPONSABLE POR DAÑOS DIRECTOS, INDIRECTOS, INCIDENTALES, ESPECIALES, EJEMPLARES O CONSECUENTES (INCLUYENDO, SIN LIMITACIÓN, LA ADQUISICIÓN DE BIENES O SERVICIOS SUSTITUTOS, PÉRDIDA DE USO, DATOS O BENEFICIOS, O INTERRUPCIÓN DEL NEGOCIO) QUE SURJAN DEL USO O LA IMPOSIBILIDAD DE USAR LA TIPOGRAFÍA, AUN CUANDO SE HAYA ADVERTIDO DE LA POSIBILIDAD DE TALES DAÑOS.
+
+---
+
+### 13. LEGISLACIÓN APLICABLE Y JURISDICCIÓN
+
+Esta licencia se rige por las leyes de la República Nacional de Colombia. Cualquier disputa relacionada con esta licencia será resuelta mediante la jurisdicción colombiana.
+
+---
+
+### 14. MODIFICACIONES A LA LICENCIA
+
+El Licenciante se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Las modificaciones serán notificadas a través de los canales oficiales de la Universidad y entrarán en vigor desde su publicación.
+
+---
+
+### 15. SEPARABILIDAD
+
+Si alguna disposición de esta licencia se considera inválida o inaplicable, las disposiciones restantes continuarán en pleno vigor y efecto.
+
+---
+
+### 16. ACUERDO COMPLETO
+
+Esta licencia constituye el acuerdo completo entre el Licenciante y el Licenciatario respecto al uso de la Tipografía y reemplaza todos los acuerdos anteriores, ya sean escritos u orales.
+
+---
+
+### 18. ACEPTACIÓN DE TÉRMINOS
+
+El uso de la Tipografía Imaginatio_v1 constituye la aceptación expresa e incondicional de todos los términos y condiciones establecidos en esta licencia.
+
+---
+
+**Versión 1.0 - Diciembre 2025**

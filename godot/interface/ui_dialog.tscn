@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3 uid="uid://b374gor5ahpyo"]
+
+[ext_resource type="Script" path="res://interface/ui_dialog.gd" id="1_aqbco"]
+[ext_resource type="LabelSettings" uid="uid://dv7pfqpm5mafn" path="res://styles/Label_Title_White.tres" id="2_emqe7"]
+[ext_resource type="LabelSettings" uid="uid://67ss42dfht3u" path="res://styles/Label_Imaginatio_Font.tres" id="3_d2eul"]
+[ext_resource type="FontFile" uid="uid://dmbtj5gj36107" path="res://assets/fonts/Quantico/Quantico-Italic.ttf" id="3_ffkwy"]
+[ext_resource type="FontFile" uid="uid://bfq82m045wcrc" path="res://assets/fonts/Quantico/Quantico-Regular.ttf" id="4_5w42t"]
+[ext_resource type="Theme" uid="uid://bqwvtqb87a26y" path="res://styles/TextBtns.tres" id="4_xdk37"]
+[ext_resource type="FontFile" uid="uid://cdb6o3hr1qwoh" path="res://assets/fonts/Quantico/Quantico-Bold.ttf" id="5_2pyrx"]
+
+[node name="Dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aqbco")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.19, 0.177333, 0.843137)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginFormName" type="MarginContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="formName" type="VBoxContainer" parent="CenterContainer/MarginFormName"]
+layout_mode = 2
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/MarginFormName/formName"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Ingresa el nombre de tu mascota"
+label_settings = ExtResource("2_emqe7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FormNameText" type="LineEdit" parent="CenterContainer/MarginFormName/formName"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ffkwy")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Nombre de la mascota"
+alignment = 1
+max_length = 21
+caret_blink = true
+
+[node name="FormNameBtn" type="Button" parent="CenterContainer/MarginFormName/formName"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_xdk37")
+text = "Confirmar"
+
+[node name="MarginDialog" type="MarginContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginDialog"]
+layout_mode = 2
+alignment = 1
+
+[node name="LabelMessage" type="RichTextLabel" parent="CenterContainer/MarginDialog/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+text = "Message"
+fit_content = true
+
+[node name="DialogBtn" type="Button" parent="CenterContainer/MarginDialog/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Aceptar"
+
+[node name="ScrollHelpContainer" type="ScrollContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(900, 900)
+layout_mode = 2
+
+[node name="MarginHelp" type="MarginContainer" parent="CenterContainer/ScrollHelpContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/ScrollHelpContainer/MarginHelp"]
+layout_mode = 2
+theme_override_constants/separation = 19
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/ScrollHelpContainer/MarginHelp/VBoxContainer"]
+layout_mode = 2
+text = "IMAGINATIO  PET"
+label_settings = ExtResource("3_d2eul")
+horizontal_alignment = 1
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="CenterContainer/ScrollHelpContainer/MarginHelp/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_5w42t")
+theme_override_fonts/bold_font = ExtResource("5_2pyrx")
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "Al darle [b]me gusta[/b] a publicaciones en la página, puedes usarlos para personalizar la casa de tu mascota. Compra decoraciones en la tienda, luego desde el inventario puedes seleccionar y arrastrar los items que quieras utilizar."
+fit_content = true
+
+[node name="HelpOkBtn" type="Button" parent="CenterContainer/ScrollHelpContainer/MarginHelp/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_xdk37")
+text = "Entendido"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="CenterContainer"]
+initial_position = 1
+size = Vector2i(200, 100)
+
+[connection signal="button_up" from="CenterContainer/MarginFormName/formName/FormNameBtn" to="." method="_on_form_name_btn_button_up"]
+[connection signal="button_up" from="CenterContainer/MarginDialog/VBoxContainer/DialogBtn" to="." method="_on_dialog_btn_button_up"]
+[connection signal="button_up" from="CenterContainer/ScrollHelpContainer/MarginHelp/VBoxContainer/HelpOkBtn" to="." method="_on_help_ok_btn_button_up"]

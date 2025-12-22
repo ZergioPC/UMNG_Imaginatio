@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://67ss42dfht3u"]
+
+[ext_resource type="FontFile" uid="uid://c5f68a33rti6w" path="res://assets/fonts/Imaginatio/Imaginatio_v1.woff" id="1_sfnxv"]
+
+[resource]
+font = ExtResource("1_sfnxv")
+font_size = 48
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.231373)
+shadow_offset = Vector2(5, 5)
