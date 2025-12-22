@@ -10,6 +10,9 @@ extends Node3D
 @onready var Pet:Node3D = $Pet
 @onready var Bowl:Node3D = $Pet_Bowl
 
+const pet_show_pos:Vector3 = Vector3(0.0, 0.0, 0.32)
+const pet_hide_pos:Vector3 = Vector3(0.0, -2.0, 0.32)
+
 func _ready() -> void:
 	
 	UserManager.initHouseMaterials()
@@ -24,6 +27,7 @@ func _ready() -> void:
 	
 	# Elements Settings
 	Pet.visible = true
+	Pet.global_position = pet_show_pos
 	Bowl.visible = true
 	
 	# Game Settings
@@ -47,6 +51,8 @@ func _on_state_changed(new_state):
 			menuDialog.visible = false
 			
 			Pet.visible = true
+			Pet.global_position = pet_show_pos
+			
 			Bowl.visible = true
 		GameStateManager.GameState.EDIT:
 			UiEdit.visible = true
@@ -55,6 +61,7 @@ func _on_state_changed(new_state):
 			menuDialog.visible = false
 			
 			Pet.visible = false
+			Pet.global_position = pet_hide_pos
 			Bowl.visible = false
 		GameStateManager.GameState.SHOP:
 			UiEdit.visible = false
@@ -63,6 +70,8 @@ func _on_state_changed(new_state):
 			menuStore.visible = true
 			
 			Pet.visible = true
+			Pet.global_position = pet_show_pos
+			
 			Bowl.visible = true
 		GameStateManager.GameState.MESSAGE:
 			UiEdit.visible = false
@@ -71,4 +80,6 @@ func _on_state_changed(new_state):
 			menuDialog.visible = true
 			
 			Pet.visible = true
+			Pet.global_position = pet_show_pos
+			
 			Bowl.visible = true
