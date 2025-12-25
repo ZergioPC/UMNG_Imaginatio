@@ -13,15 +13,15 @@ class EstudianteBase(SQLModel):
     tiktok:str|None
 
 class EstudianteEdit(SQLModel):
-    name: Optional [str] = Field(default=None) 
+    name: Optional [str] = Field(default="") 
     img: Optional [str] = Field(default=None) 
-    codigo: Optional [str] = Field(default=None) 
-    desc: Optional [str] = Field(default=None)
-    phone: Optional [str] = Field(default=None)
-    email: Optional [str] = Field(default=None)
-    instagram: Optional [str] = Field(default=None)
-    twiter: Optional [str] = Field(default=None)
-    tiktok: Optional [str] = Field(default=None)
+    codigo: Optional [str] = Field(default="") 
+    desc: Optional [str] = Field(default="")
+    phone: Optional [str] = Field(default="")
+    email: Optional [str] = Field(default="")
+    instagram: Optional [str] = Field(default="")
+    twiter: Optional [str] = Field(default="")
+    tiktok: Optional [str] = Field(default="")
 
 class Estudiante(EstudianteBase, table=True):
     __tablename__ = "estudiante"

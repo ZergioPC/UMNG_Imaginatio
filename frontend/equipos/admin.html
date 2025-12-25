@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/admin.css">
     <link rel="stylesheet" href="../css/arquitectura.css">
     <link rel="stylesheet" href="../css/decoracion.css">
+    <link rel="stylesheet" href="./css/admin.css">
     <title>Equipos Admin Panel</title>
 </head>
 <body>
@@ -28,6 +28,8 @@
             </label>
             <label for="team-img" class="flex-direction-col">
                 <span>Imagen de Perfil del Equipo</span>
+                <img id="team-current-img" src="" alt="current-image" width="350px">
+                <span>Cambiar imagen</span>
                 <input type="file" id="team-img" name="img" accept="image/*">
             </label>
             <button type="submit">Guardar Cambios del Equipo</button>
@@ -125,7 +127,9 @@
                     <input type="text" name="instagram" id="edit-est-ig" placeholder="@example">
                     <input type="text" name="twiter" id="edit-est-twiter" placeholder="@example">
                     <input type="text" name="tiktok" id="edit-est-tiktok" placeholder="@example">
+                    <h3>Editar Foto</h3>
                     <img id="edit-est-img-preview" src="" alt="Estudiante Foto Actual" width="100">
+                    <input type="file" name="img" id="edit-est-img-new" accept="image/*">
                 </div>
             </div>
             <input type="submit" value="Guardar Cambios">

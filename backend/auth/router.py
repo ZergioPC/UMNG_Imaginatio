@@ -79,9 +79,8 @@ async def admin_login(data: AdminRequest, response: Response):
         "success": f"{DOMAIN}/admin/panel.html"
     }
 
-@router.get("/verify-admin")
-#async def admin_verify(current_user:str = Depends(get_current_admin)):
-async def admin_verify():
+@router.post("/verify-admin")
+async def admin_verify(current_user:str = Depends(get_current_admin)):
     return {
         "message":"Admin Verificado"
     }
