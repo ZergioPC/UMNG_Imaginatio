@@ -96,8 +96,9 @@ async def estudiante_editar(
             detail="No puedes Editar un Estudiante de otro equipo"
         )
     
-    estudiante = await db_select_unique(Estudiante,id)
-    if not estudiante:
+    try:
+        _ = await db_select_unique(Estudiante,id)
+    except:        
         raise HTTPException(
             status_code=404,
             detail="Estudiante no existe"
@@ -106,7 +107,7 @@ async def estudiante_editar(
     # Preparar los datos para actualizar
     data_dump = {}
     
-    if name is not None:
+    if name is not None :
         data_dump["name"] = name
     if codigo is not None:
         data_dump["codigo"] = codigo

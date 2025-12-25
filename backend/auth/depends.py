@@ -29,7 +29,7 @@ async def get_current_user(
     
     session:list[SessionList] = await db_select_query(query)
 
-    if len(session) is not 1:
+    if len(session) != 1:
         raise HTTPException(
             status_code=404, 
             detail={

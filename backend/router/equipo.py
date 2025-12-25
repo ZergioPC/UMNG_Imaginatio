@@ -1,4 +1,4 @@
-import os
+import os, logging
 from uuid import uuid4
 
 from fastapi import APIRouter, status, Depends, HTTPException, Form, File, UploadFile
@@ -15,13 +15,18 @@ from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS
 
 router = APIRouter()
 
-@router.post("/healty")
-async def healty(current_team:Equipo=Depends(get_current_user)):
+# GET DATA
+
+@router.post("/get-data")
+async def getData(current_team:Equipo=Depends(get_current_user)):
     if not current_team:
         return {"message":"error"}
     id = current_team.equipo_id
     query = select(Equipo).where(Equipo.equipo_id == id)
-    data = await db_select_query(query)
+    
+    data:list[Equipo] = await db_select_query(query)
+    data[0].equipo_password = "????"    
+
     return {
         "message":"ok",
         "data": data
@@ -69,6 +74,8 @@ async def editar(
         data_dump["desc"] = desc
     if evento_id is not None:
         data_dump["evento_id"] = evento_id
+    
+    logging.warning(data_dump)
     
     # Procesar la imagen si se proporcionó
     if img is not None:

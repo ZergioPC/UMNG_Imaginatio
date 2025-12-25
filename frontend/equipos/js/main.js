@@ -32,8 +32,9 @@ document.addEventListener('DOMContentLoaded', async () => {
  */
 async function checkAuthAndLoadTeamData() {
     try {
-        const response = await apiFetch('/equipo/healty',{method:"POST"});        
+        const response = await apiFetch('/equipo/get-data',{method:"POST"});        
         TEAM_DATA = response.data[0];
+        
     } catch (error) {
         // Si la petición falla, asumimos que el usuario no está logueado.
         console.error("Error de autenticación:", error);
@@ -47,6 +48,7 @@ async function checkAuthAndLoadTeamData() {
 function populateTeamForm() {    
     document.getElementById('team-name').value = TEAM_DATA.name;
     document.getElementById('team-desc').value = TEAM_DATA.desc;
+    document.getElementById('team-current-img').src = `${API}/${TEAM_DATA.img}`;
 }
 
 /**
@@ -245,8 +247,6 @@ async function handleUpdateStudent(event) {
     const studentId = modalForm.querySelector('#edit-est-id').value;
     
     const formData = new FormData();
-    // El backend ahora acepta datos de formulario.
-    // Nota: El HTML no tiene un <input type="file"> para la imagen del estudiante en la edición.
     formData.append('name', modalForm.querySelector('#edit-est-name').value);
     formData.append('codigo', modalForm.querySelector('#edit-est-codigo').value);
     formData.append('email', modalForm.querySelector('#edit-est-email').value);
@@ -256,6 +256,12 @@ async function handleUpdateStudent(event) {
     formData.append('twiter', modalForm.querySelector('#edit-est-twiter').value);
     formData.append('tiktok', modalForm.querySelector('#edit-est-tiktok').value);
     formData.append('equipo_id', TEAM_DATA.equipo_id);
+    
+    // Se añade la imagen solo si el usuario ha seleccionado una
+    const modalImgInput = modalForm.querySelector('#edit-est-img-new');
+    if (modalImgInput.files.length > 0) {
+        formData.append('img', modalImgInput.files[0]);
+    }
 
     try {
         await apiFetch(`/estudiantes/editar/${studentId}`, {

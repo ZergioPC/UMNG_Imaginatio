@@ -361,7 +361,7 @@ function setUpFavicon() {
 }
 
 function checkUserCookie(){    
-    fetch(API + "/equipo/healty", {
+    fetch(API + "/equipo/get-data", {
         method: 'POST',
         credentials:"include"
     })
