@@ -1,13 +1,15 @@
+import logging
+
 from fastapi import APIRouter, HTTPException, Response, Depends, status
 
-from auth.models import LoginRequest, LoginResponse, AdminRequest
+from auth.models import LoginRequest, LoginResponse, AdminRequest, SessionList
 from auth.depends import ACTIVE_SESSIONS, get_current_admin
 from auth.utils import crear_session_token, verify_password
 from auth.admin import ADMIN_DATA
 
 from models.equipo import Equipo
 from utils import DOMAIN_FR
-from db import db_get_equipo_by_name
+from db import db_get_equipo_by_name, db_commit
 
 DOMAIN:str = DOMAIN_FR
 
@@ -33,7 +35,11 @@ async def login(credentials: LoginRequest, response: Response):
     token = crear_session_token()
     
     # 4. Guardar la sesión
-    ACTIVE_SESSIONS[token] = credentials.name
+    session = SessionList(
+        equipo_id=data.equipo_id,
+        token=token
+    )
+    await db_commit(session)
     
     # 5. Enviar cookie al cliente
     response.set_cookie(

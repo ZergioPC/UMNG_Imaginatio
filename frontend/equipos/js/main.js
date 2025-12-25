@@ -10,9 +10,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         // 1. Verifica la autenticación y obtiene los datos del equipo.
         await checkAuthAndLoadTeamData();
-        if (!TEAM_DATA) {
-            throw new Error("No se pudieron cargar los datos del equipo. Asegúrate de estar logueado.");
-        }
 
         // 2. Carga los datos iniciales en la página.
         populateTeamForm();
@@ -35,21 +32,21 @@ document.addEventListener('DOMContentLoaded', async () => {
  */
 async function checkAuthAndLoadTeamData() {
     try {
-        const response = await apiFetch('/equipo/healty');
+        const response = await apiFetch('/equipo/healty',{method:"POST"});        
         TEAM_DATA = response.data[0];
     } catch (error) {
         // Si la petición falla, asumimos que el usuario no está logueado.
         console.error("Error de autenticación:", error);
-        throw new Error("Sesión no válida o expirada.");
+        //throw new Error("Sesión no válida o expirada.");
     }
 }
 
 /**
  * Rellena el formulario de edición del equipo con los datos cargados.
  */
-function populateTeamForm() {
-    document.getElementById('team-name').value = TEAM_DATA.equipo_name;
-    document.getElementById('team-desc').value = TEAM_DATA.equipo_desc;
+function populateTeamForm() {    
+    document.getElementById('team-name').value = TEAM_DATA.name;
+    document.getElementById('team-desc').value = TEAM_DATA.desc;
 }
 
 /**
@@ -57,7 +54,7 @@ function populateTeamForm() {
  */
 async function loadStudents() {
     try {
-        const response = await apiFetch(`/equipo/estudiante/filter/${TEAM_DATA.equipo_id}`);
+        const response = await apiFetch(`/estudiantes/filter/${TEAM_DATA.equipo_id}`);
         renderStudents(response.data);
     } catch (error) {
         alert(`Error al cargar integrantes: ${error.message}`);
@@ -144,7 +141,7 @@ function setupEventListeners() {
     document.getElementById('integrantes-table').addEventListener('click', async (event) => {
         if (event.target.classList.contains('edit-student-btn')) {
             const studentId = event.target.dataset.id;
-            const response = await apiFetch(`/equipo/estudiante/filter/${TEAM_DATA.equipo_id}`);
+            const response = await apiFetch(`/estudiantes/filter/${TEAM_DATA.equipo_id}`);
             const student = response.data.find(s => s.est_id == studentId);
             openEditStudentModal(student);
         }
@@ -200,7 +197,7 @@ async function handleAddStudent(event) {
     const formData = new FormData(form);
 
     try {
-        await apiFetch('/equipo/estudiante/crear', {
+        await apiFetch('/estudiantes/crear', {
             method: 'POST',
             body: formData,
         });
@@ -217,9 +214,9 @@ async function handleDeleteStudent(studentId) {
         return;
     }
     try {
-        await apiFetch(`/equipo/estudiante/delete/${studentId}`, { method: 'DELETE' });
+        await apiFetch(`/estudiantes/delete/${studentId}`, { method: 'DELETE' });
         alert("Integrante eliminado con éxito.");
-        loadStudents(); // Recarga la lista.
+        window.location.reload()
     } catch (error) {
         alert(`Error al eliminar integrante: ${error.message}`);
     }
@@ -261,7 +258,7 @@ async function handleUpdateStudent(event) {
     formData.append('equipo_id', TEAM_DATA.equipo_id);
 
     try {
-        await apiFetch(`/equipo/estudiante/editar/${studentId}`, {
+        await apiFetch(`/estudiantes/editar/${studentId}`, {
             method: 'PATCH',
             body: formData, // Se envía como FormData
         });

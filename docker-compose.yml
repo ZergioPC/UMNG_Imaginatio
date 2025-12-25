@@ -1,4 +1,24 @@
 services:
+  # - - - - - - - - 
+  #       DB
+  # - - - - - - - - 
+
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # - - - - - - - -
+  #    BACKEND
+  # - - - - - - - -
+
   backend:
     image: backend
     build:
@@ -8,6 +28,10 @@ services:
       - "8000:80"
     volumes:
       - ./backend:/app
+
+  # - - - - - - - -
+  #    FRONTEND
+  # - - - - - - - -
 
   frontend:
     image: frontend
@@ -20,3 +44,6 @@ services:
       - ./frontend:/usr/share/nginx/html
     depends_on:
       - backend
+
+volumes:
+  postgres_data:
