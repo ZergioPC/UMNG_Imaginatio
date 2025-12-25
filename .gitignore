@@ -8,6 +8,10 @@ __pycache__/
 *.pyc
 *.pyd
 *.pyo
+*.py[cod]
+*$py.class
+*.so
+.Python
 
 # Virtual environment
 .venv/
@@ -17,6 +21,8 @@ venv/
 # Environment variables
 .env
 *.env
+.env.local
+.env.*.local
 
 # Database files
 *.db
