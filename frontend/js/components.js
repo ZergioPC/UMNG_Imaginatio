@@ -309,7 +309,6 @@ function setUpAccountLogged(team){
     if (!document.getElementById("menuAccount")){
         return
     }
-    console.log(team);
     
     const loginDropdown = document.getElementById('menuAccount');
     const acountBtn = document.getElementById('menu-account-btn');
@@ -363,7 +362,7 @@ function setUpFavicon() {
 
 function checkUserCookie(){    
     fetch(API + "/equipo/healty", {
-        method: 'GET',
+        method: 'POST',
         credentials:"include"
     })
     .then(response => response.json())

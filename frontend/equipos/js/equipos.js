@@ -1,3 +1,5 @@
+import API from "../../js/config.js";
+
 const urlParams = new URLSearchParams(window.location.search);
 const TEAM_ID = urlParams.get('team'); 
 
@@ -26,7 +28,7 @@ function drawTitles(equipo){
 const $modal = document.getElementById("modalEstInfo");
 const $modalBtn = document.getElementById("modalClose");
 
-$modalBtn.addEventListener("click", () => {
+$modalBtn.addEventListener("click", () => {  
     $modal.classList.toggle("open");
     $modal.close();
 });
@@ -390,7 +392,7 @@ function fetchDataTeam(){
 }
 
 function fetchDataUsers(){
-    fetch(API + `/equipo/estudiante/filter/${TEAM_ID}`)
+    fetch(API + `/estudiantes/filter/${TEAM_ID}`)
     .then(res => {
         if(!res.ok){
             throw new Error("No es posible cargar los posts");

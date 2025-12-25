@@ -1,3 +1,5 @@
+import API from "../../js/config.js";
+
 function showEventInfo(evento,teams){
 
     const events_container = document.getElementById("event-array-list");
