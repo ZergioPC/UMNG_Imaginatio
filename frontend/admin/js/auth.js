@@ -1,3 +1,5 @@
+import API from "../../js/config.js"
+
 fetch(API + "/auth/verify-admin", {
     method: 'GET',
     credentials:"include"

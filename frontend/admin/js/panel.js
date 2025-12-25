@@ -2,13 +2,47 @@ import API from "../../js/config.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     loadEvents();
-    setupCreateForm();
+    setupCreateEventForm();
     setupEditModal();
     setupTeamForms();
     setupPostsPanel();
+    setUpEditPlaceholder();
 });
 
 let currentPostPage = 0;
+
+function setUpEditPlaceholder(){
+    const formData = new FormData();
+    const imgCurrent = document.getElementById('edit-placeholder-current');
+    const imgInput = document.getElementById('edit-placeholder-img');
+    const btnForm = document.getElementById('edit-placeholder-btn');
+
+    imgCurrent.src = `${API}/uploads/users/idle.jpg`;
+
+    btnForm.addEventListener("click",()=>{
+        try {
+            if (imgInput.files.length === 0) {
+                throw new Error("No hay Imagen")
+            }
+
+            formData.append('img', imgInput.files[0]);
+
+            fetch(`${API}/utils/placeholder-img/`, {
+                method: 'POST',
+                body: formData,
+                credentials: "include"
+            });
+            
+            alert("Placeholder cambiado correctamente.");
+            window.location.reload()
+        } catch (error) {
+            alert(`Error al actualizar Placeholder: ${error.message}`);
+        }
+    });
+
+}
+
+// MARK: Posts
 
 function setupPostsPanel() {
     const loadButton = document.getElementById('load-posts-btn');
@@ -110,6 +144,8 @@ function deletePost(postId) {
         alert(`Error al eliminar el post: ${error.message}`);
     });
 }
+
+// MARK: Eventos y Equipos
 
 function loadEvents() {
     fetch(API + "/event/get", { credentials: "include" })
@@ -252,8 +288,9 @@ function deleteTeam(teamId, eventId) {
     .catch(error => console.error('Error deleting team:', error));
 }
 
+// MARK: Forms
 
-function setupCreateForm() {
+function setupCreateEventForm() {
     const createForm = document.getElementById('create-event-form');
     createForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -308,6 +345,8 @@ function deleteEvent(id) {
     })
     .catch(error => console.error('Error deleting event:', error));
 }
+
+// MARK: Modal
 
 function openEditModal(id, name, desc) {
     const modal = document.getElementById('edit-modal');
