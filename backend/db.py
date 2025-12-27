@@ -126,7 +126,16 @@ async def db_select_unique(model, id):
 
 
 async def db_select_query(query):
-    """Execute a custom query"""
+    """
+    Execute a custom query
+
+    Args:
+        query (select) : Consulta SQL
+
+    Returns:
+        list[SQLModel]
+    
+    """
     async with async_session() as session:
         result = await session.execute(query)
         data = result.scalars().all()

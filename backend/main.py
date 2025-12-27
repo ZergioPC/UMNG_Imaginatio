@@ -8,7 +8,8 @@ from fastapi.staticfiles import StaticFiles
 
 from db import crear_tablas
 from auth import router as auth
-from router import posts, equipo, events, estudiantes
+from router import posts, equipo, events, estudiantes, utils
+from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS
 
 
 load_dotenv()
@@ -39,9 +40,13 @@ app.add_middleware(
 )
 
 # Static Files
+os.makedirs(IMG_PATH, exist_ok=True)
+os.makedirs(IMG_PATH_USERS, exist_ok=True)
+os.makedirs(IMG_PATH_POSTS, exist_ok=True)
 app.mount("/uploads",StaticFiles(directory="uploads"), name="Uploads")
 
 # Routers
+app.include_router(utils.router, prefix="/utils", tags=["utils"])
 app.include_router(posts.router, prefix="/post", tags=["post"])
 app.include_router(events.router, prefix="/event", tags=["event"])
 app.include_router(equipo.router, prefix="/equipo", tags=["equipo"])

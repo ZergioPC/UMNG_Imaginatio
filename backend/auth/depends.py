@@ -29,7 +29,7 @@ async def get_current_user(
     
     session:list[SessionList] = await db_select_query(query)
 
-    if len(session) is not 1:
+    if len(session) != 1:
         raise HTTPException(
             status_code=404, 
             detail={
@@ -64,17 +64,23 @@ def get_current_admin(session_token:Optional[str] = Cookie(None, alias="imaginat
     Retorna el username si la sesión es válida.
     """
     adminData = ADMIN_DATA["session"]
-    #if not session_token:
-    #    raise HTTPException(
-    #        status_code=401, 
-    #        #detail="No estás en Admin. Por favor inicia sesión."
-    #        detail={"message":"No estas en admin","url":f"{DOMAIN}/admin/"}        
-    #    )
+    if not session_token:
+       raise HTTPException(
+           status_code=401, 
+           #detail="No estás en Admin. Por favor inicia sesión."
+           detail={
+               "message":"No estas en admin",
+               "url":f"{DOMAIN}/admin/"
+               }        
+       )
 
-    #if(session_token != ADMIN_DATA["session"]):
-    #    raise HTTPException(
-    #        status_code=401, 
-    #        detail="Sesión inválida o expirada. Por favor inicia sesión nuevamente."
-    #    )
+    if(session_token != ADMIN_DATA["session"]):
+       raise HTTPException(
+           status_code=401, 
+           detail={
+               "message":"Sesión inválida o expirada. Por favor inicia sesión nuevamente.",
+               "url":f"{DOMAIN}/admin/"
+               }
+       )
     
     return "Admin"

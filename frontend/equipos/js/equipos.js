@@ -62,7 +62,7 @@ function showModalInfo(est){
 
     const ul = document.createElement("ul");
 
-    if(est.email.length && est.email.length > 0){
+    if(est.email && est.email.length > 0){
         const li = document.createElement("li");
         
         const a = document.createElement("a");
@@ -85,7 +85,7 @@ function showModalInfo(est){
         ul.appendChild(li);
     }
 
-    if(est.phone.length && est.phone.length > 0){
+    if(est.phone && est.phone.length > 0){
         const li = document.createElement("li");
         
         const a = document.createElement("a");
@@ -106,7 +106,7 @@ function showModalInfo(est){
         ul.appendChild(li);
     }
 
-    if(est.instagram.length && est.instagram.length > 0){
+    if(est.instagram && est.instagram.length > 0){
         const li = document.createElement("li");
         
         const a = document.createElement("a");
@@ -127,7 +127,7 @@ function showModalInfo(est){
         ul.appendChild(li);
     }
 
-    if(est.tiktok.length && est.tiktok.length > 0){
+    if(est.tiktok && est.tiktok.length > 0){
         const li = document.createElement("li");
         
         const a = document.createElement("a");
@@ -148,7 +148,7 @@ function showModalInfo(est){
         ul.appendChild(li);
     }
 
-    if(est.twiter.length && est.twiter.length > 0){
+    if(est.twiter && est.twiter.length > 0){
         const li = document.createElement("li");
         
         const a = document.createElement("a");

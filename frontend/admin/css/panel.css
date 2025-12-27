@@ -93,3 +93,10 @@ th {
     font-weight: bold;
     cursor: pointer;
 }
+
+.placeholder-edit {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
