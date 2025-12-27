@@ -39,11 +39,25 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - ./frontend:/usr/share/nginx/html
     depends_on:
       - backend
+
+  # - - - - - - - -
+  #   MINI-GAME
+  # - - - - - - - -
+
+  mini-game:
+    image: mini-game
+    build:
+      context: ./godot
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - frontend
 
 volumes:
   postgres_data:
