@@ -3,7 +3,7 @@ import asyncio
 import logging
 from dotenv import load_dotenv
 
-from sqlmodel import SQLModel, select
+from sqlmodel import SQLModel, select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine
 from sqlalchemy.orm import sessionmaker
@@ -89,6 +89,7 @@ async def crear_tablas(app: FastAPI):
 
 
 # Dependency to get async session
+
 async def get_session():
     """Dependency for getting async database sessions"""
     async with async_session() as session:
@@ -138,7 +139,7 @@ async def db_select_query(query):
     """
     async with async_session() as session:
         result = await session.execute(query)
-        data = result.scalars().all()
+        data = result.scalars().all()#######
         if not data:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -199,3 +200,12 @@ async def db_get_equipo_by_name(name: str) -> Equipo:
         result = await session.execute(statement)
         equipo = result.scalar_one_or_none()
         return equipo
+
+
+async def db_delete_all(model):
+    """Delete all tuples"""
+    async with async_session() as session:
+        statement = delete(model)
+        await session.execute(statement)
+        await session.commit()
+

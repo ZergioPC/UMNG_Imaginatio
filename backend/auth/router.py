@@ -2,14 +2,14 @@ import logging
 
 from fastapi import APIRouter, HTTPException, Response, Depends, status
 
-from auth.models import LoginRequest, LoginResponse, AdminRequest, SessionList
-from auth.depends import ACTIVE_SESSIONS, get_current_admin
+from auth.models import LoginRequest, LoginResponse, AdminRequest, SessionList, SessionAdmin
+from auth.depends import get_current_admin
 from auth.utils import crear_session_token, verify_password
 from auth.admin import ADMIN_DATA
 
 from models.equipo import Equipo
 from utils import DOMAIN_FR
-from db import db_get_equipo_by_name, db_commit
+from db import db_get_equipo_by_name, db_commit, db_delete_all
 
 DOMAIN:str = DOMAIN_FR
 
@@ -73,6 +73,14 @@ async def admin_login(data: AdminRequest, response: Response):
         max_age=3600,   # 1 hora de duración
         samesite="lax"  # Protección contra CSRF
     )
+
+    # Guardar la sesión
+    await db_delete_all(SessionAdmin)
+
+    session = SessionAdmin(
+        token=token
+    )
+    await db_commit(session)
     
     return {
         "message": "Login de Admin exitoso",
