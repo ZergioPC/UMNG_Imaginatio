@@ -1,0 +1,16 @@
+#gameIframe {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  aspect-ratio: 1/1;
+  height: 90vh;
+  width: auto;
+}
+
+
+@media screen and (max-width: 950px) {
+  #gameIframe {
+    height: auto;
+    width: 90vw;
+  }
+}
