@@ -5,7 +5,7 @@ services:
 
   db:
     image: postgres:15-alpine
-    container_name: postgres_db
+    container_name: db
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -21,6 +21,7 @@ services:
 
   backend:
     image: backend
+    container_name: backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -35,15 +36,31 @@ services:
 
   frontend:
     image: frontend
+    container_name: frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - ./frontend:/usr/share/nginx/html
     depends_on:
       - backend
+
+  # - - - - - - - -
+  #   MINI-GAME
+  # - - - - - - - -
+
+  mini-game:
+    image: mini-game
+    container_name: minigame
+    build:
+      context: ./godot
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - frontend
 
 volumes:
   postgres_data:

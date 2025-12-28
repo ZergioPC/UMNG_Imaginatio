@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/arquitectura.css">
+    <link rel="stylesheet" href="../css/decoracion.css">
+    <link rel="stylesheet" href="./mascota-v2.css">
+    <title>Mascota</title>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header"></header>
+    
+    <!-- Menu Hamburger -->
+    <aside id="menuHamb" class="aside-burger"></aside>
+
+    <!-- Menu de Login/Account -->
+    <aside id="menuAccount" class="aside-account"></aside>
+
+    <!-- Main -->
+    <main>
+        <section class="titulo-linea">
+            <h1>Tu Mascota</h1>
+        </section>
+        <section>
+          <iframe 
+            id="gameIframe"
+            class="game-iframe" 
+            src="http://localhost:8080/index.html"
+            frameborder="0"
+          ></iframe>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+    <!-- Global project scripts -->
+    <script src="../js/components.js" type="module"></script>
+</body>
+</html>

@@ -223,7 +223,7 @@ function loadAsideBurger(){
 
     // Link data
     const links = [
-        { href: "/pet/", text: "Mascota" },
+        { href: "/pet-v2/", text: "Mascota" },
         { href: "/about/", text: "Quienes Somos" },
         { href: "/eventos/", text: "Concursos" },
         { href: "/pasados/", text: "Eventos Pasados" },

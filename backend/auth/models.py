@@ -27,3 +27,15 @@ class SessionList(SQLModel,table=True):
             nullable=False
         )
     )
+
+class SessionAdmin(SQLModel,table=True):
+    __tablename__="SessionAdmin"
+    session_id:int = Field(default=None, primary_key=True)
+    token:str
+    time:datetime = Field(
+        sa_column=Column(
+            DateTime(timezone=True),
+            server_default=func.now(),
+            nullable=False
+        )
+    )
