@@ -1,6 +1,9 @@
-DOMAIN:str = "http://127.0.0.1"
-#DOMAIN:str = "http://192.168.0.21"
-#DOMAIN:str = "http://10.0.211.231"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DOMAIN:str = os.getenv("DOMINIO")
 
 DOMAIN_FR:str = f"{DOMAIN}"
 DOMAIN_BK:str = f"{DOMAIN}:8000"
