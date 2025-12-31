@@ -6,44 +6,68 @@ services:
   db:
     image: postgres:15-alpine
     container_name: db
+    restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
 
   # - - - - - - - -
   #    BACKEND
   # - - - - - - - -
 
   backend:
-    image: backend
+    image: imaginatio/backend:v0.1
     container_name: backend
+    restart: unless-stopped
     build:
       context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8000:80"
+    networks:
+      - backend-network
+      - frontend-network
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
-      - ./backend:/app
-
+        - uploads_data:/app/uploads
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+      
   # - - - - - - - -
   #    FRONTEND
   # - - - - - - - -
 
   frontend:
-    image: frontend
+    image: imaginatio/frontend:v0.1
     container_name: frontend
+    restart: unless-stopped
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - 80:80
-    volumes:
-      - ./frontend:/usr/share/nginx/html
+      - "80:80"
+    networks:
+      - frontend-network
     depends_on:
       - backend
 
@@ -52,15 +76,25 @@ services:
   # - - - - - - - -
 
   mini-game:
-    image: mini-game
+    image: imaginatio/mini-game:v0.1
     container_name: minigame
+    restart: unless-stopped
     build:
       context: ./godot
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+    networks:
+      - frontend-network
     depends_on:
       - frontend
 
 volumes:
   postgres_data:
+  uploads_data:
+
+networks:
+  backend-network:
+    driver: bridge
+  frontend-network:
+    driver: bridge
