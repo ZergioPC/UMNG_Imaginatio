@@ -139,13 +139,24 @@ async def db_select_query(query):
     """
     async with async_session() as session:
         result = await session.execute(query)
-        data = result.scalars().all()#######
-        if not data:
+        # Try to return ORM scalars when the query selects a single column/model
+        try:
+            scalars = result.scalars().all()
+        except Exception:
+            scalars = None
+
+        # If scalars returned a non-empty list and each item is not a Row/tuple, return them
+        if scalars:
+            return scalars
+
+        # Otherwise fall back to returning full Row objects (for multi-column selects)
+        rows = result.all()
+        if not rows:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Elemento no encontrado"
             )
-        return data
+        return rows
 
 
 async def db_commit(model):

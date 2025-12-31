@@ -1,7 +1,8 @@
-import os
+import os, logging
 
-from fastapi import APIRouter, status, Depends, HTTPException
 from typing import Optional
+from fastapi import APIRouter, status, Depends, HTTPException
+from sqlmodel import func
 
 from models.posts import Post, PostWithEquipoResponse,PostsListResponse
 from models.equipo import Equipo
@@ -17,8 +18,6 @@ async def post_get_unique(id:int):
     post = await db_select_unique(Post,id)
     return {"data":post,"message":f"Post #{id}"}
 
-from sqlmodel import func
-
 @router.get("/pages/{pag}", response_model=PostsListResponse)
 async def post_pag(pag: int):
     offset = pag * 15
@@ -32,28 +31,50 @@ async def post_pag(pag: int):
     query = (
         select(Post, Equipo.name, Equipo.img)
         .join(Equipo, Post.equipo_id == Equipo.equipo_id)
+        .order_by(Post.post_id.desc())
         .offset(offset)
         .limit(limit)
-        .order_by(Post.post_id.desc())
     )
     
     results = await db_select_query(query)
-    
-    # Transformar los resultados
     data = []
-    for post, equipo_name, equipo_img in results:
+    
+    # return posts
+    for row in results:
+        if isinstance(row, tuple) or (hasattr(row, "_mapping") and len(row) > 1):
+            post_obj = row[0]
+            equipo_name = row[1]
+            equipo_img = row[2]
+        else:
+            post_obj = row
+            equipo_name = None
+            equipo_img = None
+
         data.append(PostWithEquipoResponse(
-            post_id=post.post_id,
-            title=post.title,
-            desc=post.desc,
-            img=post.img,
-            equipo_id=post.equipo_id,
-            likes=post.likes,
-            equipo_name=equipo_name,
+            post_id=post_obj.post_id,
+            title=post_obj.title,
+            desc=post_obj.desc,
+            img=post_obj.img,
+            equipo_id=post_obj.equipo_id,
+            likes=post_obj.likes,
+            equipo_name=equipo_name or "",
             equipo_img=equipo_img
         ))
     
-    total_pages = (len(total) + limit - 1) // limit
+    # total comes from a count query: extract numeric value
+    total_count = 0
+    if total:
+        # total may be a list/rows like [(count,)] or [count]
+        try:
+            first = total[0]
+            if isinstance(first, tuple) or hasattr(first, "_mapping"):
+                total_count = int(first[0])
+            else:
+                total_count = int(first)
+        except Exception:
+            total_count = 0
+
+    total_pages = (total_count + limit - 1) // limit
     
     return PostsListResponse(
         data=data,
