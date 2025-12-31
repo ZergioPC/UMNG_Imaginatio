@@ -154,6 +154,47 @@ async def equipo_publicar(
 
     return {"message": "Post creado con éxito"}
 
+@router.get("/publicaciones/{id}", response_model=PostsListResponse)
+async def equipo_publicaciones_all(id: int):
+
+    query = (
+        select(Post, Equipo.name, Equipo.img)
+        .join(Equipo, Post.equipo_id == Equipo.equipo_id)
+        .where(Post.equipo_id == id)
+        .order_by(Post.post_id.desc())
+    )
+    
+    results = await db_select_query(query)
+    
+    # Transformar los resultados
+    data = []
+    for row in results:
+        if isinstance(row, tuple) or (hasattr(row, "_mapping") and len(row) > 1):
+            post_obj = row[0]
+            equipo_name = row[1]
+            equipo_img = row[2]
+        else:
+            post_obj = row
+            equipo_name = None
+            equipo_img = None
+
+        data.append(PostWithEquipoResponse(
+            post_id=post_obj.post_id,
+            title=post_obj.title,
+            desc=post_obj.desc,
+            img=post_obj.img,
+            equipo_id=post_obj.equipo_id,
+            likes=post_obj.likes,
+            equipo_name=equipo_name or "",
+            equipo_img=equipo_img
+        ))
+    
+    return PostsListResponse(
+        data=data,
+        message=f"Posts del equipo {id}",
+        pages=0
+    )
+
 @router.get("/publicaciones/{id}/{pag}", response_model=PostsListResponse)
 async def equipo_publicaciones(id: int, pag: int):
     offset = pag * 15

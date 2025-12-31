@@ -58,7 +58,7 @@ async def post_pag(pag: int):
             equipo_id=post_obj.equipo_id,
             likes=post_obj.likes,
             equipo_name=equipo_name or "",
-            equipo_img=equipo_img
+            equipo_img=equipo_img or "uploads/users/idle.jpg",
         ))
     
     # total comes from a count query: extract numeric value
