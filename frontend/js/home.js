@@ -125,7 +125,7 @@ function createPost(titulo,desc,img,avatar,likes,id) {
     postFooter.className = "post-footer";
 
     const teamImg = document.createElement("img");
-    teamImg.src = `${API}/${avatar}`;;
+    teamImg.src = `${API}/${avatar}`;
 
     const title = document.createElement("h2");
     title.innerText = titulo;
