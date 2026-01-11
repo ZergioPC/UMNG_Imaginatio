@@ -1,4 +1,4 @@
-import os
+import os , logging
 from dotenv import load_dotenv
 from contextlib import asynccontextmanager
 
@@ -22,21 +22,26 @@ async def lifespan(app: FastAPI):
     yield
     # Shutd
 
-app = FastAPI(lifespan=lifespan)
+# Dev Docs allow
+# app = FastAPI(lifespan=lifespan)
+
+# Production
+app = FastAPI(
+    lifespan=lifespan,
+    docs_url=None, 
+    redoc_url=None
+    )
+
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "").split(",")
+
+logging.warning (ALLOWED_ORIGINS)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost",
-        "http://localhost:80",
-        "http://localhost:8080",
-        "http://127.0.0.1",
-        "http://127.0.0.1:80",
-        "http://127.0.0.1:8080"
-    ],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allow_headers=["*"]
 )
 
 # Static Files

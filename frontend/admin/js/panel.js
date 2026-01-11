@@ -27,7 +27,7 @@ function setUpEditPlaceholder(){
 
             formData.append('img', imgInput.files[0]);
 
-            fetch(`${API}/utils/placeholder-img/`, {
+            fetch(`${API}/utils/placeholder-img`, {
                 method: 'POST',
                 body: formData,
                 credentials: "include"

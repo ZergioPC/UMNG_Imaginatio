@@ -50,3 +50,4 @@ theme/custom_font="res://assets/fonts/Lato/Lato-Regular.ttf"
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c88s0sr42sdd4"
 path.s3tc="res://.godot/imported/Bowl_texture_base.png-beb6c861dd669a0d0e86d3aaeea88385.s3tc.ctex"
+path.etc2="res://.godot/imported/Bowl_texture_base.png-beb6c861dd669a0d0e86d3aaeea88385.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/bowl/Bowl_texture_base.png"
-dest_files=["res://.godot/imported/Bowl_texture_base.png-beb6c861dd669a0d0e86d3aaeea88385.s3tc.ctex"]
+dest_files=["res://.godot/imported/Bowl_texture_base.png-beb6c861dd669a0d0e86d3aaeea88385.s3tc.ctex", "res://.godot/imported/Bowl_texture_base.png-beb6c861dd669a0d0e86d3aaeea88385.etc2.ctex"]
 
 [params]
 
