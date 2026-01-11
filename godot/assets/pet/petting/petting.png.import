@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bemc03lhlrm0d"
 path.s3tc="res://.godot/imported/petting.png-389ed295cc9f39faada0fb2abc411b7d.s3tc.ctex"
+path.etc2="res://.godot/imported/petting.png-389ed295cc9f39faada0fb2abc411b7d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/pet/petting/petting.png"
-dest_files=["res://.godot/imported/petting.png-389ed295cc9f39faada0fb2abc411b7d.s3tc.ctex"]
+dest_files=["res://.godot/imported/petting.png-389ed295cc9f39faada0fb2abc411b7d.s3tc.ctex", "res://.godot/imported/petting.png-389ed295cc9f39faada0fb2abc411b7d.etc2.ctex"]
 
 [params]
 
