@@ -134,29 +134,36 @@ async def db_select_query(query):
         query (select) : Consulta SQL
 
     Returns:
-        list[SQLModel]
+        list[SQLModel] or list[Row]
     
     """
     async with async_session() as session:
         result = await session.execute(query)
-        # Try to return ORM scalars when the query selects a single column/model
-        try:
-            scalars = result.scalars().all()
-        except Exception:
-            scalars = None
-
-        # If scalars returned a non-empty list and each item is not a Row/tuple, return them
-        if scalars:
-            return scalars
-
-        # Otherwise fall back to returning full Row objects (for multi-column selects)
+        
+        # Check if the query selects multiple columns
+        # If so, return Row objects, not scalars
         rows = result.all()
+        
         if not rows:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Elemento no encontrado"
             )
-        return rows
+        
+        # If rows contain Row objects (multi-column select), return them as-is
+        # If rows contain single ORM objects, try to extract scalars
+        first_row = rows[0]
+        if hasattr(first_row, '_mapping') and len(first_row._mapping) > 1:
+            # Multi-column select - return Row objects
+            return rows
+        else:
+            # Single column select - try to return scalars
+            try:
+                # Re-execute to get scalars
+                result = await session.execute(query)
+                return result.scalars().all()
+            except Exception:
+                return rows
 
 
 async def db_commit(model):

@@ -41,15 +41,15 @@ async def post_pag(pag: int):
     
     # return posts
     for row in results:
-        if isinstance(row, tuple) or (hasattr(row, "_mapping") and len(row) > 1):
+        if hasattr(row, '_mapping'):
+            # If it's a Row object with _mapping
             post_obj = row[0]
             equipo_name = row[1]
             equipo_img = row[2]
         else:
-            post_obj = row
-            equipo_name = None
-            equipo_img = None
-
+            # If it's already unpacked
+            post_obj, equipo_name, equipo_img = row
+        
         data.append(PostWithEquipoResponse(
             post_id=post_obj.post_id,
             title=post_obj.title,

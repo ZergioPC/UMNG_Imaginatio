@@ -227,7 +227,6 @@ function createPost(titulo,desc,img,avatar,likes) {
 function appendPostContainer(posts){
     $PostContainer.innerHTML = "";
     posts.forEach(data =>{
-        console.log(data);
         
         const post = createPost(
             data.title,
