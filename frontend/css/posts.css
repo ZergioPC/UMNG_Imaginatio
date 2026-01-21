@@ -42,6 +42,11 @@
     border-radius: 50%;
 }
 
+#posts-container .post-header img:hover {
+    cursor: pointer;
+    opacity: 60%;
+}
+
 #posts-container .post-header h2 {
     font-size: 1.4rem;
 }

@@ -315,7 +315,7 @@ function setUpAccountLogged(team){
     const closeBtn = document.getElementById('accountBtnClose');
 
     const $name =  document.getElementById("temaName");
-    $name.innerText = team.name;
+    $name.innerText = team.publicName;
 
     const $img =  document.getElementById("account-img");
     $img.src =  `${API}/${team.img}` || "src"
