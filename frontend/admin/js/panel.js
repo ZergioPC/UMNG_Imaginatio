@@ -192,15 +192,22 @@ function setupCreateTeamForm() {
     createForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const name = document.getElementById('create-team-name').value;
+        const publicName = document.getElementById('create-team-publicName').value;
         const desc = document.getElementById('create-team-desc').value;
         const password = document.getElementById('create-team-password').value;
         const eventId = document.getElementById('create-team-event-id').value;
+
+        if (!/^[a-zA-Z0-9]*$/.test(name)) {
+            alert("Solo numeros y letras son validos en el ID.");
+            return;
+        }
 
         fetch(API + "/equipo/crear", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
-                name: name, 
+                name: name,
+                publicName: publicName,
                 desc: desc, 
                 equipo_password: password, 
                 evento_id: parseInt(eventId) 

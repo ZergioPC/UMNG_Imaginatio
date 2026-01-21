@@ -16,7 +16,7 @@ from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS
 
 router = APIRouter()
 
-# GET DATA
+# MARK:GET DATA
 
 @router.post("/get-data")
 async def getData(current_team:Equipo=Depends(get_current_user)):
@@ -43,7 +43,7 @@ async def getData(current_team:Equipo=Depends(get_current_user)):
 #     logging.warning(request.cookies)
 #    return {"cookies": request.cookies}
 
-# CRUD Equipo
+# MARK:CRUD Equipo
 @router.post("/crear", status_code=status.HTTP_201_CREATED)
 async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_current_admin)):
     equipo = Equipo.model_validate(equipo_data.model_dump())
@@ -55,6 +55,7 @@ async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_cur
 async def editar(
     id: int,
     name: str = Form(None),
+    publicName:str = Form(None),
     desc: str = Form(None),
     img: UploadFile = File(None),
     evento_id: int = Form(None),
@@ -71,6 +72,8 @@ async def editar(
     
     if name is not None:
         data_dump["name"] = name
+    if publicName is not None:
+        data_dump["publicName"] = publicName
     if desc is not None:
         data_dump["desc"] = desc
     if evento_id is not None:
@@ -119,7 +122,7 @@ async def equipo_get_filter(evento_id:int):
     data = await db_select_query(query)
     return {"data":data,"message":f"Equipos del torneo {evento_id}"}
 
-# POSTS
+# MARK:POSTS
 
 @router.post("/publicar")
 async def equipo_publicar(

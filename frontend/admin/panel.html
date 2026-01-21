@@ -61,7 +61,8 @@
 
     <h2>Crear Equipo</h2>
     <form id="create-team-form">
-        <input type="text" id="create-team-name" placeholder="Nombre del equipo" required>
+        <input type="text" id="create-team-name" maxlength="10" placeholder="Id del equipo" required>
+        <input type="text" id="create-team-publicName" placeholder="Nombre del equipo" required>
         <textarea id="create-team-desc" placeholder="Descripción del equipo" required></textarea>
         <input type="password" id="create-team-password" placeholder="Contraseña del equipo" required>
         <select id="create-team-event-id" required>

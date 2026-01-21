@@ -21,12 +21,14 @@ function showEventInfo(evento,teams){
     ul.classList.add("equipos-list");
 
     if(teams){
+        console.log(teams);
+        
         teams.forEach(team => {
             const img = document.createElement("img");
             img.src = `${API}/${team.img}` || "";
     
             const h4 = document.createElement("h4");
-            h4.innerText = team.name;
+            h4.innerText = team.publicName;
     
             const div = document.createElement("div");
             div.appendChild(h4);
