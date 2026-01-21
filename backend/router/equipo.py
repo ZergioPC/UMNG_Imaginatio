@@ -119,7 +119,18 @@ async def equipo_get_info(id:int):
 @router.get("/filter/{evento_id}")
 async def equipo_get_filter(evento_id:int):
     query = select(Equipo).where(Equipo.evento_id == evento_id)
-    data = await db_select_query(query)
+    equipos = await db_select_query(query)
+
+    data = [
+        {
+        "publicName":e.publicName,
+        "desc":e.desc,
+        "img":e.img,
+        "evento_id":e.evento_id
+        }
+        for e in equipos
+    ]
+
     return {"data":data,"message":f"Equipos del torneo {evento_id}"}
 
 # MARK:POSTS
