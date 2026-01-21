@@ -26,7 +26,8 @@ async def getData(current_team:Equipo=Depends(get_current_user)):
     query = select(Equipo).where(Equipo.equipo_id == id)
     
     data:list[Equipo] = await db_select_query(query)
-    data[0].equipo_password = "????"    
+    data[0].name = "????"    
+    data[0].equipo_password = "????"  
 
     return {
         "message":"ok",
@@ -70,8 +71,6 @@ async def editar(
     # Preparar los datos para actualizar
     data_dump = {}
     
-    if name is not None:
-        data_dump["name"] = name
     if publicName is not None:
         data_dump["publicName"] = publicName
     if desc is not None:

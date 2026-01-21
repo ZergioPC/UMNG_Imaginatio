@@ -250,8 +250,7 @@ function loadTeams(eventId) {
             data.data.forEach(team => {
                 const row = `
                     <tr>
-                        <td>${team.equipo_id}</td>
-                        <td>${team.name}</td>
+                        <td>${team.publicName}</td>
                         <td>${team.desc}</td>
                         <td class="actions">
                             <button class="delete-team-btn" data-id="${team.equipo_id}" data-event-id="${eventId}">Eliminar</button>
