@@ -250,6 +250,7 @@ function loadTeams(eventId) {
             data.data.forEach(team => {
                 const row = `
                     <tr>
+                        <td>${team.equipo_id}</td>
                         <td>${team.publicName}</td>
                         <td>${team.desc}</td>
                         <td class="actions">

@@ -122,6 +122,7 @@ async def equipo_get_filter(evento_id:int):
 
     data = [
         {
+        "equipo_id":e.equipo_id,
         "publicName":e.publicName,
         "desc":e.desc,
         "img":e.img,
