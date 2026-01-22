@@ -46,7 +46,7 @@ async function checkAuthAndLoadTeamData() {
  * Rellena el formulario de edición del equipo con los datos cargados.
  */
 function populateTeamForm() {    
-    document.getElementById('team-name').value = TEAM_DATA.name;
+    document.getElementById('team-name').value = TEAM_DATA.publicName;
     document.getElementById('team-desc').value = TEAM_DATA.desc;
     document.getElementById('team-current-img').src = `${API}/${TEAM_DATA.img}`;
 }
@@ -173,7 +173,7 @@ async function handleUpdateTeam(event) {
     const formData = new FormData();
 
     // Se obtienen los datos del formulario
-    formData.append('name', form.querySelector('#team-name').value);
+    formData.append('publicName', form.querySelector('#team-name').value);
     formData.append('desc', form.querySelector('#team-desc').value);
 
     // Se añade la imagen solo si el usuario ha seleccionado una

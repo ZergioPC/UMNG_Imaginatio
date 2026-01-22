@@ -14,7 +14,7 @@ const $TitleSection = document.getElementById("info-equipo");
 
 function drawTitles(equipo){
     const h1 = document.createElement("h1");
-    h1.innerText = equipo.name || "Nombre del Equipo";
+    h1.innerText = equipo.publicName || "Nombre del Equipo";
 
     const p = document.createElement("p");
     p.innerText = equipo.desc || "Descripcion";
@@ -227,7 +227,6 @@ function createPost(titulo,desc,img,avatar,likes) {
 function appendPostContainer(posts){
     $PostContainer.innerHTML = "";
     posts.forEach(data =>{
-        console.log(data);
         
         const post = createPost(
             data.title,

@@ -16,7 +16,7 @@ from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS
 
 router = APIRouter()
 
-# GET DATA
+# MARK:GET DATA
 
 @router.post("/get-data")
 async def getData(current_team:Equipo=Depends(get_current_user)):
@@ -26,7 +26,8 @@ async def getData(current_team:Equipo=Depends(get_current_user)):
     query = select(Equipo).where(Equipo.equipo_id == id)
     
     data:list[Equipo] = await db_select_query(query)
-    data[0].equipo_password = "????"    
+    data[0].name = "????"    
+    data[0].equipo_password = "????"  
 
     return {
         "message":"ok",
@@ -43,7 +44,7 @@ async def getData(current_team:Equipo=Depends(get_current_user)):
 #     logging.warning(request.cookies)
 #    return {"cookies": request.cookies}
 
-# CRUD Equipo
+# MARK:CRUD Equipo
 @router.post("/crear", status_code=status.HTTP_201_CREATED)
 async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_current_admin)):
     equipo = Equipo.model_validate(equipo_data.model_dump())
@@ -55,6 +56,7 @@ async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_cur
 async def editar(
     id: int,
     name: str = Form(None),
+    publicName:str = Form(None),
     desc: str = Form(None),
     img: UploadFile = File(None),
     evento_id: int = Form(None),
@@ -69,8 +71,8 @@ async def editar(
     # Preparar los datos para actualizar
     data_dump = {}
     
-    if name is not None:
-        data_dump["name"] = name
+    if publicName is not None:
+        data_dump["publicName"] = publicName
     if desc is not None:
         data_dump["desc"] = desc
     if evento_id is not None:
@@ -116,10 +118,22 @@ async def equipo_get_info(id:int):
 @router.get("/filter/{evento_id}")
 async def equipo_get_filter(evento_id:int):
     query = select(Equipo).where(Equipo.evento_id == evento_id)
-    data = await db_select_query(query)
+    equipos = await db_select_query(query)
+
+    data = [
+        {
+        "equipo_id":e.equipo_id,
+        "publicName":e.publicName,
+        "desc":e.desc,
+        "img":e.img,
+        "evento_id":e.evento_id
+        }
+        for e in equipos
+    ]
+
     return {"data":data,"message":f"Equipos del torneo {evento_id}"}
 
-# POSTS
+# MARK:POSTS
 
 @router.post("/publicar")
 async def equipo_publicar(
@@ -169,14 +183,14 @@ async def equipo_publicaciones_all(id: int):
     # Transformar los resultados
     data = []
     for row in results:
-        if isinstance(row, tuple) or (hasattr(row, "_mapping") and len(row) > 1):
+        if hasattr(row, '_mapping'):
+            # If it's a Row object with _mapping
             post_obj = row[0]
             equipo_name = row[1]
             equipo_img = row[2]
         else:
-            post_obj = row
-            equipo_name = None
-            equipo_img = None
+            # If it's already unpacked
+            post_obj, equipo_name, equipo_img = row
 
         data.append(PostWithEquipoResponse(
             post_id=post_obj.post_id,

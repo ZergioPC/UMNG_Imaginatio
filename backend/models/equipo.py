@@ -3,13 +3,14 @@ from typing import Optional
 
 class EquipoBase(SQLModel):
     name:str
+    publicName:str
     desc:str
     img:str = "uploads/users/idle.jpg"
     equipo_password:str
     evento_id:int
 
 class EquipoEdit(SQLModel):
-    name: Optional [str] = Field(default="")
+    publicName: Optional [str] = Field(default="")
     desc: Optional [str] = Field(default="")
     img: Optional [str] = Field(default=None) 
     evento_id:Optional[int] = Field(default=None)

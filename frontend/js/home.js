@@ -112,7 +112,7 @@ updatePagination();
  * @param {number} likes 
  * @returns {Element} post
  */
-function createPost(titulo,desc,img,avatar,likes,id) {
+function createPost(titulo,desc,img,avatar,likes,id, equipo_id) {
     const post = document.createElement("article");
     post.className = "post";
 
@@ -126,6 +126,9 @@ function createPost(titulo,desc,img,avatar,likes,id) {
 
     const teamImg = document.createElement("img");
     teamImg.src = `${API}/${avatar}`;
+    teamImg.addEventListener("click",()=>{
+        window.location = `/equipos/index.html?team=${equipo_id}`
+    });
 
     const title = document.createElement("h2");
     title.innerText = titulo;
@@ -195,7 +198,8 @@ function appendPostContainer(posts){
             data.img,
             data.equipo_img,
             data.likes,
-            data.post_id
+            data.post_id,
+            data.equipo_id
         );
         $PostContainer.appendChild(post);
     });
