@@ -163,8 +163,8 @@ function createPost(titulo,desc,img,avatar,likes,id, equipo_id) {
             }
             return res.json()
         })
-        .then(data => {       
-            alert(data.data);
+        .then(data => {    
+            likesData.innerText = `${likes + 1}`;   
             likesCount.setAttribute("isLiked","true");
             likesImg.src = "images/Global_Icons/heart-svgrepo-com.png"; 
             savePetData()           

@@ -1,4 +1,5 @@
 import API from "../../js/config.js";
+import { resizeAndCompressImage } from "../../js/utils.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     loadEvents();
@@ -19,13 +20,14 @@ function setUpEditPlaceholder(){
 
     imgCurrent.src = `${API}/uploads/users/idle.jpg`;
 
-    btnForm.addEventListener("click",()=>{
+    btnForm.addEventListener("click",async ()=>{
         try {
             if (imgInput.files.length === 0) {
                 throw new Error("No hay Imagen")
             }
 
-            formData.append('img', imgInput.files[0]);
+            const compressedFile = await resizeAndCompressImage(imgInput.files[0]);
+            formData.append('img', compressedFile);
 
             fetch(`${API}/utils/placeholder-img`, {
                 method: 'POST',
