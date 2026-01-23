@@ -1,4 +1,5 @@
 import API from "../../js/config.js";
+import { resizeAndCompressImage } from "../../js/utils.js";
 
 // Variable global para almacenar los datos del equipo
 let TEAM_DATA = null;
@@ -133,7 +134,24 @@ function renderPosts(posts) {
 /**
  * Configura todos los event listeners de la página.
  */
+let GLOBAL_ADD_USER_IMG = null;
+let GLOBAL_POST_IMG = null;
+
 function setupEventListeners() {
+    document.getElementById("add-student-img").addEventListener("change", async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        GLOBAL_ADD_USER_IMG = await resizeAndCompressImage(file);
+    });
+
+    document.getElementById("add-post-img").addEventListener("change", async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        GLOBAL_POST_IMG = await resizeAndCompressImage(file);
+    });
+
     document.getElementById('edit-team-form').addEventListener('submit', handleUpdateTeam);
     document.getElementById('add-student-form').addEventListener('submit', handleAddStudent);
     document.getElementById('edit-student-form').addEventListener('submit', handleUpdateStudent);
@@ -179,7 +197,8 @@ async function handleUpdateTeam(event) {
     // Se añade la imagen solo si el usuario ha seleccionado una
     const imgInput = form.querySelector('#team-img');
     if (imgInput.files.length > 0) {
-        formData.append('img', imgInput.files[0]);
+        const compress =  await resizeAndCompressImage(imgInput.files[0])
+        formData.append('img', compress);
     }
 
     try {
@@ -197,6 +216,10 @@ async function handleAddStudent(event) {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
+    
+    if (GLOBAL_ADD_USER_IMG) {
+        formData.set("img", GLOBAL_ADD_USER_IMG);
+    } 
 
     try {
         await apiFetch('/estudiantes/crear', {
@@ -260,7 +283,8 @@ async function handleUpdateStudent(event) {
     // Se añade la imagen solo si el usuario ha seleccionado una
     const modalImgInput = modalForm.querySelector('#edit-est-img-new');
     if (modalImgInput.files.length > 0) {
-        formData.append('img', modalImgInput.files[0]);
+        const compress = await resizeAndCompressImage(modalImgInput.files[0]);
+        formData.append('img', compress);
     }
 
     try {
@@ -280,6 +304,10 @@ async function handleAddPost(event) {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
+
+    if (GLOBAL_POST_IMG){
+        formData.set("image", GLOBAL_POST_IMG);
+    }
 
     try {
         await apiFetch('/equipo/publicar', {
