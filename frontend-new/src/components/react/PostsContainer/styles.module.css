@@ -1,0 +1,21 @@
+.Container {
+  box-sizing: border-box;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+
+@media screen and (max-width: 950px) {
+  .Container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
