@@ -1,0 +1,10 @@
+:root {
+  /* MEDIDAS */
+  --borde-radio-1: 20px;
+  --borde-radio-2: 25px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}

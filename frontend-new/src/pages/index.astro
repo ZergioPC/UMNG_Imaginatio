@@ -4,8 +4,27 @@ import { Image } from "astro:assets"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
 import { Banner } from "../components/react/Banner"
+
+// BANNER IMAGES
+import bannerImg1 from "../assets/homeBanner/Artboard1.jpg";
+import bannerImg2 from "../assets/homeBanner/Artboard2.jpg";
+import bannerImg3 from "../assets/homeBanner/Artboard3.jpg";
+import bannerImg4 from "../assets/homeBanner/Artboard4.jpg";
+
+const bannerImages = [
+  { src: bannerImg1.src, alt: "Banner 1", bg:"#32a852"},
+  { src: bannerImg2.src, alt: "Banner 2", bg:"#32a2a8"},
+  { src: bannerImg3.src, alt: "Banner 3", bg:"#3632a8"},
+  { src: bannerImg4.src, alt: "Banner 4", bg:"#a8325c"},
+];
 ---
 
 <BaseLayout title="Imaginatio">
 	<h1>Uwu</h1>
+	
+	<Banner 
+		client:load 
+		images={bannerImages}
+	/>
+
 </BaseLayout>
