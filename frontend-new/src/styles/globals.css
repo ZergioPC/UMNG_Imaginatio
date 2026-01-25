@@ -3,6 +3,12 @@
   --borde-radio-1: 20px;
   --borde-radio-2: 15px;
   --borde-radio-3: 10px;
+
+  /* CARTAS */
+  --card-grad-from: #6a5cff;
+  --card-grad-to: #00d4ff;
+  --card-glow: 255,255,255;
+  --card-text: #1f2933;
 }
 
 @font-face {
