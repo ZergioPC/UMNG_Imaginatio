@@ -9,7 +9,7 @@ const navContent = [
   {txt:"Mascota", link:"/mascota"},
   {txt:"Quienes Somos", link:"/about"},
   {txt:"Concursos", link:"/actividades"},
-  {txt:"Eventos Pasados", link:"/historial"},
+  {txt:"Eventos Pasados", link:"/eventos-pasados"},
   {txt:"Edición 2026", link:"/2026"},
 ];
 
