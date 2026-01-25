@@ -2,7 +2,7 @@
   position: relative;
   width:95%;
   height: 300px;
-  margin: 0 auto;
+  margin: 20px auto;
   border-radius: var(--borde-radio-1);
   overflow: hidden;
 }
