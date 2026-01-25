@@ -1,0 +1,52 @@
+.carousel-wrapper {
+  position: absolute;
+  inset: -40%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  transform: rotate(-30deg);
+  overflow: hidden;
+}
+
+.carousel-row {
+  display: flex;
+  width: max-content;
+  animation-duration: 120s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.carousel-row img {
+  width: 260px;
+  height: 160px;
+  object-fit: cover;
+  margin-right: 1rem;
+  border-radius: 12px;
+}
+
+/* Animaciones */
+.carousel-row.left {
+  animation-name: scroll-left;
+}
+
+.carousel-row.right {
+  animation-name: scroll-right;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

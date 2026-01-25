@@ -5,6 +5,8 @@ import TitleMain from "../components/astro/TitleMain.astro";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SpinCard from "../components/astro/SpinCard.astro";
+
+import { CustomCarrusel } from "../components/react/CustomCarrusel"; 
 ---
 
 <BaseLayout title="Quienes Somos">
@@ -14,7 +16,7 @@ import SpinCard from "../components/astro/SpinCard.astro";
     bgImage={wallpaper1}
   />
 
-  <main class="main-container">
+  <main>
     <section class="section">
       <h1 class="title">Imaginatio</h1>
       <p class="text">
@@ -62,34 +64,41 @@ import SpinCard from "../components/astro/SpinCard.astro";
         <li>Impulsar la innovación y el pensamiento crítico</li>
       </ul>
     </section>
-
-    <section class="section">
-      <p class="text">
-        El Imaginatio se consolida como un espacio ideal para explorar tendencias actuales, fortalecer competencias profesionales y generar redes de contacto dentro del ecosistema creativo y tecnológico.
-      </p>
-    </section>
-
-    <section>
-      <h2>Imaginatios Anteriores</h2>
-      <p>Conoce la historia de este evento y su evolución a través de cada generación de ingenieros multimedia.</p>
-      <a href="/eventos-pasados">Ver más</a>
+    
+    <section class="banner">
+      <CustomCarrusel client:visible />
+      <div class="baner-gradient"></div>
+      
+      <div class="banner-text">
+        <h2>Imaginatios Anteriores</h2>
+        <p>
+          El Imaginatio se consolida como un espacio ideal para explorar tendencias actuales, fortalecer competencias profesionales y generar redes de contacto dentro del ecosistema creativo y tecnológico.
+        </p>
+        <p>
+          Conoce la historia de este evento y su evolución a través de cada generación de ingenieros multimedia.
+        </p>
+        <a href="/eventos-pasados">Ver más</a>
+      </div>
     </section>
   </main>
 </BaseLayout>
 
 <style>
-  .main-container {
-    max-width: 960px;
+  .section {
     margin: 0 auto;
-    padding: 3rem 1.5rem;
+    padding: 50px 100px;
+    max-width: 900px;
   }
 
   .cards-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    margin: 20px;
+    padding: 30px 20px;
     height: 400px;
+    background-image: url("/src/assets/images/img03.png");
+    background-attachment: fixed;
+    background-size: cover;
   }
 
   .title {
@@ -121,11 +130,73 @@ import SpinCard from "../components/astro/SpinCard.astro";
     margin-bottom: 0.5rem;
   }
 
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin: 20px 0;
+    overflow: hidden;
+    background: black;
+  }
+
+  .baner-gradient{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #020024;
+    background: linear-gradient(
+      45deg, #0d00ff 0%, #ff00d4 100%
+      );
+      opacity: 85%;
+  }
+
+  .banner-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+    gap: 20px;
+    padding: 50px;
+    z-index: 10;
+    pointer-events: none;
+    font-size: 1.3em;
+  }
+
+  .banner-text h1 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .banner-text a {
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: wheat;
+    background-color: #ff00d4;
+    pointer-events: all;
+  }
+
+  .banner-text a:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
   @media screen and (max-width:650px) {
     .cards-container{
       grid-template-columns: 1fr;
       grid-template-rows: repeat(2,1fr);
       height: 800px;
     } 
+
+    .banner-text {
+      padding: 15px;
+      font-size: 1em;
+    }
   }
 </style>
