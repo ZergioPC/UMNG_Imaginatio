@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/astro/Footer.astro";
 
 import { Banner } from "../components/react/Banner";
 import { PostsContainer } from "../components/react/PostsContainer";
@@ -30,4 +31,5 @@ const bannerImages = [
 
 	<PostsContainer client:visible />
 
+	<Footer />
 </BaseLayout>

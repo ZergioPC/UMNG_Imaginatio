@@ -1,0 +1,144 @@
+---
+import IconYT from "./icons/IconYT.astro";
+import IconIG from "./icons/IconIG.astro";
+import IconFB from "./icons/IconFB.astro";
+import IconMail from "./icons/IconMail.astro";
+import IconTw from "./icons/IconTw.astro";
+
+import UMNG_Escudo from "./icons/IconUMNG.astro";
+
+const redesSociales = [
+  {icon: IconYT, name:"YouTube", link:""},
+  {icon: IconIG, name:"Instagram", link:""},
+  {icon: IconFB, name:"Facebook", link:""},
+  {icon: IconMail, name:"Correo", link:""},
+  {icon: IconTw, name:"Twitch", link:""},
+]
+---
+
+<footer class="Footer">
+  <div class="Footer-info">
+    <ul>
+      <li class="bold">Sede Campus Nueva Granada</li>
+      <li>kilómetro 2, vía Cajicá-Zipaquirá</li>
+      <li>Lunes a viernes, de 8:00 am a 5:00 pm</li>
+      <li>
+        <a 
+          target="_blank" 
+          rel="noopener noreferrer"
+          href="http://sites.google.com/unimilitar.edu.co/multimedia/" 
+        >Ingenieria Multimedia WebSite</a>
+      </li>
+    </ul>
+  </div>
+  
+  <section>
+    <div class="Footer-redes">
+      {redesSociales.map(red => 
+        <a href={red.link} target="_blank">
+          {<red.icon />}
+          <span>{red.name}</span>
+        </a>
+      )}
+    </div>
+    
+    <UMNG_Escudo className="umng"/>
+  </section>
+
+  <small class="Footer-copyright">
+      2025 Gatillo Crew - Ingeniería Multimedia © Icons by <a href="https://www.svgrepo.com">SVG Repo</a>
+  </small>
+</footer>
+
+<style>
+  .Footer {
+    position: relative;
+    height: 300px;
+    padding: 0 10px;
+    background-color: aqua;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .Footer-info {
+    position: absolute;
+    bottom: 2em;
+    left: 20px;
+  }
+  
+  .Footer-info ul{
+    list-style: none;
+    padding: 0;
+  }
+
+  .Footer > section {
+    display: grid;
+    grid-template-columns: 3fr 6fr 3fr;
+    gap: 100px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  .Footer-redes {
+    display: grid;
+    grid-column: 2/3;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: end;
+    gap: 40px;
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .Footer-redes a {text-decoration: none;}
+  
+  .umng {
+    grid-column: 3/4;
+    width: 100%;
+    height: 240px;
+    margin-top: 30px;
+  }
+
+  .Footer-copyright {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 0.7em;
+  }
+
+  @media screen and (max-width:950px) {
+    .Footer {
+      height: auto;
+      padding: 20px;
+    }
+
+    .Footer-info {
+      position: static;
+      text-align: center;
+    } 
+
+    .Footer > section {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    .Footer-redes {
+      margin-top: 0;
+    }
+  }
+
+  @media screen and (max-width:950px) {
+    .Footer-info {
+      font-size: 0.8em;
+    } 
+    
+    .Footer-redes {
+      grid-template-columns: repeat(2, 1fr);
+    }  
+  }
+</style>

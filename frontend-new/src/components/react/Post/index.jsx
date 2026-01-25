@@ -5,11 +5,11 @@ const PLACEHOLDER = {
   post_id: -1,
   title: "str",
   desc: "str",
-  img: "",
+  img: "https://i.pinimg.com/736x/c9/31/bb/c931bb20240ef2fd73d670ffe5ed3b51.jpg",
   equipo_id: -1,
   likes: 777,
   equipo_name: "sample team name",
-  equipo_img: "",
+  equipo_img: "https://i.scdn.co/image/ab67656300005f1fffefae0e11e0686f14c76a9a",
 }
 
 function Post({ onModal, data = PLACEHOLDER}){

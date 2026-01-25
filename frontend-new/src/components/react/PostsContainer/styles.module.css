@@ -1,5 +1,6 @@
 .Container {
   box-sizing: border-box;
+  margin-top: 50px;
   padding: 50px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
