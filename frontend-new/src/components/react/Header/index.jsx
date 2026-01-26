@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 const navContent = [
   {txt:"Mascota", link:"/mascota"},
   {txt:"Quienes Somos", link:"/about"},
-  {txt:"Concursos", link:"/actividades"},
+  {txt:"Concursos", link:"/concursos"},
   {txt:"Eventos Pasados", link:"/eventos-pasados"},
   {txt:"Edición 2026", link:"/2026"},
 ];
