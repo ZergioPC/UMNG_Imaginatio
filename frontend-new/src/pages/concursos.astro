@@ -1,0 +1,20 @@
+---
+import wallpaper1 from "../assets/images/img01.jpg";
+
+import TitleSimple from "../components/astro/TitleSimple.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { EventContainer } from "../components/react/EventContainer";
+---
+
+<BaseLayout title="Concursos">
+  <TitleSimple 
+    titulo="Concursos"
+    subtitulo="Demuestra tus conocimientos en el Imaginatio, participando en los torneos hechos para todos sín importar el nivel"
+  />
+
+  <main>
+    <EventContainer client:load/>
+  </main>
+
+</BaseLayout>
