@@ -24,5 +24,8 @@ const bannerImages = [
 		images={bannerImages}
 	/>
 
-	<PostsContainer client:visible />
+	<PostsContainer 
+		client:visible 
+		endpoint="/post/pages/"
+	/>
 </BaseLayout>

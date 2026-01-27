@@ -5,20 +5,25 @@ import { Modal } from "../Modal";
 
 import styles from "./styles.module.css";
 
-function PostsContainer(){
+const API = "http://localhost:8000"
+
+function PostsContainer({ endpoint }){
   // Loading and Errors
   const [loading, setLoading] = useState(true);
 
   // Paginator
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [maxPages, setMaxPages] = useState(99);
 
   // Modal
   const [openModal, setOpenModal] = useState(false);
   const [dataModal, setDataModal] = useState(null);
-  
+
+  // Posts List
+  const [posts, setPosts] = useState([]);
+
   const prevPage = ()=>{
-    if (currentPage === 1) return;
+    if (currentPage === 0) return;
     setCurrentPage(prev => prev - 1);
   }
 
@@ -34,10 +39,16 @@ function PostsContainer(){
 
   // Fetcg data
   useEffect(()=>{
-    setMaxPages(5);
-    setLoading(false);
+    fetch(API + endpoint + (currentPage))
+    .then(res => res.json())
+    .then(data => {
+      setPosts(data.data);
+      setMaxPages(data.pages);
+      setLoading(false);
+    })
   },[]);
 
+  // MODAL
   useEffect(() => {
     if (openModal) {
       document.body.style.overflow = "hidden";
@@ -52,21 +63,26 @@ function PostsContainer(){
       <section 
         className={styles.Container} 
       >
-        <Post onModal={()=> showModal()}/>
-        <Post onModal={()=> showModal()}/>
-        <Post onModal={()=> showModal()}/>
-        <Post onModal={()=> showModal()}/>
-        <Post onModal={()=> showModal()}/>
+        {posts.length !== 0 ? (
+          posts.map(pub =>
+            <Post 
+              data={pub}
+              onModal={()=> showModal()}
+            />
+          )
+        ) : (
+          <p>No hay más publicaciones</p>
+        )}
       </section>
       <section className={styles.Paginator}>
         <button 
-          disabled={currentPage === 1 || loading}
+          disabled={currentPage === 0 || loading}
           className={styles.pagBefore}
           onClick={prevPage}
         >B</button>
-        <span>{currentPage}</span>
+        <span>{currentPage + 1}</span>
         <button 
-          disabled={currentPage === maxPages || loading}
+          disabled={currentPage === maxPages -1 || loading}
           className={styles.pagBefore}
           onClick={nextPage}
         >A</button>

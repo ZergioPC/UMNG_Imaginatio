@@ -77,11 +77,12 @@ function EquipoInfoContainer(){
     />
 
     {teamData && 
-      (<h2 className={styles.division}>Publicaciones de {teamData.publicName}</h2>)
-    }
-
-    <PostsContainer />
-
+      (<>
+      <h2 className={styles.division}>Publicaciones de {teamData.publicName}</h2>)
+      <PostsContainer
+        endpoint={`/equipo/publicaciones/${teamData.equipo_id}/`}
+      />
+      </>)}
   </>
 );
 }
