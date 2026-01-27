@@ -15,9 +15,14 @@ function EventItem({ onClick, name}){
 
 function TeamItem({ id, name, image }){
   return (
-    <a href={`/equipos?id=${id}`}>
+    <a
+      className={styles.TeamItem} 
+      href={`/equipos?id=${id}`}
+    >
       <img src={image} alt={"Foto de perfil del equipo " + id} />
-      <span>{name}</span>
+      <div>
+        <span>{name}</span>
+      </div>
     </a>
   );
 }
@@ -50,6 +55,8 @@ function EventContainer() {
 
   return (
     <div className={styles.EventContainer}>
+
+      {/* Lista de Eventos */}
       <section className={styles.EventList}>
         {eventos.length !== 0 ? (
           eventos.map((evento, idx) => 
@@ -68,6 +75,8 @@ function EventContainer() {
           <p>No se han creado eventos aún...</p>
         )}
       </section>
+      
+      {/* Evento Info */}
       <section 
         className={
           `${styles.EventInfo} ${viewInfo ? styles.open : ""}`
@@ -75,15 +84,18 @@ function EventContainer() {
         style={{"display": select ? "block" : "none"}}
       >
         <button
+          className={styles.EventInfoBtn}
           onClick={()=> {
             setViewInfo(false);
           }}
         >Back</button>
 
         <h2>{select?.name ?? "Name"}</h2>
-        <p>{select?.desc ?? "Desc"}</p>
+        <div className={styles.EventInfoText}>
+          <p>{select?.desc ?? "Desc"}</p>
+        </div>
         {teams ? (
-          <div>
+          <div className={styles.EventInfoContainer}>
             {teams.map((team, idx) => 
               <TeamItem 
                 key={idx}
@@ -94,10 +106,10 @@ function EventContainer() {
             )}
           </div>
         ) : (
-          <>
-            <p>Se el primer equipo en inscribirte</p>
-            <a href="#">Inscribirse</a>
-          </>
+          <a 
+            href="#"
+            className={styles.EventInfoInscribir}
+          >!Participa aquí!</a>
         )}
       </section>
     </div>
