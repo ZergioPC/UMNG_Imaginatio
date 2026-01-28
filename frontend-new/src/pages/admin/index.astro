@@ -1,0 +1,122 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro"
+---
+
+<AdminLayout title="Login-admin">
+<main>
+  <article>
+    <h1>Admin Login</h1>
+    <label for="user">
+      <span>Usuario</span>
+      <input type="text" id="user">
+    </label>
+    <label for="password">
+      <span>Contraseña</span>
+      <input type="password" id="password">
+    </label>
+    <button id="send">Login</button>
+  </article>
+</main>
+
+<script defer is:inline>
+  const API = "http://localhost:8000";
+
+  document.addEventListener("DOMContentLoaded", ()=>{
+    const user = document.getElementById('user');
+    const pass = document.getElementById('password');
+    const send = document.getElementById('send');
+
+    send.addEventListener('click', () => {
+      const data = {
+        name: user.value,
+        password: pass.value
+      };
+
+      fetch(API + "/auth/admin", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        credentials:"include"
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        
+        if (data.success) {
+          window.location.href = data.success;
+        } else {
+          alert('Login failed');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during login');
+      });
+    });
+  });
+</script>
+</BaseLayout>
+
+<style>
+  main {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    width: 100%;
+  }
+
+  article {
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: white;
+    border: solid 2px black;
+  }
+
+  article h1 {
+    margin-bottom: 20px;
+  }
+
+  article label {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  article label span {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  article input[type="text"],
+  article input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  article button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--principal);
+    color: var(--secundario);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  article button:hover {
+    background-color: var(--secundario);
+    color: var(--principal);
+  }
+</style>
