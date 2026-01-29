@@ -5,6 +5,8 @@ import IconAccount from "../Icons/IconAccount";
 
 import { useState, useEffect } from "react";
 
+const API = "http://localhost:8000";
+
 const navContent = [
   {txt:"Home", link:"/"},
   {txt:"Mascota", link:"/mascota"},
@@ -15,27 +17,40 @@ const navContent = [
 ];
 
 function Header(){
-  const [menu, setMenu] = useState(false);
-  const [perfil, setPerfil] = useState(false);
-
+  const [asideMenu, setAsideMenu] = useState(false);
+  const [asidePerfil, setAsidePerfil] = useState(false);
+  const [teamData, setTeamData] = useState();
   const [isLogged, setIsLogged] = useState(false);
 
   useEffect(()=>{
-    setIsLogged(true);
+    fetch(API + "/equipo/get-data", {
+      method: 'POST',
+      credentials:"include"
+    })
+    .then(response => response.json())
+    .then(data => {            
+      if(data.message){
+        setIsLogged(true);        
+        setTeamData(data.data[0]);
+      }
+    })
+    .catch(error => {
+        console.error('Errora:', error);
+    });
   },[]);
 
   return (<>
     <header className={styles.Header}>
       <div>
         <button
-          onClick={()=> setMenu(true)}
+          onClick={()=> setAsideMenu(true)}
         >
           <IconBurger color="var(--ui-color)"/>
         </button>
         <a href="/">Imaginatio</a>
       </div>
       <button
-        onClick={()=> setPerfil(true)}
+        onClick={()=> setAsidePerfil(true)}
       >
         <IconAccount color="var(--ui-color)"/>
       </button>
@@ -44,15 +59,15 @@ function Header(){
     <aside 
       className={[
         styles.Menu, 
-        menu ? styles.Menu_Show : ""
+        asideMenu ? styles.Menu_Show : ""
       ].join(" ")}
     >
       <button
-        onClick={()=> setMenu(false)}
+        onClick={()=> setAsideMenu(false)}
       >X</button>
       <nav>
-        {navContent.map(page => 
-          <a href={page.link}>{page.txt}</a>
+        {navContent.map((page, idx) => 
+          <a key={idx} href={page.link}>{page.txt}</a>
         )}
       </nav>
     </aside>
@@ -60,23 +75,26 @@ function Header(){
     <aside 
       className={[
         styles.Perfil, 
-        perfil ? styles.Perfil_Show : ""
+        asidePerfil ? styles.Perfil_Show : ""
       ].join(" ")}
     >
       <button
-        onClick={()=> setPerfil(false)}
+        onClick={()=> setAsidePerfil(false)}
       >X</button>
       {isLogged ? (
         <div>
-          <span>Equipo</span>
+          <span>{teamData ? teamData?.publicName : "Equipo"}</span>
           <picture>
-            <img src="" alt="Foto de Perfil del Equipo" />
+            <img 
+              src={teamData ? teamData?.img : "none"}
+              alt="Foto de Perfil del Equipo" 
+            />
           </picture>
-          <a href="#">Panel de Equipo</a>
+          <a href="/equipos-panel">Panel de Equipo</a>
         </div>
       ) : (
         <div>
-          <a href="#">Iniciar Sesión</a>
+          <a href="/login">Iniciar Sesión</a>
           <a href="#" target="_blank">Crear Equipo</a>
         </div>
       )}
