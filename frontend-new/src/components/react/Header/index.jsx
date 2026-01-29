@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 
 import IconBurger from "../Icons/IconBurger";
 import IconAccount from "../Icons/IconAccount";
+import IconClose from "../Icons/IconClose";
 
 import { useState, useEffect } from "react";
 
@@ -64,7 +65,9 @@ function Header(){
     >
       <button
         onClick={()=> setAsideMenu(false)}
-      >X</button>
+      >
+        <IconClose color="var(--ui-color)"/>
+      </button>
       <nav>
         {navContent.map((page, idx) => 
           <a key={idx} href={page.link}>{page.txt}</a>
@@ -80,14 +83,16 @@ function Header(){
     >
       <button
         onClick={()=> setAsidePerfil(false)}
-      >X</button>
+      >
+        <IconClose color="var(--ui-color)"/>
+      </button>
       {isLogged ? (
         <div>
           <span>{teamData ? teamData?.publicName : "Equipo"}</span>
           <picture>
             <img 
               src={teamData ? teamData?.img : "none"}
-              alt="Foto de Perfil del Equipo" 
+              alt={`Foto de Perfil de ${teamData ? teamData?.publicName : ""}`}
             />
           </picture>
           <a href="/equipos-panel">Panel de Equipo</a>

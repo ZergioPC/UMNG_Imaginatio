@@ -22,6 +22,12 @@
 
 .Paginator button {
   background-color: unset;
+  aspect-ratio: 1/1;
+  height: 30px;
+}
+
+.Paginator button:last-child {
+  transform: rotateZ(180deg);
 }
 
 .ModalContent {

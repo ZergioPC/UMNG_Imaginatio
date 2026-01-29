@@ -4,6 +4,7 @@ import { Post } from "../Post";
 import { Modal } from "../Modal";
 
 import styles from "./styles.module.css";
+import ArrowLeft from "../Icons/ArrowLeft";
 
 const API = "http://localhost:8000"
 
@@ -79,13 +80,17 @@ function PostsContainer({ endpoint }){
           disabled={currentPage === 0 || loading}
           className={styles.pagBefore}
           onClick={prevPage}
-        >B</button>
+        >
+          <ArrowLeft color="var(--interactive-default)"/>
+        </button>
         <span>{currentPage + 1}</span>
         <button 
           disabled={currentPage === maxPages -1 || loading}
           className={styles.pagBefore}
           onClick={nextPage}
-        >A</button>
+        >
+          <ArrowLeft color="var(--interactive-default)"/>
+        </button>
       </section>
 
       {openModal && (

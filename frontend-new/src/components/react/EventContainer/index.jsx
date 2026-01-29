@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+
 import styles from './styles.module.css';
+import ArrowLeft from "../Icons/ArrowLeft";
 
 const API = "http://localhost:8000";
 
@@ -88,7 +90,9 @@ function EventContainer() {
           onClick={()=> {
             setViewInfo(false);
           }}
-        >Back</button>
+        >
+          <ArrowLeft color="var(--interactive-default)"/>
+        </button>
 
         <h2>{select?.name ?? "Name"}</h2>
         <div className={styles.EventInfoText}>
