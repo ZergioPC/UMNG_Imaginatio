@@ -6,6 +6,7 @@ import IconAccount from "../Icons/IconAccount";
 import { useState, useEffect } from "react";
 
 const navContent = [
+  {txt:"Home", link:"/"},
   {txt:"Mascota", link:"/mascota"},
   {txt:"Quienes Somos", link:"/about"},
   {txt:"Concursos", link:"/concursos"},
@@ -29,14 +30,14 @@ function Header(){
         <button
           onClick={()=> setMenu(true)}
         >
-          <IconBurger color="#000"/>
+          <IconBurger color="var(--ui-color)"/>
         </button>
         <a href="/">Imaginatio</a>
       </div>
       <button
         onClick={()=> setPerfil(true)}
       >
-        <IconAccount color="#000"/>
+        <IconAccount color="var(--ui-color)"/>
       </button>
     </header>
 

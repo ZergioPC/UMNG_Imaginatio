@@ -39,12 +39,12 @@ const {
 
     background: linear-gradient(
       135deg,
-      var(--card-grad-from),
-      var(--card-grad-to)
+      var(--brand-primary),
+      var(--brand-accent)
     );
     
     font-size: 1.2rem;
-    color: var(--card-text);
+    color: var(--text-inverse);
     cursor: pointer;
 
     overflow: hidden; /* 🔑 solo aquí se corta */
@@ -94,7 +94,7 @@ const {
     inset: -20%;
     background: radial-gradient(
       circle at top left,
-      rgba(var(--card-glow), 0.45),
+      rgba(var(--brand-neutral), 0.45),
       transparent 60%
     );
     opacity: 0;

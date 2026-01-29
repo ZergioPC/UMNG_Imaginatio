@@ -15,17 +15,24 @@
   margin: 10px auto;
   width: 100px;
   height: 50px;
-  background-color: red;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border-radius: var(--borde-radio-3);
+}
+
+.Paginator button {
+  background-color: unset;
 }
 
 .ModalContent {
   width: 100vw;
   height: 100vh;
-  color: white;
+  color: var(--text-inverse);
 }
 
 .ModalContent h2 {
   padding: 20px;
+  color: var(--text-inverse);
 }
 
 .ModalContent picture{

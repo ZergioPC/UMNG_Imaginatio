@@ -5,7 +5,8 @@
   grid-template-columns: 1fr 3fr;
   align-items: center;
   gap: 30px;
-  background-color: yellow;
+  background-color: var(--bg-surface);
+  border-radius: var(--borde-radio-2);
 }
 
 .Titulo picture {
@@ -27,7 +28,8 @@
   padding: 40px;
   gap: 30px;
   text-align: center;
-  background-color: yellow;
+  background-color: var(--bg-surface);
+  border-radius: var(--borde-radio-2);
 }
 
 .Integrantes > h2 {

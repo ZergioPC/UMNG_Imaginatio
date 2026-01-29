@@ -2,7 +2,7 @@
   position: relative;
   margin-bottom: 50px;
   min-height: 400px;
-  background-color: aqua;
+  background-color: var(--bg-page);
 }
 
 .EventList,
@@ -25,7 +25,7 @@
   align-items: center;
   gap: 30px;
   padding: 50px;
-  background-color: red;
+  background-color: var(--bg-surface);
 }
 
 .EventItem {
@@ -35,7 +35,7 @@
   border-radius: 20px;
   overflow: hidden;
   perspective: 500px;
-  transition-duration: 100ms;
+  transition-duration: var(--speed-medium);
 }
 
 .EventItem:active {
@@ -46,7 +46,7 @@
   display: inline-block;
   font-size: 1.7em;
   transition-property: transform;
-  transition-duration: 500ms;
+  transition-duration: var(--speed-slow);
 }
 
 .EventItem:hover span {
@@ -59,7 +59,7 @@
   position: relative;
   display: block;
   padding: 30px;
-  background-color: gold;
+  background-color: var(--bg-subtle);
   clip-path: polygon(40% 0, 60% 0, 60% 0, 40% 0);
   transition: none;
 }
@@ -101,7 +101,9 @@
   padding: 30px;
   width: 300px;
   text-align: center;
-  background: white;
+  background: var(--interactive-default);
+  color: var(--text-inverse);
+  border-radius: var(--borde-radio-3);
 }
 
 .EventInfoContainer {
@@ -120,7 +122,8 @@
   width: 100%;
   aspect-ratio: 1/1;
   overflow: hidden;
-  background-color: red;
+  background-color: var(--brand-accent);
+  border-radius: var(--borde-radio-2);
 }
 
 .TeamItem img {

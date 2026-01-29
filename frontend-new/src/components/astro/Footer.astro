@@ -36,13 +36,18 @@ const redesSociales = [
     <div class="Footer-redes">
       {redesSociales.map(red => 
         <a href={red.link} target="_blank">
-          {<red.icon />}
+          {<red.icon 
+            fill="var(--ui-color)"
+          />}
           <span>{red.name}</span>
         </a>
       )}
     </div>
     
-    <UMNG_Escudo className="umng"/>
+    <UMNG_Escudo 
+      className="umng"
+      fill="var(--ui-color)"
+    />
   </section>
 
   <small class="Footer-copyright">
@@ -55,7 +60,17 @@ const redesSociales = [
     position: relative;
     height: 300px;
     padding: 0 10px;
-    background-color: aqua;
+    background-color: var(--ui-background);
+    color: var(--ui-color);
+  }
+
+  .Footer a {
+    font-style: italic;
+    color: var(--ui-color);
+  }
+
+  .Footer a:hover {
+    opacity: 60%;
   }
 
   .bold {

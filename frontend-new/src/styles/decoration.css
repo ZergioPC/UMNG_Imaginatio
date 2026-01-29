@@ -1,0 +1,38 @@
+:root {
+  /* UI */
+  --ui-background: #000000;
+  --ui-color: #ffffff;
+
+  /* Brand colors */
+  --brand-primary: #61358c;   /* purple-blue */
+  --brand-accent: #c21b58;    /* red-pink */
+  --brand-neutral: #bebebe;   /* soft lavender-gray */
+
+  /* Backgrounds */
+  --bg-page: #cf8888;
+  --bg-surface: #f1f1f1;
+  --bg-subtle: var(--brand-neutral);
+
+  /* Text */
+  --text-primary: #1b1026;
+  --text-secondary: #4a3b5f;
+  --text-muted: #7a6f8c;
+  --text-inverse: #ffffff;
+
+  /* Borders */
+  --border-default: #ddd6e8;
+  --border-strong: #c8bdd8;
+
+  /* Interactive */
+  --interactive-default: var(--brand-primary);
+  --interactive-hover: #4f2a72;
+  --interactive-disabled: #b7aac8;
+
+  /* Focus / states */
+  --focus-ring: rgba(97, 53, 140, 0.4);
+
+  /* State Colors */
+  --state-success: #4caf72;   /* adjusted to not clash */
+  --state-warning: #e0b93f;   /* warmer, readable */
+  --state-error: var(--brand-accent);
+}

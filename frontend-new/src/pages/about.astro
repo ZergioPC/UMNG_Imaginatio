@@ -28,9 +28,9 @@ import { CustomCarrusel } from "../components/react/CustomCarrusel";
       <SpinCard 
         frontText="¿Qué es Imaginatio?"
         color1="#ffff"
-        background1="#0000ff"
-        color2="#ccb2ff"
-        background2="#0a0aff"
+        background1="var(--brand-accent)"
+        color2="#ffff"
+        background2="var(--brand-primary)"
       >
         <p>
           El evento ofrece la oportunidad de participar en <strong>conferencias, charlas y talleres</strong> liderados por profesionales destacados, egresados del programa y empresas que desarrollan productos y servicios en áreas clave de la ingeniería y el diseño multimedia.
@@ -40,9 +40,9 @@ import { CustomCarrusel } from "../components/react/CustomCarrusel";
       <SpinCard 
         frontText="Áreas de enfoque"
         color1="#ffff"
-        background1="#0000ff"
-        color2="#ccb2ff"
-        background2="#0a0aff"
+        background1="var(--brand-accent)"
+        color2="#ffff"
+        background2="var(--brand-primary)"
         delay="500ms"
       >
         <ul>
@@ -147,44 +147,47 @@ import { CustomCarrusel } from "../components/react/CustomCarrusel";
     height: 100%;
     background: #020024;
     background: linear-gradient(
-      45deg, #0d00ff 0%, #ff00d4 100%
+      45deg, var(--brand-primary) 0%, var(--brand-accent) 100%
       );
       opacity: 85%;
   }
 
   .banner-text {
-    position: absolute;
+    z-index: 10;
     inset: 0;
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: end;
     gap: 20px;
     padding: 50px;
-    z-index: 10;
     pointer-events: none;
     font-size: 1.3em;
+    color: var(--text-inverse);
   }
 
-  .banner-text h1 {
-    color: white;
+  .banner-text h2 {
     font-size: 3rem;
     font-weight: 700;
     text-align: center;
+    color: var(--text-inverse);
   }
 
   .banner-text a {
     padding: 10px 20px;
     border-radius: 10px;
     text-decoration: none;
-    color: wheat;
-    background-color: #ff00d4;
+    color: var(--text-inverse);
+    background-color: var(--interactive-default);
     pointer-events: all;
+    border: solid 2px var(--border-default);
   }
 
   .banner-text a:hover {
     cursor: pointer;
     transform: scale(1.1);
+    background-color: var(--interactive-hover);
   }
 
   @media screen and (max-width:650px) {
