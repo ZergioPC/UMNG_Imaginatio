@@ -34,5 +34,5 @@
   /* State Colors */
   --state-success: #4caf72;   /* adjusted to not clash */
   --state-warning: #e0b93f;   /* warmer, readable */
-  --state-error: var(--brand-accent);
+  --state-error: #943945;
 }

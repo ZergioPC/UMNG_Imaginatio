@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
+
 import { FormGeneral } from "../EquipoPanelComponents/FormGeneral";
+import { FormEstudiantes } from "../EquipoPanelComponents/FormEstudiantes";
 
 const API = "http://localhost:8000";
 
 function EquipoPanel(){
-  const [teamData, setTeamData] = useState(null);
+  const [teamData, setTeamData] = useState({
+    equipo_id: 0,
+    publicName: "Team Name",
+    desc: "Descripción",
+  });
+
+  const [studentsData, setStudentsData] = useState([]);
+
   const [load, setLoad] = useState(true);
 
   // General Data
@@ -22,21 +31,48 @@ function EquipoPanel(){
       setLoad(false);
     })
   },[load]);
-  console.log(teamData);
+
+  useEffect(()=>{
+    if (teamData.equipo_id === 0) return;
+    fetch(API + '/estudiantes/filter/' + teamData.equipo_id,{
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    }).then(res => res.json())
+    .then(data => {
+      setStudentsData(data.data);
+      setLoad(false);
+    })
+  },[teamData]);
 
   return (<>
     <section>
       <h2>Información general</h2>
       {!load && (
         <FormGeneral 
+          endpoint={`${API}/equipo/editar/${teamData.equipo_id}`}
           name={teamData ? teamData.publicName : ""}
           description={teamData ? teamData.desc : ""}
           image={teamData ? teamData.img : null}
-          endpoint={`${API}/equipo/editar/${teamData.equipo_id}`}
           onReload={()=> setLoad(true)}
         />
       )}
     </section>
+
+    <section>
+      <h2>Integrantes</h2>
+      <FormEstudiantes 
+        students={studentsData ?? []}
+        endpointCreate={`${API}/estudiantes/crear`}
+        endpointDelete={`${API}/estudiantes/delete/`}
+        endpointEdit={`${API}/estudiantes/editar/`}
+        onReload={()=> setLoad(true)}
+      />
+    </section>
+
+    
   </>);
 }
 
