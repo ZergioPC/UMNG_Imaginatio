@@ -1,21 +1,10 @@
 import "./styles.css";
 import { HashRouter, Routes, Route, NavLink } from 'react-router-dom';
 
-function Home() {
-  return <h2>Home Page</h2>;
-}
-
-function Apariencia() {
-  return <h2>Apariencia</h2>;
-}
-
-function EventosEquipos() {
-  return <h2>Eventos y Equipos</h2>;
-}
-
-function Publicaciones() {
-  return <h2>Publicaciones</h2>;
-}
+import { EventosEquipos } from "../AdminPanelComponents/Pages/EventosEquipos";
+import { Apariencia } from "../AdminPanelComponents/Pages/Apariencia";
+import { Publicaciones } from "../AdminPanelComponents/Pages/Publicaciones";
+import { Home } from "../AdminPanelComponents/Pages/Home";
 
 const links = [
   {to:"/", txt:"Home", element:Home},
@@ -29,8 +18,9 @@ function App() {
     <HashRouter>
       <div className="App-Nav">
         <nav>
-          {links.map(link => 
+          {links.map((link,idx) => 
             <NavLink 
+              key={idx}
               to={link.to}
               className={({ isActive }) =>
                 isActive ? "active" : ""
@@ -41,8 +31,12 @@ function App() {
       </div>
       <div className="App-Content">
         <Routes>
-          {links.map(link => 
-            <Route path={link.to} element={<link.element />} />
+          {links.map((link,idx) => 
+            <Route 
+              key={idx}
+              path={link.to} 
+              element={<link.element />} 
+            />
           )}
         </Routes>
       </div>
