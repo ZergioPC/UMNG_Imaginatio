@@ -1,17 +1,35 @@
+---
+  import IconBack from "../react/Icons/IconBack"
+---
+
 <header>
-  <a href="/">
+  <div>
     <span>Imaginatio</span>
     <span>Admin</span>
+  </div>
+
+  <a href="/">
+    <IconBack client:load color="#000"/>
   </a>
 </header>
 
 <style>
   header {
+    display: flex;
+    justify-content: space-between;
     padding: 10px 20px;
+    border-bottom: solid #000;
   }
+
   span {
     margin: 0 5px;
     font-family: "Imaginatio";
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+  }
+  
+  a {
+    display: block;
+    height: 40px;
+    width: 40px;
   }
 </style>

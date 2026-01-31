@@ -1,68 +1,30 @@
 ---
 import AdminLayout from "../../layouts/AdminLayout.astro"
+import { App } from "../../components/react/AdminPanel";
 ---
 
 <AdminLayout title="Panel-admin">
-  <main>
-    <section>
-      <h2>Estilos de la Página</h2>
-      <div>
-        marcos
-      </div>
-      <div>
-        colores
-      </div>
-      <div>
-        <h3>img-Placeholder</h3>
-      </div>
-    </section>
-
-    <section>
-      <h2>Control de Concursos</h2>
-      <div>
-        <h3>Crear</h3>
-      </div>
-      <div>
-        <h3>Listado de Concursos</h3>
-      </div>
-    </section>
-
-    <section>
-      <h2>Control de Equipos</h2>
-      <div>
-        <h3>Crear equipo</h3>
-      </div>
-      <div>
-        <h3>Listado de Equipos</h3>
-      </div>
-    </section>
-
-    <section>
-      <h2>Control de publicaciones</h2>
-      <div>Tabla de publicaciones</div>
-    </section>
-  </main>
-
   <script defer is:inline>
-      const API = "http://localhost:8000";
+    const API = "http://localhost:8000";
 
-      fetch(API + "/auth/verify-admin", {
-          method: 'POST',
-          credentials:"include"
-      })
-      .then(response => response.json())
-      .then(data => {    
-          if(data.detail){
-              alert(data.detail.message);
-              window.location.href = data.detail.url;
-          }
-          if (data.message) {
-              alert(data.message);
-          }
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      });
+    fetch(API + "/auth/verify-admin", {
+      method: 'POST',
+      credentials:"include"
+    })
+    .then(response => response.json())
+    .then(data => {    
+      if(data.detail){
+        alert(data.detail.message);
+        //window.location.href = data.detail.url;
+      }
+      if (data.message) {
+        //alert(data.message);
+      }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+  </script>
 
-    </script>
+  <App client:only="react"/>
 </AdminLayout>
