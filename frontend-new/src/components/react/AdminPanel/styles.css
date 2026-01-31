@@ -1,0 +1,46 @@
+:root {
+  --color-contrast: #000000;
+  --color-inactive: #a8a8a8;
+  --color-active: #ffffff;
+}
+
+.App-Content{
+  margin-left: 44px;
+}
+
+.App-Nav {
+  z-index: 2;
+  position: fixed;
+  height: 100%;
+  border-right: solid 4px var(--color-contrast);
+}
+
+.App-Nav > nav {
+  margin-left: 10px;
+  padding: 5px 0;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 5px;
+}
+
+.App-Nav a{
+  margin: 0;
+  padding: 10px 0;
+  border-radius: 0px 10px 10px 0px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--color-contrast);
+  background-color: var(--color-inactive);
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  transition-property: padding margin;
+  transition-duration: 100ms;
+}
+
+.App-Nav a.active {
+  margin: 8px 0;
+  padding: 20px 0;
+  background-color: var(--color-active);
+}

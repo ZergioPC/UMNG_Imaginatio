@@ -1,4 +1,5 @@
-import { HashRouter, Routes, Route, Link } from 'react-router-dom';
+import "./styles.css";
+import { HashRouter, Routes, Route, NavLink } from 'react-router-dom';
 
 function Home() {
   return <h2>Home Page</h2>;
@@ -16,22 +17,35 @@ function Publicaciones() {
   return <h2>Publicaciones</h2>;
 }
 
+const links = [
+  {to:"/", txt:"Home", element:Home},
+  {to:"/apariencia", txt:"Apariencia", element:Apariencia},
+  {to:"/eventos-y-equipos", txt:"Eventos y Equipos", element:EventosEquipos},
+  {to:"/publicaciones", txt:"Publicaciones", element:Publicaciones},
+]
+
 function App() {
   return (
     <HashRouter>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/apariencia">Apariencia</Link>
-        <Link to="/eventos-y-equipos">Eventos y Equipos</Link>
-        <Link to="/publicaciones">Publicaciones</Link>
-      </nav>
-      
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/apariencia" element={<Apariencia />} />
-        <Route path="/eventos-y-equipos" element={<EventosEquipos />} />
-        <Route path="/publicaciones" element={<Publicaciones />} />
-      </Routes>
+      <div className="App-Nav">
+        <nav>
+          {links.map(link => 
+            <NavLink 
+              to={link.to}
+              className={({ isActive }) =>
+                isActive ? "active" : ""
+              }
+            >{link.txt}</NavLink>
+          )}
+        </nav>
+      </div>
+      <div className="App-Content">
+        <Routes>
+          {links.map(link => 
+            <Route path={link.to} element={<link.element />} />
+          )}
+        </Routes>
+      </div>
     </HashRouter>
   );
 }
