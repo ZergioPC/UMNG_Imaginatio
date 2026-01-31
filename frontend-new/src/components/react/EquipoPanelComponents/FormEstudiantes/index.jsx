@@ -168,8 +168,6 @@ function FormEstudiantes({
   const [panelOpen, setPanelOpen] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const [currentSelect, setCurrentSelect] = useState(null);
-
-  console.log(currentSelect);
   
   const handleSubmitCreate = async (e) => {
     e.preventDefault();

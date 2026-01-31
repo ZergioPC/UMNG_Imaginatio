@@ -1,0 +1,109 @@
+.FormPost {
+  margin: 20px;
+  padding: 20px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 20px;
+  background-color: var(--bg-surface);
+  border-radius: var(--borde-radio-2);
+}
+
+.FormPostCreate,
+.FormPostTable {
+  padding: 10px;
+  border: solid 2px var(--brand-accent);
+  border-radius: var(--borde-radio-3);
+}
+
+/* MARK: Form */
+
+.FormPostCreate form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.FormPostCreate label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.FormPostCreate label span {
+  font-weight: 600;
+}
+
+.FormPostCreate input[type="text"],
+.FormPostCreate textarea {
+  padding: 0.6rem 0.7rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  font-size: 0.9rem;
+  resize: none;
+}
+
+.FormPostCreate textarea {
+  min-height: 80px;
+}
+
+.FormPostCreate input:focus,
+.FormPostCreate textarea:focus {
+  outline: none;
+  border-color: var(--interactive-default);
+}
+
+.FormPostCreate input[type="file"] {
+  font-size: 0.85rem;
+}
+
+.FormPostCreate img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  margin-bottom: 0.4rem;
+}
+
+.FormPostCreate button {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  border-radius: var(--borde-radio-3);
+}
+
+/* MARK: Tabla */
+
+
+.FormPostTable table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+}
+
+.FormPostTable th,
+.FormPostTable td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.FormPostTable th {
+  font-weight: 500;
+  color: #555;
+}
+
+.FormPostTable td {
+  color: #222;
+}
+
+.FormPostTable tbody tr:hover {
+  background: rgba(131, 78, 141, 0.1);
+}
+
+.FormPostTable button {
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { FormGeneral } from "../EquipoPanelComponents/FormGeneral";
 import { FormEstudiantes } from "../EquipoPanelComponents/FormEstudiantes";
+import { FormPost } from "../EquipoPanelComponents/FormPost";
 
 const API = "http://localhost:8000";
 
@@ -13,6 +14,7 @@ function EquipoPanel(){
   });
 
   const [studentsData, setStudentsData] = useState([]);
+  const [postData, setPostData] = useState([]);
 
   const [load, setLoad] = useState(true);
 
@@ -32,6 +34,7 @@ function EquipoPanel(){
     })
   },[load]);
 
+  // Miembros del equipo
   useEffect(()=>{
     if (teamData.equipo_id === 0) return;
     fetch(API + '/estudiantes/filter/' + teamData.equipo_id,{
@@ -45,6 +48,17 @@ function EquipoPanel(){
       setStudentsData(data.data);
       setLoad(false);
     })
+  },[teamData]);
+
+  // Publicaciones
+  useEffect(()=>{
+    if (teamData.equipo_id === 0) return;
+    fetch(API + '/equipo/publicaciones/' + teamData.equipo_id, {
+      method: 'GET'
+    }).then(res => res.json())
+    .then(data => {
+      setPostData(data.data);
+    });
   },[teamData]);
 
   return (<>
@@ -72,7 +86,15 @@ function EquipoPanel(){
       />
     </section>
 
-    
+    <section>
+      <h2>Publicaciones</h2>
+      <FormPost 
+        posts={postData ?? []}
+        endpointCreate={`${API}/equipo/publicar`}
+        endpointDelete={`${API}/post/delete/`}
+        onReload={()=> setLoad(true)}
+      />
+    </section>
   </>);
 }
 
