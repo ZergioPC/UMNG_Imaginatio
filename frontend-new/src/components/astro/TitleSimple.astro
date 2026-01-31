@@ -11,8 +11,10 @@ const { titulo, subtitulo } = Astro.props;
 
 <style>
   section {
+    display: block;
     box-sizing: border-box;
     width: 100%;
+    margin: 0;
     padding: 50px 100px;
     text-align: center;
   }
@@ -33,8 +35,13 @@ const { titulo, subtitulo } = Astro.props;
   }
 
   @media screen and (max-width: 650px) {
-    .TitleMain {
-      padding: 30px;
+    section {
+      padding: 20px;
+      width: 100%;
+    }
+
+    div {
+      padding: 40px;
     }
 
     h1 {

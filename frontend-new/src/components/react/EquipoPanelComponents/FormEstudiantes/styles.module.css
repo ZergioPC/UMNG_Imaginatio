@@ -15,7 +15,6 @@ form button:active {
 
 .FormEstudiantes {
   position: relative;
-  margin: 10px;
   padding: 10px;
   height: 80vh;
   border-radius: var(--borde-radio-2);
@@ -227,6 +226,14 @@ form button:active {
   margin: 15px auto;
   padding: 10px 20px;
   border-radius: var(--borde-radio-2);
+}
+
+.RowBtnContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .btnEdit {

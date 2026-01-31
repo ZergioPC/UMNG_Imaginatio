@@ -1,5 +1,4 @@
 .FormPost {
-  margin: 20px;
   padding: 20px;
   display: grid;
   grid-template-rows: 1fr auto;
@@ -84,6 +83,7 @@
 
 .FormPostTable th,
 .FormPostTable td {
+  box-sizing: border-box;
   padding: 10px 12px;
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);

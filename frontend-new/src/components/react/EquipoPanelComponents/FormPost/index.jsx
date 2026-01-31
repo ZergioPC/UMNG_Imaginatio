@@ -5,10 +5,10 @@ import styles from "./styles.module.css";
 function RowTable({ id, title, likes, onDelete }){
   return (
     <tr>
-      <td style={{"width":"20px"}}>{id}</td>
-      <td style={{"width":"auto"}}>{title}</td>
-      <td style={{"width":"40px"}}>{likes}</td>
-      <td style={{"width":"40px"}}>
+      <td style={{"max-width":"20px"}}>{id}</td>
+      <td style={{"max-width":"auto"}}>{title}</td>
+      <td style={{"max-width":"40px"}}>{likes}</td>
+      <td style={{"max-width":"40px"}}>
         <button 
           onClick={onDelete}
         >borrar</button>

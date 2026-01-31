@@ -9,14 +9,16 @@ function RowTable({ name, onEdit, onDelete }){
     <tr>
       <td>{name}</td>
       <td>
-        <button 
-          className={styles.btnEdit}
-          onClick={onEdit}
-        >editar</button>
-        <button 
-          className={styles.btnDelete}
-          onClick={onDelete}
-        >borrar</button>
+        <div className={styles.RowBtnContainer}>
+          <button 
+            className={styles.btnEdit}
+            onClick={onEdit}
+          >editar</button>
+          <button 
+            className={styles.btnDelete}
+            onClick={onDelete}
+          >borrar</button>
+        </div>
       </td>
     </tr>
   );

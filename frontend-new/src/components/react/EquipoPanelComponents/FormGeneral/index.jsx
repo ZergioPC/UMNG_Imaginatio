@@ -28,9 +28,6 @@ function FormGeneral({ name, description, image, endpoint, onReload }) {
     try {
       const response = await fetch(endpoint, {
         method: "PATCH",
-        headers: {
-          'Content-Type': 'application/json',
-        },
         credentials: 'include',
         body: formData,
       });
@@ -70,12 +67,12 @@ function FormGeneral({ name, description, image, endpoint, onReload }) {
         <span>Imagen de Perfil del Equipo</span>
 
         {preview && (
-          <img
-            src={preview}
-            alt="current-image"
-            width="350"
-            className={styles.imagePreview}
-          />
+          <picture className={styles.imagePreview}>
+            <img
+              src={preview}
+              alt="current-image"
+            />
+          </picture>
         )}
 
         <input

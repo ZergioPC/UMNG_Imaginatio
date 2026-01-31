@@ -1,6 +1,5 @@
 .form {
   box-sizing: border-box;
-  margin: 10px 20px;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -31,10 +30,17 @@
 }
 
 .imagePreview {
+  display: block;
   margin-top: 0.5rem;
   border-radius: 8px;
-  object-fit: cover;
   border: 1px solid var(--border-strong);
+}
+
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: contain;
 }
 
 .fileInput {

@@ -4,6 +4,8 @@ import { FormGeneral } from "../EquipoPanelComponents/FormGeneral";
 import { FormEstudiantes } from "../EquipoPanelComponents/FormEstudiantes";
 import { FormPost } from "../EquipoPanelComponents/FormPost";
 
+import styles from "./styles.module.css";
+
 const API = "http://localhost:8000";
 
 function EquipoPanel(){
@@ -70,7 +72,7 @@ function EquipoPanel(){
           name={teamData ? teamData.publicName : ""}
           description={teamData ? teamData.desc : ""}
           image={teamData ? teamData.img : null}
-          onReload={()=> setLoad(true)}
+          onReload={()=> window.location.reload()}
         />
       )}
     </section>
