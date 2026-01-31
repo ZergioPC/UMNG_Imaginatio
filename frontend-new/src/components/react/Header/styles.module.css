@@ -149,6 +149,19 @@
   .Header a{
     font-size: 28px;
   }
+
+  .Menu ,
+  .Perfil { width: 100%}
+
+  .Menu { left: -100%;}
+  .Perfil { right: -100%;}
+
+  .Menu_Show {
+    transform: translateX(100%);
+  }
+  .Perfil_Show {
+    transform: translateX(-100%);
+  }
 }
 
 @media screen and (max-width:350px) {
