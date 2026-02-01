@@ -47,3 +47,47 @@
 .hideTeams {
   width: 0px !important;
 }
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Form p {
+  margin: 10px;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.Form textarea { min-height: 200px; resize: none;}
+
+.Form input[type=text], 
+.Form input[type=password] { height: 2em;}
+
+.Form textarea,
+.Form input[type=text],
+.Form input[type=password] { 
+  width: 100%;
+}
+
+.Form .btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.Form button {
+  padding: 10px 15px;
+  border: solid 2px #000;
+  border-radius: 10px;
+}
+
+.Form button:first-child {background-color: #95ff80;}
+.Form button:last-child {background-color: #a3a3a3;}
+
+.Form button:hover {
+  background-color: #fff !important;
+}
