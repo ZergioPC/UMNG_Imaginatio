@@ -1,0 +1,49 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.Container > section {
+  width: 100%;
+  overflow-x: hidden;
+  transition-property: width;
+  transition-duration: 250ms;
+}
+
+.btn-add {
+  margin: 10px auto;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #949bff;
+  border: solid 1px #000;
+}
+
+.Teams {
+  padding: 10px;
+  border: dashed 3px #707070;
+  border-radius: 10px;
+}
+
+.teams-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.teams-header strong {
+  color: #585858;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.close-teams {
+  display: block;
+  aspect-ratio: 1/1;
+  width: 30px;
+}
+
+.hideTeams {
+  width: 0px !important;
+}
