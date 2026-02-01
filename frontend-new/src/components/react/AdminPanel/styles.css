@@ -4,6 +4,11 @@
   --color-active: #ffffff;
 }
 
+.App-Content,
+.App-Nav {
+  transform: translateY(60px);
+}
+
 .App-Content{
   margin-left: 44px;
   padding: 10px;
