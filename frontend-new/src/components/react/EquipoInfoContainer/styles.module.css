@@ -93,6 +93,7 @@
 }
 
 .Integrantes picture {
+  position: relative;
   display: block;
   aspect-ratio: 1/1;
   overflow: hidden;
@@ -298,4 +299,18 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
+}
+
+.shake {
+  animation: shake 6s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%   { transform: rotateZ(0); }
+  2%  { transform: rotateZ(-1deg); }
+  4%  { transform: rotateZ(1deg); }
+  6%  { transform: rotateZ(-1deg); }
+  8%  { transform: rotateZ(1deg); }
+  10% { transform: rotateZ(0); }
+  100% { transform: rotateZ(0); }
 }

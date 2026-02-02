@@ -46,8 +46,13 @@ function Integrantes({ students }) {
                     setSelect(user);
                     setTwist(true);
                   }}
+                  className={styles.shake}
+                  style={{"animationDelay":`${500*idx}ms`}}
                 >
-                  <img src={user.img} alt={"Foto de " + user.name} />
+                  <img 
+                    src={user.img} 
+                    alt={"Foto de " + user.name}
+                  />
                 </picture>
               ))}
             </div>

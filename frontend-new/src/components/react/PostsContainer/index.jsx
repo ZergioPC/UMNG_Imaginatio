@@ -58,7 +58,6 @@ function PostsContainer({ endpoint }){
     }
   }, [openModal]);
 
-
   return (
     <>
       <section 
@@ -69,7 +68,7 @@ function PostsContainer({ endpoint }){
             <Post 
               key={idx}
               data={pub}
-              onModal={()=> showModal()}
+              onModal={()=> showModal(pub)}
             />
           )
         ) : (

@@ -1,4 +1,6 @@
 import React from "react";
+import IconClose from "../Icons/IconClose";
+
 import styles from "./styles.module.css";
 
 function Modal({children, onClose,}){
@@ -9,7 +11,9 @@ function Modal({children, onClose,}){
       </div>
       <button
         onClick={onClose}
-      >Close</button>
+      >
+        <IconClose color="var(--brand-primary)"/>
+      </button>
     </div>
   );
 }
