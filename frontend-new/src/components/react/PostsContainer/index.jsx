@@ -65,8 +65,9 @@ function PostsContainer({ endpoint }){
         className={styles.Container} 
       >
         {posts.length !== 0 ? (
-          posts.map(pub =>
+          posts.map((pub,idx) =>
             <Post 
+              key={idx}
               data={pub}
               onModal={()=> showModal()}
             />

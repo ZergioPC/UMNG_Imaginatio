@@ -17,8 +17,7 @@ const API = "http://localhost:8000";
 function Post({ onModal, data = PLACEHOLDER}){
   const [liked, setLiked] = useState(false);
 
-  console.log(data);
-  
+  //console.log(data);
 
   return (
     <article className={styles.Post}>
