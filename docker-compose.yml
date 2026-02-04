@@ -62,6 +62,29 @@ services:
           memory: 512M
 
   # - - - - - - - -
+  #    FRONTEND
+  # - - - - - - - -
+  frontend:
+    image: imaginatio/frontend:v0.2
+    container_name: frontend
+    restart: unless-stopped
+    build:
+      context: ./frontend-new  # Cambia esto a la ruta de tu nuevo frontend
+      dockerfile: Dockerfile
+    expose:
+      - "80"
+    networks:
+      - frontend-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  # - - - - - - - -
   #     NGINX
   # - - - - - - - -
   nginx:
@@ -76,10 +99,10 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./.certs:/etc/nginx/ssl:ro
-      - ./frontend:/usr/share/nginx/html:ro
     depends_on:
       - backend
       - mini-game
+      - frontend 
     networks:
       - frontend-network
       - backend-network

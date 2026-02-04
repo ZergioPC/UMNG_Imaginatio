@@ -3,73 +3,73 @@
     "version": "I",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/I.png",
+    "image": "/lastEvents/I.png",
     "text": "Imaginatio 2014-1 es la primera instancia del evento Imaginatio realizada en la sede del Campus de la UMNG. El tema es la ingeniería en sí misma, con charlas sobre producción y renderizado de video." 
   },{
     "version": "II",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/II.png",
+    "image": "/lastEvents/II.png",
     "text": "Imaginatio 2014-2 es la segunda aparición del evento. Esta edición está enfocada en un lado más artístico, con charlas sobre modelado 3D y animación, usando algunas series como ejemplo." 
   },{
     "version": "III",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/III.png",
+    "image": "/lastEvents/III.png",
     "text": "El Imaginatio de 2015-1 fue la tercera instancia de este evento. Esta edición estuvo dirigida a un aspecto más artístico, con enfoque en animación y series animadas, con charlas sobre conceptos de animación y talleres sobre el mismo tema." 
   },{
     "version": "IV",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/IV.png",
+    "image": "/lastEvents/IV.png",
     "text": "El cuarto Imaginatio, el de 2015-2, fue una edición más abierta, con temas como programación y charlas que iban desde concept art hasta renderizado 3D." 
   },{
     "version": "V",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/V.png",
+    "image": "/lastEvents/V.png",
     "text": "El primer Imaginatio de 2016, el quinto en general, trajo temas más serios como la industria y el profesionalismo. También es la primera edición en tener la Geek Race." 
   },{
     "version": "VI",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/VI.png",
+    "image": "/lastEvents/VI.png",
     "text": "En el segundo Imaginatio de 2016 se dio una colaboración especial entre la UMNG y la Universidad de Buenaventura. Incluyó charlas de exalumnos y otros profesionales de la industria." 
   },{
     "version": "VII",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/VII.png",
+    "image": "/lastEvents/VII.png",
     "text": "Imaginatio número VII, el primero de 2017. Tuvo un enfoque principal en modelado 3D, con un taller de creación de conceptos de personajes y su posterior modelado en 3D. Los resultados son visibles en la sección de Google Sites de este Imaginatio." 
   },{
     "version": "IX",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/IX.jpg",
+    "image": "/lastEvents/IX.jpg",
     "text": "El noveno Imaginatio trae un tema más ecológico. Incluye charlas sobre cómo esta carrera de ingeniería puede ayudar en aspectos como la producción de alimentos. También se realizó el primer torneo de fútbol del evento." 
   },{
     "version": "X",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/X.jpg",
+    "image": "/lastEvents/X.jpg",
     "text": "Imaginatio número 10 fue la última edición de los Imaginatio semestrales, pero aun así trajo temas interesantes a la mesa. Con ideas como monetización del trabajo y networking. También hubo nuevos torneos de videojuegos como LoL y Fortnite." 
   },{
     "version": "XI",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/XI.jpg",
+    "image": "/lastEvents/XI.jpg",
     "text": "Imaginatio XI regresa a algunos temas básicos de nuestra carrera, como Diseño y Fotografía. Incluye no solo una competencia de fotografía que resulta un deleite visual, sino también una Certificación de Alta Calidad otorgada por el Gobierno." 
   },{
     "version": "XII",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/XII.jpg",
+    "image": "/lastEvents/XII.jpg",
     "text": "El undécimo Imaginatio recibió un título especial: El Día de la Ingeniería Multimedia. Se presentaron una gran variedad de charlas de todos los aspectos que hacen única esta carrera, desde programación hasta arte, desde lo práctico hasta lo teórico." 
   },{
     "version": "XIV",
     "width": "700",
     "height": "700", 
-    "image": "/src/assets/lastEvents/XIV.gif",
+    "image": "/lastEvents/XIV.gif",
     "text": "En el Imaginatio de 2022, el número 14, se abordó un tema emergente: los metaversos y las distintas formas de realidad virtual/aumentada. Se presentaron drones, NFTs y múltiples trabajos realizados por estudiantes, y todo cerró con un concierto de The Black Rope." 
   }
 ]

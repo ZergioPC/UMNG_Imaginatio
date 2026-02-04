@@ -13,8 +13,8 @@
 
 @font-face {
   font-family: 'Inter'; /* A name you choose to use later */
-  src: url('/src/assets/fonts/Inter/Inter-VariableFont_opsz\,wght.ttf') format('ttf'),
-       url('/src/assets/fonts/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf') format('ttf');
+  src: url('../assets/fonts/Inter/Inter-VariableFont_opsz\,wght.ttf') format('ttf'),
+       url('../assets/fonts/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
   font-display: swap; /* Prevents render blocking while loading */
@@ -22,7 +22,7 @@
 
 @font-face {
   font-family: 'Imaginatio'; /* A name you choose to use later */
-  src: url('/src/assets/fonts/Imaginatio/Imaginatio_v1.woff') format('woff');
+  src: url('../assets/fonts/Imaginatio/Imaginatio_v1.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap; /* Prevents render blocking while loading */

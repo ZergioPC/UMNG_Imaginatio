@@ -2,17 +2,17 @@ import { useMemo } from "react";
 import "./CustomCarrusel.css";
 
 const images = [
-  "/src/assets/lastEvents/I.png",
-  "/src/assets/lastEvents/II.png",
-  "/src/assets/lastEvents/III.png",
-  "/src/assets/lastEvents/IV.png",
-  "/src/assets/lastEvents/V.png",
-  "/src/assets/lastEvents/VI.png",
-  "/src/assets/lastEvents/VII.png",
-  "/src/assets/lastEvents/X.jpg",
-  "/src/assets/lastEvents/XI.jpg",
-  "/src/assets/lastEvents/XII.jpg",
-  "/src/assets/lastEvents/XIV.gif",
+  "/lastEvents/I.png",
+  "/lastEvents/II.png",
+  "/lastEvents/III.png",
+  "/lastEvents/IV.png",
+  "/lastEvents/V.png",
+  "/lastEvents/VI.png",
+  "/lastEvents/VII.png",
+  "/lastEvents/X.jpg",
+  "/lastEvents/XI.jpg",
+  "/lastEvents/XII.jpg",
+  "/lastEvents/XIV.gif",
 ]
 
 // CONFIG — add/remove rows here

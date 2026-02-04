@@ -5,7 +5,7 @@ import { App } from "../../components/react/AdminPanel";
 
 <AdminLayout title="Panel-admin">
   <script defer is:inline>
-    const API = "http://localhost:8000";
+    const API = "/api";
 
     fetch(API + "/auth/verify-admin", {
       method: 'POST',
