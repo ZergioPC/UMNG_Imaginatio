@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./styles.module.css";
+import imageCompression from "browser-image-compression";
 
 function FormGeneral({ name, description, image, endpoint, onReload }) {
   const [publicName, setPublicName] = useState(name);
@@ -22,7 +23,13 @@ function FormGeneral({ name, description, image, endpoint, onReload }) {
     formData.append("publicName", publicName);
     formData.append("desc", desc);
     if (imgFile) {
-      formData.append("img", imgFile);
+      const compress =  await imageCompression(imgFile,{
+        maxSizeMB: 0.5,
+        maxWidthOrHeight: 800,
+        useWebWorker: true,
+        initialQuality: 0.75,
+      });
+      formData.append("img", compress);
     }
 
     try {
@@ -64,7 +71,7 @@ function FormGeneral({ name, description, image, endpoint, onReload }) {
       </label>
 
       <label className={styles.label}>
-        <span>Imagen de Perfil del Equipo</span>
+        <span>Imagen de Perfil del Equipo <i>(Relación 1:1)</i></span>
 
         {preview && (
           <picture className={styles.imagePreview}>

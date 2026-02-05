@@ -1,6 +1,7 @@
 import {useState} from "react";
 
 import styles from "./styles.module.css";
+import imageCompression from "browser-image-compression";
 
 function RowTable({ id, title, likes, onDelete }){
   return (
@@ -32,6 +33,21 @@ function FormPost({ posts, endpointCreate, endpointDelete, onReload}){
     
     if(!confirm("Todo listo para publicar:" + form.title.value)){
       return;
+    }
+
+    try {
+      const imageFile = formData.get("image")
+      if (imageFile && imageFile.size > 0) {
+        const compressedFile = await imageCompression(imageFile, {
+          maxSizeMB: 0.8,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+          initialQuality: 0.8,
+        });
+        formData.set("image", compressedFile);
+      }
+    } catch (error) {
+       console.log(error);
     }
     //Example: inspect the data
     // for (const [key, value] of formData.entries()) {

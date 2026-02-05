@@ -1,8 +1,9 @@
 import { useState } from "react";
 
+import styles from "./styles.module.css";
 import IconBack from "../../Icons/IconBack";
 
-import styles from "./styles.module.css";
+import imageCompression from "browser-image-compression";
 
 const API = "/api";
 
@@ -136,7 +137,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
 
       <div className={styles.FormPanelImage}>
         <label>
-          <span>Foto de Perfil</span>
+          <span>Foto de Perfil <i>(Relación 1:1)</i></span>
           {preview && (
             <img src={preview} alt="Profile preview"/>
           )}
@@ -182,6 +183,21 @@ function FormEstudiantes({
     const form = e.target;
     const formData = new FormData(form);
 
+    try {
+      const imageFile = formData.get("img")
+      if (imageFile && imageFile.size > 0) {
+        const compressedFile = await imageCompression(imageFile, {
+          maxSizeMB: 0.5,
+          maxWidthOrHeight: 800,
+          useWebWorker: true,
+          initialQuality: 0.75,
+        });
+        formData.set("img", compressedFile);
+      }
+    } catch (error) {
+       console.log(error);
+    }
+
     //Example: inspect the data
     // for (const [key, value] of formData.entries()) {
     //   console.log(key, value);
@@ -207,6 +223,21 @@ function FormEstudiantes({
     const form = e.target;
     const formData = new FormData(form);
     formData.append('equipo_id', currentSelect.equipo_id);
+
+    try {
+      const imageFile = formData.get("img")
+      if (imageFile && imageFile.size > 0) {
+        const compressedFile = await imageCompression(imageFile, {
+          maxSizeMB: 0.5,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+          initialQuality: 0.7,
+        });
+        formData.set("img", compressedFile);
+      }
+    } catch (error) {
+       console.log(error);
+    }
 
     //Example: inspect the data
     // for (const [key, value] of formData.entries()) {

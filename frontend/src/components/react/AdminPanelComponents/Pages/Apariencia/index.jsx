@@ -1,17 +1,33 @@
 import { useState, useEffect } from "react";
 
 import "./Apariencia.css";
+import imageCompression from "browser-image-compression";
 
 const API = "/api";
 
 function Apariencia(){
   const [imgPlaceholder, setImgPlaceholder] = useState(`${API}/uploads/users/idle.jpg`);
   // Fetch Placeholder
-  const handlePostPlaceHolder = e => {
+  const handlePostPlaceHolder = async e => {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
+
+    try {
+      const imageFile = formData.get("img")
+      if (imageFile && imageFile.size > 0) {
+        const compressedFile = await imageCompression(imageFile, {
+          maxSizeMB: 0.8,
+          maxWidthOrHeight: 800,
+          useWebWorker: true,
+          initialQuality: 0.75,
+        });
+        formData.set("img", compressedFile);
+      }
+    } catch (error) {
+        console.log(error);
+    }
 
     fetch(`${API}/utils/placeholder-img`, {
       method: 'POST',
