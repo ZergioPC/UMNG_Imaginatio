@@ -21,7 +21,7 @@ function TeamItem({ id, name, image }){
       className={styles.TeamItem} 
       href={`/equipos?id=${id}`}
     >
-      <img src={image} alt={"Foto de perfil del equipo " + id} />
+      <img src={API + image} alt={"Foto de perfil del equipo " + id} />
       <div>
         <span>{name}</span>
       </div>

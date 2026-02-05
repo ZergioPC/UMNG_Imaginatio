@@ -24,13 +24,19 @@ function Post({ onModal, data = PLACEHOLDER}){
       <div className={styles.Post_marco} onClick={onModal}></div>
       <header>
         <a href={"/equipos?id=" + data.equipo_id}>
-          <img src={data.equipo_img} alt={"Foto de perfil del equipo " + data.equipo_id} />
+          <img 
+            src={API + data.equipo_img} 
+            alt={"Foto de perfil del equipo " + data.equipo_id} 
+          />
         </a>
         <span>{data.equipo_name}</span>
       </header>
       <main>
         <picture>
-          <img src={data.img} alt={"Publicacion del equipo " + data.equipo_id} />
+          <img 
+            src={API + data.img} 
+            alt={"Publicacion del equipo " + data.equipo_id} 
+          />
         </picture>
       </main>
       <footer>

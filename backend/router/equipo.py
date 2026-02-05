@@ -136,7 +136,7 @@ async def editar(
         with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
             f.write(contents)
         
-        data_dump["img"] = f"{IMG_PATH_USERS}/{filename}"
+        data_dump["img"] = f"/{IMG_PATH_USERS}/{filename}"
     
     # Solo actualizar si hay datos
     if data_dump:
@@ -175,7 +175,7 @@ async def equipo_publicar(
     data = {
         "title": title,
         "desc": description,
-        "img": f"{IMG_PATH_POSTS}/{filename}",
+        "img": f"/{IMG_PATH_POSTS}/{filename}",
         "equipo_id": current_team.equipo_id,
     }
 

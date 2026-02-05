@@ -17,7 +17,10 @@ function Titulo({ name, image }){
   return (
     <section className={styles.Titulo}>
       <picture>
-        <img src={image || "/uploads/users/idle.jpg"} alt={"Foto del equipo " + name} />
+        <img 
+          alt={"Foto del equipo " + name}
+          src={API + image || "/api/uploads/users/idle.jpg"} 
+        />
       </picture>
       <h1>{name}</h1>
     </section>
@@ -50,7 +53,7 @@ function Integrantes({ students }) {
                   style={{"animationDelay":`${500*idx}ms`}}
                 >
                   <img 
-                    src={user.img} 
+                    src={API +user.img} 
                     alt={"Foto de " + user.name}
                   />
                 </picture>
@@ -72,7 +75,7 @@ function Integrantes({ students }) {
           <div className={`${styles.EstudianteInfo} `}>
             <picture>
               <img
-                src={select?.img || "/uploads/users/idle.jpg"}
+                src={API + select?.img || "/api/uploads/users/idle.jpg"}
                 alt={"Foto de perfil de " + select?.name}
               />
             </picture>

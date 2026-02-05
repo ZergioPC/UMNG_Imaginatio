@@ -4,6 +4,8 @@ import IconBack from "../../Icons/IconBack";
 
 import styles from "./styles.module.css";
 
+const API = "/api";
+
 function RowTable({ name, onEdit, onDelete }){
   return (
     <tr>
@@ -35,7 +37,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
   const [twitter, setTwitter] = useState(user?.twitter || "");
   const [tiktok, setTiktok] = useState(user?.tiktok || "");
 
-  const [preview, setPreview] = useState(user?.img || "none");
+  const [preview, setPreview] = useState(API + user?.img || "none");
   const [img, setImg] = useState(null);
 
   return (
@@ -46,6 +48,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
           <input
             type="text"
             name="name"
+            placeholder="Samuel de Luque"
             required={required}
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
@@ -68,6 +71,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
           <input
             type="email"
             name="email"
+            placeholder="est.estudiante@correo.com"
             required={required}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -103,7 +107,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             name="instagram"
             value={instagram}
             onChange={(e) => setInstagram(e.target.value)}
-            placeholder="@example"
+            placeholder="example"
           />
         </label>
 
@@ -114,7 +118,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             name="twitter"
             value={twitter}
             onChange={(e) => setTwitter(e.target.value)}
-            placeholder="@example"
+            placeholder="example"
           />
         </label>
 
@@ -125,7 +129,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             name="tiktok"
             value={tiktok}
             onChange={(e) => setTiktok(e.target.value)}
-            placeholder="@example"
+            placeholder="example"
           />
         </label>
       </div>

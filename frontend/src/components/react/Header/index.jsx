@@ -91,7 +91,7 @@ function Header(){
           <span>{teamData ? teamData?.publicName : "Equipo"}</span>
           <picture>
             <img 
-              src={teamData ? teamData?.img : "none"}
+              src={teamData ? API +teamData?.img : "none"}
               alt={`Foto de Perfil de ${teamData ? teamData?.publicName : ""}`}
             />
           </picture>

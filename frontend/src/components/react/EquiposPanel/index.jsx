@@ -71,7 +71,7 @@ function EquipoPanel(){
           endpoint={`${API}/equipo/editar/${teamData.equipo_id}`}
           name={teamData ? teamData.publicName : ""}
           description={teamData ? teamData.desc : ""}
-          image={teamData ? teamData.img : null}
+          image={teamData ? API + teamData.img : null}
           onReload={()=> window.location.reload()}
         />
       )}

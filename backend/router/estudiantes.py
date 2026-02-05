@@ -66,7 +66,7 @@ async def estudiante_crear(
         "twiter": twiter,
         "tiktok": tiktok,
         "equipo_id": current_team.equipo_id,
-        "img": f"{IMG_PATH_USERS}/{filename}",
+        "img": f"/{IMG_PATH_USERS}/{filename}",
     }
 
     est = Estudiante.model_validate(data)
@@ -139,7 +139,7 @@ async def estudiante_editar(
         with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
             f.write(contents)
         
-        data_dump["img"] = f"{IMG_PATH_USERS}/{filename}"
+        data_dump["img"] = f"/{IMG_PATH_USERS}/{filename}"
     
     # Solo actualizar si hay datos
     if data_dump:
