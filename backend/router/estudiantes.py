@@ -49,7 +49,9 @@ async def estudiante_crear(
     contents = await img.read()
 
     # Save or process the image
-    filename = f"{uuid4()}.jpg"
+    ext = img.content_type.split("/")[-1]
+    filename = f"est_{current_team.equipo_id}_{codigo}.{ext}"
+
     os.makedirs(IMG_PATH, exist_ok=True)
     os.makedirs(IMG_PATH_USERS, exist_ok=True)
     with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
@@ -134,7 +136,8 @@ async def estudiante_editar(
         contents = await img.read()
         
         # Guardar la imagen
-        filename = f"{uuid4()}.jpg"
+        ext = img.content_type.split("/")[-1]
+        filename = f"est_{current_team.equipo_id}_{codigo}.{ext}"
         
         with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
             f.write(contents)

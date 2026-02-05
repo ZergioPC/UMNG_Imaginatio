@@ -96,7 +96,6 @@ async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_cur
 @router.patch("/editar/{id}", status_code=status.HTTP_202_ACCEPTED)
 async def editar(
     id: int,
-    name: str = Form(None),
     publicName:str = Form(None),
     desc: str = Form(None),
     img: UploadFile = File(None),
@@ -129,7 +128,9 @@ async def editar(
         contents = await img.read()
         
         # Guardar la imagen
-        filename = f"{uuid4()}.jpg"
+        ext = img.content_type.split("/")[-1]
+        filename = f"team-{id}.{ext}"
+
         os.makedirs(IMG_PATH, exist_ok=True)
         os.makedirs(IMG_PATH_USERS, exist_ok=True)
         
@@ -165,7 +166,9 @@ async def equipo_publicar(
     contents = await image.read()
 
     # Save or process the image
-    filename = f"{uuid4()}.jpg"
+    ext = image.content_type.split("/")[-1]
+    filename = f"{uuid4()}.{ext}"
+
     os.makedirs(IMG_PATH, exist_ok=True)
     os.makedirs(IMG_PATH_POSTS, exist_ok=True)
     with open(f"{IMG_PATH_POSTS}/{filename}", "wb") as f:
