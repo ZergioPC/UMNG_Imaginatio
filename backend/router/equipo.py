@@ -32,7 +32,48 @@ async def getData(current_team:Equipo=Depends(get_current_user)):
     return {
         "message":"ok",
         "data": data
+    }
+
+@router.get("/get/{id}")
+async def equipo_get_info(id:int):
+    equipo = await db_select_unique(Equipo, id)
+    return {"data":equipo,"message":"Info del Equipo"}
+
+@router.get("/filter/{evento_id}")
+async def equipo_get_filter(evento_id:int):
+    query = select(Equipo).where(Equipo.evento_id == evento_id)
+    equipos = await db_select_query(query)
+
+    data = [
+        {
+        "equipo_id":e.equipo_id,
+        "publicName":e.publicName,
+        "desc":e.desc,
+        "img":e.img,
+        "evento_id":e.evento_id
         }
+        for e in equipos
+    ]
+
+    return {"data":data,"message":f"Equipos del torneo {evento_id}"}
+
+@router.get("/filter-admin/{evento_id}")
+async def equipo_get_filter(evento_id:int, current_admin:str=Depends(get_current_admin)):
+    query = select(Equipo).where(Equipo.evento_id == evento_id)
+    equipos = await db_select_query(query)
+
+    data = [
+        {
+        "equipo_id":e.equipo_id,
+        "name":e.name,
+        "desc":e.desc,
+        "img":e.img,
+        "evento_id":e.evento_id
+        }
+        for e in equipos
+    ]
+
+    return {"data":data,"message":f"Equipos del torneo {evento_id}"}
 
 ## VERIFICAR COOKIES
 #
@@ -107,31 +148,6 @@ async def editar(
 async def equipo_borrar(id:int, current_admin:str=Depends(get_current_admin)):
     await db_delete_unique(Equipo,id)
     return {"message":"Equipo eliminado con Exito"}
-
-# GET DATA
-
-@router.get("/get/{id}")
-async def equipo_get_info(id:int):
-    equipo = await db_select_unique(Equipo, id)
-    return {"data":equipo,"message":"Info del Equipo"}
-
-@router.get("/filter/{evento_id}")
-async def equipo_get_filter(evento_id:int):
-    query = select(Equipo).where(Equipo.evento_id == evento_id)
-    equipos = await db_select_query(query)
-
-    data = [
-        {
-        "equipo_id":e.equipo_id,
-        "publicName":e.publicName,
-        "desc":e.desc,
-        "img":e.img,
-        "evento_id":e.evento_id
-        }
-        for e in equipos
-    ]
-
-    return {"data":data,"message":f"Equipos del torneo {evento_id}"}
 
 # MARK:POSTS
 

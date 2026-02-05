@@ -49,7 +49,7 @@ function EventosEquipos(){
 
   const titulos_equipos = [
     { txt: "ID", key: "equipo_id", size: "30px" },
-    { txt: "Nombre", key: "publicName", size: "auto" },
+    { txt: "Nombre", key: "name", size: "auto" },
     { txt: "Acciones", key: "actions", size: "auto" }
   ];
 
@@ -143,7 +143,7 @@ function EventosEquipos(){
     setOpenModalEventDelete(true);
   }
 
-  // Forms Equipos
+  // MARK: Forms Equipos
   const handleTeamOnCreate = e => {
     e.preventDefault();
       
@@ -207,7 +207,7 @@ function EventosEquipos(){
   useEffect(()=>{
     if (!selectEvent) return;
 
-    fetch(`${API}/equipo/filter/${selectEvent?.evento_id}`, {
+    fetch(`${API}/equipo/filter-admin/${selectEvent?.evento_id}`, {
       credentials: "include" 
     }).then(res => res.json())
     .then(data => {
@@ -218,6 +218,7 @@ function EventosEquipos(){
     }))
   },[selectEvent, load]);
 
+  // MARK: Return
   return (
     <main>
       <h1>Equipos y Eventos</h1>

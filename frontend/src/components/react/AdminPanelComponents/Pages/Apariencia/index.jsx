@@ -5,7 +5,7 @@ import "./Apariencia.css";
 const API = "/api";
 
 function Apariencia(){
-  const [imgPlaceholder, setImgPlaceholder] = useState(`${API}//uploads/users/idle.jpg`);
+  const [imgPlaceholder, setImgPlaceholder] = useState(`${API}/uploads/users/idle.jpg`);
   // Fetch Placeholder
   const handlePostPlaceHolder = e => {
     e.preventDefault();
