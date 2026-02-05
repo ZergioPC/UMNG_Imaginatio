@@ -84,7 +84,7 @@ async def admin_login(data: AdminRequest, response: Response):
     
     return {
         "message": "Login de Admin exitoso",
-        "success": f"{DOMAIN}/admin/panel.html"
+        "success": f"{DOMAIN}/admin/panel"
     }
 
 @router.post("/verify-admin")

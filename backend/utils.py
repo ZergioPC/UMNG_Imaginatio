@@ -9,5 +9,5 @@ DOMAIN_FR:str = f"{DOMAIN}"
 DOMAIN_BK:str = f"{DOMAIN}/api"
 
 IMG_PATH:str = "uploads"
-IMG_PATH_POSTS:str = "uploads/posts"
-IMG_PATH_USERS:str = "uploads/users"
+IMG_PATH_POSTS:str = "/uploads/posts"
+IMG_PATH_USERS:str = "/uploads/users"
