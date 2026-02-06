@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 
 import { useState, useEffect } from "react";
 import { PostsContainer } from "../PostsContainer";
+import { EquipoInfoTeamView } from "../EquipoInfoTeamView";
 
 import IconClose from "../Icons/IconClose";
 import SocialMail from "../Icons/SocialEmail";
@@ -40,26 +41,13 @@ function Integrantes({ students }) {
           className={`${styles.Integrantes} ${twist ? styles.Hide : ''}`}
         >
           <h2>Integrantes</h2>
-          {students && (
-            <div>
-              {students.map((user, idx) => (
-                <picture
-                  key={idx}
-                  onClick={() => {
-                    setSelect(user);
-                    setTwist(true);
-                  }}
-                  className={styles.shake}
-                  style={{"animationDelay":`${500*idx}ms`}}
-                >
-                  <img 
-                    src={API +user.img} 
-                    alt={"Foto de " + user.name}
-                  />
-                </picture>
-              ))}
-            </div>
-          )}
+          <EquipoInfoTeamView 
+            members={students} 
+            onMemberClick={(member) => {
+              setSelect(member);
+              setTwist(true);
+            }}
+          />
         </section>
 
         {/* Back side - Estudiante Info */}
@@ -190,7 +178,7 @@ function EquipoInfoContainer(){
     />
 
     <Integrantes 
-      students={students}
+      students={students ?? []}
     />
 
     {teamData && (<>
