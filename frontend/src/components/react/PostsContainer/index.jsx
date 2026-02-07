@@ -101,7 +101,7 @@ function PostsContainer({ endpoint }){
             <h2>{dataModal?.title ?? "Titulo"}</h2>
             <picture>
               <img 
-                src={API + dataModal?.img ?? ""} 
+                src={API + dataModal?.img || ""} 
                 alt={`Publicación ${dataModal?.id} en Grande`}
               />
             </picture>

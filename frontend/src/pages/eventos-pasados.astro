@@ -3,9 +3,8 @@ import data from "../../public/lastEvents/data.json"
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-import ImgTextSection from "../components/astro/ImgTextSection.astro";
-
 import { CustomCarrusel } from "../components/react/CustomCarrusel"; 
+import { LegacyPagesContainer } from "../components/react/LegacyPagesContainer";
 ---
 
 <BaseLayout title="Eventos Pasados">
@@ -22,30 +21,15 @@ import { CustomCarrusel } from "../components/react/CustomCarrusel";
       </div>
     </section>
 
-    <section class="events">
-      {data.map(event => 
-        <ImgTextSection
-          image={event.image}
-          text={event.text} 
-          version={event.version}
-          width={event.width}
-          height={event.height}
-        />
-      )}
+    <LegacyPagesContainer 
+      data={data}
+      client:load
+    />
     </section>
   </main>
 </BaseLayout>
 
 <style>
-  .events {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-  }
-
   .banner {
     position: relative;
     width: 100%;

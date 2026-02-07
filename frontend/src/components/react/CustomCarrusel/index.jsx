@@ -9,19 +9,23 @@ const images = [
   "/lastEvents/V.png",
   "/lastEvents/VI.png",
   "/lastEvents/VII.png",
+  "/lastEvents/VIII.jpg",
+  "/lastEvents/IX.jpg",
   "/lastEvents/X.jpg",
   "/lastEvents/XI.jpg",
   "/lastEvents/XII.jpg",
   "/lastEvents/XIV.gif",
+  "/lastEvents/XVI.png",
+  "/lastEvents/XVII.jpg"
 ]
 
 // CONFIG — add/remove rows here
 const rowsConfig = [
-  { direction: "left", speed: 80 },
-  { direction: "right", speed: 90 },
-  { direction: "left", speed: 85 },
-  { direction: "right", speed: 95 },
-  { direction: "left", speed: 88 },
+  { direction: "left", speed: 70 },
+  { direction: "right", speed: 80 },
+  { direction: "left", speed: 75 },
+  { direction: "right", speed: 85 },
+  { direction: "left", speed: 78 },
 ];
 
 function Row({ images, direction, speed }) {
