@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 import ArrowLeft from "../Icons/ArrowLeft";
 
+import ReactMarkdown from "react-markdown";
+
 const API = "/api";
 
 function EventItem({ onClick, name}){
@@ -96,7 +98,7 @@ function EventContainer() {
 
         <h2>{select?.name ?? "Name"}</h2>
         <div className={styles.EventInfoText}>
-          <p>{select?.desc ?? "Desc"}</p>
+          <ReactMarkdown>{select?.desc ?? "Desc"}</ReactMarkdown>
         </div>
         {teams ? (
           <div className={styles.EventInfoContainer}>

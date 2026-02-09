@@ -91,3 +91,7 @@
 .Form button:hover {
   background-color: #fff !important;
 }
+
+.Form a {
+  color: #362c96;
+}

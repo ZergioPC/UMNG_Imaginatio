@@ -296,6 +296,8 @@ function EventosEquipos(){
             } 
           />
 
+          <small>Se puede utilizar markdown para agregar una mejor descripción. <a href="https://tutorialmarkdown.com/guia" target="_blank" rel="noopener noreferrer">Guia Rapida de Markdown</a></small>
+
           <textarea 
             name=""
             value={formAddEvent.desc}
