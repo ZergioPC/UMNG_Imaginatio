@@ -2,11 +2,21 @@
 import wallpaper1 from "../assets/images/img01.jpg";
 
 import TitleMain from "../components/astro/TitleMain.astro";
+import CarruselLnear from "../components/astro/CarruselLnear.astro";
+import Image from "astro/components/Image.astro";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SpinCard from "../components/astro/SpinCard.astro";
 
 import { CustomCarrusel } from "../components/react/CustomCarrusel"; 
+
+//Images
+import img1 from "../assets/aboutSources/foto1.jpeg";
+import img2 from "../assets/aboutSources/foto2.jpg";
+import img3 from "../assets/aboutSources/4.jpg";
+import img4 from "../assets/aboutSources/foto11.jpg";
+import img5 from "../assets/aboutSources/foto4.jpeg";
+import img6 from "../assets/aboutSources/foto5.jpeg";
 ---
 
 <BaseLayout title="Quienes Somos">
@@ -18,23 +28,61 @@ import { CustomCarrusel } from "../components/react/CustomCarrusel";
 
   <main>
     <section class="section">
-      <h1 class="title">Imaginatio</h1>
-      <p class="text">
-        El <strong>Imaginatio</strong> es un espacio académico orientado al <strong>co-aprendizaje</strong>, diseñado para fortalecer la formación de los estudiantes del programa de <strong>Ingeniería en Multimedia</strong> en la Universidad Militar Nueva Granada.
-      </p>
+      <div class="text-container">
+        <p class="text">
+          <strong>El Imaginatio</strong> es un espacio académico para el co-aprendizaje, donde los estudiantes del programa Ingeniería en Multimedia tienen la oportunidad de conectar con la industria.
+        </p>
+      </div>
     </section>
+
+    <CarruselLnear client:visible>
+      <Image 
+        src={img1}
+        alt="Foto carrusel 1"
+        class="Carrusel-img"
+      />
+      <Image 
+        src={img2}
+        alt="Foto carrusel 2"
+        class="Carrusel-img"
+      />
+      <Image 
+        src={img3}
+        alt="Foto carrusel 3"
+        class="Carrusel-img"
+      />
+      <Image 
+        src={img4}
+        alt="Foto carrusel 4"
+        class="Carrusel-img"
+      />
+      <Image 
+        src={img5}
+        alt="Foto carrusel 5"
+        class="Carrusel-img"
+        class="Carrusel-img"
+      />
+      <Image 
+        src={img6}
+        alt="Foto carrusel 6"
+        class="Carrusel-img"
+      />
+    </CarruselLnear>
 
     <section class="cards-container">
       <SpinCard 
-        frontText="¿Qué es Imaginatio?"
+        frontText="Objetivos del evento"
         color1="#ffff"
         background1="var(--brand-accent)"
         color2="#ffff"
         background2="var(--brand-primary)"
       >
-        <p>
-          El evento ofrece la oportunidad de participar en <strong>conferencias, charlas y talleres</strong> liderados por profesionales destacados, egresados del programa y empresas que desarrollan productos y servicios en áreas clave de la ingeniería y el diseño multimedia.
-        </p>
+        <ul>
+          <li>Promover el intercambio de ideas y conocimientos</li>
+          <li>Actualizar a los estudiantes sobre avances tecnológicos y creativos</li>
+          <li>Conectar la academia con la industria</li>
+          <li>Impulsar la innovación y el pensamiento crítico</li>
+        </ul>
       </SpinCard>
   
       <SpinCard 
@@ -53,16 +101,6 @@ import { CustomCarrusel } from "../components/react/CustomCarrusel";
           <li>Entretenimiento digital y nuevos medios</li>
         </ul>
       </SpinCard>
-    </section>
-
-    <section class="section">
-      <h2 class="subtitle">Objetivos del evento</h2>
-      <ul class="list">
-        <li>Promover el intercambio de ideas y conocimientos</li>
-        <li>Actualizar a los estudiantes sobre avances tecnológicos y creativos</li>
-        <li>Conectar la academia con la industria</li>
-        <li>Impulsar la innovación y el pensamiento crítico</li>
-      </ul>
     </section>
     
     <section class="banner">
@@ -86,19 +124,28 @@ import { CustomCarrusel } from "../components/react/CustomCarrusel";
 <style>
   .section {
     margin: 0 auto;
-    padding: 50px 100px;
-    max-width: 900px;
+    padding: 100px;
+  }
+
+  .text-container {
+    padding: 70px;
+    background-color: var(--bg-surface);
+    border-radius: var(--borde-radio-1);
+  }
+
+  .Carrusel-img {
+    height: 500px;
+    width: auto;
+    object-fit: contain;
   }
 
   .cards-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    margin: 40px;
     padding: 30px 20px;
     height: 400px;
-    background-image: url("../assets/images/img03.png");
-    background-attachment: fixed;
-    background-size: cover;
   }
 
   .title {
@@ -114,9 +161,8 @@ import { CustomCarrusel } from "../components/react/CustomCarrusel";
   }
 
   .text {
-    font-size: 1.05rem;
+    font-size: 2em;
     line-height: 1.7;
-    max-width: 75ch;
   }
 
   .list {
@@ -191,7 +237,21 @@ import { CustomCarrusel } from "../components/react/CustomCarrusel";
   }
 
   @media screen and (max-width:650px) {
+    .section {
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .text-container{
+      padding: 30px;
+    }
+
+    .text {
+      font-size: 1.5em;
+    }
+    
     .cards-container{
+      margin: 10px;
       grid-template-columns: 1fr;
       grid-template-rows: repeat(2,1fr);
       height: 800px;

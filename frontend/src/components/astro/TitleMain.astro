@@ -9,23 +9,24 @@ const { titulo, subtitulo, bgImage } = Astro.props;
   <div class="bg-gradient"></div>
   <div class="content">
     {subtitulo && (<span>{subtitulo}</span>)}
-  <h1>{titulo}</h1>
+    <h1>{titulo}</h1>
   </div>
 </section>
 
 <style>
   .TitleMain {
     position: relative;
-    margin: 10px 0;
-    padding: 50px 100px;
+    height: 80vh;
     background-color: var(----brand-accent);
     background-attachment: fixed;
     background-size: cover;
+    font-size: 1.5em;
   }
   
   h1 {
     font-size: 4rem;
-    color: var(--text-inverse);
+    font-weight: normal;
+    color: var(--text-primary);
   }
 
   span {
@@ -34,7 +35,9 @@ const { titulo, subtitulo, bgImage } = Astro.props;
 
   .content {
     z-index: 2;
-    position: relative;
+    position: absolute;
+    bottom: 10px;
+    left: 40px;
   }
 
   .bg-gradient {
@@ -46,7 +49,7 @@ const { titulo, subtitulo, bgImage } = Astro.props;
     height: 100%;
     background: #020024;
     background: linear-gradient(
-      35deg, var(--brand-primary) 0%, rgba(0, 0, 0, 0) 100%
+      35deg, #fff 0%, rgba(255, 255, 255, 0.4) 100%
     );
   }
 
