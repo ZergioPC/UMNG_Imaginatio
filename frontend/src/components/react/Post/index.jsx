@@ -12,7 +12,9 @@ const PLACEHOLDER = {
   equipo_img: "placeholder",
 }
 
-const API = "/api";
+import GLOBALS from "../../../../public/js/globals.js";
+
+const API = GLOBALS.API;
 
 function Post({ onModal, data = PLACEHOLDER}){
   const [liked, setLiked] = useState(false);

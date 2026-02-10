@@ -19,8 +19,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </article>
 </main>
 
-<script defer is:inline>
-  const API = import.meta.env.PUBLIC_API_URL;
+<script is:inline type="module">
+  import GLOBALS from "/js/globals.js";
+  const API = GLOBALS.API;
 
   document.addEventListener("DOMContentLoaded", ()=>{
     const user = document.getElementById('user');

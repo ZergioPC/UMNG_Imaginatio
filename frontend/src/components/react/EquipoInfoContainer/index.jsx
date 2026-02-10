@@ -11,7 +11,9 @@ import SocialInstagram from "../Icons/SocialInstagram";
 import SocialTiktok from "../Icons/SocialTiktok";
 import SocialTwitter from "../Icons/SocialTwiter";
 
-const API = "/api";
+import GLOBALS from "../../../../public/js/globals.js";
+
+const API = GLOBALS.API;
 
 // TITULO
 function Titulo({ name, image }){

@@ -18,7 +18,9 @@ import AdminLayout from "../../layouts/AdminLayout.astro"
   </article>
 </main>
 
-<script is:inline>
+<script is:inline type="module">
+  import GLOBALS from "/js/globals.js";
+
   document.addEventListener("DOMContentLoaded", ()=>{
     const user = document.getElementById('user');
     const pass = document.getElementById('password');
@@ -34,7 +36,7 @@ import AdminLayout from "../../layouts/AdminLayout.astro"
         password: pass.value.trim()
       };
 
-      fetch("/api/auth/admin", {
+      fetch(GLOBALS.API + "/auth/admin", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

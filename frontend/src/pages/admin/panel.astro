@@ -4,8 +4,10 @@ import { App } from "../../components/react/AdminPanel";
 ---
 
 <AdminLayout title="Panel-admin">
-  <script>
-    fetch("/api/auth/verify-admin", {
+  <script is:inline type="module">
+    import GLOBALS from "/js/globals.js";
+
+    fetch(GLOBALS.API + "/auth/verify-admin", {
       method: 'POST',
       credentials:"include"
     })

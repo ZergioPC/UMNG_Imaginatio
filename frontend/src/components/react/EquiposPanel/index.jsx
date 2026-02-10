@@ -6,7 +6,9 @@ import { FormPost } from "../EquipoPanelComponents/FormPost";
 
 import styles from "./styles.module.css";
 
-const API = "/api";
+import GLOBALS from "../../../../public/js/globals.js";
+
+const API = GLOBALS.API;
 
 function EquipoPanel(){
   const [teamData, setTeamData] = useState({

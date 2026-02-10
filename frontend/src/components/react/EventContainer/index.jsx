@@ -5,7 +5,9 @@ import ArrowLeft from "../Icons/ArrowLeft";
 
 import ReactMarkdown from "react-markdown";
 
-const API = "/api";
+import GLOBALS from "../../../../public/js/globals.js";
+
+const API = GLOBALS.API;
 
 function EventItem({ onClick, name}){
   return (

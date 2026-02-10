@@ -7,7 +7,9 @@ import IconClose from "../../../Icons/IconClose";
 
 import "./EventosEquipos.css";
 
-const API = "/api";
+import GLOBALS from "../../../../../../public/js/globals.js";
+
+const API = GLOBALS.API;
 
 const formAddEventInit = {
   name: "",

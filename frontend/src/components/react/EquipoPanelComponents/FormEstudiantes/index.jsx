@@ -5,7 +5,9 @@ import IconBack from "../../Icons/IconBack";
 
 import imageCompression from "browser-image-compression";
 
-const API = "/api";
+import GLOBALS from "../../../../../public/js/globals.js";
+
+const API = GLOBALS.API;
 
 function RowTable({ name, onEdit, onDelete }){
   return (

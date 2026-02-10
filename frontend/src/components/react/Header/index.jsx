@@ -6,7 +6,9 @@ import IconClose from "../Icons/IconClose";
 
 import { useState, useEffect } from "react";
 
-const API = "/api";
+import GLOBALS from "../../../../public/js/globals.js";
+
+const API = GLOBALS.API;
 
 const navContent = [
   {txt:"Home", link:"/"},

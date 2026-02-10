@@ -6,7 +6,9 @@ import ArrowLeft from "../../../Icons/ArrowLeft";
 
 import "./Publicaciones.css";
 
-const API = "/api";
+import GLOBALS from "../../../../../../public/js/globals.js";
+
+const API = GLOBALS.API;
 
 function Publicaciones(){
   const [maxPage, setMaxPage] = useState(99999);
