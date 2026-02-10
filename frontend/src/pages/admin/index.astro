@@ -18,21 +18,23 @@ import AdminLayout from "../../layouts/AdminLayout.astro"
   </article>
 </main>
 
-<script defer is:inline>
-  const API = "/api";
-
+<script is:inline>
   document.addEventListener("DOMContentLoaded", ()=>{
     const user = document.getElementById('user');
     const pass = document.getElementById('password');
     const send = document.getElementById('send');
 
     send.addEventListener('click', () => {
+      if (!user.value.trim() || !pass.value.trim()) {
+      alert("Fill all fields");
+      return;
+    }
       const data = {
-        name: user.value,
-        password: pass.value
+        name: user.value.trim(),
+        password: pass.value.trim()
       };
 
-      fetch(API + "/auth/admin", {
+      fetch("/api/auth/admin", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -57,7 +59,7 @@ import AdminLayout from "../../layouts/AdminLayout.astro"
     });
   });
 </script>
-</BaseLayout>
+</AdminLayout>
 
 <style>
   main {

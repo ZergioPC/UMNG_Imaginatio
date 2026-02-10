@@ -6,7 +6,7 @@ import { Modal } from "../Modal";
 import styles from "./styles.module.css";
 import ArrowLeft from "../Icons/ArrowLeft";
 
-const API = "/api"
+const API = "/api";
 
 function PostsContainer({ endpoint }){
   // Loading and Errors

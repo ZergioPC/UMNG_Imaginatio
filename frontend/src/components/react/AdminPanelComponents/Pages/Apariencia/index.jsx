@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./Apariencia.css";
 import imageCompression from "browser-image-compression";
 
-const API = "/api";
+const API = import.meta.env.PUBLIC_API_URL;
 
 function Apariencia(){
   const [imgPlaceholder, setImgPlaceholder] = useState(`${API}/uploads/users/idle.jpg`);

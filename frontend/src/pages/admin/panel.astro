@@ -4,10 +4,8 @@ import { App } from "../../components/react/AdminPanel";
 ---
 
 <AdminLayout title="Panel-admin">
-  <script defer is:inline>
-    const API = "/api";
-
-    fetch(API + "/auth/verify-admin", {
+  <script>
+    fetch("/api/auth/verify-admin", {
       method: 'POST',
       credentials:"include"
     })

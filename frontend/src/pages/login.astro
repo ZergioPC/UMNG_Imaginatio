@@ -20,7 +20,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </main>
 
 <script defer is:inline>
-  const API = "/api";
+  const API = import.meta.env.PUBLIC_API_URL;
 
   document.addEventListener("DOMContentLoaded", ()=>{
     const user = document.getElementById('user');
