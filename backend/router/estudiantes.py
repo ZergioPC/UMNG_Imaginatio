@@ -60,9 +60,9 @@ async def estudiante_crear(
     # Build your DB object manually
     data = {
         "name": name,
-        "codigo": codigo,
+        "codigo": str(codigo),
         "desc": desc,
-        "phone": phone,
+        "phone": str(phone),
         "email": email,
         "instagram": instagram,
         "twiter": twiter,
@@ -112,11 +112,11 @@ async def estudiante_editar(
     if name is not None :
         data_dump["name"] = name
     if codigo is not None:
-        data_dump["codigo"] = codigo
+        data_dump["codigo"] = str(codigo)
     if desc is not None:
         data_dump["desc"] = desc
     if phone is not None:
-        data_dump["phone"] = phone
+        data_dump["phone"] = str(phone)
     if email is not None:
         data_dump["email"] = email
     if instagram is not None:

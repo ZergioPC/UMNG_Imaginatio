@@ -2,8 +2,8 @@ from sqlmodel import SQLModel, Field
 from pydantic import BaseModel
 
 class PostBase(SQLModel):
-    title:str
-    desc:str
+    title:str = Field(max_length=50)
+    desc:str = Field(max_length=250)
     img:str
 
 class Post(PostBase, table=True):

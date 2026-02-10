@@ -10,8 +10,8 @@ class EquipoBase(SQLModel):
     evento_id:int
 
 class EquipoEdit(SQLModel):
-    publicName: Optional [str] = Field(default="")
-    desc: Optional [str] = Field(default="")
+    publicName: Optional [str] = Field(default="", max_length=25)
+    desc: Optional [str] = Field(default="", max_length=250)
     img: Optional [str] = Field(default=None) 
     evento_id:Optional[int] = Field(default=None)
 

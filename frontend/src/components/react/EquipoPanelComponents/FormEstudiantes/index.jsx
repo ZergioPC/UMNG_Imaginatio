@@ -54,6 +54,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             placeholder="Samuel de Luque"
             required={required}
             value={nombre}
+            maxLength={25}
             onChange={(e) => setNombre(e.target.value)}
           />
         </label>
@@ -66,6 +67,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             required={required}
             value={codigo}
             onChange={(e) => setCodigo(e.target.value)}
+            maxLength={10}
           />
         </label>
 
@@ -78,6 +80,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             required={required}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            max={50}
           />
         </label>
       </div>
@@ -89,6 +92,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             name="desc"
             rows="4"
             value={desc}
+            maxLength={250}
             onChange={(e) => setDesc(e.target.value)}
           />
         </label>
@@ -100,6 +104,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             name="phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+            maxLength={15}
           />
         </label>
 
@@ -109,6 +114,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             type="text"
             name="instagram"
             value={instagram}
+            maxLength={25}
             onChange={(e) => setInstagram(e.target.value)}
             placeholder="example"
           />
@@ -120,6 +126,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             type="text"
             name="twitter"
             value={twitter}
+            maxLength={25}
             onChange={(e) => setTwitter(e.target.value)}
             placeholder="example"
           />
@@ -131,6 +138,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             type="text"
             name="tiktok"
             value={tiktok}
+            maxLength={25}
             onChange={(e) => setTiktok(e.target.value)}
             placeholder="example"
           />
@@ -148,6 +156,7 @@ function AuxFormEdit({ user, onSubmit, onCancel, required=false }) {
             type="file"
             accept="image/*"
             required={required}
+            maxLength={25}
             onChange={(e) => {
               setImg(e.target.files[0])
               setPreview(

@@ -33,7 +33,13 @@ function ModalIframe({ url, isOpen, onClose }){
       <button onClick={onClose}>
         <IconBack color="#000"/>
       </button>
-      {isOpen && <iframe src={url} frameborder="0"/>}
+      {isOpen && 
+        <iframe 
+          src={url} frameborder="0"
+          referrerPolicy="no-referrer"
+          sandbox="allow-scripts allow-same-origin"
+        />
+      }
     </div>
   );
 }
@@ -51,7 +57,6 @@ function LegacyPagesContainer({ data }){
             text={event.text} 
             version={event.version}
             onClick={()=> {
-              console.log(event.url);
               setCurrentUrl(event.url);
               setOpenModal(true);
             }}

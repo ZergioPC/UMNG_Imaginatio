@@ -94,6 +94,7 @@ function FormPost({ posts, endpointCreate, endpointDelete, onReload}){
               type="text" 
               name="title"
               value={formData.title}
+              maxLength={50}
               onChange={e => setFormData({
                 ...formData,
                 title : e.target.value
@@ -104,7 +105,7 @@ function FormPost({ posts, endpointCreate, endpointDelete, onReload}){
             <span>Descripción</span>
             <textarea 
               required
-              maxLength={150}
+              maxLength={250}
               name="description" 
               value={formData.description}
               onChange={e => setFormData({

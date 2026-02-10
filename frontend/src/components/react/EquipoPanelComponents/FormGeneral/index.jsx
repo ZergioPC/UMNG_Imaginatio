@@ -57,6 +57,7 @@ function FormGeneral({ name, description, image, endpoint, onReload }) {
           type="text"
           value={publicName}
           onChange={(e) => setPublicName(e.target.value)}
+          maxLength={25}
         />
       </label>
 
@@ -67,6 +68,7 @@ function FormGeneral({ name, description, image, endpoint, onReload }) {
           rows="6"
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
+          maxLength={250}
         />
       </label>
 
