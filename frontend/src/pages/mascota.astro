@@ -1,0 +1,43 @@
+---
+import wallpaper1 from "../assets/images/img01.jpg";
+
+import TitleSimple from "../components/astro/TitleSimple.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Mascota">
+  <TitleSimple 
+    titulo="Tu Mascota" 
+  />
+
+  <div>
+    <iframe src="/game/" />
+  </div>
+</BaseLayout>
+
+<style>
+  div {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100vw;
+  }
+
+  iframe {
+    box-sizing: border-box;
+    aspect-ratio: 1/1;
+    height: 90vh;
+    width: auto;
+    border: none;
+  }
+  
+  @media screen (min-width: 900px) {
+    iframe {
+      height: auto;
+      width: 90vw;
+      max-width: 80vh;
+    }
+  }
+</style>

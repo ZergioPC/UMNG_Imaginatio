@@ -1,0 +1,56 @@
+---
+const { titulo, subtitulo } = Astro.props;
+---
+
+<section>
+  <div>
+    <h1>{titulo}</h1>
+    {subtitulo && (<span>{subtitulo}</span>)}
+  </div>
+</section>
+
+<style>
+  section {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 50px 100px;
+    text-align: center;
+  }
+  
+  div {
+    padding: 70px;
+    background-color: var(--bg-surface);
+    border-radius: var(--borde-radio-2);
+  }
+
+  h1 {
+    font-size: 4rem;
+    margin: 0;
+  }
+
+  span {
+    margin-top: 20px;
+    font-size: 2em;
+  }
+
+  @media screen and (max-width: 650px) {
+    section {
+      padding: 20px;
+      width: 100%;
+    }
+
+    div {
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    span {
+      font-size: 1em;
+    }
+  }
+</style>

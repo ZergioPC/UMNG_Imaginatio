@@ -100,17 +100,16 @@ async def borrar_by_team(id:int, current_team:Equipo = Depends(get_current_user)
             detail="No puedes Borrar un Post para otro equipo"
         )
     
-    
     if post.img and os.path.exists(post.img):
         if not post.img.startswith("uploads/"):
             raise HTTPException(400, "Invalid image path")
         
         try:
             os.remove(post.img)
-            await db_delete_unique(Post, id)
         except Exception as e:
             print("Error deleting file:", e)
 
+    await db_delete_unique(Post, id)
     return {"message":"Evento eliminado con Exito"}
 
 @router.delete("/delete-by-admin/{id}", status_code=status.HTTP_202_ACCEPTED)
@@ -119,12 +118,9 @@ async def borrar_by_admin(id:int, current_admin:str = Depends(get_current_admin)
         raise HTTPException(401,"No eres admin") 
     
     post:Post = await db_select_unique(Post, id)
-
-    if not post.img.startswith("uploads/"):
-            raise HTTPException(400, "Invalid image path")
     
     if post.img and os.path.exists(post.img):
         os.remove(post.img)
-        await db_delete_unique(Post,id)
 
+    await db_delete_unique(Post,id)
     return {"message":"Evento eliminado con Exito"}

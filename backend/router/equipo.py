@@ -32,7 +32,48 @@ async def getData(current_team:Equipo=Depends(get_current_user)):
     return {
         "message":"ok",
         "data": data
+    }
+
+@router.get("/get/{id}")
+async def equipo_get_info(id:int):
+    equipo = await db_select_unique(Equipo, id)
+    return {"data":equipo,"message":"Info del Equipo"}
+
+@router.get("/filter/{evento_id}")
+async def equipo_get_filter(evento_id:int):
+    query = select(Equipo).where(Equipo.evento_id == evento_id)
+    equipos = await db_select_query(query)
+
+    data = [
+        {
+        "equipo_id":e.equipo_id,
+        "publicName":e.publicName,
+        "desc":e.desc,
+        "img":e.img,
+        "evento_id":e.evento_id
         }
+        for e in equipos
+    ]
+
+    return {"data":data,"message":f"Equipos del torneo {evento_id}"}
+
+@router.get("/filter-admin/{evento_id}")
+async def equipo_get_filter(evento_id:int, current_admin:str=Depends(get_current_admin)):
+    query = select(Equipo).where(Equipo.evento_id == evento_id)
+    equipos = await db_select_query(query)
+
+    data = [
+        {
+        "equipo_id":e.equipo_id,
+        "name":e.name,
+        "desc":e.desc,
+        "img":e.img,
+        "evento_id":e.evento_id
+        }
+        for e in equipos
+    ]
+
+    return {"data":data,"message":f"Equipos del torneo {evento_id}"}
 
 ## VERIFICAR COOKIES
 #
@@ -55,7 +96,6 @@ async def equipo_crear(equipo_data:EquipoBase, current_admin:str=Depends(get_cur
 @router.patch("/editar/{id}", status_code=status.HTTP_202_ACCEPTED)
 async def editar(
     id: int,
-    name: str = Form(None),
     publicName:str = Form(None),
     desc: str = Form(None),
     img: UploadFile = File(None),
@@ -88,14 +128,16 @@ async def editar(
         contents = await img.read()
         
         # Guardar la imagen
-        filename = f"{uuid4()}.jpg"
+        ext = img.content_type.split("/")[-1]
+        filename = f"team-{id}.{ext}"
+
         os.makedirs(IMG_PATH, exist_ok=True)
         os.makedirs(IMG_PATH_USERS, exist_ok=True)
         
         with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
             f.write(contents)
         
-        data_dump["img"] = f"{IMG_PATH_USERS}/{filename}"
+        data_dump["img"] = f"/{IMG_PATH_USERS}/{filename}"
     
     # Solo actualizar si hay datos
     if data_dump:
@@ -107,31 +149,6 @@ async def editar(
 async def equipo_borrar(id:int, current_admin:str=Depends(get_current_admin)):
     await db_delete_unique(Equipo,id)
     return {"message":"Equipo eliminado con Exito"}
-
-# GET DATA
-
-@router.get("/get/{id}")
-async def equipo_get_info(id:int):
-    equipo = await db_select_unique(Equipo, id)
-    return {"data":equipo,"message":"Info del Equipo"}
-
-@router.get("/filter/{evento_id}")
-async def equipo_get_filter(evento_id:int):
-    query = select(Equipo).where(Equipo.evento_id == evento_id)
-    equipos = await db_select_query(query)
-
-    data = [
-        {
-        "equipo_id":e.equipo_id,
-        "publicName":e.publicName,
-        "desc":e.desc,
-        "img":e.img,
-        "evento_id":e.evento_id
-        }
-        for e in equipos
-    ]
-
-    return {"data":data,"message":f"Equipos del torneo {evento_id}"}
 
 # MARK:POSTS
 
@@ -149,7 +166,9 @@ async def equipo_publicar(
     contents = await image.read()
 
     # Save or process the image
-    filename = f"{uuid4()}.jpg"
+    ext = image.content_type.split("/")[-1]
+    filename = f"{uuid4()}.{ext}"
+
     os.makedirs(IMG_PATH, exist_ok=True)
     os.makedirs(IMG_PATH_POSTS, exist_ok=True)
     with open(f"{IMG_PATH_POSTS}/{filename}", "wb") as f:
@@ -159,7 +178,7 @@ async def equipo_publicar(
     data = {
         "title": title,
         "desc": description,
-        "img": f"{IMG_PATH_POSTS}/{filename}",
+        "img": f"/{IMG_PATH_POSTS}/{filename}",
         "equipo_id": current_team.equipo_id,
     }
 

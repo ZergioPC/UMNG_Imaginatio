@@ -1,0 +1,276 @@
+/* MARK: Titulo */
+
+.Titulo {
+  margin: 20px 100px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  gap: 30px;
+  background-color: var(--bg-surface);
+  border-radius: var(--borde-radio-2);
+}
+
+.Titulo picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.Titulo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.division {
+  margin: 20px 40px;
+  text-align: center;
+}
+
+.Hide {
+  display: none;
+}
+/* MARK: Tarjeta */
+
+.CardContainer {
+  display: block;
+  perspective: 1500px; /* Gives 3D depth to the flip */
+  margin: 20px 50px;
+}
+
+.CardInner {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  transition-property: transform;
+  transition-duration: 1.5s;
+  transition-timing-function: cubic-bezier(.15,1.02,.33,.99);
+  transform-style: preserve-3d;
+}
+
+.CardFlipped {
+  transform: rotateX(720deg); /* 3.5 complete rotations to end at 180deg */
+}
+
+.Integrantes,
+.EstudianteInfo {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 40px;
+  gap: 30px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: var(--bg-surface);
+  border-radius: var(--borde-radio-2);
+}
+
+/* MARK: Integrantes */
+
+.Integrantes > h2 {
+  font-size: 2em;
+  margin: 0;
+}
+
+/* MARK: Estudiante */
+
+.EstudianteInfo {
+  display: grid;
+  grid-template-columns: max-content auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-primary) transparent;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.EstudianteInfoBtn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  aspect-ratio: 1/1;
+  background: none;
+  cursor: pointer;
+  border: none;
+  z-index: 10;
+}
+
+.EstudianteInfo > div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: start;
+}
+
+.EstudianteInfo h3 {
+  margin: 0;
+  font-size: 1.5em;
+  text-align: left;
+}
+
+.EstudianteInfo span {
+  padding: 0 5px;
+  text-align: left;
+  font-size: 0.8em;
+  font-style: italic;
+  border-radius: 5px;
+  color: var(--text-inverse);
+  background-color: var(--brand-primary);
+}
+
+.EstudianteInfo > picture {
+  display: block;
+  height: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: var(--brand-primary);
+}
+
+.EstudianteInfo > picture > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.EstudianteInfo p {
+  margin: 10px 0;
+  text-align: left;
+}
+
+.EstudianteInfo ul {
+  display: grid;
+  padding: 0;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.EstudianteInfo li {
+  list-style: none;
+  display: block;
+  padding: 10px;
+}
+
+.EstudianteInfo a {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.EstudianteInfo li picture {
+  display: block;
+  height: 1.5em;
+  aspect-ratio: 1/1;
+}
+
+.EstudianteInfo li span {
+  color: var(--brand-primary);
+  background: none;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+.EstudianteInfo::-webkit-scrollbar {
+  width: 6px;
+}
+
+.EstudianteInfo::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.EstudianteInfo::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 6px;
+}
+
+.EstudianteInfo::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}
+
+.EstudianteInfo ul {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 900px) {
+  .EstudianteInfo > picture {
+    height: 200px;
+  }
+  
+}
+
+@media screen and (max-width: 650px) {
+  .Titulo {
+    position: relative;
+    display: block;
+    margin: 20px;
+    padding: 20px;
+    height: 100px;
+    overflow: hidden;
+  }
+  
+  .Titulo picture {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 50%;
+  }
+
+  .Titulo h1 {
+    z-index: 2;
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+    margin: 0;
+    font-size: 1.5em;
+  }
+
+  .CardContainer {
+    margin: 10px;
+  }
+  
+  .Integrantes {
+    padding: 10px;
+  }
+
+  .Integrantes > div {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 10px;
+  }
+  .EstudianteInfo {
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content auto;
+  }
+
+  .EstudianteInfo > picture {
+    height: unset;
+    width: 80%;
+  }
+
+  .EstudianteInfo ul {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+}
+
+.shake {
+  animation: shake 6s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%   { transform: rotateZ(0); }
+  2%  { transform: rotateZ(-1deg); }
+  4%  { transform: rotateZ(1deg); }
+  6%  { transform: rotateZ(-1deg); }
+  8%  { transform: rotateZ(1deg); }
+  10% { transform: rotateZ(0); }
+  100% { transform: rotateZ(0); }
+}

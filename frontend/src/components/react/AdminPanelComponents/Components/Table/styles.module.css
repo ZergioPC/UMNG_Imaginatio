@@ -1,0 +1,42 @@
+.Table {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  border: solid 2px #000;
+  border-radius: 10px;
+  border-collapse: separate;
+  border-spacing: 10px 5px;
+}
+
+.Table th {
+  text-align: left;
+  border-bottom: dashed 2px #7e7e7e;
+}
+
+.Table tbody tr {
+  height: 30px;
+}
+
+.Table tbody tr:hover {
+  background-color: #d4d4d4;
+}
+
+.BtnContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 7px; 
+}
+
+.Table button {
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 7px;
+  border: solid 2px #000;
+}
+
+.Table button:hover {
+  cursor: pointer;
+  background-color: #fff !important;
+}

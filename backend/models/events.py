@@ -1,9 +1,10 @@
 from sqlmodel import SQLModel, Field
+from sqlalchemy import Column, Text
 from typing import Optional
 
 class EventBase(SQLModel):
     name:str
-    desc:str
+    desc:str = Field(sa_column=Column(Text, nullable=False))
 
 class EventEdit(SQLModel):
     name: Optional [str] = Field(default=None)

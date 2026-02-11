@@ -1,0 +1,100 @@
+---
+import data from "../../public/lastEvents/data.json"
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { CustomCarrusel } from "../components/react/CustomCarrusel"; 
+import { LegacyPagesContainer } from "../components/react/LegacyPagesContainer";
+---
+
+<BaseLayout title="Eventos Pasados">
+  <main>
+    <section class="banner">
+      <CustomCarrusel client:visible />
+      <div class="baner-gradient"></div>
+      
+      <div class="banner-text">
+        <h1>Imaginatios Anteriores</h1>
+        <p>
+          Esta sección reúne las ediciones anteriores de <strong>Imaginatio.</strong> Aquí podrás descubrir las temáticas, actividades, invitados y experiencias que han marcado cada edición.
+        </p>
+      </div>
+    </section>
+
+    <LegacyPagesContainer 
+      data={data}
+      client:load
+    />
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin: 20px 0;
+    overflow: hidden;
+    background: black;
+  }
+
+  .baner-gradient{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #020024;
+    background: linear-gradient(
+      45deg, var(--brand-primary) 0%, var(--brand-accent) 100%
+      );
+      opacity: 85%;
+  }
+
+  .banner-text {
+    z-index: 10;
+    inset: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+    gap: 20px;
+    padding: 50px;
+    pointer-events: none;
+    font-size: 1.3em;
+    color: var(--text-inverse);
+  }
+
+  .banner-text h2,
+  .banner-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-inverse);
+  }
+
+  .banner-text a {
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-inverse);
+    background-color: var(--interactive-default);
+    pointer-events: all;
+    border: solid 2px var(--border-default);
+  }
+
+  .banner-text a:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: var(--interactive-hover);
+  }
+
+  @media screen and (max-width:500px) {
+    .banner-text {
+      padding: 15px;
+      font-size: 1.2em;
+    }
+  }
+</style>

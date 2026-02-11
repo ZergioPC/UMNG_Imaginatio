@@ -1,0 +1,23 @@
+---
+import "../styles/decoration.css";
+import "../styles/globals.css";
+
+import { Header } from "../components/react/Header";
+import Footer from "../components/astro/Footer.astro";
+
+const { title } = Astro.props; 
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header client:load/>
+		<slot />
+		<Footer />
+	</body>
+</html>

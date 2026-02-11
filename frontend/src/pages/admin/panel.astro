@@ -1,0 +1,30 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro"
+import { App } from "../../components/react/AdminPanel";
+---
+
+<AdminLayout title="Panel-admin">
+  <script is:inline type="module">
+    import GLOBALS from "/js/globals.js";
+
+    fetch(GLOBALS.API + "/auth/verify-admin", {
+      method: 'POST',
+      credentials:"include"
+    })
+    .then(response => response.json())
+    .then(data => {    
+      if(data.detail){
+        alert(data.detail.message);
+        window.location.href = data.detail.url;
+      }
+      if (data.message) {
+        alert(data.message);
+      }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+  </script>
+
+  <App client:only="react"/>
+</AdminLayout>

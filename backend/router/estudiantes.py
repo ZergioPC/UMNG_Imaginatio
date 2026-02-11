@@ -49,7 +49,9 @@ async def estudiante_crear(
     contents = await img.read()
 
     # Save or process the image
-    filename = f"{uuid4()}.jpg"
+    ext = img.content_type.split("/")[-1]
+    filename = f"est_{current_team.equipo_id}_{codigo}.{ext}"
+
     os.makedirs(IMG_PATH, exist_ok=True)
     os.makedirs(IMG_PATH_USERS, exist_ok=True)
     with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
@@ -58,15 +60,15 @@ async def estudiante_crear(
     # Build your DB object manually
     data = {
         "name": name,
-        "codigo": codigo,
+        "codigo": str(codigo),
         "desc": desc,
-        "phone": phone,
+        "phone": str(phone),
         "email": email,
         "instagram": instagram,
         "twiter": twiter,
         "tiktok": tiktok,
         "equipo_id": current_team.equipo_id,
-        "img": f"{IMG_PATH_USERS}/{filename}",
+        "img": f"/{IMG_PATH_USERS}/{filename}",
     }
 
     est = Estudiante.model_validate(data)
@@ -110,11 +112,11 @@ async def estudiante_editar(
     if name is not None :
         data_dump["name"] = name
     if codigo is not None:
-        data_dump["codigo"] = codigo
+        data_dump["codigo"] = str(codigo)
     if desc is not None:
         data_dump["desc"] = desc
     if phone is not None:
-        data_dump["phone"] = phone
+        data_dump["phone"] = str(phone)
     if email is not None:
         data_dump["email"] = email
     if instagram is not None:
@@ -134,12 +136,13 @@ async def estudiante_editar(
         contents = await img.read()
         
         # Guardar la imagen
-        filename = f"{uuid4()}.jpg"
+        ext = img.content_type.split("/")[-1]
+        filename = f"est_{current_team.equipo_id}_{codigo}.{ext}"
         
         with open(f"{IMG_PATH_USERS}/{filename}", "wb") as f:
             f.write(contents)
         
-        data_dump["img"] = f"{IMG_PATH_USERS}/{filename}"
+        data_dump["img"] = f"/{IMG_PATH_USERS}/{filename}"
     
     # Solo actualizar si hay datos
     if data_dump:

@@ -1,0 +1,99 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.Container > section {
+  width: 100%;
+  overflow-x: hidden;
+  transition-property: width;
+  transition-duration: 250ms;
+}
+
+.btn-add {
+  margin: 10px auto;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #949bff;
+  border: solid 1px #000;
+}
+
+.Teams {
+  padding: 10px;
+  border: dashed 3px #707070;
+  border-radius: 10px;
+}
+
+.teams-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.teams-header strong {
+  color: #585858;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.close-teams {
+  display: block;
+  aspect-ratio: 1/1;
+  width: 30px;
+}
+
+.hideTeams {
+  width: 0px !important;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Form p {
+  margin: 10px;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.Form textarea { min-height: 200px; resize: none;}
+
+.Form input[type=text], 
+.Form input[type=password] { height: 2em;}
+
+.Form textarea,
+.Form input[type=text],
+.Form input[type=password] { 
+  box-sizing: border-box;
+  padding: 3px;
+  width: 100%;
+}
+
+.Form .btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.Form button {
+  padding: 10px 15px;
+  border: solid 2px #000;
+  border-radius: 10px;
+}
+
+.Form button:first-child {background-color: #95ff80;}
+.Form button:last-child {background-color: #a3a3a3;}
+
+.Form button:hover {
+  background-color: #fff !important;
+}
+
+.Form a {
+  color: #362c96;
+}

@@ -1,0 +1,65 @@
+---
+const { titulo, subtitulo, bgImage } = Astro.props;
+---
+
+<section 
+  class="TitleMain"
+  style={`background-image: url(${bgImage.src});`}
+>
+  <div class="bg-gradient"></div>
+  <div class="content">
+    {subtitulo && (<span>{subtitulo}</span>)}
+    <h1>{titulo}</h1>
+  </div>
+</section>
+
+<style>
+  .TitleMain {
+    position: relative;
+    height: 80vh;
+    background-color: var(----brand-accent);
+    background-attachment: fixed;
+    background-size: cover;
+    font-size: 1.5em;
+  }
+  
+  h1 {
+    font-size: 4rem;
+    font-weight: normal;
+    color: var(--text-primary);
+  }
+
+  span {
+    font-style: italic;
+  }
+
+  .content {
+    z-index: 2;
+    position: absolute;
+    bottom: 10px;
+    left: 40px;
+  }
+
+  .bg-gradient {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #020024;
+    background: linear-gradient(
+      35deg, #fff 0%, rgba(255, 255, 255, 0.4) 100%
+    );
+  }
+
+  @media screen and (max-width: 650px) {
+    .TitleMain {
+      padding: 30px;
+    }
+
+    h1 {
+    font-size: 2rem;
+  }
+  }
+</style>

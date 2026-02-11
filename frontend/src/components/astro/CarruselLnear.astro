@@ -1,0 +1,44 @@
+<div class="carousel">
+  <div class="track">
+    <div class="content">
+      <slot />
+    </div>
+
+    <!-- duplicate content for seamless loop -->
+    <div class="content clone">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+.carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll linear infinite;
+  animation-duration: 60s;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* speed controlled via CSS variable */
+</style>

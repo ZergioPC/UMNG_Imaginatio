@@ -1,0 +1,13 @@
+---
+import TitleSimple from "../components/astro/TitleSimple.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { EquipoInfoContainer } from "../components/react/EquipoInfoContainer";
+---
+
+<BaseLayout title="Equipos">
+  <main>
+    <EquipoInfoContainer client:load/>
+  </main>
+
+</BaseLayout>

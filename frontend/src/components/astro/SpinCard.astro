@@ -1,0 +1,90 @@
+---
+const { 
+  frontText,
+  color1,
+  background1,
+  color2,
+  background2,
+  delay,
+} = Astro.props;
+---
+
+<article 
+  class="flip-card shake"
+  style=`animation-delay: ${delay ?? "0s"};`
+  onclick="this.classList.toggle('is-flipped')"
+>
+  <div class="flip-card-inner">
+    <!-- Front face -->
+    <div 
+      class="flip-card-face flip-card-front"
+      style=`background: ${background1};`
+    >
+      <h2 style=`color: ${color1 ?? ""};`>{frontText}</h2>
+    </div>
+
+    <!-- Back face -->
+    <div 
+      class="flip-card-face flip-card-back"
+      style=`background: ${background2}; color: ${color2 ?? ""};`
+    >
+      <slot />
+    </div>
+  </div>
+</article>
+
+<style>
+  .flip-card {
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .flip-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: var(--borde-radio-2);
+  }
+
+  .flip-card-front {
+    text-align: center;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  .shake {
+    animation: shake 6s ease-in-out infinite;
+  }
+
+  @keyframes shake {
+    0%   { transform: rotateZ(0); }
+    2%  { transform: rotateZ(-1deg); }
+    4%  { transform: rotateZ(1deg); }
+    6%  { transform: rotateZ(-1deg); }
+    8%  { transform: rotateZ(1deg); }
+    10% { transform: rotateZ(0); }
+    100% { transform: rotateZ(0); }
+  }
+</style>

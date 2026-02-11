@@ -1,0 +1,64 @@
+.form {
+  box-sizing: border-box;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--bg-surface);
+  border-radius: var(--borde-radio-2);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.input,
+.textarea {
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--interactive-hover);
+}
+
+.imagePreview {
+  display: block;
+  max-width: 400px;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+}
+
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: contain;
+}
+
+.fileInput {
+  margin-top: 0.3rem;
+}
+
+.button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--interactive-default);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--interactive-hover);
+}
