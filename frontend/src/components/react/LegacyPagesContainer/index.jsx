@@ -35,9 +35,8 @@ function ModalIframe({ url, isOpen, onClose }){
       </button>
       {isOpen && 
         <iframe 
-          src={url} frameborder="0"
-          referrerPolicy="no-referrer"
-          sandbox="allow-scripts allow-same-origin"
+          src={"https://legacy.imaginatio.cc"+url} 
+          frameborder="0"
         />
       }
     </div>
