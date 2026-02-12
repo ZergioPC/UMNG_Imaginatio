@@ -8,11 +8,11 @@ import IconTw from "./icons/IconTw.astro";
 import UMNG_Escudo from "./icons/IconUMNG.astro";
 
 const redesSociales = [
-  {icon: IconYT, name:"YouTube", link:""},
-  {icon: IconIG, name:"Instagram", link:""},
-  {icon: IconFB, name:"Facebook", link:""},
-  {icon: IconMail, name:"Correo", link:""},
-  {icon: IconTw, name:"Twitch", link:""},
+  {icon: IconYT, name:"YouTube", link:"https://www.youtube.com/@ing.enmultimedia"},
+  {icon: IconIG, name:"Instagram", link:"https://www.instagram.com/ing.enmultimedia"},
+  {icon: IconFB, name:"Facebook", link:"https://www.facebook.com/IngMultimediaCampus"},
+  {icon: IconMail, name:"Correo", link:"mailto:multimedia.campus@unimilitar.edu.co"},
+  {icon: IconTw, name:"Twitch", link:"#"},
 ]
 ---
 
@@ -44,10 +44,12 @@ const redesSociales = [
       )}
     </div>
     
-    <UMNG_Escudo 
-      className="umng"
-      fill="var(--ui-color)"
-    />
+    <a href="https://www.umng.edu.co/" target="_blank">
+      <UMNG_Escudo 
+        className="umng"
+        fill="var(--ui-color)"
+      />
+    </a>
   </section>
 
   <small class="Footer-copyright">
