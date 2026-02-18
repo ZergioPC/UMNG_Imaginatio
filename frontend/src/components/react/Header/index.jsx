@@ -15,7 +15,8 @@ const navContent = [
   {txt:"Mascota", link:"/mascota"},
   {txt:"Quienes Somos", link:"/about"},
   {txt:"Concursos", link:"/concursos"},
-  {txt:"Eventos Pasados", link:"/eventos-pasados"}
+  {txt:"Eventos Pasados", link:"/eventos-pasados"},
+  {txt:"Mundialito", link:"/mundialito"}
 ];
 
 function Header(){

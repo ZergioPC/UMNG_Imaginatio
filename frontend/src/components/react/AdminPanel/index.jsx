@@ -1,16 +1,18 @@
 import "./styles.css";
 import { HashRouter, Routes, Route, NavLink } from 'react-router-dom';
 
+import { Home } from "../AdminPanelComponents/Pages/Home";
 import { EventosEquipos } from "../AdminPanelComponents/Pages/EventosEquipos";
 import { Apariencia } from "../AdminPanelComponents/Pages/Apariencia";
 import { Publicaciones } from "../AdminPanelComponents/Pages/Publicaciones";
-import { Home } from "../AdminPanelComponents/Pages/Home";
+import { Mundialito } from "../AdminPanelComponents/Pages/Mundialito";
 
 const links = [
   {to:"/", txt:"Home", element:Home},
   {to:"/apariencia", txt:"Apariencia", element:Apariencia},
   {to:"/eventos-y-equipos", txt:"Eventos y Equipos", element:EventosEquipos},
   {to:"/publicaciones", txt:"Publicaciones", element:Publicaciones},
+  {to:"/mundialito", txt:"Mundialito", element:Mundialito},
 ]
 
 function App() {
