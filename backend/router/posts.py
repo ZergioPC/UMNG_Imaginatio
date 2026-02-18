@@ -29,7 +29,7 @@ async def post_pag(pag: int):
     
     # Query principal con JOIN, paginación y orden
     query = (
-        select(Post, Equipo.name, Equipo.img)
+        select(Post, Equipo.publicName, Equipo.img)
         .join(Equipo, Post.equipo_id == Equipo.equipo_id)
         .order_by(Post.post_id.desc())
         .offset(offset)

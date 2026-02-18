@@ -17,20 +17,6 @@ erDiagram
         int order_number
     }
 
-    FutbolTeams {
-        int id PK
-        string name
-        string logo_url
-        id profesor_id
-    }
-
-    FutbolPlayers {
-      int id PK
-      string name
-      string img_url
-      int team_id FK
-    }
-
     Partidos {
         int id PK
         int stage_id FK
@@ -41,10 +27,24 @@ erDiagram
         int winner_id FK
     }
 
+    FutbolTeams {
+        int id PK
+        string name
+        string logo_url
+    }
+
+    FutbolPlayers {
+      int id PK
+      string name
+      string img_url
+      int team_id FK
+    }
+
     FutbolProfesor {
       int id PK
       string name
       string img_url
+      int team_id FK
     }
 
     Fases ||--o{ Partidos : has

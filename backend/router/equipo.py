@@ -239,7 +239,7 @@ async def equipo_publicaciones(id: int, pag: int):
     
     # Query con JOIN y paginación
     query = (
-        select(Post, Equipo.name, Equipo.img)
+        select(Post, Equipo.publicName, Equipo.img)
         .join(Equipo, Post.equipo_id == Equipo.equipo_id)
         .where(Post.equipo_id == id)
         .order_by(Post.post_id.desc())

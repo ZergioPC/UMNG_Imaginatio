@@ -9,6 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from db import crear_tablas
 from auth import router as auth
 from router import posts, equipo, events, estudiantes, utils
+from router.torneo import fase, futbolPlayer, futbolProfesor, futbolTeam, partido
 from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS
 
 
@@ -23,14 +24,14 @@ async def lifespan(app: FastAPI):
     # Shutd
 
 # Dev Docs allow
-# app = FastAPI(lifespan=lifespan)
+app = FastAPI(root_path="/api",lifespan=lifespan)
 
 # Production
-app = FastAPI(
-    lifespan=lifespan,
-    docs_url=None, 
-    redoc_url=None
-    )
+# app = FastAPI(
+#     lifespan=lifespan,
+#     docs_url=None, 
+#     redoc_url=None
+#     )
 
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "").split(",")
 
@@ -57,6 +58,12 @@ app.include_router(events.router, prefix="/event", tags=["event"])
 app.include_router(equipo.router, prefix="/equipo", tags=["equipo"])
 app.include_router(estudiantes.router, prefix="/estudiantes", tags=["estudiantes"])
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
+
+app.include_router(fase.router, prefix="/torneo_fase", tags=["Torneo Fase"])
+app.include_router(partido.router, prefix="/torneo_partido", tags=["Torneo Partido"])
+app.include_router(futbolTeam.router, prefix="/torneo_team", tags=["Torneo Team"])
+app.include_router(futbolPlayer.router, prefix="/torneo_players", tags=["Torneo Players"])
+app.include_router(futbolProfesor.router, prefix="/torneo_profe", tags=["Torneo Profe"])
 
 #Main
 @app.get("/health")
