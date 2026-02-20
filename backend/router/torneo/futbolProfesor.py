@@ -1,9 +1,10 @@
-import os
+import os, random
 from fastapi import APIRouter, status, Depends, HTTPException, Form, File, UploadFile
 
 from models.torneo.futbolProfesor import FutbolProfesor
+from models.torneo.futbolTeam import FutbolTeam
 
-from db import db_commit, db_delete_unique, db_select_unique
+from db import select, db_commit, db_delete_unique, db_select_query
 from auth.depends import get_current_admin
 from utils import IMG_PATH_TORNEO, IMG_PATH
 
@@ -12,10 +13,19 @@ router = APIRouter()
 @router.post("/crear", status_code=status.HTTP_201_CREATED)
 async def profe_crear(
     name: str = Form(...),
-    equipo_id: int = Form(...),
     img: UploadFile = File(...),
     admin:str = Depends(get_current_admin)
 ):  
+    query = select(FutbolTeam).where(FutbolTeam.hasProfesor == False)
+    try:
+        teams_disponibles = await db_select_query(query)
+    except Exception:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No hay equipos disponibles"
+        )
+    equipo_id = random.choice(teams_disponibles).id
+    
     if not img.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Invalid image type")
 

@@ -10,6 +10,7 @@ from db import crear_tablas
 from auth import router as auth
 from router import posts, equipo, events, estudiantes, utils
 from router.torneo import fase, futbolPlayer, futbolProfesor, futbolTeam, partido
+from router.torneo import utils as torneoUtils
 from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS
 
 
@@ -64,6 +65,7 @@ app.include_router(partido.router, prefix="/torneo_partido", tags=["Torneo Parti
 app.include_router(futbolTeam.router, prefix="/torneo_team", tags=["Torneo Team"])
 app.include_router(futbolPlayer.router, prefix="/torneo_players", tags=["Torneo Players"])
 app.include_router(futbolProfesor.router, prefix="/torneo_profe", tags=["Torneo Profe"])
+app.include_router(torneoUtils.router, prefix="/torneo_utils", tags=["Torneo Utils"])
 
 #Main
 @app.get("/health")

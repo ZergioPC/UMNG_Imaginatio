@@ -5,6 +5,7 @@ from models.torneo.partido import Partido, PartidoBase
 from models.torneo.futbolTeam import FutbolTeam
 from models.torneo.futbolPlayer import FutbolPlayer
 from models.torneo.futbolProfesor import FutbolProfesor
+from models.torneo.fase import Fase
 
 from db import db_commit, db_delete_unique, db_select_unique, db_select_query
 from auth.depends import get_current_admin
@@ -51,6 +52,16 @@ async def get (id:int):
 
 @router.post("/create", status_code=status.HTTP_201_CREATED)
 async def create_fase(partido:PartidoBase, admin:str = Depends(get_current_admin)):
+    try:
+        fases = await db_select_query(select(Fase))
+        if (len(fases) <= 0):
+            raise Exception("No hay fases creadas aun")
+    except Exception:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No hay equipos disponibles"
+        )
+
     partido_new = Partido.model_validate(partido.model_dump())
     await db_commit(partido_new)
     return {"message":"Partido creado con Exito"}
