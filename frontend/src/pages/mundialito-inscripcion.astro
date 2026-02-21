@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { TorneoInscripcion } from "../components/react/TorneoInscripcion";
+---
+
+<BaseLayout title="Mundialito Inscripción">
+  <main>
+    <section>
+      <h1>Inscripción</h1>
+      <span>Mundialito Multimedia 2026</span>
+    </section>
+
+    <TorneoInscripcion client:load/>
+
+  </main>
+</BaseLayout>
