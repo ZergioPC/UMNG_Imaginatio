@@ -7,7 +7,7 @@ from models.torneo.futbolProfesor import FutbolProfesor
 from models.torneo.fase import Fase
 from router.torneo.utils import aux_imaginatio_date_validate
 
-from db import db_commit, db_delete_unique, db_select_unique, db_select_query, select
+from db import db_commit, db_delete_unique, db_select_unique, db_select_query, select, db_update
 from auth.depends import get_current_admin
 
 router = APIRouter()
@@ -59,6 +59,32 @@ async def borrar(id:int, admin:str=Depends(get_current_admin)):
     data = db_select_query(query)
     for player in data:
         await db_delete_unique(FutbolPlayer,player.id)
-
+    
+    await db_delete_unique(FutbolProfesor,id)
     await db_delete_unique(FutbolTeam,id)
     return {"message":"FutbolTeam eliminado con Exito"}
+
+@router.delete("/free-profe/{id}")
+async def free_profesor(id:int, admin:str=Depends(get_current_admin)):
+    await db_delete_unique(FutbolProfesor,id)
+
+    current_team:FutbolTeam = await db_select_unique(FutbolTeam,id)
+    current_team_data = current_team.model_dump()
+    current_team_data["hasProfesor"] = False
+    await db_update(FutbolTeam, id, current_team_data)
+
+    return {"message":"Profesor eliminado del equipo con Exito"}
+
+@router.delete("/free-players/{id}")
+async def free_players(id:int, admin:str=Depends(get_current_admin)):
+    query = select(FutbolPlayer).where(FutbolPlayer.equipo_id == id)
+    data = await db_select_query(query)
+    for player in data:
+        await db_delete_unique(FutbolPlayer,player.id)
+
+    current_team:FutbolTeam = await db_select_unique(FutbolTeam,id)
+    current_team_data = current_team.model_dump()
+    current_team_data["fulled"] = False
+    await db_update(FutbolTeam, id, current_team_data)
+    
+    return {"message":"Estudiantes eliminado del equipo con Exito"}

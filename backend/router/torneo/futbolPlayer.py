@@ -143,7 +143,7 @@ async def crear_equipo(
 @router.delete("/delete/{id}", status_code=status.HTTP_200_OK)
 async def borrar(id:int, admin:str=Depends(get_current_admin)):
     query = select(FutbolPlayer).where(FutbolPlayer.equipo_id == id)
-    data = db_select_query(query)
+    data = await db_select_query(query)
     for player in data:
         await db_delete_unique(FutbolPlayer,player.id)
 

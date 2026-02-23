@@ -4,7 +4,7 @@ from fastapi import APIRouter, status, Depends, HTTPException, Form, File, Uploa
 from models.torneo.futbolProfesor import FutbolProfesor
 from models.torneo.futbolTeam import FutbolTeam
 
-from db import select, db_commit, db_delete_unique, db_select_query, db_select_unique
+from db import select, db_commit, db_delete_unique, db_select_query, db_select_unique, db_update
 from auth.depends import get_current_admin
 from utils import IMG_PATH_TORNEO, IMG_PATH
 
@@ -55,6 +55,11 @@ async def profe_crear(
 
     profe = FutbolProfesor.model_validate(data)
     await db_commit(profe)
+
+    current_team:FutbolTeam = await db_select_unique(FutbolTeam,equipo_id)
+    current_team_data = current_team.model_dump()
+    current_team_data["hasProfesor"] = True
+    await db_update(FutbolTeam, equipo_id, current_team_data)
 
     return {"message": "Profesor creado con éxito"}  
 

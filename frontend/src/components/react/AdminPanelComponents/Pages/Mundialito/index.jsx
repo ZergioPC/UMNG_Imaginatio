@@ -29,8 +29,13 @@ function Mundialito(){
 
   const [openModalFaseAdd, setOpenModalFaseAdd] = useState(false);
   const [openModalFaseDelete, setOpenModalFaseDelete] = useState(false);
+  
   const [openModalTeamAdd, setOpenModalTeamAdd] = useState(false);
   const [openModalTeamDelete, setOpenModalTeamDelete] = useState(false);
+  const [openModalTeamClean, setOpenModalTeamClean] = useState(false);
+  const [openModalTeamFreeProfe, setOpenModalTeamFreeProfe] = useState(false);
+  
+  
   const [openModalPartidoAdd, setOpenModalPartidoAdd] = useState(false);
   const [openModalPartidoDelete, setOpenModalPartidoDelete] = useState(false);
   const [openModalProfeAdd, setOpenModalProfeAdd] = useState(false);
@@ -78,6 +83,8 @@ function Mundialito(){
 
   const actions_equipos = [
     {callback: (item)=> handleTeamBorrar(item), txt:"Borrar", color:"#ec8b8b"},
+    {callback: (item)=> handleTeamClean(item), txt:"Clean", color:"#ec8b8b"},
+    {callback: (item)=> handleTeamFreeProfe(item), txt:"Free Profe", color:"#ec8b8b"},
   ];
 
   const actions_partidos = [
@@ -188,9 +195,53 @@ function Mundialito(){
     });
   };
 
+  const handleTeamOnClean = e => {
+    e.preventDefault();
+    if (!selectTeam) return;
+    if(!confirm(`Restaurar equipo ${selectTeam.name}?`)) return;
+
+    fetch(`${API}/torneo_team/free-players/${selectTeam.id}`, {
+      method: 'DELETE',
+      credentials: "include"
+    }).then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      setOpenModalTeamClean(false);
+      setLoad(true);
+      setSelectTeam(null);
+    });
+  };
+
+    const handleTeamOnFreeProfe = e => {
+    e.preventDefault();
+    if (!selectTeam) return;
+    if(!confirm(`Borrar Profesor ${selectTeam.name}?`)) return;
+
+    fetch(`${API}/torneo_team/free-profe/${selectTeam.id}`, {
+      method: 'DELETE',
+      credentials: "include"
+    }).then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      setOpenModalTeamFreeProfe(false);
+      setLoad(true);
+      setSelectTeam(null);
+    });
+  };
+
   const handleTeamBorrar = team => {
     setSelectTeam(team);
     setOpenModalTeamDelete(true);
+  };
+
+  const handleTeamClean = team => {
+    setSelectTeam(team);
+    setOpenModalTeamClean(true);
+  };
+
+  const handleTeamFreeProfe = team => {
+    setSelectTeam(team);
+    setOpenModalTeamFreeProfe(true);
   };
 
   // MARK: Partidos
@@ -421,6 +472,30 @@ function Mundialito(){
         <div className="btn-container">
           <button type="submit" style={{backgroundColor:"#ff7474"}}>Borrar</button>
           <button type="button" onClick={()=> setOpenModalTeamDelete(false)}>Cancelar</button>
+        </div>
+      </form>
+    </Modal>)}
+
+    {/* Modal Limpiar Equipo */}
+    {openModalTeamClean && (<Modal>
+      <form className="Form" onSubmit={handleTeamOnClean}>
+        <h2>Restaurar el equipo</h2>
+        <p>¿Borrar a los jugadores el equipo {selectTeam?.name}?</p>
+        <div className="btn-container">
+          <button type="submit" style={{backgroundColor:"#ff7474"}}>Restaurar</button>
+          <button type="button" onClick={()=> setOpenModalTeamClean(false)}>Cancelar</button>
+        </div>
+      </form>
+    </Modal>)}
+
+    {/* Modal Liberar profe Equipo */}
+    {openModalTeamFreeProfe && (<Modal>
+      <form className="Form" onSubmit={handleTeamOnFreeProfe}>
+        <h2>Restaurar profe del equipo</h2>
+        <p>¿Borrar easignado el profesor ctual de {selectTeam?.name}?</p>
+        <div className="btn-container">
+          <button type="submit" style={{backgroundColor:"#ff7474"}}>Limpiar</button>
+          <button type="button" onClick={()=> setOpenModalTeamFreeProfe(false)}>Cancelar</button>
         </div>
       </form>
     </Modal>)}
