@@ -48,11 +48,16 @@ async def get_id (id:int):
     return {
         "fase": {
             "id": fase.id,
-            "name": fase.name,
-            "order_number": fase.order_number
+            "name": fase.name
         },
         "partidos": partidos
     }
+
+@router.get("/get")
+async def get_data():
+    query = select(Fase)
+    fases = await db_select_query(query)
+    return {"data":fases,"message":"Lista de Fases"}
 
 @router.post("/create", status_code=status.HTTP_201_CREATED)
 async def create_fase(fase:FaseBase, admin:str = Depends(get_current_admin)):

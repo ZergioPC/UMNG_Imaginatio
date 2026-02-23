@@ -50,6 +50,12 @@ async def get (id:int):
         "message": "Info del evento"
     }
 
+@router.get("/get")
+async def get_data():
+    query = select(Partido)
+    partidos = await db_select_query(query)
+    return {"data":partidos,"message":"Lista de Partidos"}
+
 @router.post("/create", status_code=status.HTTP_201_CREATED)
 async def create_fase(partido:PartidoBase, admin:str = Depends(get_current_admin)):
     try:

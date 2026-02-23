@@ -31,6 +31,12 @@ async def get (id:int):
         "message": "Info del FutbolTeam"
     }
 
+@router.get("/get")
+async def get_data():
+    query = select(FutbolTeam)
+    teams = await db_select_query(query)
+    return {"data":teams,"message":"Lista de Equipos"}
+
 @router.post("/create", status_code=status.HTTP_201_CREATED)
 async def create_fase(team:FutbolTeamBase, admin:str = Depends(get_current_admin)):
     try:
@@ -49,5 +55,10 @@ async def create_fase(team:FutbolTeamBase, admin:str = Depends(get_current_admin
 
 @router.delete("/delete/{id}", status_code=status.HTTP_403_FORBIDDEN)
 async def borrar(id:int, admin:str=Depends(get_current_admin)):
+    query = select(FutbolPlayer).where(FutbolPlayer.equipo_id == id)
+    data = db_select_query(query)
+    for player in data:
+        await db_delete_unique(FutbolPlayer,player.id)
+
     await db_delete_unique(FutbolTeam,id)
     return {"message":"FutbolTeam eliminado con Exito"}

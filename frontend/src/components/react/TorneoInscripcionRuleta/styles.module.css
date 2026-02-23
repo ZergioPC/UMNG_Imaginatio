@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  width: 100%;
+  height: 50vh;
+}
+
+.container p {
+  color: var(--text-inverse);
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.borde {
+  background-color: white;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border: 8px solid #FFD700;
+  animation: borderColor 2s linear infinite;
+}
+
+.spinning {
+  animation: borderColor 0.5s linear infinite;
+}
+
+.bandera {
+  width: 240px;
+  height: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+@keyframes borderColor {
+  0% {
+    border-color: #FFD700;
+  }
+  25% {
+    border-color: #FF6B6B;
+  }
+  50% {
+    border-color: #4ECDC4;
+  }
+  75% {
+    border-color: #45B7D1;
+  }
+  100% {
+    border-color: #FFD700;
+  }
+}

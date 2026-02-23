@@ -4,11 +4,17 @@ from fastapi import APIRouter, status, Depends, HTTPException, Form, File, Uploa
 from models.torneo.futbolProfesor import FutbolProfesor
 from models.torneo.futbolTeam import FutbolTeam
 
-from db import select, db_commit, db_delete_unique, db_select_query
+from db import select, db_commit, db_delete_unique, db_select_query, db_select_unique
 from auth.depends import get_current_admin
 from utils import IMG_PATH_TORNEO, IMG_PATH
 
 router = APIRouter()
+
+@router.get("/get")
+async def get_data():
+    query = select(FutbolProfesor)
+    profes = await db_select_query(query)
+    return {"data":profes,"message":"Lista de Profesores"}
 
 @router.post("/crear", status_code=status.HTTP_201_CREATED)
 async def profe_crear(

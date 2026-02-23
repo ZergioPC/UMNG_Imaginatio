@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import { TorneoInscripcionRuleta } from "../TorneoInscripcionRuleta";
+import { Modal } from "../Modal";
+
 import imageCompression from "browser-image-compression";
 
 import styles from "./styles.module.css";
 import GLOBALS from "../../../../public/js/globals";
+import { use } from "react";
 
 const API = GLOBALS.API;
 
@@ -44,9 +48,12 @@ function generateUserFields(imagePreviews, handleImageChange) {
 }
 
 function TorneoInscripcion(){
-  const [isTeamDisponible, setIsTeamDisponible] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
+  const [isTeamDisponible, setIsTeamDisponible] = useState(false);
+  
+  const [selectTeam, setSelectTeam] = useState(null);
+  const [showRuleta, setShowRuleta] = useState(false);
+  
   const [imagePreviews, setImagePreviews] = useState({});
   const imageUrlsRef = useRef([]);
 
@@ -79,9 +86,9 @@ function TorneoInscripcion(){
       .then((data) => {
         console.log(data.message);
         setIsTeamDisponible(data.data);
-        setLoading(false);
+        setSelectTeam(false);
       });
-  }, [message]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -113,24 +120,41 @@ function TorneoInscripcion(){
     })
       .then((res) => res.json())
       .then((data) => {
+        setSelectTeam(data.asigned);
+        setShowRuleta(true);
         setMessage(data.message);
         form.reset();
       });
   };
-
-  return isTeamDisponible ? (
-    <section className={styles.TorneoInscripcion}>
-      <form onSubmit={handleSubmit}>
-        {generateUserFields(imagePreviews, handleImageChange)}
-        <button type="submit">Inscribir Equipo</button>
-        {message && <p className={styles.TorneoMessage}>{message}</p>}
-      </form>
-    </section>
-  ) : (
-    <section className={styles.TorneoInscripcionOff}>
-      <p className={styles.TorneoMessage}>Los equipos están completos...</p>
-    </section>
-  );
+    
+  // RETURN
+  if (isTeamDisponible) {
+    return (
+      <>
+      <section className={styles.TorneoInscripcion}>
+        <form onSubmit={handleSubmit}>
+          {generateUserFields(imagePreviews, handleImageChange)}
+          <button type="submit">Inscribir Equipo</button>
+          {message && <p className={styles.TorneoMessage}>{message}</p>}
+        </form>
+      </section>
+      {showRuleta && <Modal onClose={()=> setShowRuleta(false)}>
+        <TorneoInscripcionRuleta 
+          pais={selectTeam || ""}
+          onComplete={()=> {
+            setShowRuleta(false);
+            setIsTeamDisponible(false);
+          }}
+        />
+      </Modal>
+      }
+      </>
+    );
+  } else {
+    return (<section className={styles.TorneoInscripcionOff}>
+    <p className={styles.TorneoMessage}>Los equipos están completos...</p>
+  </section>);
+  }
 }
 
 export { TorneoInscripcion };
