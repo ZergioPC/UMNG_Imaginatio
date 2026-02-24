@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter, status, Depends, HTTPException
 from sqlalchemy.orm import aliased
 
@@ -55,17 +56,29 @@ async def create_fase(team:FutbolTeamBase, admin:str = Depends(get_current_admin
 
 @router.delete("/delete/{id}", status_code=status.HTTP_403_FORBIDDEN)
 async def borrar(id:int, admin:str=Depends(get_current_admin)):
-    query = select(FutbolPlayer).where(FutbolPlayer.equipo_id == id)
-    data = db_select_query(query)
-    for player in data:
-        await db_delete_unique(FutbolPlayer,player.id)
-    
-    await db_delete_unique(FutbolProfesor,id)
+    equipo:FutbolTeam = await db_select_unique(FutbolTeam, id)
+    if equipo.hasProfesor:
+        await free_profesor_logic(id)
+    if equipo.fulled:
+        await free_players_logic(id)
     await db_delete_unique(FutbolTeam,id)
     return {"message":"FutbolTeam eliminado con Exito"}
 
 @router.delete("/free-profe/{id}")
 async def free_profesor(id:int, admin:str=Depends(get_current_admin)):
+    return await free_profesor_logic(id)
+
+@router.delete("/free-players/{id}")
+async def free_players(id:int, admin:str=Depends(get_current_admin)):
+    return await free_players_logic(id)
+
+# LOGICA
+
+async def free_profesor_logic(id:int):
+    profe:FutbolProfesor = await db_select_unique(FutbolProfesor, id)
+    if profe.img and os.path.exists(profe.img_url):
+        os.remove(profe.img_url)
+    
     await db_delete_unique(FutbolProfesor,id)
 
     current_team:FutbolTeam = await db_select_unique(FutbolTeam,id)
@@ -75,11 +88,14 @@ async def free_profesor(id:int, admin:str=Depends(get_current_admin)):
 
     return {"message":"Profesor eliminado del equipo con Exito"}
 
-@router.delete("/free-players/{id}")
-async def free_players(id:int, admin:str=Depends(get_current_admin)):
+async def free_players_logic(id:int):
     query = select(FutbolPlayer).where(FutbolPlayer.equipo_id == id)
     data = await db_select_query(query)
     for player in data:
+        est:FutbolPlayer = await db_select_unique(FutbolPlayer, player.id)
+        if est.img_url and os.path.exists(est.img_url):
+            os.remove(est.img_url)
+        
         await db_delete_unique(FutbolPlayer,player.id)
 
     current_team:FutbolTeam = await db_select_unique(FutbolTeam,id)
