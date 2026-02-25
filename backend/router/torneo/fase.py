@@ -1,3 +1,4 @@
+import logging
 from fastapi import APIRouter, status, Depends, HTTPException
 from sqlalchemy.orm import aliased
 
@@ -36,13 +37,14 @@ async def get_id (id:int):
     for row in rows:
         if hasattr(row, '_mapping'):
             mapping = row._mapping
+            partido_obj = mapping.get("Partido")
             partidos.append({
-                "id": mapping.get("id"),
-                "equipo_1_score": mapping.get("equipo_1_score"),
-                "equipo_2_score": mapping.get("equipo_2_score"),
+                "id": partido_obj.id if partido_obj else 0,
+                "equipo_1_score": partido_obj.equipo_1_score if partido_obj else 0,
+                "equipo_2_score": partido_obj.equipo_2_score if partido_obj else 0,
                 "equipo_1_name": mapping.get("equipo_1_name"),
                 "equipo_2_name": mapping.get("equipo_2_name"),
-                "winner": mapping.get("winner"),
+                "winner": partido_obj.winner if partido_obj else None,
             })
     
     return {

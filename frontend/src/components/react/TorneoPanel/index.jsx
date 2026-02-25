@@ -1,32 +1,21 @@
-import { HashRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
+import { HashRouter, Routes, Route, NavLink, useParams } from 'react-router-dom';
+
 import "./TorneoPanel.css";
 
-import torneoDoodleVideo from "../../../assets/mundialito/FutbolDoodle.webm";
-
-//import { Home } from "../AdminPanelComponents/Pages/Home";
+import { Home } from '../TorneoPanelComponents/pages/Home';
 //import { EventosEquipos } from "../AdminPanelComponents/Pages/EventosEquipos";
 //import { Apariencia } from "../AdminPanelComponents/Pages/Apariencia";
 
 function Partido(){
+  const { id } = useParams();
   return (<>
-    <h1>Partido</h1>
-  </>);
-}
-
-function Home(){
-  return (<>
-    <h1>Brackets</h1>
-    <video autoPlay muted>
-      <source src={torneoDoodleVideo} type='video/webm'/>
-    </video>
-    <a href="/mundialito-inscripcion">Inscribete</a>
+    <h1>Partido {id}</h1>
   </>);
 }
 
 function Equipos(){
   return (<>
     <h1>Equipos</h1>
-    <Link to="/partido">Partido</Link>
   </>);
 }
 
@@ -60,7 +49,7 @@ function TorneoPanel() {
               element={<link.element />} 
             />
           )}
-          <Route path="/partido" element={<Partido />}/>
+          <Route path="/partido/:id" element={<Partido />}/>
         </Routes>
       </div>
     </HashRouter>

@@ -1,0 +1,154 @@
+.bracket-container {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  overflow-x: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bracket-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.bracket {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  min-width: max-content;
+}
+
+.bracket-top {
+  align-self: flex-start;
+}
+
+.bracket-bottom {
+  align-self: flex-end;
+}
+
+.round {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-width: 180px;
+}
+
+.round-title {
+  text-align: center;
+  color: #666;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.match {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 8px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  height: 32px;
+  border-bottom: 1px solid #eee;
+}
+
+.team:last-child {
+  border-bottom: none;
+}
+
+.team.winner {
+  background: linear-gradient(90deg, #e8f5e9 0%, #fff 100%);
+  font-weight: 600;
+}
+
+.team.winner .team-score {
+  color: #2e7d32;
+}
+
+.team-flag {
+  width: 24px;
+  height: 16px;
+  margin-right: 6px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.team-name {
+  flex: 1;
+  font-size: 0.85rem;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.team-score {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #666;
+  min-width: 18px;
+  text-align: right;
+}
+
+.team-tbd {
+  color: #aaa;
+  font-style: italic;
+}
+
+.round-spacer {
+  min-width: 40px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #d32f2f;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .bracket-container {
+    padding: 10px;
+  }
+  
+  .round {
+    min-width: 140px;
+  }
+  
+  .match {
+    margin: 4px 0;
+  }
+  
+  .team {
+    padding: 4px 6px;
+    height: 26px;
+  }
+  
+  .team-name {
+    font-size: 0.75rem;
+  }
+  
+  .team-flag {
+    width: 20px;
+    height: 14px;
+  }
+}

@@ -7,6 +7,8 @@
 .App-Content,
 .App-Nav {
   transform: translateY(60px);
+  background-color: white;
+  background-image: none;
 }
 
 .App-Content{
