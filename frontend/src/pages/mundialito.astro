@@ -1,9 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
+import { TorneoPanel } from "../components/react/TorneoPanel";
 ---
 
 <BaseLayout title="Mundialito">
-  <h1>Mundialito Multimedia 2026</h1>
-  <a href="/mundialito-inscripcion">Inscribete</a>
+  <TorneoPanel client:only="react"/>
 </BaseLayout>

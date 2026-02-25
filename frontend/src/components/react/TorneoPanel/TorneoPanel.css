@@ -1,0 +1,8 @@
+.Torneo-nav {
+  z-index: 2;
+  position: fixed;
+}
+
+.Torneo-Content {
+  background-color: aqua;
+}
