@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Bracket.css';
+
+import videoTorneoDoodle from "../../../../../assets/mundialito/FutbolDoodle.webm";
 
 const API = typeof GLOBALS !== 'undefined' ? GLOBALS.API : '/api';
 
@@ -105,10 +107,20 @@ async function fetchFaseData(faseId) {
   }
 }
 
+async function fetchTeamsData() {
+  try {
+    console.log("");
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function Home() {
   const [faseData, setFaseData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [intro,setIntro] = useState(true);
 
   useEffect(() => {
     async function loadData() {
@@ -128,10 +140,24 @@ function Home() {
     loadData();
   }, []);
 
+  setTimeout(()=>{
+    setIntro(false);
+  },5100);
+
   if (loading) return <div className="bracket-container"><div className="loading">Cargando bracket...</div></div>;
   if (error) return <div className="bracket-container"><div className="error">Error: {error}</div></div>;
 
   return (
+    <>
+    {/* DOODLE */}
+    <div className={intro ? "doodle" : "doodle doodle-small"}>
+      <span></span>
+      <video autoPlay muted>
+        <source src={videoTorneoDoodle} type='video/webm'/>
+      </video>
+    </div>
+
+    {/* BRACKET */}
     <div className="bracket-container">
       <h1 className="bracket-title">Torneo de Doble Eliminación</h1>
       
@@ -165,6 +191,14 @@ function Home() {
         </div>
       </div>
     </div>
+
+    {/* Inscribirse */}
+    <div>
+      <a href="/mundialito-inscripcion">Inscribete</a>
+    </div>
+
+    {/* VER EQUIPOS */}
+    </>
   );
 }
 

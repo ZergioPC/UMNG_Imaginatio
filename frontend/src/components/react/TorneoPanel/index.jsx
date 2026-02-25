@@ -27,19 +27,6 @@ const links = [
 function TorneoPanel() {
   return (
     <HashRouter>
-      <div className="Torneo-nav">
-        <nav>
-          {links.map((link,idx) => 
-            <NavLink 
-              key={idx}
-              to={link.to}
-              className={({ isActive }) =>
-                isActive ? "active" : ""
-              }
-            >{link.txt}</NavLink>
-          )}
-        </nav>
-      </div>
       <div className="Torneo-Content">
         <Routes>
           {links.map((link,idx) => 
