@@ -11,7 +11,7 @@ from auth import router as auth
 from router import posts, equipo, events, estudiantes, utils
 from router.torneo import fase, futbolPlayer, futbolProfesor, futbolTeam, partido
 from router.torneo import utils as torneoUtils
-from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS
+from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS, IMG_PATH_TORNEO
 
 
 load_dotenv()
@@ -50,6 +50,7 @@ app.add_middleware(
 os.makedirs(IMG_PATH, exist_ok=True)
 os.makedirs(IMG_PATH_USERS, exist_ok=True)
 os.makedirs(IMG_PATH_POSTS, exist_ok=True)
+os.makedirs(IMG_PATH_TORNEO, exist_ok=True)
 app.mount("/uploads",StaticFiles(directory="uploads"), name="Uploads")
 
 # Routers

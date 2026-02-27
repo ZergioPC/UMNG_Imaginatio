@@ -206,7 +206,7 @@ function Home() {
         </div>
 
         <div className="bracket-bottom">
-          <Round title="Lowers Final" matches={faseData[7]} expectedMatches={2} />
+          <Round title="Lowers Final" matches={faseData[7]} expectedMatches={1} />
         </div>
 
         <div>
@@ -223,7 +223,7 @@ function Home() {
     </div>
 
     {/* VER EQUIPOS */}
-    <div className="equipos-container">
+    <div className="equipos-list-container">
       {teamsData.map(team =>
         <article 
           className="equipo-card"

@@ -1,4 +1,4 @@
-import os
+import os, logging
 from fastapi import APIRouter, status, Depends, HTTPException
 from sqlalchemy.orm import aliased
 
@@ -16,17 +16,28 @@ router = APIRouter()
 @router.get("/get/{id}")
 async def get (id:int):
     team = await db_select_unique(FutbolTeam, id)
+    profesor = None
+    players = []
     
-    query_profe = select(FutbolProfesor).where(FutbolProfesor.equipo_id == id)
-    profesores = await db_select_query(query_profe)
-    
-    query_players = select(FutbolPlayer).where(FutbolPlayer.equipo_id == id)
-    players = await db_select_query(query_players)
+    try :
+        query_profe = select(FutbolProfesor).where(FutbolProfesor.equipo_id == id)
+        profesores = await db_select_query(query_profe)
+        
+        if aux_imaginatio_date_validate:
+            profesor = profesores[0]
+    except :
+        logging.warning ("No se encontraron Profesores")
+
+    try :
+        query_players = select(FutbolPlayer).where(FutbolPlayer.equipo_id == id)
+        players = await db_select_query(query_players)
+    except :
+        logging.warning ("No se encontraron Jugadores")    
     
     return {
         "data": {
             "team": team,
-            "profesor": profesores[0] if profesores and aux_imaginatio_date_validate() else None,
+            "profesor": profesor,
             "players": players
         },
         "message": "Info del FutbolTeam"

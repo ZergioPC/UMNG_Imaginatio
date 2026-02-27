@@ -252,9 +252,9 @@
   cursor: not-allowed;
 }
 
-.equipos-container {
+.equipos-list-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 30px 20px;
   max-width: 1200px;
@@ -340,6 +340,10 @@
   .team-flag {
     width: 20px;
     height: 14px;
+  }
+
+  .equipos-list-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

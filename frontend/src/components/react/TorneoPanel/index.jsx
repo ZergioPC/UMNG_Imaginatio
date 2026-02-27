@@ -5,6 +5,7 @@ import "./TorneoPanel.css";
 import wallpaper from "../../../assets/mundialito/futbol_field.webp";
 
 import { Home } from '../TorneoPanelComponents/pages/Home';
+import { Equipos } from '../TorneoPanelComponents/pages/Equipos';
 //import { EventosEquipos } from "../AdminPanelComponents/Pages/EventosEquipos";
 //import { Apariencia } from "../AdminPanelComponents/Pages/Apariencia";
 
@@ -12,12 +13,6 @@ function Partido(){
   const { id } = useParams();
   return (<>
     <h1>Partido {id}</h1>
-  </>);
-}
-
-function Equipos(){
-  return (<>
-    <h1>Equipos</h1>
   </>);
 }
 

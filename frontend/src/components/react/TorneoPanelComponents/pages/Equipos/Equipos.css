@@ -1,0 +1,246 @@
+.btn-return {
+  box-sizing: border-box;
+  z-index: 2;
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.app-container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 1fr 2fr 1fr;
+  min-height: calc(100vh - 80px);
+  padding: 20px;
+  gap: 20px;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(231, 231, 231, 0.2);
+  max-height: 70vh;
+  align-content: start;
+}
+
+.app-grid-item {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.app-grid-item:hover,
+.app-grid-item.active {
+  border-color: #00d4ff;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+.app-grid p {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.app-grid a {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.5em;
+  border-radius: 15px;
+  background-color: var(--state-success);
+  text-align: center;
+}
+
+.app-grid-item a:hover {
+  background-color: #fff;
+  transform: scale(1.2);
+}
+
+.app-grid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-detalle {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  min-height: 400px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.app-detalle-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #00d4ff;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+.app-detalle-name {
+  font-size: 1.8rem;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+.app-detalle-role {
+  font-size: 1.2rem;
+  color: #00d4ff;
+  padding: 0.5rem 1.5rem;
+  background: rgba(0, 212, 255, 0.15);
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.app-detalle-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.app-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.app-info-name {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0.5rem 0 1rem 0;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: 3px;
+}
+
+.app-info figure {
+  width: 150px;
+  height: 90px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.app-info img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.app-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(231, 231, 231, 0.2);
+}
+
+.app-profesor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.app-profesor:hover,
+.app-profesor.active {
+  border-color: #00d4ff;
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.app-profesor-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+}
+
+.app-profesor-name {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+.app-profesor-role {
+  color: #00d4ff;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+.app-grid-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+}
+
+.app-grid-empty p {
+  font-size: 1.2em;
+  margin-bottom: 1rem;
+}
+
+.app-loading,
+.app-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .app-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-height: none;
+  }
+
+  .app-detalle {
+    min-width: 280px;
+    min-height: 300px;
+  }
+}
