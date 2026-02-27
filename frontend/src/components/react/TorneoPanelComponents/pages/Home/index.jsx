@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './Bracket.css';
+import { useNavigate} from 'react-router-dom';
+import './Home.css';
 
 import videoTorneoDoodle from "../../../../../assets/mundialito/FutbolDoodle.webm";
 
@@ -34,7 +34,7 @@ function Team({ name, score, isWinner }) {
   const flag = getFlag(name);
   
   return (
-    <div className={`team ${isWinner ? 'winner' : ''}`}>
+    <div className={`team team-${name} ${isWinner ? 'winner' : ''}`}>
       {flag && <img src={flag} alt={name} className="team-flag" />}
       <span className="team-name">{name || 'TBD'}</span>
       {score !== null && score !== undefined && (
@@ -45,8 +45,6 @@ function Team({ name, score, isWinner }) {
 }
 
 function Match({ match}) {
-  const navigate = useNavigate();
-
   if (!match) {
     return (
       <div className="match">
@@ -55,16 +53,16 @@ function Match({ match}) {
       </div>
     );
   }
+  const navigate = useNavigate();
 
   const winnerId = match.winner;
   const team1IsWinner = winnerId && match.equipo_1 === winnerId;
   const team2IsWinner = winnerId && match.equipo_2 === winnerId;
 
-  console.log(match);
-
   const handleRedirect = ()=> {
     if (match.id !== 0) navigate(`/partido/${match.id}`);
   }
+
   return (
     <div 
       className="match"
@@ -97,7 +95,7 @@ function Spacer({ width = 40 }) {
 
 async function fetchFaseData(faseId) {
   try {
-    const response = await fetch(`${API}/torneo_fase/get/${faseId}`, { credentials: 'include' });
+    const response = await fetch(`${API}/torneo_fase/get/${faseId}`);
     if (!response.ok) throw new Error(`Error fase ${faseId}`);
     const data = await response.json();
     return data.partidos || [];
@@ -109,7 +107,10 @@ async function fetchFaseData(faseId) {
 
 async function fetchTeamsData() {
   try {
-    console.log("");
+    const response = await fetch(`${API}/torneo_team/get`);
+    if (!response.ok) throw new Error(`Error al cargar equipos`);
+    const data = await response.json();
+    return data.data;
   } catch (e) {
     console.log(e);
   }
@@ -117,20 +118,25 @@ async function fetchTeamsData() {
 
 function Home() {
   const [faseData, setFaseData] = useState({});
+  const [teamsData, setTeamsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   const [intro,setIntro] = useState(true);
+  const [isTeamsDisponibles, setIsTeamDisponible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadData() {
       try {
         setLoading(true);
         const fases = {};
+        const teams = await fetchTeamsData();
         for (let i = 1; i <= 8; i++) {
           fases[i] = await fetchFaseData(i);
         }
         setFaseData(fases);
+        setTeamsData(teams);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -140,12 +146,29 @@ function Home() {
     loadData();
   }, []);
 
+  useEffect(() => {
+    fetch(API + "/torneo_utils/teams-disponibles")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.message);
+        setIsTeamDisponible(data.data);
+      });
+    }, []);
+
   setTimeout(()=>{
     setIntro(false);
   },5100);
 
-  if (loading) return <div className="bracket-container"><div className="loading">Cargando bracket...</div></div>;
-  if (error) return <div className="bracket-container"><div className="error">Error: {error}</div></div>;
+  if (loading) return (
+    <div className="bracket-container">
+      <div className="loading">Cargando bracket...</div>
+    </div>
+  );
+  if (error) return (
+    <div className="bracket-container">
+      <div className="error">Error: {error}</div>
+    </div>
+  );
 
   return (
     <>
@@ -193,11 +216,24 @@ function Home() {
     </div>
 
     {/* Inscribirse */}
-    <div>
+    <div 
+      className={isTeamsDisponibles ? "inscripcion" : "inscipcion off"}
+    >
       <a href="/mundialito-inscripcion">Inscribete</a>
     </div>
 
     {/* VER EQUIPOS */}
+    <div className="equipos-container">
+      {teamsData.map(team =>
+        <article 
+          className="equipo-card"
+          onClick={()=> navigate(`/equipos/${(team.id)}`)}
+        >
+          <img src={getFlag(team.name)} alt="" srcset="" />
+          <span>{team.name}</span>
+        </article>
+      )}
+    </div>
     </>
   );
 }

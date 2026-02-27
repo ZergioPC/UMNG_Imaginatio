@@ -6,7 +6,6 @@ import imageCompression from "browser-image-compression";
 
 import styles from "./styles.module.css";
 import GLOBALS from "../../../../public/js/globals";
-import { use } from "react";
 
 const API = GLOBALS.API;
 

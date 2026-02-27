@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { TorneoInscripcion } from "../components/react/TorneoInscripcion";
+import wallpaper from "../assets/mundialito/futbol_field.webp";
 ---
 
 <BaseLayout title="Mundialito Inscripción">
-  <main>
+  <main style=`background-image: url(${wallpaper.src})`>
     <section>
       <h1>Inscripción</h1>
       <span>Mundialito Multimedia 2026</span>
@@ -14,3 +15,11 @@ import { TorneoInscripcion } from "../components/react/TorneoInscripcion";
 
   </main>
 </BaseLayout>
+
+<style>
+  main {
+    background-color: #000;
+    background-size: cover;
+    background-position: center;
+  }
+</style>
