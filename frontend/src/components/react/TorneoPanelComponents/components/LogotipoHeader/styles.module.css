@@ -1,0 +1,32 @@
+.LogotipoHeader {
+  padding: 0 20px;
+  padding-top: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.LogotipoHeader h1 {
+  margin: 0;
+  max-width: 400px;
+  color: #fff;
+  text-align: left;
+}
+
+.LogotipoHeader img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  max-width: 200px;
+}
+
+@media screen and (max-width: 550px) {
+  .LogotipoHeader {
+    flex-direction: column;
+  }
+  .LogotipoHeader h1 {
+    text-align: center;
+  }
+}

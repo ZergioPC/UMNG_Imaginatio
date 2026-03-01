@@ -6,6 +6,7 @@ import { PartidoTeamInfo } from '../../components/PartidoTeamInfo';
 import { PlayerList } from '../../components/PlayerList';
 import { Scoreboard } from '../../components/Scoreboard';
 import { BtnReturn } from '../../components/BtnReturn';
+import { LogotipoHeader } from '../../components/LogotipoHeader';
 
 const API = typeof GLOBALS !== 'undefined' ? GLOBALS.API : '/api';
 
@@ -55,7 +56,7 @@ function Partido() {
       <BtnReturn />
 
       <div className="partido-header">
-        <h1>Partido</h1>
+        <LogotipoHeader/>
       </div>
 
       <div className="partido-main">

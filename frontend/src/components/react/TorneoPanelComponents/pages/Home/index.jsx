@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
-import './Home.css';
 
-import videoTorneoDoodle from "../../../../../assets/mundialito/FutbolDoodle.webm";
+import { LogotipoHeader } from '../../components/LogotipoHeader';
+import { VideoLoading } from '../../components/VideoLoading';
+
+import './Home.css';
 
 const API = typeof GLOBALS !== 'undefined' ? GLOBALS.API : '/api';
 
@@ -122,7 +124,6 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  const [intro,setIntro] = useState(true);
   const [isTeamsDisponibles, setIsTeamDisponible] = useState(false);
   const navigate = useNavigate();
 
@@ -140,7 +141,7 @@ function Home() {
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+        setTimeout(()=> setLoading(false),4000)
       }
     }
     loadData();
@@ -155,13 +156,9 @@ function Home() {
       });
     }, []);
 
-  setTimeout(()=>{
-    setIntro(false);
-  },5100);
-
   if (loading) return (
     <div className="bracket-container">
-      <div className="loading">Cargando bracket...</div>
+      <VideoLoading />
     </div>
   );
   if (error) return (
@@ -172,18 +169,11 @@ function Home() {
 
   return (
     <>
-    {/* DOODLE */}
-    <div className={intro ? "doodle" : "doodle doodle-small"}>
-      <span></span>
-      <video autoPlay muted>
-        <source src={videoTorneoDoodle} type='video/webm'/>
-      </video>
-    </div>
+    {/* HEADER */}
+    <LogotipoHeader titulo={"Bracket del Torneo"}/>
 
     {/* BRACKET */}
     <div className="bracket-container">
-      <h1 className="bracket-title">Torneo de Doble Eliminación</h1>
-      
       <div className="bracket">
         <div>
           <Round title="Ronda 1" matches={faseData[1]} expectedMatches={4} />

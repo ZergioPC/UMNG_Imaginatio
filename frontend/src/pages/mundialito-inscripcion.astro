@@ -1,14 +1,18 @@
 ---
+import { Image } from "astro:assets";
+
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { TorneoInscripcion } from "../components/react/TorneoInscripcion";
+
 import wallpaper from "../assets/mundialito/futbol_field.webp";
+import logotipo from "../assets/mundialito/LOGOTIPO_Mundialito_web.webp";
 ---
 
 <BaseLayout title="Mundialito Inscripción">
   <main style=`background-image: url(${wallpaper.src})`>
     <section>
-      <h1>Inscripción</h1>
-      <span>Mundialito Multimedia 2026</span>
+      <Image src={logotipo} alt="Logotipo Mundialito" />
+      <h1>Formulario de Inscripción</h1>
     </section>
 
     <TorneoInscripcion client:load/>
@@ -18,8 +22,42 @@ import wallpaper from "../assets/mundialito/futbol_field.webp";
 
 <style>
   main {
-    background-color: #000;
+    padding-top: 20px;
+    background-color: #000
     background-size: cover;
     background-position: center;
   }
+
+  section {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    margin: 20px;
+    padding: 20px 10px;
+    text-align: center;
+
+    background-color: rgba(100, 100, 100, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+  }
+
+section img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+section h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-weight: bold;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
+}
 </style>

@@ -5,6 +5,7 @@ import { Modal } from "../Modal";
 import imageCompression from "browser-image-compression";
 
 import styles from "./styles.module.css";
+import Logotipo from "../../../assets/mundialito/LOGOTIPO_Mundialito_web.webp";
 import GLOBALS from "../../../../public/js/globals";
 
 const API = GLOBALS.API;
