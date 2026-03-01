@@ -6,20 +6,7 @@ import wallpaper from "../../../assets/mundialito/futbol_field.webp";
 
 import { Home } from '../TorneoPanelComponents/pages/Home';
 import { Equipos } from '../TorneoPanelComponents/pages/Equipos';
-//import { EventosEquipos } from "../AdminPanelComponents/Pages/EventosEquipos";
-//import { Apariencia } from "../AdminPanelComponents/Pages/Apariencia";
-
-function Partido(){
-  const { id } = useParams();
-  return (<>
-    <h1>Partido {id}</h1>
-  </>);
-}
-
-const links = [
-  {to:"/", txt:"Torneo", element:Home},
-  {to:"/equipos/:id", txt:"Equipos", element:Equipos},
-]
+import { Partido } from '../TorneoPanelComponents/pages/Partido';
 
 function TorneoPanel() {
   return (
@@ -29,13 +16,8 @@ function TorneoPanel() {
         style={{backgroundImage: `url(${wallpaper.src})`}}
       >
         <Routes>
-          {links.map((link,idx) => 
-            <Route 
-              key={idx}
-              path={link.to} 
-              element={<link.element />} 
-            />
-          )}
+          <Route path="/" element={<Home />}/>
+          <Route path="/equipos/:id" element={<Equipos />}/>
           <Route path="/partido/:id" element={<Partido />}/>
         </Routes>
       </div>

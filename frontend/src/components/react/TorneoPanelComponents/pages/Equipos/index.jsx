@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import IconBack from '../../../Icons/IconBack';
 
+import { BtnReturn } from '../../components/BtnReturn';
+
 import './Equipos.css';
 
 const API = typeof GLOBALS !== 'undefined' ? GLOBALS.API : '/api';
@@ -73,13 +75,8 @@ function Equipos() {
 
   return (
     <div className="app-container">
-      <button 
-        className='btn-return'
-        onClick={()=> navigate("/")}
-      >
-        <IconBack color='#fff'/>
-      </button>
-
+      
+      <BtnReturn />
 
       <div className="app-info-container">
         <div className="app-info">

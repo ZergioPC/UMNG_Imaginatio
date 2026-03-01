@@ -1,3 +1,4 @@
+import logging
 from fastapi import APIRouter, status, Depends, HTTPException
 from sqlmodel import select
 
@@ -8,6 +9,7 @@ from models.torneo.futbolProfesor import FutbolProfesor
 from models.torneo.fase import Fase
 
 from db import db_commit, db_delete_unique, db_select_unique, db_select_query
+from router.torneo.utils import aux_imaginatio_date_validate
 from auth.depends import get_current_admin
 
 router = APIRouter()
@@ -19,15 +21,26 @@ async def aux_get_team_info(team_id: int):
     
     team = await db_select_unique(FutbolTeam, team_id)
     
-    query_profe = select(FutbolProfesor).where(FutbolProfesor.equipo_id == team_id)
-    profesores = await db_select_query(query_profe)
-    
-    query_players = select(FutbolPlayer).where(FutbolPlayer.equipo_id == team_id)
-    players = await db_select_query(query_players)
+    players = []
+    try :
+        query_players = select(FutbolPlayer).where(FutbolPlayer.equipo_id == team_id)
+        players = await db_select_query(query_players)
+    except :
+        logging.warning("No hay Jugadores")
+
+    profesor = None
+    try:
+        query_profe = select(FutbolProfesor).where(FutbolProfesor.equipo_id == team_id)
+        profesores = await db_select_query(query_profe)
+        
+        if aux_imaginatio_date_validate:
+            profesor = profesores[0]
+    except:
+        logging.warning("No hay profesor")
     
     return {
         "team": team,
-        "profesor": profesores[0] if profesores else None,
+        "profesor": profesor,
         "players": players
     }
 
@@ -38,14 +51,11 @@ async def get (id:int):
     equipo_1_info = await aux_get_team_info(partido.equipo_1)
     equipo_2_info = await aux_get_team_info(partido.equipo_2)
     
-    winner_info = await aux_get_team_info(partido.winner) if partido.winner else None
-    
     return {
         "data": {
             "partido": partido,
             "equipo_1": equipo_1_info,
             "equipo_2": equipo_2_info,
-            "winner": winner_info
         },
         "message": "Info del evento"
     }

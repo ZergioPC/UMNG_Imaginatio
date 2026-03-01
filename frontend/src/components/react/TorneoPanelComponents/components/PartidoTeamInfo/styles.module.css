@@ -1,0 +1,116 @@
+.PartidoteamInfo {
+  display: block;
+  position: relative;
+  margin-top: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.PartidoteamLogo{
+  border: 3px solid #ffffff;
+  background: #000000;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.PartidoteamLogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.PartidoteamName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+.PartidoBadge {
+  position: absolute;
+  top: 0px;
+  display: block;
+  width: 100%;
+  padding: 6px 14px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  color: #000;
+
+  /* Golden gradient background */
+  background: linear-gradient(
+    120deg,
+    #b8860b,
+    #ffd700,
+    #fff8dc,
+    #ffd700,
+    #b8860b
+  );
+  background-size: 300% 300%;
+
+  /* Shine animation */
+  animation: goldShine 4s ease-in-out infinite;
+
+  /* Glow effect */
+  box-shadow:
+    0 0 5px #ffd700,
+    0 0 10px #ffd700,
+    0 0 20px rgba(255, 215, 0, 0.7);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Moving shine overlay */
+.PartidoBadge::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shineMove 3s infinite;
+}
+
+@keyframes goldShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shineMove {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+@media screen and (max-width: 754px) {
+  .PartidoteamLogo{
+    width: 100px;
+    height: 100px;
+  } 
+}
