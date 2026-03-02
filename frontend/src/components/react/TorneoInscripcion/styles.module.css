@@ -1,5 +1,5 @@
 .TorneoInscripcion {
-  margin: 20px 100px;
+  padding: 20px 100px;
 }
 
 .TorneoInscripcion form {
@@ -20,6 +20,7 @@
 
 .TorneoInscripcionOff {
   padding: 10px;
+  min-height: 300px;
 }
 
 .Form {
@@ -65,6 +66,6 @@
 
 @media screen and (max-width: 900px) {
   .TorneoInscripcion {
-    margin: 10px;
+    padding: 10px;
   }
 }

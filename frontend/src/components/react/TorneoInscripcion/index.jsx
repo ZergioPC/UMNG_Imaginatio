@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { TorneoInscripcionRuleta } from "../TorneoInscripcionRuleta";
-import { Modal } from "../Modal";
 
 import imageCompression from "browser-image-compression";
 
 import styles from "./styles.module.css";
-import Logotipo from "../../../assets/mundialito/LOGOTIPO_Mundialito_web.webp";
 import GLOBALS from "../../../../public/js/globals";
 
 const API = GLOBALS.API;
@@ -50,7 +48,8 @@ function generateUserFields(imagePreviews, handleImageChange) {
 function TorneoInscripcion(){
   const [message, setMessage] = useState("");
   const [isTeamDisponible, setIsTeamDisponible] = useState(false);
-  
+  const [isFulled, setIsFulled] = useState(false);
+
   const [selectTeam, setSelectTeam] = useState(null);
   const [showRuleta, setShowRuleta] = useState(false);
   
@@ -92,6 +91,7 @@ function TorneoInscripcion(){
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsFulled(true);
 
     const form = e.target;
     const formData = new FormData(form);
@@ -111,6 +111,7 @@ function TorneoInscripcion(){
       }
     } catch (error) {
       console.log(error);
+      setIsFulled(false);
     }
 
     await fetch(API + "/torneo_players/crear", {
@@ -132,21 +133,28 @@ function TorneoInscripcion(){
     return (
       <>
       <section className={styles.TorneoInscripcion}>
-        <form onSubmit={handleSubmit}>
-          {generateUserFields(imagePreviews, handleImageChange)}
-          <button type="submit">Inscribir Equipo</button>
-          {message && <p className={styles.TorneoMessage}>{message}</p>}
-        </form>
+        {isFulled ? (
+          <section className={styles.TorneoInscripcionOff}>
+            <p 
+              className={styles.TorneoMessage}
+            >Cargando ruleta de equipo...</p>
+          </section>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            {generateUserFields(imagePreviews, handleImageChange)}
+            <button type="submit">Inscribir Equipo</button>
+            {message && <p className={styles.TorneoMessage}>{message}</p>}
+          </form>
+        )}
       </section>
-      {showRuleta && <Modal onClose={()=> setShowRuleta(false)}>
+      {showRuleta &&
         <TorneoInscripcionRuleta 
           pais={selectTeam || ""}
           onComplete={()=> {
             setShowRuleta(false);
-            setIsTeamDisponible(false);
+            console.log("Cerrar Ruleta");
           }}
         />
-      </Modal>
       }
       </>
     );
