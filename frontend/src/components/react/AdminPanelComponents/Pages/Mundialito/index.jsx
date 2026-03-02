@@ -9,11 +9,24 @@ import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API;
 
-const formAddFaseInit = { name: "" };
 const formAddTeamInit = { name: "" };
-const formAddPartidoInit = { fase_id: 0, equipo_1: 0, equipo_2: 0, equipo_1_score: 0, equipo_2_score: 0 };
 const formAddProfeInit = { name: "", img: null };
 const formEditPartidoInit = { equipo_1_score: 0, equipo_2_score: 0, winner: null };
+const formAddPartidoInit = { fase_id: 0, equipo_1: 0, equipo_2: 0, equipo_1_score: 0, equipo_2_score: 0 };
+const formOptionsFase = [
+  { value: 1, txt: "Ronda 1" },
+  { value: 2, txt: "Winners 1" },
+  { value: 3, txt: "Lowers 1" },
+  { value: 4, txt: "Lowers 2" },
+  { value: 5, txt: "Winners 2" },
+  { value: 6, txt: "Lowers 3" },
+  { value: 7, txt: "Lowers Final" },
+  { value: 8, txt: "Gran Final" },
+]
+const formAddFaseInit = { 
+  name: formOptionsFase[0].txt, 
+  order: formOptionsFase[0].value
+};
 
 function Mundialito(){
   const [load, setLoad] = useState(true);
@@ -155,7 +168,9 @@ function Mundialito(){
       setOpenModalFaseDelete(false);
       setLoad(true);
       setSelectFase(null);
-    });
+    }).catch(e => 
+      alert("No es posible borrar una fase con partidos")
+    );
   };
 
   const handleFaseBorrar = fase => {
@@ -471,13 +486,21 @@ function Mundialito(){
     {openModalFaseAdd && (<Modal>
       <form className="Form" onSubmit={handleFaseOnCreate}>
         <h2>Crear Fase</h2>
-        <input 
-          required 
-          type="text" 
-          placeholder="Nombre de la fase"
-          value={formAddFase.name}
-          onChange={e => setFormAddFase({ ...formAddFase, name: e.target.value })}
-        />
+        <select 
+          required
+          onChange={e => setFormAddFase({ 
+            ...formAddFase, 
+            name: formOptionsFase.find(
+              opt => opt.value === parseInt(e.target.value)
+            ).txt,
+            order: parseInt(e.target.value),
+          })}
+        >
+          {formOptionsFase.map((option, idx) => (
+            <option key={idx} value={option.value}>{option.txt}</option>
+          ))}
+        </select>
+
         <div className="btn-container">
           <button type="submit">Crear</button>
           <button type="button" onClick={()=> setOpenModalFaseAdd(false)}>Cancelar</button>

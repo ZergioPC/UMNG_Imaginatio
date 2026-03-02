@@ -16,9 +16,12 @@ Equipo2 = aliased(FutbolTeam)
 
 @router.get("/get/{id}")
 async def get_id (id:int):
-    fase = await db_select_unique(Fase, id)
-    
-    query = select(
+    query_fase = select(Fase).where(Fase.order == id)
+    result_fase = await db_select_query(query_fase)
+
+    fase = result_fase[0] if result_fase else None
+
+    query_data = select(
         Partido,
         Equipo1.name.label("equipo_1_name"),
         Equipo2.name.label("equipo_2_name"),
@@ -26,10 +29,10 @@ async def get_id (id:int):
         Equipo1, Partido.equipo_1 == Equipo1.id
     ).outerjoin(
         Equipo2, Partido.equipo_2 == Equipo2.id
-    ).where(Partido.fase_id == id)
+    ).where(Partido.fase_id == fase.id)
     
     try:
-        rows = await db_select_query(query)
+        rows = await db_select_query(query_data)
     except Exception:
         rows = []
     
