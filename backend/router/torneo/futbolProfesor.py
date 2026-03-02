@@ -8,6 +8,8 @@ from db import select, db_commit, db_delete_unique, db_select_query, db_select_u
 from auth.depends import get_current_admin
 from utils import IMG_PATH_TORNEO, IMG_PATH
 
+from router.torneo.utils import aux_name_formater
+
 router = APIRouter()
 
 @router.get("/get")
@@ -39,7 +41,7 @@ async def profe_crear(
 
     # Save or process the image
     ext = img.content_type.split("/")[-1]
-    filename = f"profe_.{ext}"
+    filename = f"profe_{aux_name_formater(name)}_team_{equipo_id}.{ext}"
 
     os.makedirs(IMG_PATH, exist_ok=True)
     os.makedirs(IMG_PATH_TORNEO, exist_ok=True)
@@ -65,5 +67,9 @@ async def profe_crear(
 
 @router.delete("/delete/{id}", status_code=status.HTTP_403_FORBIDDEN)
 async def borrar(id:int, admin:str=Depends(get_current_admin)):
+    profe:FutbolProfesor = await db_select_unique(FutbolProfesor, id)
+    if profe.img_url and os.path.exists(profe.img_url[1:]):
+        os.remove(profe.img_url[1:])
+    
     await db_delete_unique(FutbolProfesor,id)
     return {"message":"Profe eliminado con Exito"}

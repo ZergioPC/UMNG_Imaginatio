@@ -9,6 +9,39 @@ from db import select, db_commit, db_delete_unique, db_select_unique, db_select_
 from auth.depends import get_current_admin
 from utils import IMG_PATH_TORNEO, IMG_PATH
 
+from router.torneo.utils import aux_name_formater
+
+async def process_player(
+    count:int,
+    team_id: int,
+    name: str,
+    photo: UploadFile
+) -> FutbolPlayer:
+
+    if not photo.content_type.startswith("image/"):
+        raise HTTPException(
+            status_code=400,
+            detail=f"{name}: Invalid image type"
+        )
+
+    contents = await photo.read()
+    ext = photo.content_type.split("/")[-1]
+
+    formatted_name = aux_name_formater(name)
+    filename = f"team_{team_id}_est_{count}_{formatted_name}.{ext}"
+    filepath = os.path.join(IMG_PATH_TORNEO, filename)
+
+    with open(filepath, "wb") as f:
+        f.write(contents)
+
+    player_data = {
+        "name": name,
+        "img_url": f"/{IMG_PATH_TORNEO}/{filename}",
+        "equipo_id": team_id
+    }
+
+    return FutbolPlayer.model_validate(player_data)
+
 router = APIRouter()
 
 @router.post("/crear", status_code=status.HTTP_201_CREATED)
@@ -41,94 +74,26 @@ async def crear_equipo(
         )
     team_id = random.choice(teams_disponibles).id
     
-    if not user1_photo.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="user1 Invalid image type")
-    if not user2_photo.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="user2 Invalid image type")
-    if not user3_photo.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="user3 Invalid image type")
-    if not user4_photo.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="user4 Invalid image type")
-    if not user5_photo.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="user5 Invalid image type")
-    if not user6_photo.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="user5 Invalid image type")
-
-    img1_contents = await user1_photo.read()
-    img2_contents = await user2_photo.read()
-    img3_contents = await user3_photo.read()
-    img4_contents = await user4_photo.read()
-    img5_contents = await user5_photo.read()
-    img6_contents = await user5_photo.read()
-
-    # Save or process the image
-    ext1 = user1_photo.content_type.split("/")[-1]
-    ext2 = user2_photo.content_type.split("/")[-1]
-    ext3 = user3_photo.content_type.split("/")[-1]
-    ext4 = user4_photo.content_type.split("/")[-1]
-    ext5 = user5_photo.content_type.split("/")[-1]    
-    ext6 = user6_photo.content_type.split("/")[-1]    
+    players_input = [
+        (user1_name, user1_photo),
+        (user2_name, user2_photo),
+        (user3_name, user3_photo),
+        (user4_name, user4_photo),
+        (user5_name, user5_photo),
+        (user6_name, user6_photo),
+    ]
 
     os.makedirs(IMG_PATH, exist_ok=True)
     os.makedirs(IMG_PATH_TORNEO, exist_ok=True)
 
-    with open(f"{IMG_PATH_TORNEO}/est_{user1_name}.{ext1}", "wb") as f:
-        f.write(img1_contents)
-    with open(f"{IMG_PATH_TORNEO}/est_{user2_name}_.{ext2}", "wb") as f:
-        f.write(img2_contents)
-    with open(f"{IMG_PATH_TORNEO}/est_{user3_name}_.{ext3}", "wb") as f:
-        f.write(img3_contents)
-    with open(f"{IMG_PATH_TORNEO}/est_{user4_name}_.{ext4}", "wb") as f:
-        f.write(img4_contents)
-    with open(f"{IMG_PATH_TORNEO}/est_{user5_name}_.{ext5}", "wb") as f:
-        f.write(img5_contents)
-    with open(f"{IMG_PATH_TORNEO}/est_{user6_name}_.{ext6}", "wb") as f:
-        f.write(img6_contents)
+    players = []
 
-    est1 = {
-        "name": user1_name,
-        "img_url": f"/{IMG_PATH_TORNEO}/est_{user1_name}_.{ext1}",
-        "equipo_id": team_id
-    }
-    est2 = {
-        "name": user2_name,
-        "img_url": f"/{IMG_PATH_TORNEO}/est_{user2_name}_.{ext2}",
-        "equipo_id": team_id
-    }
-    est3 = {
-        "name": user3_name,
-        "img_url": f"/{IMG_PATH_TORNEO}/est_{user3_name}_.{ext3}",
-        "equipo_id": team_id
-    }
-    est4 = {
-        "name": user4_name,
-        "img_url": f"/{IMG_PATH_TORNEO}/est_{user4_name}_.{ext4}",
-        "equipo_id": team_id
-    }
-    est5 = {
-        "name": user5_name,
-        "img_url": f"/{IMG_PATH_TORNEO}/est_{user5_name}_.{ext5}",
-        "equipo_id": team_id
-    }
-    est6 = {
-        "name": user6_name,
-        "img_url": f"/{IMG_PATH_TORNEO}/est_{user6_name}_.{ext6}",
-        "equipo_id": team_id
-    }
+    for name, photo in players_input:
+        player = await process_player(len(players),team_id, name, photo)
+        players.append(player)
 
-    futbol_player1 = FutbolPlayer.model_validate(est1)
-    futbol_player2 = FutbolPlayer.model_validate(est2)
-    futbol_player3 = FutbolPlayer.model_validate(est3)
-    futbol_player4 = FutbolPlayer.model_validate(est4)
-    futbol_player5 = FutbolPlayer.model_validate(est5)
-    futbol_player6 = FutbolPlayer.model_validate(est6)
-    
-    await db_commit(futbol_player1)
-    await db_commit(futbol_player2)
-    await db_commit(futbol_player3)
-    await db_commit(futbol_player4)
-    await db_commit(futbol_player5)
-    await db_commit(futbol_player6)
+    for player in players:
+        await db_commit(player)
 
     current_team:FutbolTeam = await db_select_unique(FutbolTeam,team_id)
     current_team_data = current_team.model_dump()

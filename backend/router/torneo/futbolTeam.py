@@ -104,8 +104,8 @@ async def free_players_logic(id:int):
     data = await db_select_query(query)
     for player in data:
         est:FutbolPlayer = await db_select_unique(FutbolPlayer, player.id)
-        if est.img_url and os.path.exists(est.img_url):
-            os.remove(est.img_url)
+        if est.img_url and os.path.exists(est.img_url[1:]):
+            os.remove(est.img_url[1:])
         
         await db_delete_unique(FutbolPlayer,player.id)
 

@@ -24,15 +24,15 @@ async def lifespan(app: FastAPI):
     yield
     # Shutd
 
-# Dev Docs allow
-app = FastAPI(root_path="/api",lifespan=lifespan)
+# Dev Docs allow (esto hace que las fotos no carguen correctamente)
+# app = FastAPI(root_path="/api",lifespan=lifespan)
 
 # Production
-# app = FastAPI(
-#     lifespan=lifespan,
-#     docs_url=None, 
-#     redoc_url=None
-#     )
+app = FastAPI(
+    lifespan=lifespan,
+    docs_url=None, 
+    redoc_url=None
+    )
 
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "").split(",")
 
@@ -51,7 +51,7 @@ os.makedirs(IMG_PATH, exist_ok=True)
 os.makedirs(IMG_PATH_USERS, exist_ok=True)
 os.makedirs(IMG_PATH_POSTS, exist_ok=True)
 os.makedirs(IMG_PATH_TORNEO, exist_ok=True)
-app.mount("/uploads",StaticFiles(directory="uploads"), name="Uploads")
+app.mount("/uploads",StaticFiles(directory="uploads"), name="uploads")
 
 # Routers
 app.include_router(utils.router, prefix="/utils", tags=["utils"])
