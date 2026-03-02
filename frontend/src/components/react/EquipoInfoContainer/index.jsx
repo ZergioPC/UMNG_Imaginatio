@@ -11,7 +11,7 @@ import SocialInstagram from "../Icons/SocialInstagram";
 import SocialTiktok from "../Icons/SocialTiktok";
 import SocialTwitter from "../Icons/SocialTwiter";
 
-import GLOBALS from "../../../../public/js/globals.js";
+import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API;
 

@@ -5,7 +5,7 @@ import { Modal } from "../../Components/Modal";
 
 import "./Mundialito.css";
 
-import GLOBALS from "../../../../../../public/js/globals.js";
+import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API;
 

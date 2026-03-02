@@ -1,7 +1,9 @@
 import styles from "./styles.module.css";
 import { BtnAviso } from "../../../BtnAviso";
 
-const API = typeof GLOBALS !== 'undefined' ? GLOBALS.API : '/api';
+import GLOBALS from "@/config/globals.js";
+
+const API = GLOBALS.API || '/api';
 
 function PlayerList({ players, profesor }) {
   if (!players || players.length === 0) {

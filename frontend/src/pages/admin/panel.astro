@@ -1,12 +1,15 @@
 ---
 import AdminLayout from "../../layouts/AdminLayout.astro"
 import { App } from "../../components/react/AdminPanel";
+import GLOBALS from "../../config/globals";
 ---
 
 <AdminLayout title="Panel-admin">
-  <script is:inline type="module">
-    import GLOBALS from "/js/globals.js";
-
+  <script 
+    is:inline 
+    type="module"
+    define:vars={{GLOBALS}}
+  >
     fetch(GLOBALS.API + "/auth/verify-admin", {
       method: 'POST',
       credentials:"include"

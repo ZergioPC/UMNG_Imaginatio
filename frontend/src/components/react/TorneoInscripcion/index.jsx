@@ -4,7 +4,7 @@ import { TorneoInscripcionRuleta } from "../TorneoInscripcionRuleta";
 import imageCompression from "browser-image-compression";
 
 import styles from "./styles.module.css";
-import GLOBALS from "../../../../public/js/globals";
+import GLOBALS from "@/config/globals";
 
 const API = GLOBALS.API;
 

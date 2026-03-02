@@ -7,7 +7,9 @@ import { BtnAviso } from '../../../BtnAviso';
 
 import './Home.css';
 
-const API = typeof GLOBALS !== 'undefined' ? GLOBALS.API : '/api';
+import GLOBALS from "@/config/globals.js";
+
+const API = GLOBALS.API || '/api';
 
 const FLAG_MAP = {
   'alemania': '/banderas/ALEMANIA.png',

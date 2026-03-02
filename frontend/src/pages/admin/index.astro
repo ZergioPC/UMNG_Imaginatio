@@ -1,5 +1,6 @@
 ---
 import AdminLayout from "../../layouts/AdminLayout.astro"
+import GLOBALS from "../../config/globals";
 ---
 
 <AdminLayout title="Login-admin">
@@ -18,8 +19,11 @@ import AdminLayout from "../../layouts/AdminLayout.astro"
   </article>
 </main>
 
-<script is:inline type="module">
-  import GLOBALS from "/js/globals.js";
+<script 
+  is:inline 
+  type="module"
+  define:vars={{GLOBALS}}
+>
 
   document.addEventListener("DOMContentLoaded", ()=>{
     const user = document.getElementById('user');

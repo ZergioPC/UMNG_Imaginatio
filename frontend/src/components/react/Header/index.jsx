@@ -6,7 +6,7 @@ import IconClose from "../Icons/IconClose";
 
 import { useState, useEffect } from "react";
 
-import GLOBALS from "../../../../public/js/globals.js";
+import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API;
 

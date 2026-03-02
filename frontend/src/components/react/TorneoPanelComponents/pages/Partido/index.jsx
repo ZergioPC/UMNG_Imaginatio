@@ -8,7 +8,9 @@ import { Scoreboard } from '../../components/Scoreboard';
 import { BtnReturn } from '../../components/BtnReturn';
 import { LogotipoHeader } from '../../components/LogotipoHeader';
 
-const API = typeof GLOBALS !== 'undefined' ? GLOBALS.API : '/api';
+import GLOBALS from "@/config/globals.js";
+
+const API = GLOBALS.API || '/api';
 
 function Partido() {
   const [data, setData] = useState(null);

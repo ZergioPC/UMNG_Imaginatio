@@ -6,7 +6,7 @@ import { Modal } from "../Modal";
 import styles from "./styles.module.css";
 import ArrowLeft from "../Icons/ArrowLeft";
 
-import GLOBALS from "../../../../public/js/globals.js";
+import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API;
 

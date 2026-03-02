@@ -6,7 +6,7 @@ import ArrowLeft from "../../../Icons/ArrowLeft";
 
 import "./Publicaciones.css";
 
-import GLOBALS from "../../../../../../public/js/globals.js";
+import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API;
 
