@@ -46,7 +46,7 @@ function Team({ name, score, isWinner }) {
   );
 }
 
-function Match({ match}) {
+function Match({ match }) {
   if (!match) {
     return (
       <div className="match">
@@ -58,6 +58,9 @@ function Match({ match}) {
   const navigate = useNavigate();
 
   const winnerId = match.winner;
+
+  console.log(match);  
+
   const team1IsWinner = winnerId && match.equipo_1 === winnerId;
   const team2IsWinner = winnerId && match.equipo_2 === winnerId;
 

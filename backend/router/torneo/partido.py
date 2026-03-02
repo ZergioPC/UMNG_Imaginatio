@@ -2,13 +2,13 @@ import logging
 from fastapi import APIRouter, status, Depends, HTTPException
 from sqlmodel import select
 
-from models.torneo.partido import Partido, PartidoBase
+from models.torneo.partido import Partido, PartidoBase, PartidoEdit
 from models.torneo.futbolTeam import FutbolTeam
 from models.torneo.futbolPlayer import FutbolPlayer
 from models.torneo.futbolProfesor import FutbolProfesor
 from models.torneo.fase import Fase
 
-from db import db_commit, db_delete_unique, db_select_unique, db_select_query
+from db import db_commit, db_delete_unique, db_select_unique, db_select_query, db_update
 from router.torneo.utils import aux_imaginatio_date_validate
 from auth.depends import get_current_admin
 
@@ -81,6 +81,12 @@ async def create_fase(partido:PartidoBase, admin:str = Depends(get_current_admin
     partido_new = Partido.model_validate(partido.model_dump())
     await db_commit(partido_new)
     return {"message":"Partido creado con Exito"}
+
+@router.patch("/edit/{id}", status_code=status.HTTP_202_ACCEPTED)
+async def editar(id:int, partido:PartidoEdit, admin:str = Depends(get_current_admin)):
+    data_dump = partido.model_dump(exclude_unset=True)
+    await db_update(Partido, id, data_dump)
+    return {"message":"Partido editado con Exito"}
 
 @router.delete("/delete/{id}", status_code=status.HTTP_403_FORBIDDEN)
 async def borrar(id:int, admin:str=Depends(get_current_admin)):

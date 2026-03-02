@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 
 import { Table } from "../../Components/Table";
 import { Modal } from "../../Components/Modal";
@@ -13,6 +13,7 @@ const formAddFaseInit = { name: "" };
 const formAddTeamInit = { name: "" };
 const formAddPartidoInit = { fase_id: 0, equipo_1: 0, equipo_2: 0, equipo_1_score: 0, equipo_2_score: 0 };
 const formAddProfeInit = { name: "", img: null };
+const formEditPartidoInit = { equipo_1_score: 0, equipo_2_score: 0, winner: null };
 
 function Mundialito(){
   const [load, setLoad] = useState(true);
@@ -21,11 +22,13 @@ function Mundialito(){
   const [teams, setTeams] = useState([]);
   const [partidos, setPartidos] = useState([]);
   const [profesores, setProfesores] = useState([]);
-
+  
   const [selectFase, setSelectFase] = useState(null);
   const [selectTeam, setSelectTeam] = useState(null);
   const [selectPartido, setSelectPartido] = useState(null);
   const [selectProfe, setSelectProfe] = useState(null);
+  
+  const [editPartido, setEditPartido] = useState(null);
 
   const [openModalFaseAdd, setOpenModalFaseAdd] = useState(false);
   const [openModalFaseDelete, setOpenModalFaseDelete] = useState(false);
@@ -35,9 +38,10 @@ function Mundialito(){
   const [openModalTeamClean, setOpenModalTeamClean] = useState(false);
   const [openModalTeamFreeProfe, setOpenModalTeamFreeProfe] = useState(false);
   
-  
   const [openModalPartidoAdd, setOpenModalPartidoAdd] = useState(false);
   const [openModalPartidoDelete, setOpenModalPartidoDelete] = useState(false);
+  const [openModalPartidoEdit, setOpenModalPartidoEdit] = useState(false);
+
   const [openModalProfeAdd, setOpenModalProfeAdd] = useState(false);
   const [openModalProfeDelete, setOpenModalProfeDelete] = useState(false);
 
@@ -45,6 +49,7 @@ function Mundialito(){
   const [formAddTeam, setFormAddTeam] = useState(formAddTeamInit);
   const [formAddPartido, setFormAddPartido] = useState(formAddPartidoInit);
   const [formAddProfe, setFormAddProfe] = useState(formAddProfeInit);
+  const [formEditPartido, setFormEditPartido] = useState(formEditPartidoInit);
 
   const titulos_fases = [
     { txt: "ID", key: "id", size: "50px" },
@@ -88,6 +93,7 @@ function Mundialito(){
   ];
 
   const actions_partidos = [
+    {callback: (item)=> handlePartidoEdit(item), txt:"Editar", color:"#8399d6"},
     {callback: (item)=> handlePartidoBorrar(item), txt:"Borrar", color:"#ec8b8b"},
   ];
 
@@ -290,6 +296,42 @@ function Mundialito(){
     });
   };
 
+  const handlePartidoOnEdit = e => {
+    e.preventDefault();
+    if (!editPartido) return;
+
+    fetch(`${API}/torneo_partido/edit/${editPartido.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        equipo_1_score: parseInt(formEditPartido.equipo_1_score),
+        equipo_2_score: parseInt(formEditPartido.equipo_2_score),
+        winner: formEditPartido.winner || null
+      }),
+      credentials: "include"
+    }).then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      setOpenModalPartidoEdit(false);
+      setLoad(true);
+      setEditPartido(null);
+      setFormEditPartido(formEditPartidoInit);
+    }).catch(err => {
+      alert(err.detail || "Error al editar partido");
+    });
+  };
+
+  const handlePartidoEdit = partido => {
+    const originalPartido = partidos.find(p => p.id === partido.id);
+    setEditPartido(originalPartido);
+    setFormEditPartido({
+      equipo_1_score: originalPartido.equipo_1_score,
+      equipo_2_score: originalPartido.equipo_2_score,
+      winner: originalPartido.winner || null
+    });
+    setOpenModalPartidoEdit(true);
+  };
+
   const handlePartidoBorrar = partido => {
     setSelectPartido(partido);
     setOpenModalPartidoDelete(true);
@@ -383,7 +425,9 @@ function Mundialito(){
           data={fases}
           actions={actions_fases}
         />
-        <button className="btn-add" onClick={()=> setOpenModalFaseAdd(true)}>Crear Fase</button>
+        <button 
+          className="btn-add" onClick={()=> setOpenModalFaseAdd(true)}
+        >Crear Fase</button>
       </section>
 
       <section>
@@ -393,7 +437,9 @@ function Mundialito(){
           data={teams}
           actions={actions_equipos}
         />
-        <button className="btn-add" onClick={()=> setOpenModalTeamAdd(true)}>Crear Equipo</button>
+        <button 
+          className="btn-add" onClick={()=> setOpenModalTeamAdd(true)}
+        >Crear Equipo</button>
       </section>
 
       <section>
@@ -403,7 +449,9 @@ function Mundialito(){
           data={formatPartidosData()}
           actions={actions_partidos}
         />
-        <button className="btn-add" onClick={()=> setOpenModalPartidoAdd(true)}>Crear Partido</button>
+        <button 
+          className="btn-add" onClick={()=> setOpenModalPartidoAdd(true)}
+        >Crear Partido</button>
       </section>
 
       <section>
@@ -413,9 +461,12 @@ function Mundialito(){
           data={formatProfesoresData()}
           actions={actions_profesores}
         />
-        <button className="btn-add" onClick={()=> setOpenModalProfeAdd(true)}>Crear Profesor</button>
+        <button 
+          className="btn-add" onClick={()=> setOpenModalProfeAdd(true)}
+        >Crear Profesor</button>
       </section>
     </main>
+
     {/* Modal Crear Fase */}
     {openModalFaseAdd && (<Modal>
       <form className="Form" onSubmit={handleFaseOnCreate}>
@@ -570,6 +621,56 @@ function Mundialito(){
         <div className="btn-container">
           <button type="submit">Crear</button>
           <button type="button" onClick={()=> setOpenModalPartidoAdd(false)}>Cancelar</button>
+        </div>
+      </form>
+    </Modal>)}
+
+    {/* Modal Editar Partido */}
+    {openModalPartidoEdit && (<Modal>
+      <form className="Form" onSubmit={handlePartidoOnEdit}>
+        <h2>Editar Partido</h2>
+
+        <h3>Marcador</h3>
+        <div className="Form-Marcador">
+          <div>
+            <h4>{getEquiposName(editPartido?.equipo_1)}</h4>
+            <input 
+              type="number"
+              min="0"
+              value={formEditPartido.equipo_1_score}
+              onChange={e => setFormEditPartido({ ...formEditPartido, equipo_1_score: e.target.value })}
+            />
+          </div>
+          <div>
+            <h4>{getEquiposName(editPartido?.equipo_2)}</h4>
+            <input 
+              type="number"
+              min="0"
+              value={formEditPartido.equipo_2_score}
+              onChange={e => setFormEditPartido({ ...formEditPartido, equipo_2_score: e.target.value })}
+            />
+          </div>
+        </div>
+
+        <label>
+          <h4>Ganador</h4>
+          <select 
+            value={formEditPartido.winner || ""}
+            onChange={e => setFormEditPartido({ ...formEditPartido, winner: e.target.value ? parseInt(e.target.value) : null })}
+          >
+            <option value="">Sin winner</option>
+            {teams
+              .filter(t => t.id === editPartido?.equipo_1 || t.id === editPartido?.equipo_2)
+              .map(t => (
+                <option key={t.id} value={t.id}>{t.name}</option>
+              ))
+            }
+          </select>
+        </label>
+
+        <div className="btn-container">
+          <button type="submit">Editar</button>
+          <button type="button" onClick={()=> setOpenModalPartidoEdit(false)}>Cancelar</button>
         </div>
       </form>
     </Modal>)}
