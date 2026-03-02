@@ -3,6 +3,7 @@ import { useNavigate} from 'react-router-dom';
 
 import { LogotipoHeader } from '../../components/LogotipoHeader';
 import { VideoLoading } from '../../components/VideoLoading';
+import { BtnAviso } from '../../../BtnAviso';
 
 import './Home.css';
 
@@ -215,10 +216,17 @@ function Home() {
     </div>
 
     {/* Inscribirse */}
-    <div 
-      className={isTeamsDisponibles ? "inscripcion" : "inscipcion off"}
-    >
-      <a href="/mundialito-inscripcion">Inscribete</a>
+    <div className="inscripcion">
+      {isTeamsDisponibles ? (
+        <>
+        <p>¿Quieres particiapr?</p>
+        <BtnAviso>
+          <a href="/mundialito-inscripcion">Inscribete</a>
+        </BtnAviso>
+        </>
+      ) : (
+        <p>Los equipos ya están completos</p>
+      )}
     </div>
 
     {/* VER EQUIPOS */}

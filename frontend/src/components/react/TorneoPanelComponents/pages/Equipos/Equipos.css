@@ -41,15 +41,6 @@
   text-align: center;
 }
 
-.app-grid a {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1.5em;
-  border-radius: 15px;
-  background-color: var(--state-success);
-  text-align: center;
-}
-
 .app-grid-item a:hover {
   background-color: #fff;
   transform: scale(1.2);

@@ -1,4 +1,5 @@
 import styles from "./styles.module.css";
+import { BtnAviso } from "../../../BtnAviso";
 
 const API = typeof GLOBALS !== 'undefined' ? GLOBALS.API : '/api';
 
@@ -6,7 +7,10 @@ function PlayerList({ players, profesor }) {
   if (!players || players.length === 0) {
     return (
       <div className={styles.NoPlayersSection}>
-        <p>No hay jugadores registrados</p>
+        <p>No hay jugadores registrados!</p>
+        <BtnAviso>
+          <a href="/mundialito-inscripcion">Inscribete</a>
+        </BtnAviso>
       </div>
     );
   }

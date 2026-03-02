@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import IconBack from '../../../Icons/IconBack';
 
 import { BtnReturn } from '../../components/BtnReturn';
+import { BtnAviso } from '../../../BtnAviso';
 
 import './Equipos.css';
 
@@ -149,8 +150,10 @@ function Equipos() {
           ))
         ) : (
           <div className="app-grid-empty">
-            <p>No hay jugadores inscritos en este equipo</p>
-            <a href="/mundialito-inscripcion">Inscribete</a>
+            <p>No hay jugadores inscritos en este equipo!</p>
+            <BtnAviso>
+              <a href="/mundialito-inscripcion">Inscribete</a>
+            </BtnAviso>
           </div>
         )}
       </div>
