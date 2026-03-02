@@ -5,7 +5,7 @@ import ArrowLeft from "../Icons/ArrowLeft";
 
 import ReactMarkdown from "react-markdown";
 
-import GLOBALS from "../../../../public/js/globals.js";
+import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API;
 

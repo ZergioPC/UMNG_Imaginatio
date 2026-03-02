@@ -27,7 +27,7 @@ function Table({ data, titulos, actions=null }){
                     style={{"backgroundColor":btn.color}}
                   >{btn.txt}</button>
                 )
-                : item[col.key]}
+                : String(item[col.key])}
               </div>
             </td>
           ))}

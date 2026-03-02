@@ -7,11 +7,21 @@
 .App-Content,
 .App-Nav {
   transform: translateY(60px);
+  background-color: white;
+  background-image: none;
 }
 
 .App-Content{
   margin-left: 44px;
   padding: 10px;
+  padding-right: 0px;
+  overflow: hidden;
+  height: calc(100vh - 90px);
+}
+
+.App-Content > main {
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .App-Nav {

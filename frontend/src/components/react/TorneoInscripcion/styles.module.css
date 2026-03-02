@@ -1,0 +1,71 @@
+.TorneoInscripcion {
+  padding: 20px 100px;
+}
+
+.TorneoInscripcion form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: rgb(255,255,255,0.5);
+  border-radius: var(--borde-radio-2);
+}
+
+.TorneoInscripcion button {
+  padding: 10px;
+  border-radius: var(--borde-radio-3);
+}
+
+.TorneoInscripcionOff {
+  padding: 10px;
+  min-height: 300px;
+}
+
+.Form {
+  height: 120px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  border-radius: var(--borde-radio-3);
+  background-color: var(--bg-surface);
+  overflow: hidden;
+}
+
+.FormInputs {
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.FormInputs label {
+  display: block;
+  margin: 5px;
+}
+
+.FormInputs span {
+  margin: 3px;
+}
+
+.FormInputs input[type="text"] {
+  padding: 3px;
+}
+
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.TorneoMessage {
+  margin: 10px;
+  padding: 10px;
+  border-radius: var(--borde-radio-3);
+  background: var(--bg-surface);
+}
+
+@media screen and (max-width: 900px) {
+  .TorneoInscripcion {
+    padding: 10px;
+  }
+}

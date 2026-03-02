@@ -6,7 +6,7 @@ import { FormPost } from "../EquipoPanelComponents/FormPost";
 
 import styles from "./styles.module.css";
 
-import GLOBALS from "../../../../public/js/globals.js";
+import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API;
 

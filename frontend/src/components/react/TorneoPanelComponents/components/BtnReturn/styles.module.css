@@ -1,0 +1,12 @@
+.BtnReturn {
+  box-sizing: border-box;
+  z-index: 2;
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 50%;
+}

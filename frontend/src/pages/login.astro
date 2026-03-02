@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import GLOBALS from "../config/globals";
 ---
 
 <BaseLayout title="Login">
@@ -19,9 +20,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </article>
 </main>
 
-<script is:inline type="module">
-  import GLOBALS from "/js/globals.js";
-  const API = GLOBALS.API;
+<script 
+  is:inline 
+  type="module"
+  define:vars={{GLOBALS}}
+>
+  const API = GLOBALS.API; 
 
   document.addEventListener("DOMContentLoaded", ()=>{
     const user = document.getElementById('user');
