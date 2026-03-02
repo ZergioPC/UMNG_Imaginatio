@@ -46,7 +46,7 @@ function Team({ name, score, isWinner }) {
   );
 }
 
-function Match({ match }) {
+function Match({ match, teamsData }) {
   if (!match) {
     return (
       <div className="match">
@@ -59,10 +59,16 @@ function Match({ match }) {
 
   const winnerId = match.winner;
 
-  console.log(match);  
+  //console.log(match);
 
-  const team1IsWinner = winnerId && match.equipo_1 === winnerId;
-  const team2IsWinner = winnerId && match.equipo_2 === winnerId;
+  const getTeamIdByName = (name) => {
+    if (!name) return null;
+    const team = teamsData?.find(t => t.name === name);    
+    return team.id ?? -1;
+  }
+  
+  const team1IsWinner = winnerId && getTeamIdByName(match.equipo_1_name) === winnerId;
+  const team2IsWinner = winnerId && getTeamIdByName(match.equipo_2_name) === winnerId;
 
   const handleRedirect = ()=> {
     if (match.id !== 0) navigate(`/partido/${match.id}`);
@@ -80,7 +86,7 @@ function Match({ match }) {
   );
 }
 
-function Round({ matches, title, expectedMatches = 1 }) {
+function Round({ matches, teamsData, title, expectedMatches = 1 }) {
   const matchesArray = matches || [];
   const emptySlots = Math.max(0, expectedMatches - matchesArray.length);
   const emptyMatches = Array(emptySlots).fill(null);
@@ -88,8 +94,8 @@ function Round({ matches, title, expectedMatches = 1 }) {
   return (
     <div className="round">
       {title && <div className="round-title">{title}</div>}
-      {matchesArray.map((match, idx) => <Match key={idx} match={match} />)}
-      {emptyMatches.map((_, idx) => <Match key={`empty-${idx}`} match={null} />)}
+      {matchesArray.map((match, idx) => <Match key={idx} match={match} teamsData={teamsData} />)}
+      {emptyMatches.map((_, idx) => <Match key={`empty-${idx}`} match={null} teamsData={teamsData} />)}
     </div>
   );
 }
@@ -179,31 +185,31 @@ function Home() {
     <div className="bracket-container">
       <div className="bracket">
         <div>
-          <Round title="Ronda 1" matches={faseData[1]} expectedMatches={4} />
+          <Round title="Ronda 1" matches={faseData[1]} teamsData={teamsData} expectedMatches={4} />
         </div>
 
         <div>
-          <Round title="Winners 1" matches={faseData[2]} expectedMatches={2} />
+          <Round title="Winners 1" matches={faseData[2]} teamsData={teamsData} expectedMatches={2} />
           <Spacer width={20} />
-          <Round title="Lowers 1" matches={faseData[3]} expectedMatches={2} />
+          <Round title="Lowers 1" matches={faseData[3]} teamsData={teamsData} expectedMatches={2} />
         </div>
 
         <div className="bracket-bottom">
-          <Round title="Lowers 2" matches={faseData[4]} expectedMatches={2} />
+          <Round title="Lowers 2" matches={faseData[4]} teamsData={teamsData} expectedMatches={2} />
         </div>
         
         <div className="bracket-top">
-          <Round title="Winners 2" matches={faseData[5]} expectedMatches={1} />
+          <Round title="Winners 2" matches={faseData[5]} teamsData={teamsData} expectedMatches={1} />
           <Spacer width={20} />
-          <Round title="Lower 3" matches={faseData[6]} expectedMatches={1} />
+          <Round title="Lower 3" matches={faseData[6]} teamsData={teamsData} expectedMatches={1} />
         </div>
 
         <div className="bracket-bottom">
-          <Round title="Lowers Final" matches={faseData[7]} expectedMatches={1} />
+          <Round title="Lowers Final" matches={faseData[7]} teamsData={teamsData} expectedMatches={1} />
         </div>
 
         <div>
-          <Round title="Gran Final" matches={faseData[8]} expectedMatches={1} />
+          <Round title="Gran Final" matches={faseData[8]} teamsData={teamsData} expectedMatches={1} />
         </div>
       </div>
     </div>
