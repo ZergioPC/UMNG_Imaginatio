@@ -8,6 +8,7 @@ import { BtnAviso } from '../../../BtnAviso';
 
 import './Equipos.css';
 
+import imgProfeAnonimo from "@/assets/mundialito/profe_anonimo.png"
 import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API || '/api';
@@ -107,7 +108,7 @@ function Equipos() {
             className="app-profesor"
           >
             <img 
-              src={null} 
+              src={imgProfeAnonimo.src} 
               alt="Profesor incognito"
               className="app-profesor-img"
             />

@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import { BtnAviso } from "../../../BtnAviso";
 
+import imgProfeAnonimo from "@/assets/mundialito/profe_anonimo.png"
 import GLOBALS from "@/config/globals.js";
 
 const API = GLOBALS.API || '/api';
@@ -30,12 +31,13 @@ function PlayerList({ players, profesor }) {
             />
           ) : (
             <img 
-              src="incognito" alt="Profe Anonimo"
+              src={imgProfeAnonimo.src}
+              alt="Profe Anonimo"
             />
           )}
         </figure>
         <div>
-          <p>{profesor ? profesor.name : "Nombre del Profe"}</p>
+          <p>{profesor ? profesor.name : "???"}</p>
           <span>DT</span>
         </div>
       </div>
