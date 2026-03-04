@@ -45,7 +45,7 @@ function PlayerList({ players, profesor }) {
         {players.map((player, index) => (
           <div key={player?.id || index} className={styles.PlayerCard}>
             <img 
-              src={player?.img_url || '/default-player.png'} 
+              src={(API + player?.img_url) || '/default-player.png'} 
               alt={player?.name} 
               className={styles.PlayerImg}
             />

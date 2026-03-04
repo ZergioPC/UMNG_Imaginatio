@@ -153,7 +153,7 @@ function Home() {
       } catch (err) {
         setError(err.message);
       } finally {
-        setTimeout(()=> setLoading(false),4000)
+        setTimeout(()=> setLoading(false),2000)
       }
     }
     loadData();
@@ -233,7 +233,7 @@ function Home() {
 
     {/* VER EQUIPOS */}
     <div className="equipos-list-container">
-      {teamsData.map(team =>
+      {teamsData.length !== 0 && teamsData.map(team =>
         <article 
           className="equipo-card"
           onClick={()=> navigate(`/equipos/${(team.id)}`)}
