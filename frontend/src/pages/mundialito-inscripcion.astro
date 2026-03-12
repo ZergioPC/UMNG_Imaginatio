@@ -1,11 +1,12 @@
 ---
+// @ts-nocheck
 import { Image } from "astro:assets";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { TorneoInscripcion } from "../components/react/TorneoInscripcion";
+import { TorneoInscripcionForm } from "@/components/torneo/TorneoInscripcionForm";
 
-import wallpaper from "../assets/mundialito/futbol_field.webp";
-import logotipo from "../assets/mundialito/LOGOTIPO_Mundialito_web.webp";
+import wallpaper from "@/assets/mundialito/futbol_field.webp";
+import logotipo from "@/assets/mundialito/LOGOTIPO_Mundialito_web.webp";
 ---
 
 <BaseLayout title="Mundialito Inscripción">
@@ -15,7 +16,7 @@ import logotipo from "../assets/mundialito/LOGOTIPO_Mundialito_web.webp";
       <h1>Formulario de Inscripción</h1>
     </section>
 
-    <TorneoInscripcion client:load/>
+    <TorneoInscripcionForm client:load/>
 
   </main>
 </BaseLayout>

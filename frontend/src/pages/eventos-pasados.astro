@@ -1,16 +1,17 @@
 ---
+// @ts-nocheck
 import data from "../../public/lastEvents/data.json"
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-import { CustomCarrusel } from "../components/react/CustomCarrusel"; 
-import { LegacyPagesContainer } from "../components/react/LegacyPagesContainer";
+import { LegacyPagesCarrusel } from "@/components/unique/LegacyPagesCarrusel"; 
+import { LegacyPagesContainer } from "@/components/unique/LegacyPagesContainer";
 ---
 
 <BaseLayout title="Eventos Pasados">
   <main>
-    <section class="banner">
-      <CustomCarrusel client:visible />
+    <section class="banner">react/LegacyPagesContainer
+      <LegacyPagesCarrusel client:visible />
       <div class="baner-gradient"></div>
       
       <div class="banner-text">

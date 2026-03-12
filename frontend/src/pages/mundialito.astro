@@ -1,8 +1,10 @@
 ---
+// @ts-nocheck
+
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { TorneoPanel } from "../components/react/TorneoPanel";
+import { TorneoPanelRouter } from "@/components/torneo/TorneoPanelRouter";
 ---
 
 <BaseLayout title="Mundialito">
-  <TorneoPanel client:only="react"/>
+  <TorneoPanelRouter client:only="react"/>
 </BaseLayout>

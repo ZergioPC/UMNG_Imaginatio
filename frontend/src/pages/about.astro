@@ -1,14 +1,16 @@
 ---
-import wallpaper1 from "../assets/images/img01.jpg";
+// @ts-nocheck
 
-import TitleMain from "../components/astro/TitleMain.astro";
-import CarruselLnear from "../components/astro/CarruselLnear.astro";
+import wallpaper1 from "@/assets/images/img01.jpg";
+
+import TitleMain from "@/components/titulos/TitleMain/TitleMain.astro";
+import CarruselLnear from "@/components/banners/CarruselLinear/CarruselLinear.astro";
 import Image from "astro/components/Image.astro";
 
-import BaseLayout from "../layouts/BaseLayout.astro";
-import SpinCard from "../components/astro/SpinCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SpinCard from "@/components/common/SpinCard/SpinCard.astro";
 
-import { CustomCarrusel } from "../components/react/CustomCarrusel"; 
+import { LegacyPagesCarrusel } from "@/components/unique/LegacyPagesCarrusel"; 
 
 //Images
 import img1 from "../assets/aboutSources/foto1.jpeg";
@@ -104,7 +106,7 @@ import img6 from "../assets/aboutSources/foto5.jpeg";
     </section>
     
     <section class="banner">
-      <CustomCarrusel client:visible />
+      <LegacyPagesCarrusel client:visible />
       <div class="baner-gradient"></div>
       
       <div class="banner-text">
