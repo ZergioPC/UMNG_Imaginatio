@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './Partido.css';
 
 import { PartidoTeamInfo } from '../../components/PartidoTeamInfo';
@@ -18,6 +18,7 @@ function Partido() {
   const [error, setError] = useState(null);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPartido() {
@@ -67,6 +68,7 @@ function Partido() {
             name={equipo_1?.team?.name} 
             imgUrl={getTeamImage(equipo_1?.team?.name)}
             isWinner={equipo1IsWinner}
+            onClick={()=> navigate(`/equipos/${equipo_1?.team?.id}`)}
           />
         </div>
 
@@ -84,6 +86,7 @@ function Partido() {
             name={equipo_2?.team?.name} 
             imgUrl={getTeamImage(equipo_2?.team?.name)}
             isWinner={equipo2IsWinner}
+            onClick={()=> navigate(`/equipos/${equipo_2?.team?.id}`)}
           />
         </div>
         <div className="partido-section partido-team2-players">
