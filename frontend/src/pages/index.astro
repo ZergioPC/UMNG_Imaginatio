@@ -3,13 +3,18 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import { Banner } from "@/components/banners/Banner";
-import { PostsContainer } from "@/components/posts/PostsContainer"
+import { PostsContainer } from "@/components/posts/PostsContainer";
+
+import BannerVideo from "@/components/banners/BannerVideo/BannerVideo.astro";
 
 // BANNER IMAGES
 import bannerImg1 from "../assets/homeBanner/Artboard1.jpg";
 import bannerImg2 from "../assets/homeBanner/Artboard2.jpg";
 import bannerImg3 from "../assets/homeBanner/Artboard3.jpg";
 import bannerImg4 from "../assets/homeBanner/Artboard4.jpg";
+
+// BANNER VIDEO
+import videFillerMp4 from "../assets/homeBanner/Filler_Imaginatio_720.mp4"
 
 const bannerImages = [
   { src: bannerImg1.src, alt: "Banner 1", bg:"#32a852"},
@@ -20,13 +25,15 @@ const bannerImages = [
 ---
 
 <BaseLayout title="Imaginatio">
-	<Banner 
+	<!-- <Banner 
 		client:load 
 		images={bannerImages}
+	/> -->
+	
+	<BannerVideo
+		video={videFillerMp4}
 	/>
+	
+<h1>IMAGINATIO XVIII</h1>
 
-	<PostsContainer 
-		client:visible 
-		endpoint="/post/pages/"
-	/>
 </BaseLayout>
