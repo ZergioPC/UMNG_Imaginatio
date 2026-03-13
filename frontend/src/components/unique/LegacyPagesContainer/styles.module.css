@@ -12,10 +12,10 @@
 .ModalIframe {
   z-index: 20;
   position: fixed;
-  top: 0px;
+  top: 70px;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 70px);
   background-color: #000;
   overflow: hidden;
 }

@@ -1,5 +1,8 @@
 /* MARK: Header */
 .Header {
+  z-index: 90;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
