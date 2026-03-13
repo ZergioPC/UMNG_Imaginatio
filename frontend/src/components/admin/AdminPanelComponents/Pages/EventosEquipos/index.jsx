@@ -5,8 +5,6 @@ import { Modal } from "../../Components/Modal";
 
 import IconClose from "@/components/icons/react/IconClose";
 
-import "@/components/icons/react"
-
 import "./EventosEquipos.css";
 
 import GLOBALS from "@/config/globals.js";

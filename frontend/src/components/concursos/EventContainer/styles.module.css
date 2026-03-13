@@ -2,7 +2,6 @@
   position: relative;
   margin-bottom: 50px;
   min-height: 400px;
-  background-color: var(--bg-page);
 }
 
 .EventList,
@@ -24,8 +23,9 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  padding: 50px;
-  background-color: var(--bg-surface);
+  padding: 10px;
+  background-color: #ffffffa1;
+  container-type: inline-size;
 }
 
 .EventItem {
@@ -59,7 +59,7 @@
   position: relative;
   display: block;
   padding: 30px;
-  background-color: var(--bg-subtle);
+  background-color: var(--bg-surface);
   clip-path: polygon(40% 0, 60% 0, 60% 0, 40% 0);
   transition: none;
 }
@@ -211,5 +211,17 @@
     clip-path: polygon(
       40% 0, 60% 0, 60% 0, 40% 0
     );
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .EventItem {
+    aspect-ratio: 2/1;
+    width: 40%;
+    height: auto;
+  } 
+
+  .EventItem span {
+    font-size: 3.3em;
   }
 }
