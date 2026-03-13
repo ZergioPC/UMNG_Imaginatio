@@ -13,12 +13,12 @@ import SpinCard from "@/components/common/SpinCard/SpinCard.astro";
 import { LegacyPagesCarrusel } from "@/components/unique/LegacyPagesCarrusel"; 
 
 //Images
-import img1 from "../assets/aboutSources/foto1.jpeg";
-import img2 from "../assets/aboutSources/foto2.jpg";
-import img3 from "../assets/aboutSources/4.jpg";
-import img4 from "../assets/aboutSources/foto11.jpg";
-import img5 from "../assets/aboutSources/foto4.jpeg";
-import img6 from "../assets/aboutSources/foto5.jpeg";
+import img1 from "@/assets/aboutSources/foto1.jpeg";
+import img2 from "@/assets/aboutSources/foto2.jpg";
+import img3 from "@/assets/aboutSources/4.jpg";
+import img4 from "@/assets/aboutSources/foto11.jpg";
+import img5 from "@/assets/aboutSources/foto4.jpeg";
+import img6 from "@/assets/aboutSources/foto5.jpeg";
 ---
 
 <BaseLayout title="Quienes Somos">
@@ -62,7 +62,6 @@ import img6 from "../assets/aboutSources/foto5.jpeg";
         src={img5}
         alt="Foto carrusel 5"
         class="Carrusel-img"
-        class="Carrusel-img"
       />
       <Image 
         src={img6}
@@ -76,8 +75,10 @@ import img6 from "../assets/aboutSources/foto5.jpeg";
         frontText="Objetivos del evento"
         color1="#ffff"
         background1="var(--brand-accent)"
+        img1={img1.src}
         color2="#ffff"
         background2="var(--brand-primary)"
+        img2={img2.src}
       >
         <ul>
           <li>Promover el intercambio de ideas y conocimientos</li>
@@ -91,8 +92,10 @@ import img6 from "../assets/aboutSources/foto5.jpeg";
         frontText="Áreas de enfoque"
         color1="#ffff"
         background1="var(--brand-accent)"
+        img1={img3.src}
         color2="#ffff"
         background2="var(--brand-primary)"
+        img2={img4.src}
         delay="500ms"
       >
         <ul>
@@ -131,7 +134,7 @@ import img6 from "../assets/aboutSources/foto5.jpeg";
 
   .text-container {
     padding: 70px;
-    background-color: #ffff00b0;
+    background-color: #ffffffa9;
     border-radius: var(--borde-radio-1);
   }
 

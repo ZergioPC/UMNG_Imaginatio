@@ -1,35 +1,41 @@
 ---
+import { Image } from "astro:assets";
+
 const { 
   frontText,
   color1,
   background1,
+  img1, // URL or imported image object
   color2,
   background2,
   delay,
+  img2, // URL or imported image object
 } = Astro.props;
 ---
 
 <article 
   class="flip-card shake"
-  style=`animation-delay: ${delay ?? "0s"};`
+  style=`--delay: ${delay ?? "0s"};`
   onclick="this.classList.toggle('is-flipped')"
 >
   <div class="flip-card-inner">
-    <!-- Front face -->
-    <div 
-      class="flip-card-face flip-card-front"
-      style=`background: ${background1};`
-    >
-      <h2 style=`color: ${color1 ?? ""};`>{frontText}</h2>
+    
+    <div class="flip-card-face flip-card-front" style=`background-color: ${background1};` >
+      {img1 && <img src={img1} alt="" class="face-bg" />}
+      <div class="face-content">
+        <h2 style=`color: ${color1 ?? ""};`>{frontText}</h2>
+      </div>
     </div>
 
-    <!-- Back face -->
-    <div 
-      class="flip-card-face flip-card-back"
-      style=`background: ${background2}; color: ${color2 ?? ""};`
-    >
-      <slot />
+    <div class="flip-card-face flip-card-back" style=`background-color: ${background2};` >
+      {img2 && <img src={img2} alt="" class="face-bg" />}
+      <div class="face-content">
+        <div style=`color: ${color2 ?? ""};`>
+          <slot />
+        </div>
+      </div>
     </div>
+
   </div>
 </article>
 
@@ -39,13 +45,15 @@ const {
     height: 100%;
     perspective: 1000px;
     cursor: pointer;
+    animation: shake 6s ease-in-out infinite;
+    animation-delay: var(--delay);
   }
 
   .flip-card-inner {
     width: 100%;
     height: 100%;
     position: relative;
-    transition: transform 0.6s ease;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
   }
 
@@ -58,33 +66,45 @@ const {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
+    border-radius: var(--borde-radio-2, 12px);
+    overflow: hidden; /* Clips the image to the border radius */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px;
-    box-sizing: border-box;
-    border-radius: var(--borde-radio-2);
+    overflow: hidden;
   }
 
-  .flip-card-front {
+  /* The background image element */
+  .face-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Equivalent to background-size: cover */
+    z-index: 0;
+    pointer-events: none; /* Prevents image from interfering with clicks */
+    opacity: 0.3;
+  }
+
+  /* Container for text/slots to sit above the image */
+  .face-content {
+    position: relative;
+    z-index: 1;
     text-align: center;
+    padding: 30px;
+    /* Optional: semi-dark wash if images are too bright */
+    /* background: rgba(0,0,0,0.3); */
+    /* width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; */
   }
-
+  
   .flip-card-back {
     transform: rotateY(180deg);
   }
 
-  .shake {
-    animation: shake 6s ease-in-out infinite;
-  }
-
   @keyframes shake {
-    0%   { transform: rotateZ(0); }
-    2%  { transform: rotateZ(-1deg); }
-    4%  { transform: rotateZ(1deg); }
-    6%  { transform: rotateZ(-1deg); }
-    8%  { transform: rotateZ(1deg); }
-    10% { transform: rotateZ(0); }
-    100% { transform: rotateZ(0); }
+    0%, 10%, 100% { transform: rotateZ(0); }
+    2%, 6%  { transform: rotateZ(-1deg); }
+    4%, 8%  { transform: rotateZ(1deg); }
   }
 </style>

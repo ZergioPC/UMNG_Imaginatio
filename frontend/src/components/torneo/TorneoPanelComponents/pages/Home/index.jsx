@@ -221,7 +221,7 @@ function Home() {
     <div className="inscripcion">
       {isTeamsDisponibles ? (
         <>
-        <p>¿Quieres particiapr?</p>
+        <p>¿Quieres participar?</p>
         <BtnAviso>
           <a href="/mundialito-inscripcion">Inscribete</a>
         </BtnAviso>
