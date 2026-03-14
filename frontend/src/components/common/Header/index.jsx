@@ -102,7 +102,8 @@ function Header(){
         <div>
           <a href="/login">Iniciar Sesión</a>
           <a 
-            href="https://chat.google.com/room/AAQACc5Yhpw?cls=7" 
+            // href="https://chat.google.com/room/AAQACc5Yhpw?cls=7" 
+            href="#"
             target="_blank"
           >Crear Equipo</a>
         </div>

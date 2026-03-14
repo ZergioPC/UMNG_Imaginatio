@@ -114,10 +114,11 @@ function EventContainer() {
             )}
           </div>
         ) : (
-          <a 
-            href="https://chat.google.com/room/AAQACc5Yhpw?cls=7"
-            className={styles.EventInfoInscribir}
-          >!Participa aquí!</a>
+          // <a 
+          //   href="https://chat.google.com/room/AAQACc5Yhpw?cls=7"
+          //   className={styles.EventInfoInscribir}
+          // >!Participa aquí!</a>
+          <br/>
         )}
       </section>
     </div>
