@@ -100,7 +100,7 @@
   font-size: 1.1rem;
 }
 
-.app-info {
+.app-info-pais {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,7 +108,7 @@
   padding: 1rem;
 }
 
-.app-info-name {
+.app-info-pais-name {
   font-size: 2rem;
   color: #fff;
   margin: 0.5rem 0 1rem 0;
@@ -118,14 +118,14 @@
   letter-spacing: 3px;
 }
 
-.app-info figure {
-  width: 150px;
+.app-info-pais figure {
+  max-width: 150px;
   height: 90px;
   border-radius: 15px;
   overflow: hidden;
 }
 
-.app-info img {
+.app-info-pais img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -212,8 +212,21 @@
     gap: 1.5rem;
   }
 
+  .app-info-container {
+    padding: 0;
+    flex-direction: row;
+  }
+
+  .app-info-pais-name {
+    font-size: 1.5em;
+  }
+
+  .app-profesor {
+    padding: 5px;
+  }
+
   .app-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     max-height: none;
   }
 

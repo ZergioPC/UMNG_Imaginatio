@@ -83,11 +83,11 @@ function Equipos() {
       <BtnReturn />
 
       <div className="app-info-container">
-        <div className="app-info">
+        <div className="app-info-pais">
           <figure>
             <img src={getFlag(team.name)} alt="" />
           </figure>
-          <h2 className="app-info-name">{team.name}</h2>
+          <h2 className="app-info-pais-name">{team.name}</h2>
         </div>
 
         {profesor ? (
