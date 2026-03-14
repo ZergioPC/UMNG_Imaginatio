@@ -24,16 +24,20 @@ import img6 from "@/assets/aboutSources/foto5.jpeg";
 <BaseLayout title="Quienes Somos">
 	<TitleMain 
     titulo="¿Qué es el Imaginatio?" 
-    subtitulo="Entonces..."
+    subtitulo=""
     bgImage={wallpaper1}
   />
 
   <main>
     <section class="section">
       <div class="text-container">
-        <p class="text">
-          <strong>El Imaginatio</strong> es un espacio académico para el co-aprendizaje, donde los estudiantes del programa Ingeniería en Multimedia tienen la oportunidad de conectar con la industria.
-        </p>
+        <div class="text">
+          <p>El <strong>Imaginatio</strong> es un espacio académico para el <strong>coaprendizaje,</strong> donde los estudiantes del programa <strong>Ingeniería en Multimedia</strong> comparten el sueño de trascender pantallas y códigos; de ser la fuerza que une la tecnología con el arte y la funcionalidad con la emoción. Aquí, en cada proyecto y en cada idea, damos vida a un futuro donde la <strong>innovación es nuestra bandera</strong> y la <strong>excelencia, nuestro camino.</strong></p>
+          
+          <p>Somos quienes estudiamos la ciencia, pero vivimos el arte: una comunidad unida en la búsqueda de crear experiencias que muevan al mundo, con la convicción de que cada proyecto y cada diseño tienen el potencial de <strong>cambiar percepciones y construir nuevos sentidos.</strong></p>
+          
+          <p>Por ello, asumimos el desafío de <strong>reimaginar lo posible,</strong> dando vida a mundos que inspiran y a innovaciones que transforman.</p>
+        </div>
       </div>
     </section>
 
@@ -166,6 +170,9 @@ import img6 from "@/assets/aboutSources/foto5.jpeg";
   }
 
   .text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
     font-size: 2em;
     line-height: 1.7;
   }

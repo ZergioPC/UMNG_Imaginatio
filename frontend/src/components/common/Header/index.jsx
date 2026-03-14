@@ -12,7 +12,7 @@ const API = GLOBALS.API;
 
 const navContent = [
   {txt:"Home", link:"/"},
-  {txt:"Qué es el Imaginatio", link:"/about"},
+  {txt:"¿Qué es el Imaginatio?", link:"/about"},
   {txt:"Concursos", link:"/concursos"},
   {txt:"Eventos Pasados", link:"/eventos-pasados"},
   {txt:"Mundialito", link:"/mundialito"}
