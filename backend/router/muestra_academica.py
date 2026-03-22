@@ -2,7 +2,7 @@ import os, uuid
 
 from fastapi import APIRouter, Form, File, HTTPException,UploadFile, Depends
 
-from db import db_commit, db_update, db_select_unique, db_delete_unique
+from db import db_commit, db_update, db_select_unique, db_delete_unique, db_select_query
 from auth.depends import get_current_admin
 from models.muestra_academica import MuestraAcademica
 
@@ -10,7 +10,13 @@ from utils import IMG_PATH_MUESTRAS, IMG_PATH
 
 router = APIRouter()
 
-# MARK:CRUD Muestra academica
+@router.get("/get")
+async def muestra_get():
+    from sqlmodel import select
+    query = select(MuestraAcademica).order_by(MuestraAcademica.muestra_id.desc())
+    muestras = await db_select_query(query)
+    return {"data": muestras, "message": "Lista de muestras académicas"}
+
 @router.post("/crear")
 async def muestra_crear(
     title:str = Form(...),
