@@ -1,0 +1,53 @@
+---
+// @ts-nocheck
+
+import "@/styles/muestra-academica.css"
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GLOBALS from "@/config/globals";
+import { FeriaProyectos } from "@/components/concursos/FeriaProyectos"
+---
+
+<BaseLayout title="Muestra Académica">
+  <FeriaProyectos client:load/>
+  
+  <div id="muestras-container" class="muestras-grid"></div>
+  <div id="loading" class="loading">Cargando...</div>
+  <div id="error" class="error" style="display:none;">Error al cargar los datos</div>
+</BaseLayout>
+
+<script 
+  is:inline 
+  type="module"
+  define:vars={{GLOBALS}}
+>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const container = document.getElementById('muestras-container');
+    const loading = document.getElementById('loading');
+    const error = document.getElementById('error');
+
+    try {
+      const response = await fetch(GLOBALS.API + "/muestra/get");
+      const result = await response.json();
+      const muestras = result.data;
+
+      loading.style.display = 'none';
+
+      if (!muestras || muestras.length === 0) {
+        container.innerHTML = '<p>No hay proyectos disponibles</p>';
+        return;
+      }
+
+      container.innerHTML = muestras.map(muestra => `
+        <div class="muestra-card">
+          <img src="${GLOBALS.API + muestra.img}" alt="${muestra.title}" />
+          <h3>${muestra.title}</h3>
+        </div>
+      `).join('');
+    } catch (err) {
+      loading.style.display = 'none';
+      error.style.display = 'block';
+      console.error('Error fetching muestras:', err);
+    }
+  });
+</script>

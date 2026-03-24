@@ -27,8 +27,22 @@
 .App-Nav {
   z-index: 2;
   position: fixed;
-  height: 100%;
+  height: calc(100vh - 70px);
   border-right: solid 4px var(--color-contrast);
+  overflow-y: scroll;
+}
+
+.App-Nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.App-Nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.App-Nav::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 10px;
 }
 
 .App-Nav > nav {
@@ -51,8 +65,7 @@
   background-color: var(--color-inactive);
   writing-mode: vertical-lr;
   transform: rotate(180deg);
-  transition-property: padding margin;
-  transition-duration: 100ms;
+  transition: padding 100ms, margin 100ms, background-color 100ms;
 }
 
 .App-Nav a.active {

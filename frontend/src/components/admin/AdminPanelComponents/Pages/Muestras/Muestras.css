@@ -1,0 +1,117 @@
+.MuestrasContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.preview-img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+.current-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.current-image p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.btn-add {
+  align-self: flex-start;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #949bff;
+  border: solid 1px #000;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-add:hover {
+  background-color: #7b82ff;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Form p {
+  margin: 10px;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.Form label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Form label h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.Form label small {
+  color: #666;
+  font-size: 0.85em;
+}
+
+.Form input[type="text"],
+.Form input[type="file"],
+.Form input[type="password"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+.Form input[type="file"] {
+  padding: 5px 0;
+}
+
+.Form .btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.Form button {
+  padding: 10px 15px;
+  border: solid 2px #000;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+}
+
+.Form button:first-of-type {
+  background-color: #95ff80;
+}
+
+.Form button:last-of-type {
+  background-color: #a3a3a3;
+}
+
+.Form button:hover {
+  background-color: #fff !important;
+}
+
+.Form a {
+  color: #362c96;
+}

@@ -8,10 +8,10 @@ from fastapi.staticfiles import StaticFiles
 
 from db import crear_tablas
 from auth import router as auth
-from router import posts, equipo, events, estudiantes, utils
+from router import posts, equipo, events, estudiantes, muestra_academica, utils
 from router.torneo import fase, futbolPlayer, futbolProfesor, futbolTeam, partido
 from router.torneo import utils as torneoUtils
-from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS, IMG_PATH_TORNEO
+from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS, IMG_PATH_TORNEO, IMG_PATH_MUESTRAS
 
 
 load_dotenv()
@@ -51,6 +51,7 @@ os.makedirs(IMG_PATH, exist_ok=True)
 os.makedirs(IMG_PATH_USERS, exist_ok=True)
 os.makedirs(IMG_PATH_POSTS, exist_ok=True)
 os.makedirs(IMG_PATH_TORNEO, exist_ok=True)
+os.makedirs(IMG_PATH_MUESTRAS, exist_ok=True)
 app.mount("/uploads",StaticFiles(directory="uploads"), name="uploads")
 
 # Routers
@@ -59,6 +60,8 @@ app.include_router(posts.router, prefix="/post", tags=["post"])
 app.include_router(events.router, prefix="/event", tags=["event"])
 app.include_router(equipo.router, prefix="/equipo", tags=["equipo"])
 app.include_router(estudiantes.router, prefix="/estudiantes", tags=["estudiantes"])
+app.include_router(muestra_academica.router, prefix="/muestra", tags=["muestra"])
+
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 
 app.include_router(fase.router, prefix="/torneo_fase", tags=["Torneo Fase"])
@@ -68,7 +71,7 @@ app.include_router(futbolPlayer.router, prefix="/torneo_players", tags=["Torneo 
 app.include_router(futbolProfesor.router, prefix="/torneo_profe", tags=["Torneo Profe"])
 app.include_router(torneoUtils.router, prefix="/torneo_utils", tags=["Torneo Utils"])
 
-#Main
+# Main
 @app.get("/health")
 async def health():
     return {"message": "Hola"}
