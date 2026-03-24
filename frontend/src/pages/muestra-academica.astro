@@ -5,10 +5,11 @@ import "@/styles/muestra-academica.css"
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import GLOBALS from "@/config/globals";
+import { FeriaProyectos } from "@/components/concursos/FeriaProyectos"
 ---
 
 <BaseLayout title="Muestra Académica">
-  <h1>Feria de Proyectos</h1>
+  <FeriaProyectos client:load/>
   
   <div id="muestras-container" class="muestras-grid"></div>
   <div id="loading" class="loading">Cargando...</div>

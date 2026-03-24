@@ -14,7 +14,7 @@ const navContent = [
   {txt:"Home", link:"/"},
   {txt:"¿Qué es el Imaginatio?", link:"/about"},
   {txt:"Reto", link:"/reto-economia-c"},
-  {txt:"Muestra Academica", link:"/muestra-academica"},
+  {txt:"Feria de Proyectos", link:"/muestra-academica"},
   {txt:"Eventos Pasados", link:"/eventos-pasados"},
   {txt:"Mundialito", link:"/mundialito"},
   //{txt:"Concursos", link:"/concursos"},
