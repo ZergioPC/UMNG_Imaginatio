@@ -1,0 +1,23 @@
+.Titulo {
+  text-align: center;
+  font-size: 4rem;
+  margin: 10px 0;
+}
+
+.MdContainer {
+  margin:  0 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.MdContainer h1 {
+  text-align: center;
+}
+
+.btnContainer {
+  display:  flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
