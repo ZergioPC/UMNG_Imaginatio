@@ -54,7 +54,7 @@ function Header(){
         <a href="/">Imaginatio</a>
       </div>
       <button
-        onClick={()=> setAsidePerfil(true)}
+        onClick={()=> setAsidePerfil(false)}
       >
         <IconAccount color="var(--ui-color)"/>
       </button>
