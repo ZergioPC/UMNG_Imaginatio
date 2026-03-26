@@ -19,8 +19,8 @@ function FeriaProyectos(){
 
   return <>
     <div className={styles.MdContainer}>
-      <h2 className={styles.Titulo}>{content?.name ?? "Name"}</h2>
-      <ReactMarkdown>{content?.desc ?? "Desc"}</ReactMarkdown>
+      <h2 className={styles.Titulo}>{content?.name ?? "Cargando..."}</h2>
+      <ReactMarkdown>{content?.desc ?? ""}</ReactMarkdown>
     </div>
   </>
 }

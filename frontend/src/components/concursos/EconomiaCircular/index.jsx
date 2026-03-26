@@ -21,15 +21,16 @@ function EconomiaCircular(){
   },[]);
 
   return <>
-    <h2 className={styles.Titulo}>{content?.name ?? "Name"}</h2>
     <div className={styles.MdContainer}>
-      <ReactMarkdown>{content?.desc ?? "Desc"}</ReactMarkdown>
+      <h2 className={styles.Titulo}>{content?.name ?? "Cargando..."}</h2>
+      <ReactMarkdown>{content?.desc ?? ""}</ReactMarkdown>
     </div>
     <div className={styles.btnContainer}>
       <BtnAviso>
         <a 
           href="https://docs.google.com/forms/d/e/1FAIpQLSddYMT0aJqDtr8Vfs_Pb5nSvArX8_26pErVpXUmEZC_NjYKiw/viewform" 
           target="_blank"
+          style={{"fontSize":"2.5em"}}
         >Inscribete!</a>
       </BtnAviso>
     </div>

@@ -21,7 +21,8 @@
 
 .modal article{
   width: 50vw;
-  max-height: 60vh;
+  height: 70vh;
+  max-height: 1280px;
   padding: 20px;
   background-color: #fff;
   border-radius: 20px;

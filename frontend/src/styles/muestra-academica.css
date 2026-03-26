@@ -59,6 +59,7 @@
 }
 
 .muestra-card img {
+  box-sizing: border-box;
   width: 100%;
   aspect-ratio: 3/4;
   object-fit: cover;
