@@ -11,6 +11,7 @@ const API = GLOBALS.API;
 
 const formInit = {
   title: "",
+  page: "#",
 };
 
 function Muestras() {
@@ -27,8 +28,9 @@ function Muestras() {
   const [formEdit, setFormEdit] = useState(formInit);
 
   const titulos = [
-    { txt: "ID", key: "muestra_id", size: "50px" },
+    //{ txt: "ID", key: "muestra_id", size: "50px" },
     { txt: "Título", key: "title", size: "auto" },
+    { txt: "URL", key: "page", size: "auto" },
     { txt: "Imagen", key: "img", size: "200px" },
     { txt: "Acciones", key: "actions", size: "150px" },
   ];
@@ -47,6 +49,7 @@ function Muestras() {
 
     const formData = new FormData();
     formData.append("title", formAdd.title);
+    formData.append("page", formAdd.page);
     if (formAdd.img) {
       const compress =  await imageCompression(formAdd.img,{
         maxSizeMB: 0.5,
@@ -83,6 +86,7 @@ function Muestras() {
 
     const formData = new FormData();
     formData.append("title", formEdit.title);
+    formData.append("page", formEdit.page);
     if (formEdit.img) {
       const compress =  await imageCompression(formEdit.img,{
         maxSizeMB: 0.5,
@@ -136,7 +140,7 @@ function Muestras() {
 
   const handleEditarClick = (muestra) => {
     setEditMuestra({ ...muestra });
-    setFormEdit({ title: muestra.title });
+    setFormEdit({ ...formEdit, title: muestra.title, page: muestra.page });
     setOpenModalEdit(true);
   };
 
@@ -196,6 +200,19 @@ function Muestras() {
             </label>
 
             <label>
+              <h4>URL</h4>
+              <small>Sí no hay enlace, escribir un #</small>
+              <input
+                type="text"
+                placeholder="http://www.example.com"
+                value={formAdd.page}
+                onChange={(e) =>
+                  setFormAdd({ ...formAdd, page: e.target.value })
+                }
+              />
+            </label>
+
+            <label>
               <h4>Imagen</h4>
               <input
                 required
@@ -231,6 +248,19 @@ function Muestras() {
                 value={formEdit.title}
                 onChange={(e) =>
                   setFormEdit({ ...formEdit, title: e.target.value })
+                }
+              />
+            </label>
+
+            <label>
+              <h4>URL</h4>
+              <small>Sí no hay enlace, escribir un #</small>
+              <input
+                type="text"
+                placeholder="http://www.example.com"
+                value={formEdit.page}
+                onChange={(e) =>
+                  setFormEdit({ ...formEdit, page: e.target.value })
                 }
               />
             </label>

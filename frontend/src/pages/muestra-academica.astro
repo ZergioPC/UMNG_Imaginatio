@@ -10,7 +10,7 @@ import { FeriaProyectos } from "@/components/concursos/FeriaProyectos"
 
 <BaseLayout title="Muestra Académica">
   <FeriaProyectos client:load/>
-  
+
   <div id="muestras-container" class="muestras-grid"></div>
   <div id="loading" class="loading">Cargando...</div>
   <div id="error" class="error" style="display:none;">Error al cargar los datos</div>
@@ -26,6 +26,22 @@ import { FeriaProyectos } from "@/components/concursos/FeriaProyectos"
     const loading = document.getElementById('loading');
     const error = document.getElementById('error');
 
+    function normalizeUrl(str) {
+      if (!str) return str;
+
+      // If already starts with http:// or https:// → leave it
+      if (/^https?:\/\//i.test(str)) {
+        return str;
+      }
+
+      // If starts with www or looks like a domain → prepend https://
+      if (/^(www\.|[a-z0-9-]+\.[a-z]{2,})/i.test(str)) {
+        return "https://" + str;
+      }
+
+      return str;
+    }
+
     try {
       const response = await fetch(GLOBALS.API + "/muestra/get");
       const result = await response.json();
@@ -39,10 +55,17 @@ import { FeriaProyectos } from "@/components/concursos/FeriaProyectos"
       }
 
       container.innerHTML = muestras.map(muestra => `
-        <div class="muestra-card">
+        <a 
+          class="muestra-card" 
+          href="${normalizeUrl(muestra.page)}" 
+          target="${normalizeUrl(muestra.page).startsWith("#") 
+            ? "_self" 
+            : "_blank"
+          }"
+        >
           <img src="${GLOBALS.API + muestra.img}" alt="${muestra.title}" />
           <h3>${muestra.title}</h3>
-        </div>
+        </a>
       `).join('');
     } catch (err) {
       loading.style.display = 'none';

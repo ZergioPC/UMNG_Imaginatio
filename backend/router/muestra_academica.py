@@ -1,4 +1,4 @@
-import os, uuid
+import os, uuid, logging
 
 from fastapi import APIRouter, Form, File, HTTPException,UploadFile, Depends
 
@@ -20,13 +20,17 @@ async def muestra_get():
 @router.post("/crear")
 async def muestra_crear(
     title:str = Form(...),
-    img: UploadFile = File(...), 
+    img:UploadFile = File(...), 
+    page:str = Form(...),
     current_admin:str=Depends(get_current_admin)
 ):
     data_dump = {}
     
     if title is not None:
         data_dump["title"] = title
+    
+    if page is not None:
+        data_dump["page"] = page
 
     if img is not None:
         if not img.content_type.startswith("image/"):
@@ -58,10 +62,13 @@ async def muestra_crear(
 async def muestra_editar(
     id:int,
     title:str = Form(None),
-    img: UploadFile = File(None), 
+    img: UploadFile = File(None),
+    page:str = Form(None), 
     current_admin:str=Depends(get_current_admin)
 ):
     muestra:MuestraAcademica = await db_select_unique(MuestraAcademica, id)
+
+    logging.warning(f"t:{title} - p: {page}")
 
     if not muestra:
         raise HTTPException(status_code=404, detail="Muestra no encontrada")
@@ -70,6 +77,9 @@ async def muestra_editar(
     
     if title is not None:
         data_dump["title"] = title
+
+    if page is not None:
+        data_dump["page"] = page
 
     if img is not None:
         if not img.content_type.startswith("image/"):
