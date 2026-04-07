@@ -55,11 +55,11 @@ function Header(){
           <img src="/logotipo.jpg" alt="Imaginatio Logotipo" />
         </a>
       </div>
-      <button
+      {/* <button
         onClick={()=> setAsidePerfil(false)}
       >
         <IconAccount color="var(--ui-color)"/>
-      </button>
+      </button> */}
     </header>
 
     <aside 
