@@ -27,7 +27,7 @@ function Muestras() {
   const [formEdit, setFormEdit] = useState(formInit);
 
   const titulos = [
-    { txt: "ID", key: "muestra_id", size: "50px" },
+    //{ txt: "ID", key: "muestra_id", size: "50px" },
     { txt: "Título", key: "title", size: "auto" },
     { txt: "Imagen", key: "img", size: "200px" },
     { txt: "Acciones", key: "actions", size: "150px" },
