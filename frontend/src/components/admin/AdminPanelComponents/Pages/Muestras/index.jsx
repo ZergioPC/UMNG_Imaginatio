@@ -201,9 +201,10 @@ function Muestras() {
 
             <label>
               <h4>URL</h4>
+              <small>Sí no hay enlace, escribir un #</small>
               <input
                 type="text"
-                placeholder="www.example.com"
+                placeholder="http://www.example.com"
                 value={formAdd.page}
                 onChange={(e) =>
                   setFormAdd({ ...formAdd, page: e.target.value })
@@ -253,9 +254,10 @@ function Muestras() {
 
             <label>
               <h4>URL</h4>
+              <small>Sí no hay enlace, escribir un #</small>
               <input
                 type="text"
-                placeholder="www.example.com"
+                placeholder="http://www.example.com"
                 value={formEdit.page}
                 onChange={(e) =>
                   setFormEdit({ ...formEdit, page: e.target.value })
