@@ -6,8 +6,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 5px 10px;
-  height: 60px;
+  padding: 0 10px;
+  height: 70px;
   background-color: var(--ui-background);
 }
 
@@ -19,10 +19,18 @@
 }
 
 .Header a {
-  text-decoration: none;
-  font-family: "Imaginatio";
-  font-size: 40px;
-  color: var(--ui-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-width: 300px;
+}
+
+.Header img{
+  object-fit: contain;
+  object-position: left;
+  height: 100%;
+  width: 100%;
 }
 
 .Header button {

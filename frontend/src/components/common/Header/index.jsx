@@ -51,7 +51,9 @@ function Header(){
         >
           <IconBurger color="var(--ui-color)"/>
         </button>
-        <a href="/">Imaginatio</a>
+        <a href="/">
+          <img src="/logotipo.jpg" alt="Imaginatio Logotipo" />
+        </a>
       </div>
       <button
         onClick={()=> setAsidePerfil(false)}
