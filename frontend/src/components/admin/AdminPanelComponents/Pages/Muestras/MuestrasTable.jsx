@@ -20,10 +20,11 @@ function MuestrasTable({ data, titulos, actions }) {
           {actions.map((btn, idx) => (
             <button
               key={idx}
+              title={btn.txt}
               onClick={() => btn.callback(item)}
               style={{ backgroundColor: btn.color }}
             >
-              {btn.txt}
+              {btn.emoji}
             </button>
           ))}
         </div>

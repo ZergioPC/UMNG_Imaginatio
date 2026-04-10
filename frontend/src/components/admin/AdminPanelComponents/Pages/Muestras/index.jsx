@@ -36,8 +36,10 @@ function Muestras() {
   ];
 
   const actions = [
-    { callback: (item) => handleEditarClick(item), txt: "Editar", color: "#c5da74" },
-    { callback: (item) => handleBorrarClick(item), txt: "Borrar", color: "#ec8b8b" },
+    { callback: (item) => handleEditarClick(item), txt: "Editar", emoji: "✏️", color: "#c5da74" },
+    { callback: (item) => handleBorrarClick(item), txt: "Borrar", emoji: "🗑️", color: "#ec8b8b" },
+    { callback: (item) => handleUpOrderClick(item), txt: "Subir", emoji: "⬆️", color: "#292929" },
+    { callback: (item) => handleDownOrderClick(item), txt: "Bajar", emoji: "⬇️", color: "#292929" },
   ];
 
   const handleCrear = async (e) => {
@@ -147,6 +149,40 @@ function Muestras() {
   const handleBorrarClick = (muestra) => {
     setSelectMuestra(muestra);
     setOpenModalDelete(true);
+  };
+
+  const handleUpOrderClick = async (muestra) => {
+    try {
+      const res = await fetch(`${API}/muestra/set_index/${muestra.muestra_id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ order_index: muestra.order_index + 1 }),
+        credentials: "include",
+      });
+      const data = await res.json();
+      console.log(data.message || data.data);
+    } catch (e) {
+      alert(e);
+    } finally {
+      setLoad(true);
+    }
+  };
+
+  const handleDownOrderClick = async (muestra) => {
+    try {
+      const res = await fetch(`${API}/muestra/set_index/${muestra.muestra_id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ order_index: muestra.order_index - 1 }),
+        credentials: "include",
+      });
+      const data = await res.json();
+      console.log(data.message || data.data);
+    } catch (e) {
+      alert(e);
+    } finally {
+      setLoad(true);
+    }
   };
 
   useEffect(() => {
