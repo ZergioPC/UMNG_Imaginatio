@@ -18,6 +18,7 @@ function Muestras() {
   const [muestras, setMuestras] = useState([]);
   const [selectMuestra, setSelectMuestra] = useState(null);
   const [editMuestra, setEditMuestra] = useState(null);
+  const [btnDisabled, setbtnDisabled] = useState(false);
 
   const [load, setLoad] = useState(true);
   const [openModalAdd, setOpenModalAdd] = useState(false);
@@ -152,6 +153,7 @@ function Muestras() {
   };
 
   const handleUpOrderClick = async (muestra) => {
+    setbtnDisabled(true);
     try {
       const res = await fetch(`${API}/muestra/set_index/${muestra.muestra_id}`, {
         method: "PATCH",
@@ -169,6 +171,7 @@ function Muestras() {
   };
 
   const handleDownOrderClick = async (muestra) => {
+    setbtnDisabled(true);
     try {
       const res = await fetch(`${API}/muestra/set_index/${muestra.muestra_id}`, {
         method: "PATCH",
@@ -195,6 +198,7 @@ function Muestras() {
       .then((data) => {
         setMuestras(data.data || []);
         setLoad(false);
+        setbtnDisabled(false)
       });
   }, [load]);
 
@@ -207,6 +211,7 @@ function Muestras() {
           titulos={titulos}
           data={muestras || []}
           actions={actions}
+          onLoad={btnDisabled}
         />
 
         <button

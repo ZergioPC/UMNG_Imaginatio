@@ -3,7 +3,7 @@ import styles from "./MuestrasTable.module.css";
 import GLOBALS from "@/config/globals.js";
 const API = GLOBALS.API;
 
-function MuestrasTable({ data, titulos, actions }) {
+function MuestrasTable({ data, titulos, actions, onLoad }) {
   const renderCell = (item, key) => {
     if (key === "img") {
       return (
@@ -23,6 +23,7 @@ function MuestrasTable({ data, titulos, actions }) {
               title={btn.txt}
               onClick={() => btn.callback(item)}
               style={{ backgroundColor: btn.color }}
+              disabled={onLoad}
             >
               {btn.emoji}
             </button>
