@@ -4,7 +4,7 @@ from fastapi import APIRouter, Form, File, HTTPException,UploadFile, Depends
 
 from db import db_commit, db_update, db_select_unique, db_delete_unique, db_select_query
 from auth.depends import get_current_admin
-from models.muestra_academica import MuestraAcademica
+from models.muestra_academica import MuestraAcademica, MuestraAcademicaIndexEdit
 
 from utils import IMG_PATH_MUESTRAS, IMG_PATH
 
@@ -13,7 +13,7 @@ router = APIRouter()
 @router.get("/get")
 async def muestra_get():
     from sqlmodel import select
-    query = select(MuestraAcademica).order_by(MuestraAcademica.muestra_id.desc())
+    query = select(MuestraAcademica).order_by(MuestraAcademica.order_index.desc())
     muestras = await db_select_query(query)
     return {"data": muestras, "message": "Lista de muestras académicas"}
 
@@ -99,6 +99,7 @@ async def muestra_editar(
     if not data_dump:
         raise HTTPException(status_code=400, detail="No data provided")
     
+    data_dump["order_index"] = 0
     await db_update(MuestraAcademica, id, data_dump)
 
     return {"message":"Muestra editada con Exito"}
@@ -121,3 +122,17 @@ async def muestra_borrar(
         raise HTTPException(status_code=404, detail="Error al eliminar")
 
     return {"message":"Muestra eliminada con Exito"}
+
+
+@router.patch("/set_index/{id}")
+async def muestra_update_index(
+    id:int, 
+    index:MuestraAcademicaIndexEdit,
+    current_admin:str=Depends(get_current_admin)
+):
+    data_model:MuestraAcademica = await db_select_unique(MuestraAcademica,id)
+    data = data_model.model_dump()
+    data["order_index"] = index.order_index
+
+    await db_update(MuestraAcademica, id, data)
+    return {"data":f"cambio el index de  la muestra ID_{id}"}
