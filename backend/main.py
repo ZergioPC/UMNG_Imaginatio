@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 from db import crear_tablas
 from auth import router as auth
-from router import posts, equipo, events, estudiantes, muestra_academica, utils
+from router import posts, equipo, events, estudiantes, muestra_academica, invitados, utils
 from router.torneo import fase, futbolPlayer, futbolProfesor, futbolTeam, partido
 from router.torneo import utils as torneoUtils
 from utils import IMG_PATH, IMG_PATH_POSTS, IMG_PATH_USERS, IMG_PATH_TORNEO, IMG_PATH_MUESTRAS
@@ -61,6 +61,7 @@ app.include_router(events.router, prefix="/event", tags=["event"])
 app.include_router(equipo.router, prefix="/equipo", tags=["equipo"])
 app.include_router(estudiantes.router, prefix="/estudiantes", tags=["estudiantes"])
 app.include_router(muestra_academica.router, prefix="/muestra", tags=["muestra"])
+app.include_router(invitados.router, prefix="/invitado", tags=["invitado"])
 
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 

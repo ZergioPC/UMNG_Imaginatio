@@ -1,0 +1,63 @@
+---
+// @ts-nocheck
+
+import "@/styles/invitados.css"
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GLOBALS from "@/config/globals";
+import TitleSimple from "../components/titulos/TitleSimple/TitleSimple.astro";
+---
+
+<BaseLayout title="Invitados">
+  <main>
+    <TitleSimple
+      titulo="Conferencistas Invitados"
+      subtitulo="Reconocidos profesionales y expertos en ingeniería multimedia que compartirán su experiencia y visión sobre las tendencias más innovadoras del campo digital."
+    />
+    </TitleSimple>
+    <section>
+      <div id="invitados" class="invitados-grid"></div>
+      <div id="loading" class="loading">Cargando...</div>
+      <div id="error" class="error" style="display:none;">Error al cargar los datos</div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script 
+  is:inline 
+  type="module"
+  define:vars={{GLOBALS}}
+>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const container = document.getElementById('invitados');
+    const loading = document.getElementById('loading');
+    const error = document.getElementById('error');
+
+    try {
+      const response = await fetch(GLOBALS.API + "/invitado/get");
+      const result = await response.json();
+      const invitados = result.data;
+
+      loading.style.display = 'none';
+
+      if (!invitados || invitados.length === 0) {
+        container.innerHTML = '<p>No hay invitados disponibles</p>';
+        return;
+      }
+
+      container.innerHTML = invitados.map(invitado => `
+        <div 
+          class="invitado-card"
+        >
+          <img src="${GLOBALS.API + invitado.img}" alt="${invitado.nombre}" />
+          <h3>${invitado.nombre}</h3>
+          <p>${invitado.desc}</p>
+        </div>
+      `).join('');
+    } catch (err) {
+      loading.style.display = 'none';
+      error.style.display = 'block';
+      console.error('Error fetching invitados:', err);
+    }
+  });
+</script>

@@ -7,6 +7,7 @@ import { Apariencia } from "../AdminPanelComponents/Pages/Apariencia";
 import { Publicaciones } from "../AdminPanelComponents/Pages/Publicaciones";
 import { Mundialito } from "../AdminPanelComponents/Pages/Mundialito";
 import { Muestras } from "../AdminPanelComponents/Pages/Muestras";
+import { Invitados } from "../AdminPanelComponents/Pages/Invitados";
 
 const links = [
   {to:"/", txt:"Home", element:Home},
@@ -15,6 +16,7 @@ const links = [
   {to:"/muestra-academica", txt:"Muestra Academica", element:Muestras},
   {to:"/publicaciones", txt:"Publicaciones", element:Publicaciones},
   {to:"/mundialito", txt:"Mundialito", element:Mundialito},
+  {to:"/invitados", txt:"Invitados", element:Invitados},
 ]
 
 function App() {
