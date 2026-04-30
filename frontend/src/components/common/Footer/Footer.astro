@@ -39,7 +39,7 @@ const redesSociales = [
           {<red.icon 
             fill="var(--ui-color)"
           />}
-          {/* <span>{red.name}</span> */}
+          <span>{/*red.name*/}</span>
         </a>
       )}
     </div>
@@ -134,6 +134,7 @@ const redesSociales = [
     .Footer-info {
       position: static;
       text-align: center;
+      font-size: 0.8em;
     } 
 
     .Footer > section {
@@ -146,16 +147,9 @@ const redesSociales = [
 
     .Footer-redes {
       margin-top: 0;
-    }
-  }
-
-  @media screen and (max-width:950px) {
-    .Footer-info {
-      font-size: 0.8em;
-    } 
-    
-    .Footer-redes {
       grid-template-columns: repeat(2, 1fr);
-    }  
+    }
+    
+    .Footer-redes a { min-width: 100px;} 
   }
 </style>

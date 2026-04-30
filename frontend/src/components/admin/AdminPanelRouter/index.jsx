@@ -16,7 +16,7 @@ const links = [
   {to:"/muestra-academica", txt:"Muestra Academica", element:Muestras},
   {to:"/publicaciones", txt:"Publicaciones", element:Publicaciones},
   {to:"/mundialito", txt:"Mundialito", element:Mundialito},
-  {to:"/invitados", txt:"Invitados", element:Invitados},
+  {to:"/invitados", txt:"Conferencias", element:Invitados},
 ]
 
 function App() {

@@ -205,7 +205,7 @@ function Invitados() {
 
   return (
     <main>
-      <h1>Invitados</h1>
+      <h1>Conferencias</h1>
 
       <div className="InvitadosContainer">
         <InvitadosTable
