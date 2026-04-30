@@ -28,7 +28,7 @@ function EconomiaCircular(){
     <div className={styles.btnContainer}>
       <BtnAviso>
         <a 
-          href="https://docs.google.com/forms/d/e/1FAIpQLSddYMT0aJqDtr8Vfs_Pb5nSvArX8_26pErVpXUmEZC_NjYKiw/viewform" 
+          href="https://docs.google.com/forms/d/e/1FAIpQLSdzgMTGiJ2bcVIW-KW650esFaVM09u3aQP2jwmAJXJbFbk-2Q/viewform?usp=dialog" 
           target="_blank"
           style={{"fontSize":"2.5em"}}
         >Inscribete!</a>

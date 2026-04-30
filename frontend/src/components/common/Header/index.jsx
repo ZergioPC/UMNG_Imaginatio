@@ -17,6 +17,7 @@ const navContent = [
   {txt:"Feria de Proyectos", link:"/muestra-academica"},
   {txt:"Eventos Pasados", link:"/eventos-pasados"},
   {txt:"Mundialito", link:"/mundialito"},
+  {txt:"Invitados", link:"/invitados"},
   //{txt:"Concursos", link:"/concursos"},
 ];
 
